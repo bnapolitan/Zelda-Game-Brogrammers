@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 /* Team:
  * Dan Bellini
+ * Huang Huang
  * Xueyang Li
  * Ben Napolitan
  * Austin Rogers
