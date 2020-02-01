@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sprint0", "Sprint0\Sprint0.csproj", "{6A0AFB3E-297B-4815-A6CD-75CD81614272}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project3902", "Project3902\Project3902.csproj", "{6A0AFB3E-297B-4815-A6CD-75CD81614272}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
