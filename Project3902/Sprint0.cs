@@ -133,19 +133,19 @@ namespace Project3902
             linkTexture = Content.Load<Texture2D>("linkspritesheet");
             linkAtlas = new SpriteAtlas(linkTexture);
 
-            nonmovingNonanimatedSprite = new FixedSprite(linkAtlas, new Vector2(400, 240), new Rectangle(306, 11, 16, 16), spriteScale);
+            nonmovingNonanimatedSprite = new FixedSprite(linkAtlas, new Vector2(400, 240), new Rectangle(306, 11, 16, 16), null, spriteScale);
 
             List<Rectangle> nonmovingAnimatedSource = new List<Rectangle> { new Rectangle(280, 77, 16, 16), new Rectangle(297, 77, 27, 16), new Rectangle(325, 77, 23, 16), new Rectangle(349, 77, 19, 16) };
-            nonmovingAnimatedSprite = new AnimatedSprite(linkAtlas, new Vector2(368, 208), nonmovingAnimatedSource, .15f, spriteScale)
+            nonmovingAnimatedSprite = new AnimatedSprite(linkAtlas, new Vector2(368, 208), nonmovingAnimatedSource, .15f, null, spriteScale)
             {
                 // Pivot shouldn't be centered as its source rectangles do not have constant size.
                 CenterPivot = false
             };
 
-            movingNonanimatedSprite = new CircleMoveSprite(linkAtlas, new Vector2(400, 240), new Rectangle(230, 11, 16, 16), 20, 2, spriteScale);
+            movingNonanimatedSprite = new CircleMoveSprite(linkAtlas, new Vector2(400, 240), new Rectangle(230, 11, 16, 16), 20, 2, null, spriteScale);
 
             List<Rectangle> movingAnimatedSource = new List<Rectangle> { new Rectangle(35, 11, 16, 16), new Rectangle(52, 11, 16, 16) };
-            movingAnimatedSprite = new BackAndForthSprite(linkAtlas, new Vector2(400, 240), movingAnimatedSource, .2f, 20, 20, spriteScale);
+            movingAnimatedSprite = new BackAndForthSprite(linkAtlas, new Vector2(400, 240), movingAnimatedSource, .2f, 20, 20, null, spriteScale);
 
             currentSprite = nonmovingNonanimatedSprite;
         }
