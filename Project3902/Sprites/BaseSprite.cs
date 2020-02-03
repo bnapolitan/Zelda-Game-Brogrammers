@@ -15,6 +15,8 @@ namespace Project3902
         protected IAtlasSource source;
         protected Vector2 scale;
 
+        public IGameObject gameObject;
+
         public bool CenterPivot { get; set; } = true;
         public Vector2 Position { get; set; }
         public Vector2 Scale
@@ -41,20 +43,25 @@ namespace Project3902
             }
         }
 
-        public BaseSprite(SpriteAtlas atlas, Vector2 position, IAtlasSource source, Vector2? scale = null)
+        public BaseSprite(IGameObject gameObject, SpriteAtlas atlas, Vector2 position, IAtlasSource source, Vector2? scale = null)
         {
             this.atlas = atlas;
             Position = position;
             this.source = source;
             Scale = scale ?? new Vector2(1, 1);
+
+            this.gameObject = gameObject;
+        }
+
+        public virtual void Update(GameTime gameTime)
+        {
+            Position = gameObject.Position;
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(atlas.Texture, CalculateDestRect(), source.GetSourceRectangle(), Color.White);
         }
-
-        public abstract void Update(GameTime gameTime);
 
         protected Rectangle CalculateDestRect()
         {
