@@ -24,8 +24,8 @@ namespace Project3902
             }
         }
 
-        public AnimatedSprite(IGameObject gameObject, SpriteAtlas atlas, Vector2 position, List<Rectangle> sourceRects, float frameTime, Vector2? scale = null)
-            : base(gameObject, atlas, position, new MultipleSource(sourceRects), scale)
+        public AnimatedSprite(SpriteAtlas atlas, Vector2 position, List<Rectangle> sourceRects, float frameTime, IGameObject gameObject = null, Vector2? scale = null)
+            : base(atlas, position, new MultipleSource(sourceRects), gameObject, scale)
         {
             this.frameTime = frameTime;
         }

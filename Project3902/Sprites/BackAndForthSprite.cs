@@ -8,16 +8,16 @@ namespace Project3902
     {
         private float speed;
         private float distance;
-        private Vector2 startPosition;
+        private Vector2 relPosition;
         private Vector2 direction;
         private SpriteEffects flip = SpriteEffects.None;
 
-        public BackAndForthSprite(SpriteAtlas atlas, Vector2 position, List<Rectangle> sourceRects, float frameTime, float moveSpeed, float travelDistance, Vector2? scale = null)
-            : base(atlas, position, sourceRects, frameTime, scale)
+        public BackAndForthSprite(SpriteAtlas atlas, Vector2 position, List<Rectangle> sourceRects, float frameTime, float moveSpeed, float travelDistance, IGameObject gameObject = null, Vector2? scale = null)
+            : base(atlas, position, sourceRects, frameTime, gameObject, scale)
         {
             speed = moveSpeed;
             distance = travelDistance;
-            startPosition = position;
+            relPosition = Vector2.Zero;
             direction = new Vector2(1, 0);
         }
 
@@ -25,25 +25,27 @@ namespace Project3902
         {
             base.Update(gameTime);
 
-            Position += direction * speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            relPosition += direction * speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            if (Position.X > startPosition.X + distance)
+            if (relPosition.X > distance)
             {
                 direction *= -1;
-                Position = new Vector2(startPosition.X + distance, Position.Y);
+                relPosition.X = distance;
                 flip = SpriteEffects.FlipHorizontally;
             }
-            else if (Position.X < startPosition.X - distance)
+            else if (relPosition.X < -distance)
             {
                 direction *= -1;
-                Position = new Vector2(startPosition.X - distance, Position.Y);
+                relPosition.X = -distance;
                 flip = SpriteEffects.None;
             }
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(atlas.Texture, CalculateDestRect(), source.GetSourceRectangle(currentFrame), Color.White, 0, Vector2.Zero, flip, 0f);
+            Rectangle dest = CalculateDestRect();
+            dest.X += (int) relPosition.X;
+            spriteBatch.Draw(atlas.Texture, dest, source.GetSourceRectangle(currentFrame), Color.White, 0, Vector2.Zero, flip, 0f);
         }
     }
 }

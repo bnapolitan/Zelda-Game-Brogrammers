@@ -5,6 +5,7 @@ namespace Project3902
 {
     // BaseSprite contains the necessary components of a sprite, but defines
     // no behavior on its own (ie. in Update()).
+    // Keeps its position in line with a supplied IGameObject.
     // It also requires child classes to decide which IAtlasSource implementation they use.
     abstract class BaseSprite : ISprite
     {
@@ -43,14 +44,14 @@ namespace Project3902
             }
         }
 
-        public BaseSprite(IGameObject gameObject, SpriteAtlas atlas, Vector2 position, IAtlasSource source, Vector2? scale = null)
+        public BaseSprite(SpriteAtlas atlas, Vector2 position, IAtlasSource source, IGameObject gameObject = null, Vector2? scale = null)
         {
             this.atlas = atlas;
-            Position = position;
             this.source = source;
             Scale = scale ?? new Vector2(1, 1);
 
-            this.gameObject = gameObject;
+            this.gameObject = gameObject ?? new NullGameObject(position, this);
+            Position = this.gameObject.Position;
         }
 
         public virtual void Update(GameTime gameTime)
@@ -60,7 +61,7 @@ namespace Project3902
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(atlas.Texture, CalculateDestRect(), source.GetSourceRectangle(), Color.White);
+            spriteBatch.Draw(Texture, CalculateDestRect(), source.GetSourceRectangle(), Color.White);
         }
 
         protected Rectangle CalculateDestRect()

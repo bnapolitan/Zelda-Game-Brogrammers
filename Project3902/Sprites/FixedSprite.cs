@@ -5,7 +5,7 @@ namespace Project3902
 {
     class FixedSprite : BaseSprite
     {
-        public FixedSprite(IGameObject gameObject, SpriteAtlas atlas, Vector2 position, Rectangle sourceRect, Vector2? scale = null)
-            : base(gameObject, atlas, position, new SingleSource(sourceRect), scale) { }
+        public FixedSprite(SpriteAtlas atlas, Vector2 position, Rectangle sourceRect, IGameObject gameObject = null, Vector2? scale = null)
+            : base(atlas, position, new SingleSource(sourceRect), gameObject, scale) { }
     }
 }
