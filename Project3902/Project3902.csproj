@@ -53,6 +53,8 @@
     <Compile Include="Controllers\KeyboardController.cs" />
     <Compile Include="Commands\SetNonmovingNonanimatedCommand.cs" />
     <Compile Include="GameObjects\IGameObject.cs" />
+    <Compile Include="GameObjects\IUpdatable.cs" />
+    <Compile Include="GameObjects\IDrawable.cs" />
     <Compile Include="Sprint2.cs" />
     <Compile Include="Text\ITextSprite.cs" />
     <Compile Include="Text\SimpleText.cs" />
