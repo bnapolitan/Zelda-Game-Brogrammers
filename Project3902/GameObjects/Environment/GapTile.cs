@@ -8,30 +8,15 @@ using System.Threading.Tasks;
 
 namespace Project3902.GameObjects.Environment
 {
-    class GapTile : IInteractiveEnvironmentObject
+    class GapTile : FixedGameObject, IInteractiveEnvironmentObject
     {
 
-        public GapTile(ISprite sprite, Vector2 position)
-        {
-            this.Sprite = sprite;
-            this.Position = position;
-        }
+        public GapTile(Vector2 position)
+            : base(position) { }
 
-        public Vector2 Position { get; set; }
-        public ISprite Sprite { get; set; }
-        public bool Active { get; set; }
         public Rectangle hitbox { get; set; }
 
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            Sprite.Draw(spriteBatch);
-        }
-
         public void OnCollide()
-        {
-        }
-
-        public void Update(GameTime gameTime)
         {
         }
     }

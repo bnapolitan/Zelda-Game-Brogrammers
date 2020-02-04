@@ -54,8 +54,9 @@ namespace Project3902
             }
         }
 
-        public BaseSprite(SpriteAtlas atlas, IAtlasSource source, Vector2? scale = null)
+        public BaseSprite(IGameObject gameObject, SpriteAtlas atlas, IAtlasSource source, Vector2? scale = null)
         {
+            this.gameObject = gameObject;
             this.atlas = atlas;
             this.source = source;
             Scale = scale ?? new Vector2(1, 1);

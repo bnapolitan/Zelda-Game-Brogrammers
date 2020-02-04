@@ -8,38 +8,15 @@ using System.Threading.Tasks;
 
 namespace Project3902.GameObjects.Environment
 {
-    class LadderTile : IInteractiveEnvironmentObject
+    class LadderTile : FixedGameObject, IInteractiveEnvironmentObject
     {
 
-        public LadderTile(ISprite sprite, Vector2 position)
-        {
-            this.Sprite = sprite;
-            this.Position = position;
-        }
+        public LadderTile(Vector2 position)
+            : base(position) { }
 
-        public Vector2 Position { get; set; }
-        public ISprite Sprite { get; set; }
-        public bool Active { get; set; }
         public Rectangle hitbox { get; set; }
 
-        public void Activate()
-        {
-        }
-
-        public void Deactivate()
-        {
-        }
-
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            Sprite.Draw(spriteBatch);
-        }
-
         public void OnCollide()
-        {
-        }
-
-        public void Update(GameTime gameTime)
         {
         }
     }

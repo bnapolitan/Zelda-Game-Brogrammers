@@ -37,73 +37,73 @@ namespace Project3902.ObjectManagement
 
 		public IGameObject CreateStairs(Vector2 position)
 		{
-			var sprite =  new FixedSprite(dungeonSpriteAtlas, new Rectangle(1035, 28, 16, 16));
-			var createdObject = new Stairs(sprite, position);
-			sprite.GameObject = createdObject;
+			var createdObject = new Stairs(position);
+			var sprite =  new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(1035, 28, 16, 16));
+			createdObject.Sprite = sprite;
 			return createdObject;
 		}
 
 		public IGameObject CreateLadderTile(Vector2 position)
 		{
-			var sprite = new FixedSprite(dungeonSpriteAtlas, new Rectangle(1001, 45, 16, 16));
-			var createdObject = new LadderTile(sprite, position);
-			sprite.GameObject = createdObject;
+			var createdObject = new LadderTile(position);
+			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(1035, 28, 16, 16));
+			createdObject.Sprite = sprite;
 			return createdObject;
 		}
 
 		public IGameObject CreateGapTile(Vector2 position)
 		{
-			var sprite = new FixedSprite(dungeonSpriteAtlas, new Rectangle(984, 28, 16, 16));
-			var createdObject = new GapTile(sprite, position);
-			sprite.GameObject = createdObject;
+			var createdObject = new GapTile(position);
+			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(1035, 28, 16, 16));
+			createdObject.Sprite = sprite;
 			return createdObject;
 		}
 
 		public IGameObject CreateFire(Vector2 position)
 		{
-			var sprite = new FixedSprite(linkSpriteAtlas, new Rectangle(191, 185, 16, 16));
-			var createdObject = new Fire(sprite, position);
-			sprite.GameObject = createdObject;
+			var createdObject = new Fire(position);
+			var sprite = new FixedSprite(createdObject, linkSpriteAtlas, new Rectangle(1035, 28, 16, 16));
+			createdObject.Sprite = sprite;
 			return createdObject;
 		}
 
 		public IGameObject CreateBrickTile(Vector2 position)
 		{
-			var sprite = new FixedSprite(dungeonSpriteAtlas, new Rectangle(984, 45, 16, 16));
-			var createdObject = new BrickTile(sprite, position);
-			sprite.GameObject = createdObject;
+			var createdObject = new BrickTile(position);
+			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(1035, 28, 16, 16));
+			createdObject.Sprite = sprite;
 			return createdObject;
 		}
 
 		public IGameObject CreateBombedOpening(Vector2 position)
 		{
-			var sprite = new FixedSprite(dungeonSpriteAtlas, new Rectangle(947, 11, 32, 32));
-			var createdObject = new BombedOpening(sprite, position);
-			sprite.GameObject = createdObject;
+			var createdObject = new BombedOpening(position);
+			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(1035, 28, 16, 16));
+			createdObject.Sprite = sprite;
 			return createdObject;
 		}
 
 		public IGameObject CreateRoomBorder(Vector2 position)
 		{
-			var sprite = new FixedSprite(dungeonSpriteAtlas, new Rectangle(521, 11, 256, 176));
-			var createdObject = new BombedOpening(sprite, position);
-			sprite.GameObject = createdObject;
+			var createdObject = new RoomBorder(position);
+			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(1035, 28, 16, 16));
+			createdObject.Sprite = sprite;
 			return createdObject;
 		}
 
 		public IGameObject CreateFloorTile(Vector2 position)
 		{
-			var sprite = new FixedSprite(dungeonSpriteAtlas, new Rectangle(984, 11, 16, 16));
-			var createdObject = new BombedOpening(sprite, position);
-			sprite.GameObject = createdObject;
+			var createdObject = new FloorTile(position);
+			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(1035, 28, 16, 16));
+			createdObject.Sprite = sprite;
 			return createdObject;
 		}
 
 		public IGameObject CreateEnemyCloudAppearance(Vector2 position)
 		{
-			var sprite = new FixedSprite(dungeonSpriteAtlas, new Rectangle(984, 11, 16, 16));
-			var createdObject = new BombedOpening(sprite, position);
-			sprite.GameObject = createdObject;
+			var createdObject = new EnemyCloudAppearance(position);
+			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(1035, 28, 16, 16));
+			createdObject.Sprite = sprite;
 			return createdObject;
 		}
 	}

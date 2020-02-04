@@ -14,8 +14,8 @@ namespace Project3902
         private float radius;
         private float speed;
 
-        public CircleMoveSprite(SpriteAtlas atlas, Rectangle sourceRect, float circleRadius, float revolveSpeed, Vector2? scale = null)
-            : base(atlas, new SingleSource(sourceRect), scale)
+        public CircleMoveSprite(IGameObject gameObject, SpriteAtlas atlas, Rectangle sourceRect, float circleRadius, float revolveSpeed, Vector2? scale = null)
+            : base(gameObject, atlas, new SingleSource(sourceRect), scale)
         {
             offset = Vector2.Zero;
             radius = circleRadius;
