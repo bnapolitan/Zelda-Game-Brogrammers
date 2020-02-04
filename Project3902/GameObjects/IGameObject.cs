@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Project3902
 {
-    interface IGameObject : IUpdatable, IDrawable
+    public interface IGameObject : IUpdatable, IDrawable
     {
         Vector2 Position { get; set; }
 
