@@ -66,9 +66,10 @@
     <Compile Include="GameObjects\Environment\Interfaces\IBackgroundEnvironmentObject.cs" />
     <Compile Include="Commands\Sprint0Commands\SetNonmovingNonanimatedCommand.cs" />
     <Compile Include="GameObjects\FixedGameObject.cs" />
-    <Compile Include="GameObjects\ICharacter.cs" />
-    <Compile Include="GameObjects\ICollideable.cs" />
+    <Compile Include="GameObjects\Extendables\ICharacter.cs" />
+    <Compile Include="GameObjects\Extendables\ICollideable.cs" />
     <Compile Include="GameObjects\IGameObject.cs" />
+    <Compile Include="ObjectManagement\EnvironmentFactory.cs" />
     <Compile Include="Sprint2.cs" />
     <Compile Include="Text\ITextSprite.cs" />
     <Compile Include="Text\SimpleText.cs" />

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Project3902.GameObjects
 {
-    interface IBackgroundEnvironmentObject : IGameObject, IDrawable
+    interface IBackgroundEnvironmentObject : IGameObject
     {
     }
 }

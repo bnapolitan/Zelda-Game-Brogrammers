@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Project3902.GameObjects.Environment
 {
-    class RoomBorder : IInteractiveEnvironmentObject
+    class RoomBorder : IBackgroundEnvironmentObject
     {
 
         public RoomBorder(ISprite sprite, Vector2 position)
@@ -19,18 +19,15 @@ namespace Project3902.GameObjects.Environment
 
         public Vector2 Position { get; set; }
         public ISprite Sprite { get; set; }
-
-        public void Activate()
-        {
-        }
-
-        public void Deactivate()
-        {
-        }
+        public bool Active { get; set; }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Sprite.Texture, Position, new Rectangle(521, 11, 256, 176), Color.White);
+            Sprite.Draw(spriteBatch);
+        }
+
+        public void Update(GameTime gameTime)
+        {
         }
     }
 }

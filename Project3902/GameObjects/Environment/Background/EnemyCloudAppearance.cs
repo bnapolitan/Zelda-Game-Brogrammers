@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Project3902.GameObjects.Environment
 {
-    class EnemyCloudAppearance : IInteractiveEnvironmentObject
+    class EnemyCloudAppearance : IBackgroundEnvironmentObject
     {
 
         public EnemyCloudAppearance(ISprite sprite, Vector2 position)
@@ -19,19 +19,15 @@ namespace Project3902.GameObjects.Environment
 
         public Vector2 Position { get; set; }
         public ISprite Sprite { get; set; }
-
-        public void Activate()
-        {
-        }
-
-        public void Deactivate()
-        {
-        }
+        public bool Active { get; set; }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             Sprite.Draw(spriteBatch);
-            spriteBatch.Draw(Sprite.Texture, Position, new Rectangle(984, 11, 16, 16), Color.White);
+        }
+
+        public void Update(GameTime gameTime)
+        {
         }
     }
 }

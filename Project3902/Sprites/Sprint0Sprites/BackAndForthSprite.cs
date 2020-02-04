@@ -12,8 +12,8 @@ namespace Project3902
         private Vector2 direction;
         private SpriteEffects flip = SpriteEffects.None;
 
-        public BackAndForthSprite(IGameObject gameObject, SpriteAtlas atlas, List<Rectangle> sourceRects, float frameTime, float moveSpeed, float travelDistance, Vector2? scale = null)
-            : base(gameObject, atlas, sourceRects, frameTime, scale)
+        public BackAndForthSprite(SpriteAtlas atlas, List<Rectangle> sourceRects, float frameTime, float moveSpeed, float travelDistance, Vector2? scale = null)
+            : base(atlas, sourceRects, frameTime, scale)
         {
             speed = moveSpeed;
             distance = travelDistance;

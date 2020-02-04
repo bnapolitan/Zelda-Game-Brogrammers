@@ -10,6 +10,7 @@ namespace Project3902
         public Vector2 Scale { get; set; } = new Vector2(1, 1);
         public Texture2D Texture { get; set; }
         public bool CenterPivot { get; set; } = false;
+        public IGameObject GameObject { get; set; }
 
         public SimpleSprite(Texture2D texture, Vector2 position)
         {
