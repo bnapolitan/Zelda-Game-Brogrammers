@@ -7,5 +7,6 @@ namespace Project3902
     {
         Vector2 Scale { get; set; }
         Texture2D Texture { get; set; }
+        IGameObject GameObject { get; set; }
     }
 }

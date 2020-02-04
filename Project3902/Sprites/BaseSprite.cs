@@ -15,8 +15,8 @@ namespace Project3902
         protected SpriteAtlas atlas;
         protected IAtlasSource source;
         protected Vector2 scale;
+        protected IGameObject gameObject;
 
-        public IGameObject gameObject;
 
         public Vector2 Scale
         {
@@ -39,6 +39,18 @@ namespace Project3902
             set
             {
                 atlas.Texture = value;
+            }
+        }
+
+        public IGameObject GameObject
+        {
+            get
+            {
+                return gameObject;
+            }
+            set
+            {
+                gameObject = value;
             }
         }
 
