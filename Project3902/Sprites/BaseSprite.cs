@@ -5,6 +5,7 @@ namespace Project3902
 {
     // BaseSprite contains the necessary components of a sprite, but defines
     // no behavior on its own (ie. in Update()).
+    // Keeps its position in line with a supplied IGameObject.
     // It also requires child classes to decide which IAtlasSource implementation they use.
     abstract class BaseSprite : ISprite
     {
@@ -15,8 +16,8 @@ namespace Project3902
         protected IAtlasSource source;
         protected Vector2 scale;
 
-        public bool CenterPivot { get; set; } = true;
-        public Vector2 Position { get; set; }
+        public IGameObject gameObject;
+
         public Vector2 Scale
         {
             get
@@ -41,27 +42,24 @@ namespace Project3902
             }
         }
 
-        public BaseSprite(SpriteAtlas atlas, Vector2 position, IAtlasSource source, Vector2? scale = null)
+        public BaseSprite(IGameObject gameObject, SpriteAtlas atlas, IAtlasSource source, Vector2? scale = null)
         {
+            this.gameObject = gameObject;
             this.atlas = atlas;
-            Position = position;
             this.source = source;
             Scale = scale ?? new Vector2(1, 1);
         }
 
+        public abstract void Update(GameTime gameTime);
+
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(atlas.Texture, CalculateDestRect(), source.GetSourceRectangle(), Color.White);
+            spriteBatch.Draw(Texture, CalculateDestRect(), source.GetSourceRectangle(), Color.White);
         }
-
-        public abstract void Update(GameTime gameTime);
 
         protected Rectangle CalculateDestRect()
         {
-            if (CenterPivot)
-                return new Rectangle((int)(Position.X - width / 2), (int)(Position.Y - height / 2), (int)width, (int)height);
-            else
-                return new Rectangle((int)Position.X, (int)Position.Y, (int)width, (int)height);
+            return new Rectangle((int)gameObject.Position.X, (int)gameObject.Position.Y, (int)width, (int)height);
         }
 
         protected void SetWidthHeight(int frame = 0)

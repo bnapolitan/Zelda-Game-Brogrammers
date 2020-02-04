@@ -62,6 +62,14 @@ namespace Project3902
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
+
+            // Point filter keeps pixel art looking crisp.
+            spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+
+            // All our drawing code goes here.
+            // An IDrawable's Draw() method does not call spriteBatch.Begin() or spriteBatch.End().
+
+            spriteBatch.End();
         }
     }
 }

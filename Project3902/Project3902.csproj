@@ -41,17 +41,16 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Commands\SetMovingAnimatedCommand.cs" />
-    <Compile Include="Commands\SetMovingNonanimatedCommand.cs" />
-    <Compile Include="Commands\SetNonmovingAnimatedCommand.cs" />
-    <Compile Include="Commands\SetSpriteMouseCommand.cs" />
+    <Compile Include="Commands\Sprint0Commands\SetMovingAnimatedCommand.cs" />
+    <Compile Include="Commands\Sprint0Commands\SetMovingNonanimatedCommand.cs" />
+    <Compile Include="Commands\Sprint0Commands\SetNonmovingAnimatedCommand.cs" />
+    <Compile Include="Commands\Sprint0Commands\SetSpriteMouseCommand.cs" />
     <Compile Include="Controllers\IController.cs" />
     <Compile Include="Controllers\MouseActions.cs" />
     <Compile Include="Controllers\MouseController.cs" />
-    <Compile Include="Commands\ICommand.cs" />
-    <Compile Include="Commands\ExitGameCommand.cs" />
+    <Compile Include="Commands\Sprint0Commands\ICommand.cs" />
+    <Compile Include="Commands\Sprint0Commands\ExitGameCommand.cs" />
     <Compile Include="Controllers\KeyboardController.cs" />
-    <Compile Include="Commands\SetNonmovingNonanimatedCommand.cs" />
     <Compile Include="GameObjects\Environment\Background\EnemyCloudAppearance.cs" />
     <Compile Include="GameObjects\Environment\Background\FloorTile.cs" />
     <Compile Include="GameObjects\Environment\Background\RoomBorder.cs" />
@@ -61,20 +60,24 @@
     <Compile Include="GameObjects\Environment\BrickTile.cs" />
     <Compile Include="GameObjects\Environment\LadderTile.cs" />
     <Compile Include="GameObjects\Environment\Stairs.cs" />
-    <Compile Include="GameObjects\IGameObject.cs" />
     <Compile Include="GameObjects\Environment\Interfaces\IInteractiveEnvironmentObject.cs" />
     <Compile Include="GameObjects\Extendables\IUpdatable.cs" />
     <Compile Include="GameObjects\Extendables\IDrawable.cs" />
     <Compile Include="GameObjects\Environment\Interfaces\IBackgroundEnvironmentObject.cs" />
+    <Compile Include="Commands\Sprint0Commands\SetNonmovingNonanimatedCommand.cs" />
+    <Compile Include="GameObjects\FixedGameObject.cs" />
+    <Compile Include="GameObjects\ICharacter.cs" />
+    <Compile Include="GameObjects\ICollideable.cs" />
+    <Compile Include="GameObjects\IGameObject.cs" />
     <Compile Include="Sprint2.cs" />
     <Compile Include="Text\ITextSprite.cs" />
     <Compile Include="Text\SimpleText.cs" />
     <Compile Include="Sprites\SimpleSprite.cs" />
-    <Compile Include="Sprites\CircleMoveSprite.cs" />
+    <Compile Include="Sprites\Sprint0Sprites\CircleMoveSprite.cs" />
     <Compile Include="Sprites\FixedSprite.cs" />
     <Compile Include="AtlasUtils\IAtlasSource.cs" />
     <Compile Include="Sprites\ISprite.cs" />
-    <Compile Include="Sprites\BackAndForthSprite.cs" />
+    <Compile Include="Sprites\Sprint0Sprites\BackAndForthSprite.cs" />
     <Compile Include="AtlasUtils\MultipleSource.cs" />
     <Compile Include="Sprites\BaseSprite.cs" />
     <Compile Include="AtlasUtils\SingleSource.cs" />

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Project3902
 {
-    interface IDrawable
+    public interface IDrawable
     {
         void Draw(SpriteBatch spriteBatch);
     }

@@ -31,12 +31,12 @@ namespace Project3902
 
         private List<ITextSprite> texts;
 
+        private IGameObject gameObject;
+
         private ISprite nonmovingNonanimatedSprite;
         private ISprite nonmovingAnimatedSprite;
         private ISprite movingNonanimatedSprite;
         private ISprite movingAnimatedSprite;
-
-        private ISprite currentSprite;
 
         private ITextSprite creditsText;
         private ITextSprite nameText;
@@ -79,7 +79,7 @@ namespace Project3902
             keyboardController.Update();
             mouseController.Update();
 
-            currentSprite.Update(gameTime);
+            gameObject.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -90,7 +90,7 @@ namespace Project3902
 
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
-            currentSprite.Draw(spriteBatch);
+            gameObject.Draw(spriteBatch);
 
             foreach (ITextSprite text in texts)
                 text.Draw(spriteBatch);
@@ -130,24 +130,22 @@ namespace Project3902
 
         private void CreateSprites()
         {
+            gameObject = new FixedGameObject(new Vector2(368, 208));
+
             linkTexture = Content.Load<Texture2D>("linkspritesheet");
             linkAtlas = new SpriteAtlas(linkTexture);
 
-            nonmovingNonanimatedSprite = new FixedSprite(linkAtlas, new Vector2(400, 240), new Rectangle(306, 11, 16, 16), spriteScale);
+            nonmovingNonanimatedSprite = new FixedSprite(gameObject, linkAtlas, new Rectangle(306, 11, 16, 16), spriteScale);
 
             List<Rectangle> nonmovingAnimatedSource = new List<Rectangle> { new Rectangle(280, 77, 16, 16), new Rectangle(297, 77, 27, 16), new Rectangle(325, 77, 23, 16), new Rectangle(349, 77, 19, 16) };
-            nonmovingAnimatedSprite = new AnimatedSprite(linkAtlas, new Vector2(368, 208), nonmovingAnimatedSource, .15f, spriteScale)
-            {
-                // Pivot shouldn't be centered as its source rectangles do not have constant size.
-                CenterPivot = false
-            };
+            nonmovingAnimatedSprite = new AnimatedSprite(gameObject, linkAtlas, nonmovingAnimatedSource, .15f, spriteScale);
 
-            movingNonanimatedSprite = new CircleMoveSprite(linkAtlas, new Vector2(400, 240), new Rectangle(230, 11, 16, 16), 20, 2, spriteScale);
+            movingNonanimatedSprite = new CircleMoveSprite(gameObject, linkAtlas, new Rectangle(230, 11, 16, 16), 20, 2, spriteScale);
 
             List<Rectangle> movingAnimatedSource = new List<Rectangle> { new Rectangle(35, 11, 16, 16), new Rectangle(52, 11, 16, 16) };
-            movingAnimatedSprite = new BackAndForthSprite(linkAtlas, new Vector2(400, 240), movingAnimatedSource, .2f, 20, 20, spriteScale);
+            movingAnimatedSprite = new BackAndForthSprite(gameObject, linkAtlas, movingAnimatedSource, .2f, 20, 20, spriteScale);
 
-            currentSprite = nonmovingNonanimatedSprite;
+            SetNonmovingNonanimatedSprite();
         }
 
         private void CreateText()
@@ -166,22 +164,22 @@ namespace Project3902
 
         public void SetNonmovingNonanimatedSprite()
         {
-            currentSprite = nonmovingNonanimatedSprite;
+            gameObject.Sprite = nonmovingNonanimatedSprite;
         }
 
         public void SetNonmovingAnimatedSprite()
         {
-            currentSprite = nonmovingAnimatedSprite;
+            gameObject.Sprite = nonmovingAnimatedSprite;
         }
 
         public void SetMovingNonanimatedSprite()
         {
-            currentSprite = movingNonanimatedSprite;
+            gameObject.Sprite = movingNonanimatedSprite;
         }
 
         public void SetMovingAnimatedSprite()
         {
-            currentSprite = movingAnimatedSprite;
+            gameObject.Sprite = movingAnimatedSprite;
         }
     }
 }

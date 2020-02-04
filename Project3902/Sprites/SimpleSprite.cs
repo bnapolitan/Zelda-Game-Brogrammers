@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Project3902
 {
+    // If you want to simply draw an image on the screen at a certain position.
     class SimpleSprite : ISprite
     {
         public Vector2 Position { get; set; }

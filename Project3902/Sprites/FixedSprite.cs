@@ -5,9 +5,12 @@ namespace Project3902
 {
     class FixedSprite : BaseSprite
     {
-        public FixedSprite(SpriteAtlas atlas, Vector2 position, Rectangle sourceRect, Vector2? scale = null)
-            : base(atlas, position, new SingleSource(sourceRect), scale) { }
+        public FixedSprite(IGameObject gameObject, SpriteAtlas atlas, Rectangle sourceRect, Vector2? scale = null)
+            : base(gameObject, atlas, new SingleSource(sourceRect), scale) { }
 
-        public override void Update(GameTime gameTime) { /* Does not move or animate. */ }
+        public override void Update(GameTime gameTime)
+        {
+            /* Does not animate. */
+        }
     }
 }

@@ -5,10 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project3902
+namespace Project3902.GameObjects
 {
-    public interface IUpdatable
+    interface ICollideable
     {
-        void Update(GameTime gameTime);
+        Rectangle hitbox { get; set; }
+
+        void OnCollide();
     }
 }
