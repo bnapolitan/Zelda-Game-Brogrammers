@@ -32,7 +32,7 @@ namespace Project3902.ObjectManagement
 		public void LoadAllTextures(ContentManager content)
         {
             dungeonSpriteAtlas = new SpriteAtlas(content.Load<Texture2D>("DungeonSpriteSheet"));
-			linkSpriteAtlas = new SpriteAtlas(content.Load<Texture2D>("zeldaspritesheet"));
+			linkSpriteAtlas = new SpriteAtlas(content.Load<Texture2D>("linkspritesheet"));
         }
 
 		public IGameObject CreateStairs(Vector2 position)
