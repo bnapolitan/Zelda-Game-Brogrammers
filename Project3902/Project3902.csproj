@@ -69,6 +69,7 @@
     <Compile Include="GameObjects\Extendables\ICharacter.cs" />
     <Compile Include="GameObjects\Extendables\ICollideable.cs" />
     <Compile Include="GameObjects\IGameObject.cs" />
+    <Compile Include="GameObjects\**" />
     <Compile Include="ObjectManagement\EnvironmentFactory.cs" />
     <Compile Include="Sprint2.cs" />
     <Compile Include="Text\ITextSprite.cs" />
