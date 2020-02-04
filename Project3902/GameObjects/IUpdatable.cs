@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Project3902
 {
-    interface IUpdatable
+    public interface IUpdatable
     {
         void Update(GameTime gameTime);
     }

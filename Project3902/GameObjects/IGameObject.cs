@@ -7,15 +7,13 @@ using System.Threading.Tasks;
 
 namespace Project3902
 {
-    interface IGameObject
+    interface IGameObject : IUpdatable, IDrawable
     {
         Vector2 Position { get; set; }
 
         ISprite Sprite { get; set; }
 
-        void Activate();
-
-        void Deactivate();
+        bool Active { get; set; }
 
     }
 }

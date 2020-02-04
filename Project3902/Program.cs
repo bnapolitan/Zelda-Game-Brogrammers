@@ -14,7 +14,7 @@ namespace Project3902
         [STAThread]
         static void Main()
         {
-            using (var game = new Sprint2())
+            using (var game = new Sprint0())
                 game.Run();
         }
     }

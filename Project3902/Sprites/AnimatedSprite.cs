@@ -24,8 +24,8 @@ namespace Project3902
             }
         }
 
-        public AnimatedSprite(SpriteAtlas atlas, Vector2 position, List<Rectangle> sourceRects, float frameTime, IGameObject gameObject = null, Vector2? scale = null)
-            : base(atlas, position, new MultipleSource(sourceRects), gameObject, scale)
+        public AnimatedSprite(IGameObject gameObject, SpriteAtlas atlas, List<Rectangle> sourceRects, float frameTime, Vector2? scale = null)
+            : base(gameObject, atlas, new MultipleSource(sourceRects), scale)
         {
             this.frameTime = frameTime;
         }
@@ -37,8 +37,6 @@ namespace Project3902
 
         public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
-
             if (lastFrameChange + frameTime <= gameTime.TotalGameTime.TotalSeconds)
             {
                 currentFrame = (currentFrame + 1) % source.GetNumberFrames();
