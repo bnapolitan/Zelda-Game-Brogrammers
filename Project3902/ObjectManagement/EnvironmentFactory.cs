@@ -46,7 +46,7 @@ namespace Project3902.ObjectManagement
 		public IGameObject CreateLadderTile(Vector2 position)
 		{
 			var createdObject = new LadderTile(position);
-			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(1035, 28, 16, 16));
+			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(1001, 45, 16, 16));
 			createdObject.Sprite = sprite;
 			return createdObject;
 		}
@@ -54,7 +54,7 @@ namespace Project3902.ObjectManagement
 		public IGameObject CreateGapTile(Vector2 position)
 		{
 			var createdObject = new GapTile(position);
-			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(1035, 28, 16, 16));
+			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(984, 28, 16, 16));
 			createdObject.Sprite = sprite;
 			return createdObject;
 		}
@@ -62,7 +62,7 @@ namespace Project3902.ObjectManagement
 		public IGameObject CreateFire(Vector2 position)
 		{
 			var createdObject = new Fire(position);
-			var sprite = new FixedSprite(createdObject, linkSpriteAtlas, new Rectangle(1035, 28, 16, 16));
+			var sprite = new FixedSprite(createdObject, linkSpriteAtlas, new Rectangle(191, 185, 16, 16));
 			createdObject.Sprite = sprite;
 			return createdObject;
 		}
@@ -70,7 +70,7 @@ namespace Project3902.ObjectManagement
 		public IGameObject CreateBrickTile(Vector2 position)
 		{
 			var createdObject = new BrickTile(position);
-			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(1035, 28, 16, 16));
+			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(984, 45, 16, 16));
 			createdObject.Sprite = sprite;
 			return createdObject;
 		}
@@ -78,7 +78,7 @@ namespace Project3902.ObjectManagement
 		public IGameObject CreateBombedOpening(Vector2 position)
 		{
 			var createdObject = new BombedOpening(position);
-			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(1035, 28, 16, 16));
+			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(947, 11, 32, 32));
 			createdObject.Sprite = sprite;
 			return createdObject;
 		}
@@ -86,7 +86,7 @@ namespace Project3902.ObjectManagement
 		public IGameObject CreateRoomBorder(Vector2 position)
 		{
 			var createdObject = new RoomBorder(position);
-			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(1035, 28, 16, 16));
+			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(521, 11, 256, 176));
 			createdObject.Sprite = sprite;
 			return createdObject;
 		}
@@ -94,7 +94,7 @@ namespace Project3902.ObjectManagement
 		public IGameObject CreateFloorTile(Vector2 position)
 		{
 			var createdObject = new FloorTile(position);
-			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(1035, 28, 16, 16));
+			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(984, 11, 16, 16));
 			createdObject.Sprite = sprite;
 			return createdObject;
 		}
@@ -102,7 +102,7 @@ namespace Project3902.ObjectManagement
 		public IGameObject CreateEnemyCloudAppearance(Vector2 position)
 		{
 			var createdObject = new EnemyCloudAppearance(position);
-			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(1035, 28, 16, 16));
+			var sprite = new FixedSprite(createdObject, linkSpriteAtlas, new Rectangle(138, 185, 16, 16));
 			createdObject.Sprite = sprite;
 			return createdObject;
 		}
