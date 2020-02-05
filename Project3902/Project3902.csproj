@@ -45,6 +45,8 @@
     <Compile Include="Commands\Sprint0Commands\SetMovingNonanimatedCommand.cs" />
     <Compile Include="Commands\Sprint0Commands\SetNonmovingAnimatedCommand.cs" />
     <Compile Include="Commands\Sprint0Commands\SetSpriteMouseCommand.cs" />
+    <Compile Include="Commands\Sprint2Commands\CycleLastEnvironmentObjectCommand.cs" />
+    <Compile Include="Commands\Sprint2Commands\CycleNextEnvironmentObjectCommand.cs" />
     <Compile Include="Controllers\IController.cs" />
     <Compile Include="Controllers\MouseActions.cs" />
     <Compile Include="Controllers\MouseController.cs" />
@@ -72,7 +74,8 @@
     <Compile Include="GameObjects\IGameObject.cs" />
     <Compile Include="GameObjects\**" />
     <Compile Include="ObjectManagement\EnemyFactory.cs" />
-    <Compile Include="ObjectManagement\EnvironmentFactory.cs" />
+    <Compile Include="LevelBuilding\Sprint2Level.cs" />
+	<Compile Include="ObjectManagement\EnvironmentFactory.cs" />
     <Compile Include="Sprint2.cs" />
     <Compile Include="Text\ITextSprite.cs" />
     <Compile Include="Text\SimpleText.cs" />
