@@ -51,6 +51,7 @@
     <Compile Include="Commands\Sprint0Commands\ICommand.cs" />
     <Compile Include="Commands\Sprint0Commands\ExitGameCommand.cs" />
     <Compile Include="Controllers\KeyboardController.cs" />
+    <Compile Include="EnemyTester.cs" />
     <Compile Include="GameObjects\Environment\Background\EnemyCloudAppearance.cs" />
     <Compile Include="GameObjects\Environment\Background\FloorTile.cs" />
     <Compile Include="GameObjects\Environment\Background\RoomBorder.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="GameObjects\Extendables\ICollideable.cs" />
     <Compile Include="GameObjects\IGameObject.cs" />
     <Compile Include="GameObjects\**" />
+    <Compile Include="ObjectManagement\EnemyFactory.cs" />
     <Compile Include="ObjectManagement\EnvironmentFactory.cs" />
     <Compile Include="Sprint2.cs" />
     <Compile Include="Text\ITextSprite.cs" />

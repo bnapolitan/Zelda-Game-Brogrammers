@@ -8,13 +8,22 @@ using System.Threading.Tasks;
 
 namespace Project3902.GameObjects.Enemies_and_NPCs
 {
-    class Zol
+    class Gel
     {
         public float Health { get; set; }
         public Vector2 Position { get; set; }
         public ISprite Sprite { get; set; }
         public bool Active { get; set; }
         public Rectangle hitbox { get; set; }
+
+        public void takeDamage()
+        {
+
+        }
+        public void attack()
+        {
+
+        }
 
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -28,7 +37,7 @@ namespace Project3902.GameObjects.Enemies_and_NPCs
 
         public void Update(GameTime gameTime)
         {
-
+            Sprite.Update(gameTime);
         }
     }
 }

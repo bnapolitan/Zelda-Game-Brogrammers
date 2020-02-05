@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Project3902.GameObjects.Enemies_and_NPCs
 {
-    class Wallmaster
+    class Stalfos
     {
         public float Health { get; set; }
         public Vector2 Position { get; set; }
@@ -21,6 +21,15 @@ namespace Project3902.GameObjects.Enemies_and_NPCs
             Sprite.Draw(spriteBatch);
         }
 
+        public void takeDamage()
+        {
+
+        }
+        public void attack()
+        {
+
+        }
+
         public void OnCollide()
         {
 
@@ -28,7 +37,7 @@ namespace Project3902.GameObjects.Enemies_and_NPCs
 
         public void Update(GameTime gameTime)
         {
-
+            Sprite.Update(gameTime);
         }
     }
 }

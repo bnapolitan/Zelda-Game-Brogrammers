@@ -16,6 +16,15 @@ namespace Project3902.GameObjects.Enemies_and_NPCs
         public bool Active { get; set; }
         public Rectangle hitbox { get; set; }
 
+        public void takeDamage()
+        {
+
+        }
+        public void attack()
+        {
+
+        }
+
         public void Draw(SpriteBatch spriteBatch)
         {
             Sprite.Draw(spriteBatch);
@@ -28,7 +37,7 @@ namespace Project3902.GameObjects.Enemies_and_NPCs
 
         public void Update(GameTime gameTime)
         {
-
+            Sprite.Update(gameTime);
         }
     }
 }
