@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Project3902
 {
-    interface ICharacter : IGameObject, IUpdatable, IDrawable, ICollideable
+    interface IStateMachine<EnumType> : IUpdatable where EnumType : Enum
     {
-        float Health { get; set; }
+        EnumType CurrentState { get; }
+
+        void SwitchState(EnumType state);
     }
 }

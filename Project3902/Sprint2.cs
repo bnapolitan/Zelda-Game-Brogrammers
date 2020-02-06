@@ -23,6 +23,8 @@ namespace Project3902
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        private Link player;
+
         public Sprint2()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -42,7 +44,11 @@ namespace Project3902
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            LinkFactory.Instance.LoadAllTextures(Content);
+
             // Create player.
+            player = LinkFactory.Instance.CreateLink(new Vector2(200, 200));
+
             // Create list of all items to be cycled through. Use a Factory class to create them.
             // Same for enemies.
 
@@ -57,6 +63,8 @@ namespace Project3902
         protected override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+            player.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
@@ -67,7 +75,9 @@ namespace Project3902
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
             // All our drawing code goes here.
-            // An IDrawable's Draw() method does not call spriteBatch.Begin() or spriteBatch.End().
+            player.Draw(spriteBatch);
+
+            // *An IDrawable's Draw() method does not call spriteBatch.Begin() or spriteBatch.End().*
 
             spriteBatch.End();
         }

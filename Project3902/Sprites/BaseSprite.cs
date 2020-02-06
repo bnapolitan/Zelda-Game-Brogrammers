@@ -42,6 +42,8 @@ namespace Project3902
             }
         }
 
+        public SpriteEffects Flip { get; set; } = SpriteEffects.None;
+
         public BaseSprite(IGameObject gameObject, SpriteAtlas atlas, IAtlasSource source, Vector2? scale = null)
         {
             this.gameObject = gameObject;
@@ -54,7 +56,7 @@ namespace Project3902
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, CalculateDestRect(), source.GetSourceRectangle(), Color.White);
+            spriteBatch.Draw(atlas.Texture, CalculateDestRect(), source.GetSourceRectangle(), Color.White, 0, Vector2.Zero, Flip, 0f);
         }
 
         protected Rectangle CalculateDestRect()
