@@ -15,8 +15,9 @@ namespace Project3902
         protected SpriteAtlas atlas;
         protected IAtlasSource source;
         protected Vector2 scale;
+        protected int currentFrame = 0;
 
-        public IGameObject gameObject;
+        public IGameObject GameObject { get; set; }
 
         public Vector2 Scale
         {
@@ -30,6 +31,7 @@ namespace Project3902
                 SetWidthHeight();
             }
         }
+
         public Texture2D Texture
         {
             get
@@ -46,7 +48,7 @@ namespace Project3902
 
         public BaseSprite(IGameObject gameObject, SpriteAtlas atlas, IAtlasSource source, Vector2? scale = null)
         {
-            this.gameObject = gameObject;
+            this.GameObject = gameObject;
             this.atlas = atlas;
             this.source = source;
             Scale = scale ?? new Vector2(1, 1);
@@ -56,17 +58,22 @@ namespace Project3902
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(atlas.Texture, CalculateDestRect(), source.GetSourceRectangle(), Color.White, 0, Vector2.Zero, Flip, 0f);
+            spriteBatch.Draw(atlas.Texture, CalculateDestRect(), source.GetSourceRectangle(currentFrame), Color.White, 0, Vector2.Zero, Flip, 0f);
+        }
+
+        public virtual void DrawTinted(SpriteBatch spriteBatch, Color tint)
+        {
+            spriteBatch.Draw(atlas.Texture, CalculateDestRect(), source.GetSourceRectangle(currentFrame), tint, 0, Vector2.Zero, Flip, 0f);
         }
 
         protected Rectangle CalculateDestRect()
         {
-            return new Rectangle((int)gameObject.Position.X, (int)gameObject.Position.Y, (int)width, (int)height);
+            return new Rectangle((int)GameObject.Position.X, (int)GameObject.Position.Y, (int)width, (int)height);
         }
 
-        protected void SetWidthHeight(int frame = 0)
+        protected void SetWidthHeight()
         {
-            Vector2 sourceSize = source.GetFrameSize(frame);
+            Vector2 sourceSize = source.GetFrameSize(currentFrame);
             width = Scale.X * sourceSize.X;
             height = Scale.Y * sourceSize.Y;
         }
