@@ -9,11 +9,6 @@ namespace Project3902
         public BaseLinkWalkState(Link link, LinkStateMachine machine)
             : base(link, machine) { }
 
-        public override void Exit()
-        {
-
-        }
-
         public override void MoveDown()
         {
             machine.SwitchState(LinkStates.DownWalk);

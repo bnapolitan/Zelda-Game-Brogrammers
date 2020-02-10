@@ -16,6 +16,10 @@ namespace Project3902
         RightAttack,
         UpAttack,
         DownAttack,
+        LeftItem,
+        RightItem,
+        UpItem,
+        DownItem,
         Dead
     }
 }

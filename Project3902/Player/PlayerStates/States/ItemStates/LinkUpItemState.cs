@@ -8,18 +8,18 @@ using System.Threading.Tasks;
 
 namespace Project3902
 {
-    class LinkUpWalkState : BaseLinkWalkState
+    class LinkUpItemState : BaseLinkItemState
     {
 
-        public LinkUpWalkState(Link link, LinkStateMachine machine)
+        public LinkUpItemState(Link link, LinkStateMachine machine)
             : base(link, machine)
         {
-            stateSprite = LinkFactory.Instance.CreateUpwardsWalkSprite(link);
+            stateSprite = LinkFactory.Instance.CreateUpItemSprite(link);
         }
 
-        public override void MoveUp()
+        protected override void EndUse()
         {
-            velocity = new Vector2(0, -link.MovementSpeed);
+            machine.SwitchState(LinkStates.UpWalk);
         }
     }
 }

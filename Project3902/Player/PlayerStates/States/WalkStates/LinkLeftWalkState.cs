@@ -12,12 +12,10 @@ namespace Project3902
     class LinkLeftWalkState : BaseLinkWalkState
     {
 
-        private BaseSprite thisSprite;
-
         public LinkLeftWalkState(Link link, LinkStateMachine machine)
             : base(link, machine)
         {
-            thisSprite = LinkFactory.Instance.CreateHorizontalWalkSprite(link) as BaseSprite;
+            BaseSprite thisSprite = LinkFactory.Instance.CreateHorizontalWalkSprite(link) as BaseSprite;
             thisSprite.Flip = SpriteEffects.FlipHorizontally;
 
             stateSprite = thisSprite;
@@ -26,6 +24,16 @@ namespace Project3902
         public override void MoveLeft()
         {
             velocity = new Vector2(-link.MovementSpeed, 0);
+        }
+
+        public override void Attack()
+        {
+            machine.SwitchState(LinkStates.LeftAttack);
+        }
+
+        public override void UseItem()
+        {
+            machine.SwitchState(LinkStates.LeftItem);
         }
     }
 }

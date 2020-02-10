@@ -20,5 +20,15 @@ namespace Project3902
         {
             velocity = new Vector2(link.MovementSpeed, 0);
         }
+
+        public override void Attack()
+        {
+            machine.SwitchState(LinkStates.RightAttack);
+        }
+
+        public override void UseItem()
+        {
+            machine.SwitchState(LinkStates.RightItem);
+        }
     }
 }

@@ -14,6 +14,9 @@ namespace Project3902
         protected LinkStateMachine machine;
         protected Link link;
 
+        public ISprite Sprite { get => stateSprite; set => stateSprite = value; }
+
+
         public BaseLinkState(Link link, LinkStateMachine machine)
         {
             this.link = link;
@@ -30,16 +33,23 @@ namespace Project3902
             link.Sprite = stateSprite;
         }
 
-        public abstract void Exit();
+        public virtual void Exit()
+        {
+
+        }
+
         public abstract void MoveDown();
         public abstract void MoveLeft();
         public abstract void MoveRight();
         public abstract void MoveUp();
         public abstract void TakeDamage(float damage);
+        public abstract void Attack();
 
         public virtual void Update(GameTime gameTime)
         {
             stateSprite.Update(gameTime);
         }
+
+        public abstract void UseItem();
     }
 }

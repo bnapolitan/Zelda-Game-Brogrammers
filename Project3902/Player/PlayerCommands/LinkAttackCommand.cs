@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Project3902
 {
-    class LinkMoveDownCommand : BaseLinkCommand
+    class LinkAttackCommand : BaseLinkCommand
     {
-        public LinkMoveDownCommand(Link link)
+        public LinkAttackCommand(Link link)
             : base(link) { }
 
         public override void Execute()
         {
-            link.MoveDown();
+            link.Attack();
         }
     }
 }

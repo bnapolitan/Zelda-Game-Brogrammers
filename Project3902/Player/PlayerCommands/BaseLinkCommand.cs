@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Project3902
 {
-    abstract class BaseLinkMoveCommand : ICommand
+    abstract class BaseLinkCommand : ICommand
     {
         protected Link link;
 
-        public BaseLinkMoveCommand(Link link)
+        public BaseLinkCommand(Link link)
         {
             this.link = link;
         }

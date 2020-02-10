@@ -9,40 +9,44 @@ using System.Threading.Tasks;
 
 namespace Project3902
 {
-    class Link : ICharacter
+    class Link : ILink
     {
         public float Health { get; set; }
         public Vector2 Position { get; set; }
-        public ISprite Sprite { get; set; }
+
+        // Need to refactor how the Sprite is handled here and down in the states.
+        public ISprite Sprite { get => machine.Sprite; set { } }
         public bool Active { get; set; }
-        public Rectangle Collider { get; set; }
+
+        private Rectangle collider;
+        public Rectangle Collider { get => collider; set => collider = value; }
 
         public float MovementSpeed { get; set; } = 200f;
+
+        private Sprint2 game;
 
         private LinkStateMachine machine;
 
         private KeyboardController controller;
 
-        public Link(Vector2 position)
+        public Link(Vector2 position, Sprint2 game)
         {
             Position = position;
-
+            this.game = game;
 
             machine = new LinkStateMachine(this);
 
-            controller = new KeyboardController();
-            controller.RegisterCommand(Keys.Up, new LinkMoveUpCommand(this));
-            controller.RegisterCommand(Keys.Down, new LinkMoveDownCommand(this));
-            controller.RegisterCommand(Keys.Left, new LinkMoveLeftCommand(this));
-            controller.RegisterCommand(Keys.Right, new LinkMoveRightCommand(this));
+            controller = LinkFactory.Instance.CreateLinkController(this, game);
 
-            Collider = new Rectangle(Position.ToPoint(), (new Point(16, 16)) * Sprite.Scale.ToPoint());
+            collider = new Rectangle(Position.ToPoint(), new Point(16, 16) * Sprite.Scale.ToPoint());
         }
 
         public void Update(GameTime gameTime)
         {
             controller.Update();
             machine.Update(gameTime);
+
+            collider.Location = Position.ToPoint();
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -75,8 +79,18 @@ namespace Project3902
             machine.MoveRight();
         }
 
+        public void Attack()
+        {
+            machine.Attack();
+        }
+
         public void OnCollide()
         {
+        }
+
+        public void UseItem()
+        {
+            machine.UseItem();
         }
     }
 }

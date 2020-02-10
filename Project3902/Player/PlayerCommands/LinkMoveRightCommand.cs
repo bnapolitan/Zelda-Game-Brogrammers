@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Project3902
 {
-    class LinkMoveRightCommand : BaseLinkMoveCommand
+    class LinkMoveRightCommand : BaseLinkCommand
     {
         public LinkMoveRightCommand(Link link)
             : base(link) { }

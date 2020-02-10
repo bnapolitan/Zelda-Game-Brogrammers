@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,9 @@ namespace Project3902
     {
         private SpriteAtlas linkAtlas;
         private Vector2 linkScale = new Vector2(4, 4);
+        private float attackTime = .15f;
 
-        private static readonly LinkFactory instance = new LinkFactory();
-
-        public static LinkFactory Instance => instance;
+        public static LinkFactory Instance { get; } = new LinkFactory();
 
         private LinkFactory()
         {
@@ -27,28 +27,103 @@ namespace Project3902
             linkAtlas = new SpriteAtlas(content.Load<Texture2D>("linkspritesheet"));
         }
 
-        public Link CreateLink(Vector2 position)
+        public Link CreateLink(Vector2 position, Sprint2 game)
         {
-            return new Link(position);
+            return new Link(position, game);
         }
 
+        public KeyboardController CreateLinkController(Link link, Sprint2 game)
+        {
+            var controller = new KeyboardController();
+
+            // Movement
+            controller.RegisterCommand(Keys.Up, new LinkMoveUpCommand(link));
+            controller.RegisterCommand(Keys.Down, new LinkMoveDownCommand(link));
+            controller.RegisterCommand(Keys.Left, new LinkMoveLeftCommand(link));
+            controller.RegisterCommand(Keys.Right, new LinkMoveRightCommand(link));
+            controller.RegisterCommand(Keys.W, new LinkMoveUpCommand(link));
+            controller.RegisterCommand(Keys.S, new LinkMoveDownCommand(link));
+            controller.RegisterCommand(Keys.A, new LinkMoveLeftCommand(link));
+            controller.RegisterCommand(Keys.D, new LinkMoveRightCommand(link));
+
+            controller.RegisterCommand(Keys.Z, new LinkAttackCommand(link));
+            controller.RegisterCommand(Keys.N, new LinkAttackCommand(link));
+
+            controller.RegisterCommand(Keys.D1, new LinkUseItemCommand(link));
+
+            controller.RegisterCommand(Keys.E, new LinkTakeDamageCommand(link, game));
+
+            return controller;
+        }
+
+        /* Walk sprites. */
         public ISprite CreateHorizontalWalkSprite(IGameObject link)
         {
             List<Rectangle> sourceRects = new List<Rectangle> { new Rectangle(35, 11, 16, 16), new Rectangle(52, 11, 16, 16) };
             return new AnimatedSprite(link, linkAtlas, sourceRects, .2f, linkScale);
         }
 
-        public ISprite CreateUpwardsWalkSprite(IGameObject link)
+        public ISprite CreateUpWalkSprite(IGameObject link)
         {
             List<Rectangle> sourceRects = new List<Rectangle> { new Rectangle(69, 11, 16, 16), new Rectangle(86, 11, 16, 16) };
             return new AnimatedSprite(link, linkAtlas, sourceRects, .2f, linkScale);
         }
 
-        public ISprite CreateDownwardsWalkSprite(IGameObject link)
+        public ISprite CreateDownWalkSprite(IGameObject link)
         {
             List<Rectangle> sourceRects = new List<Rectangle> { new Rectangle(1, 11, 16, 16), new Rectangle(18, 11, 16, 16) };
             return new AnimatedSprite(link, linkAtlas, sourceRects, .2f, linkScale);
         }
 
+        /* Attack sprites. */
+        public ISprite CreateRightAttackSprite(IGameObject link)
+        {
+            // Just an animated sprite because each frame's origin is always 0,0
+
+            List<Rectangle> sourceRects = new List<Rectangle> { new Rectangle(1, 77, 16, 16), new Rectangle(18, 77, 27, 16),
+                                                                new Rectangle(46, 77, 23, 16), new Rectangle(70, 77, 19, 16)};
+            return new AnimatedSprite(link, linkAtlas, sourceRects, attackTime, linkScale);
+        }
+
+        public ISprite CreateLeftAttackSprite(IGameObject link)
+        {
+            List<Rectangle> sourceRects = new List<Rectangle> { new Rectangle(1, 77, 16, 16), new Rectangle(18, 77, 27, 16), 
+                                                                new Rectangle(46, 77, 23, 16), new Rectangle(70, 77, 19, 16)};
+            List<Vector2> origins = new List<Vector2> { new Vector2(0, 0), new Vector2(11, 0), new Vector2(7, 0), new Vector2(3, 0)};
+            return new VariedOriginsSprite(link, linkAtlas, sourceRects, origins, attackTime, linkScale);
+        }
+
+        public ISprite CreateUpAttackSprite(IGameObject link)
+        {
+            List<Rectangle> sourceRects = new List<Rectangle> { new Rectangle(1, 109, 16, 16), new Rectangle(18, 97, 16, 28),
+                                                                new Rectangle(35, 98, 16, 27), new Rectangle(52, 106, 16, 19)};
+            List<Vector2> origins = new List<Vector2> { new Vector2(0, 0), new Vector2(0, 12), new Vector2(0, 11), new Vector2(0, 3) };
+            return new VariedOriginsSprite(link, linkAtlas, sourceRects, origins, attackTime, linkScale);
+        }
+
+        public ISprite CreateDownAttackSprite(IGameObject link)
+        {
+            // Just an animated sprite because each frame's origin is always 0,0
+
+            List<Rectangle> sourceRects = new List<Rectangle> { new Rectangle(1, 47, 16, 16), new Rectangle(18, 47, 16, 27), 
+                                                                new Rectangle(35, 47, 16, 23), new Rectangle(52, 47, 16, 19) };
+            return new AnimatedSprite(link, linkAtlas, sourceRects, attackTime, linkScale);
+        }
+
+        /* Item sprites */
+        public ISprite CreateHorizontalItemSprite(IGameObject link)
+        {
+            return new FixedSprite(link, linkAtlas, new Rectangle(124, 11, 16, 16), linkScale);
+        }
+
+        public ISprite CreateUpItemSprite(IGameObject link)
+        {
+            return new FixedSprite(link, linkAtlas, new Rectangle(141, 11, 16, 16), linkScale);
+        }
+
+        public ISprite CreateDownItemSprite(IGameObject link)
+        {
+            return new FixedSprite(link, linkAtlas, new Rectangle(107, 11, 16, 16), linkScale);
+        }
     }
 }

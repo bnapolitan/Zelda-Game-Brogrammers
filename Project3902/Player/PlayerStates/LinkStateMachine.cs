@@ -9,14 +9,15 @@ using System.Threading.Tasks;
 
 namespace Project3902
 {
-    class LinkStateMachine : IStateMachine<LinkStates>, IDrawable
+    class LinkStateMachine : IStateMachine<LinkStates>, IDrawable, ILinkActions
     {
         private Dictionary<LinkStates, ILinkState> states;
         private Link link;
 
         private ILinkState currentState;
 
-        public LinkStates CurrentState { get; private set; }
+        public ISprite Sprite { get => currentState.Sprite; set => currentState.Sprite = value; }
+        public LinkStates CurrentStateEnum { get; private set; }
 
         public LinkStateMachine(Link link)
         {
@@ -27,7 +28,15 @@ namespace Project3902
                 { LinkStates.LeftWalk, new LinkLeftWalkState(link, this) },
                 { LinkStates.UpWalk, new LinkUpWalkState(link, this) },
                 { LinkStates.DownWalk, new LinkDownWalkState(link, this) },
-                { LinkStates.RightWalk, new LinkRightWalkState(link, this) }
+                { LinkStates.RightWalk, new LinkRightWalkState(link, this) },
+                { LinkStates.UpAttack, new LinkUpAttackState(link, this) },
+                { LinkStates.DownAttack, new LinkDownAttackState(link, this) },
+                { LinkStates.RightAttack, new LinkRightAttackState(link, this) },
+                { LinkStates.LeftAttack, new LinkLeftAttackState(link, this) },
+                { LinkStates.UpItem, new LinkUpItemState(link, this) },
+                { LinkStates.DownItem, new LinkDownItemState(link, this) },
+                { LinkStates.RightItem, new LinkRightItemState(link, this) },
+                { LinkStates.LeftItem, new LinkLeftItemState(link, this) }
             };
 
             // Instead of having to check if the currentState is null in SwitchState()
@@ -39,7 +48,7 @@ namespace Project3902
         {
             currentState.Exit();
             currentState = states[state];
-            CurrentState = state;
+            CurrentStateEnum = state;
             currentState.Enter();
         }
 
@@ -73,6 +82,16 @@ namespace Project3902
         public void Draw(SpriteBatch spriteBatch)
         {
             currentState.Draw(spriteBatch);
+        }
+
+        public void Attack()
+        {
+            currentState.Attack();
+        }
+
+        public void UseItem()
+        {
+            currentState.UseItem();
         }
     }
 }

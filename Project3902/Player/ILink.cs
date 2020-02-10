@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Project3902
 {
-    interface ILinkState : IState, IDrawable, ILinkActions
+    interface ILink : ICharacter, ILinkActions
     {
-
-        ISprite Sprite { get; set; }
+        
     }
 }
