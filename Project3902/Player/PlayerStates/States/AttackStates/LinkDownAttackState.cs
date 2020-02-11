@@ -11,7 +11,7 @@ namespace Project3902
         public LinkDownAttackState(Link link, LinkStateMachine machine)
             : base(link, machine)
         {
-            stateSprite = LinkFactory.Instance.CreateDownAttackSprite(link);
+            Sprite = LinkFactory.Instance.CreateDownAttackSprite(link);
         }
 
         protected override void EndAttack()

@@ -13,7 +13,7 @@ namespace Project3902
         public LinkDownWalkState(Link link, LinkStateMachine machine)
             : base(link, machine)
         {
-            stateSprite = LinkFactory.Instance.CreateDownWalkSprite(link);
+            Sprite = LinkFactory.Instance.CreateDownWalkSprite(link);
         }
         
         public override void MoveDown()

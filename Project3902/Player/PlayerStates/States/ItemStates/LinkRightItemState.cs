@@ -14,7 +14,7 @@ namespace Project3902
         public LinkRightItemState(Link link, LinkStateMachine machine)
             : base(link, machine)
         {
-            stateSprite = LinkFactory.Instance.CreateHorizontalItemSprite(link);
+            Sprite = LinkFactory.Instance.CreateHorizontalItemSprite(link);
         }
 
         protected override void EndUse()

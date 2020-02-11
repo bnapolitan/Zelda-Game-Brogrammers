@@ -14,7 +14,6 @@ namespace Project3902
         public float Health { get; set; }
         public Vector2 Position { get; set; }
 
-        // Need to refactor how the Sprite is handled here and down in the states.
         public ISprite Sprite { get => machine.Sprite; set { } }
         public bool Active { get; set; }
 

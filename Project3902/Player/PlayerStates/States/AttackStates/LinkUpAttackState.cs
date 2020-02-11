@@ -11,7 +11,7 @@ namespace Project3902
         public LinkUpAttackState(Link link, LinkStateMachine machine)
             : base(link, machine)
         {
-            stateSprite = LinkFactory.Instance.CreateUpAttackSprite(link);
+            Sprite = LinkFactory.Instance.CreateUpAttackSprite(link);
         }
 
         protected override void EndAttack()

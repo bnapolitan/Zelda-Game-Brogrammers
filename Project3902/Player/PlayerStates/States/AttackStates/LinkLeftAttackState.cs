@@ -15,7 +15,7 @@ namespace Project3902
             BaseSprite thisSprite = LinkFactory.Instance.CreateLeftAttackSprite(link) as BaseSprite;
             thisSprite.Flip = SpriteEffects.FlipHorizontally;
 
-            stateSprite = thisSprite;
+            Sprite = thisSprite;
         }
 
         protected override void EndAttack()

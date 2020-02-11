@@ -18,7 +18,7 @@ namespace Project3902
             BaseSprite thisSprite = LinkFactory.Instance.CreateHorizontalWalkSprite(link) as BaseSprite;
             thisSprite.Flip = SpriteEffects.FlipHorizontally;
 
-            stateSprite = thisSprite;
+            Sprite = thisSprite;
         }
 
         public override void MoveLeft()

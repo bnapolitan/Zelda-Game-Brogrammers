@@ -14,7 +14,7 @@ namespace Project3902
         public LinkUpItemState(Link link, LinkStateMachine machine)
             : base(link, machine)
         {
-            stateSprite = LinkFactory.Instance.CreateUpItemSprite(link);
+            Sprite = LinkFactory.Instance.CreateUpItemSprite(link);
         }
 
         protected override void EndUse()
