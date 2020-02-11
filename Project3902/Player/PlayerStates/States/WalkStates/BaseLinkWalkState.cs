@@ -29,7 +29,7 @@ namespace Project3902
         public override void Update(GameTime gameTime)
         {
             if (velocity != Vector2.Zero)
-                stateSprite.Update(gameTime);
+                Sprite.Update(gameTime);
 
             link.Position += velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
 

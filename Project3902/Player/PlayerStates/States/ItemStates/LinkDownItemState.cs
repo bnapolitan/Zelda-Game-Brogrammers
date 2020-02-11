@@ -14,7 +14,7 @@ namespace Project3902
         public LinkDownItemState(Link link, LinkStateMachine machine)
             : base(link, machine)
         {
-            stateSprite = LinkFactory.Instance.CreateDownItemSprite(link);
+            Sprite = LinkFactory.Instance.CreateDownItemSprite(link);
         }
 
         protected override void EndUse()

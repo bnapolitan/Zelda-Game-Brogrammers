@@ -12,6 +12,7 @@ namespace Project3902
         // 'width' and 'height' represent the actual width and height the sprite will appear in pixels
         protected float width;
         protected float height;
+
         protected SpriteAtlas atlas;
         protected IAtlasSource source;
         protected Vector2 scale;
@@ -48,7 +49,7 @@ namespace Project3902
 
         public BaseSprite(IGameObject gameObject, SpriteAtlas atlas, IAtlasSource source, Vector2? scale = null)
         {
-            this.GameObject = gameObject;
+            GameObject = gameObject;
             this.atlas = atlas;
             this.source = source;
             Scale = scale ?? new Vector2(1, 1);

@@ -16,7 +16,7 @@ namespace Project3902
 
         private ILinkState currentState;
 
-        public ISprite Sprite { get => currentState.Sprite; set => currentState.Sprite = value; }
+        public ISprite Sprite { get => currentState.Sprite; set { } }
         public LinkStates CurrentStateEnum { get; private set; }
 
         public LinkStateMachine(Link link)
