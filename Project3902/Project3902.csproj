@@ -55,7 +55,6 @@
     <Compile Include="Commands\Sprint0Commands\ICommand.cs" />
     <Compile Include="Commands\Sprint0Commands\ExitGameCommand.cs" />
     <Compile Include="Controllers\KeyboardController.cs" />
-    <Compile Include="EnemyTester.cs" />
     <Compile Include="GameObjects\Enemies_and_NPCs\Aquamentus.cs" />
     <Compile Include="GameObjects\Enemies_and_NPCs\Dodongo.cs" />
     <Compile Include="GameObjects\Enemies_and_NPCs\OldMan.cs" />
