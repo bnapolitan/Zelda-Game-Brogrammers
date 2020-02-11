@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project3902.GameObjects
+namespace Project3902
 {
     interface ICollideable
     {
-        Rectangle hitbox { get; set; }
+        Rectangle Collider { get; set; }
 
         void OnCollide();
     }

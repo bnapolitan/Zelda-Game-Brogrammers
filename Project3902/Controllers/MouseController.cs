@@ -10,6 +10,9 @@ namespace Project3902
     class MouseController : IController<MouseActions>
     {
         private Dictionary<MouseActions, ICommand> mouseMappings;
+        private bool isLeftPressed = false;
+        private bool isRightPressed = false;
+        private bool isMiddlePressed = false;
 
         public MouseController()
         {
@@ -26,16 +29,43 @@ namespace Project3902
             MouseState state = Mouse.GetState();
 
             if (mouseMappings.ContainsKey(MouseActions.Left))
-                if (state.LeftButton == ButtonState.Pressed)
+            {
+                if (state.LeftButton == ButtonState.Pressed && !isLeftPressed)
+                {
                     mouseMappings[MouseActions.Left].Execute();
+                    isLeftPressed = true;
+                }
+                if(state.LeftButton == ButtonState.Released)
+                {
+                    isLeftPressed = false;
+                }
+            }
 
             if (mouseMappings.ContainsKey(MouseActions.Middle))
-                if (state.MiddleButton == ButtonState.Pressed)
+            {
+                if (state.MiddleButton == ButtonState.Pressed && !isMiddlePressed)
+                {
                     mouseMappings[MouseActions.Middle].Execute();
+                    isMiddlePressed = true;
+                }
+                if (state.MiddleButton == ButtonState.Released)
+                {
+                    isMiddlePressed = false;
+                }
+            }
 
             if (mouseMappings.ContainsKey(MouseActions.Right))
-                if (state.RightButton == ButtonState.Pressed)
+            {
+                if (state.RightButton == ButtonState.Pressed && !isRightPressed)
+                {
                     mouseMappings[MouseActions.Right].Execute();
+                    isRightPressed = true;
+                }
+                if (state.RightButton == ButtonState.Released)
+                {
+                    isRightPressed = false;
+                }
+            }
         }
     }
 }
