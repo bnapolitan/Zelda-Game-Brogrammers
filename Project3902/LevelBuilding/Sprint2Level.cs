@@ -12,10 +12,12 @@ namespace Project3902
     class Sprint2Level
     {
         private Vector2 environmentPosition;
+        private Vector2 enemyPosition;
 
         public Sprint2Level()
         {
             environmentPosition = new Vector2(400, 200);
+            enemyPosition = new Vector2(500, 300);
         }
 
         public List<IGameObject> CreateInteractiveEnvironmentObjects()
@@ -33,19 +35,19 @@ namespace Project3902
         public List<IGameObject> CreateEnemyObjects()
         {
             var list = new List<IGameObject>();
-            list.Add(EnemyFactory.Instance.CreateAquaGel(new Vector2(400, 200)));
-            list.Add(EnemyFactory.Instance.CreateBlueGoriya(new Vector2(400, 200)));
-            list.Add(EnemyFactory.Instance.CreateRedKeese(new Vector2(400, 200)));
-            list.Add(EnemyFactory.Instance.CreateRope(new Vector2(400, 200)));
-            list.Add(EnemyFactory.Instance.CreateStalfos(new Vector2(400, 200)));
-            list.Add(EnemyFactory.Instance.CreateWallmaster(new Vector2(400, 200)));
-            list.Add(EnemyFactory.Instance.CreateGreenZol(new Vector2(400, 200)));
-            list.Add(EnemyFactory.Instance.createAquamentus(new Vector2(400, 200)));
-            list.Add(EnemyFactory.Instance.createRedMerchant(new Vector2(400, 200)));
-            list.Add(EnemyFactory.Instance.createDongo(new Vector2(400, 200)));
-            list.Add(EnemyFactory.Instance.createOldMan(new Vector2(400, 200)));
-            list.Add(EnemyFactory.Instance.createFlame(new Vector2(400, 200)));
-            list.Add(EnemyFactory.Instance.createFireball(new Vector2(400, 200)));
+            list.Add(EnemyFactory.Instance.CreateAquaGel(enemyPosition));
+            list.Add(EnemyFactory.Instance.CreateBlueGoriya(enemyPosition));
+            list.Add(EnemyFactory.Instance.CreateRedKeese(enemyPosition));
+            list.Add(EnemyFactory.Instance.CreateRope(enemyPosition));
+            list.Add(EnemyFactory.Instance.CreateStalfos(enemyPosition));
+            list.Add(EnemyFactory.Instance.CreateWallmaster(enemyPosition));
+            list.Add(EnemyFactory.Instance.CreateGreenZol(enemyPosition));
+            list.Add(EnemyFactory.Instance.createAquamentus(enemyPosition));
+            list.Add(EnemyFactory.Instance.createRedMerchant(enemyPosition));
+            list.Add(EnemyFactory.Instance.createDongo(enemyPosition));
+            list.Add(EnemyFactory.Instance.createOldMan(enemyPosition));
+            list.Add(EnemyFactory.Instance.createFlame(enemyPosition));
+            list.Add(EnemyFactory.Instance.createFireball(enemyPosition));
             return list;
         }
         

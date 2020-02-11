@@ -14,7 +14,7 @@ namespace Project3902.GameObjects.Enemies_and_NPCs
         public Vector2 Position { get; set; }
         public ISprite Sprite { get; set; }
         public bool Active { get; set; }
-        public Rectangle hitbox { get; set; }
+        public Rectangle Collider { get; set; }
         private float speed;
         private float distance = 100;
         private Vector2 relPos = new Vector2(0, 0);

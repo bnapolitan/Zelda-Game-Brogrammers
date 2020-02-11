@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Project3902.GameObjects;
-using Project3902.LevelBuilding.Sprint2Level;
 using Project3902.ObjectManagement;
 using Project3902.Commands.Sprint2Commands;
 using System;
@@ -10,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Project3902.GameObjects.Enemies_and_NPCs.Interfaces;
+using Microsoft.Xna.Framework.Input;
 
 /* 
  * Team:
@@ -35,12 +35,14 @@ namespace Project3902
         List<IGameObject> interactiveEnvironmentObjects;
         int currentInteractiveEnvironmentObject;
 
-        IController<MouseActions> mouseController;
-
         List<IGameObject> enemyObjects;
         int currentEnemyObject;
 
         IController<MouseActions> mouseController;
+        KeyboardController keyboardController;
+
+        private bool OKeyDown = false;
+        private bool PKeyDown = false;
 
         public Sprint2()
         {
@@ -57,6 +59,7 @@ namespace Project3902
 
             // Set up controllers.
             SetUpMouseController();
+            //SetUpKeyboardController();
 
             base.Initialize();
         }
@@ -67,8 +70,6 @@ namespace Project3902
             
             //renderTarget = new RenderTarget2D(GraphicsDevice, 256, 176);
             //actualScreenRect = new Rectangle(0, 0, GraphicsDeviceManager.DefaultBackBufferWidth, GraphicsDeviceManager.DefaultBackBufferHeight);
-
-            var level = new Sprint2Level();
 
             var level = new Sprint2Level();
 
@@ -96,10 +97,27 @@ namespace Project3902
         protected override void Update(GameTime gameTime)
         {
             mouseController.Update();
+            //keyboardController.Update();
+            KeyboardState state = Keyboard.GetState();
+            if (state.IsKeyDown(Keys.O)&&!OKeyDown){
+                OKeyDown = true;
+                CycleEnemyLast();
+            }
+            if (state.IsKeyUp(Keys.O))
+            {
+                OKeyDown = false;
+            }
+            if (state.IsKeyDown(Keys.P)&&!PKeyDown)
+            {
+                PKeyDown = true;
+                CycleEnemyNext();
+            }
+            if (state.IsKeyUp(Keys.P))
+            {
+                PKeyDown = false;
+            }
             enemyObjects[currentEnemyObject].Update(gameTime);
             base.Update(gameTime);
-
-            mouseController.Update();
 
             Link.Update(gameTime);
         }
@@ -144,6 +162,14 @@ namespace Project3902
             mouseController.RegisterCommand(MouseActions.Right, new CycleLastEnvironmentObjectCommand(this));
         }
 
+        private void SetUpKeyboardController()
+        {
+            keyboardController = new KeyboardController();
+
+            keyboardController.RegisterCommand(Microsoft.Xna.Framework.Input.Keys.P, new CycleNextEnemyObjectCommand(this));
+            keyboardController.RegisterCommand(Microsoft.Xna.Framework.Input.Keys.O, new CycleLastEnemyObjectCommand(this));
+        }
+
         public void CycleEnvironmentNext()
         {
             currentInteractiveEnvironmentObject = (currentInteractiveEnvironmentObject + 1) % interactiveEnvironmentObjects.Count;
@@ -159,6 +185,7 @@ namespace Project3902
             {
                 currentInteractiveEnvironmentObject--;
             }
+        }
         public void CycleEnemyNext()
         {
             currentEnemyObject = (currentEnemyObject + 1) % enemyObjects.Count;
