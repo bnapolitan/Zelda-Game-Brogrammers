@@ -32,7 +32,14 @@ namespace Project3902
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            Console.WriteLine("D");
             spriteBatch.Draw(atlas.Texture, CalculateDestRect(), source.GetSourceRectangle(currentFrame), Color.White);
+        }
+
+        public void Draw(SpriteBatch spriteBatch, SpriteEffects effect)
+        {
+            Console.WriteLine("C");
+            spriteBatch.Draw(atlas.Texture, CalculateDestRect(), source.GetSourceRectangle(currentFrame), Color.White, 0f, Vector2.Zero, effect, 0f);
         }
 
         public override void Update(GameTime gameTime)

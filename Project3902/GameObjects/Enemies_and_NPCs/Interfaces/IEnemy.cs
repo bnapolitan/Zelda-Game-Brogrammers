@@ -8,13 +8,7 @@ namespace Project3902.GameObjects
 {
     interface IEnemy: ICharacter
     {
-        public void takeDamage()
-        {
-
-        }
-        public void attack()
-        {
-
-        }
+        void TakeDamage();
+        void Attack();
     }
 }

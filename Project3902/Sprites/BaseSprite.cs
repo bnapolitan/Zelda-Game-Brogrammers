@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace Project3902
 {
@@ -66,6 +67,7 @@ namespace Project3902
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
+            Console.WriteLine("B");
             spriteBatch.Draw(Texture, CalculateDestRect(), source.GetSourceRectangle(), Color.White);
         }
 

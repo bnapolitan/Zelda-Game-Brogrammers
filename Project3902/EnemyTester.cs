@@ -13,7 +13,6 @@ namespace Project3902
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        EnemyFactory eFactory;
 
 
         public EnemyTester()

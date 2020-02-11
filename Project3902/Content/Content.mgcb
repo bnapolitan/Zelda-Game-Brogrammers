@@ -20,6 +20,30 @@
 /processorParam:TextureFormat=Compressed
 /build:Credits.spritefont
 
+#begin Dungeon_Enemies_2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Dungeon_Enemies_2.png
+
+#begin DungeonEnemies.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:DungeonEnemies.png
+
 #begin DungeonSpriteSheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -31,6 +55,24 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:DungeonSpriteSheet.png
+
+#begin File.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:File.fx
+
+#begin OverworldEnemies.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:OverworldEnemies.png
 
 #begin OverworldSpriteSheet.png
 /importer:TextureImporter

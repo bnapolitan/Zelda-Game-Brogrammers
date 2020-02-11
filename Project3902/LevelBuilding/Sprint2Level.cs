@@ -16,15 +16,16 @@ namespace Project3902.LevelBuilding.Sprint2Level
 
         }
 
-        public List<IGameObject> CreateInteractiveEnvironmentObjects()
+        public List<IGameObject> CreateEnemyObjects()
         {
             var list = new List<IGameObject>();
-            list.Add(EnvironmentFactory.Instance.CreateStairs(new Vector2(400, 200)));
-            list.Add(EnvironmentFactory.Instance.CreateLadderTile(new Vector2(400, 200)));
-            list.Add(EnvironmentFactory.Instance.CreateGapTile(new Vector2(400, 200)));
-            list.Add(EnvironmentFactory.Instance.CreateFire(new Vector2(400, 200)));
-            list.Add(EnvironmentFactory.Instance.CreateBrickTile(new Vector2(400, 200)));
-            list.Add(EnvironmentFactory.Instance.CreateBombedOpening(new Vector2(400, 200)));
+            list.Add(EnemyFactory.Instance.CreateAquaGel(new Vector2(400, 200)));
+            list.Add(EnemyFactory.Instance.CreateBlueGoriya(new Vector2(400, 200)));
+            list.Add(EnemyFactory.Instance.CreateRedKeese(new Vector2(400, 200)));
+            list.Add(EnemyFactory.Instance.CreateRope(new Vector2(400, 200)));
+            list.Add(EnemyFactory.Instance.CreateStalfos(new Vector2(400, 200)));
+            list.Add(EnemyFactory.Instance.CreateWallmaster(new Vector2(400, 200)));
+            list.Add(EnemyFactory.Instance.CreateGreenZol(new Vector2(400, 200)));
             return list;
         }
     }
