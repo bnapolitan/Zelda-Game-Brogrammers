@@ -19,7 +19,6 @@ namespace Project3902.GameObjects.Enemies_and_NPCs.Interfaces
         private float distance = 100;
         private Vector2 relPos = new Vector2(0, 0);
         private Vector2 direction;
-        private SpriteEffects flip = SpriteEffects.None;
         public ISprite rightFacingGoriya;
         public ISprite leftFacingGoriya;
         public ISprite downFacingGoriya;
@@ -43,8 +42,7 @@ namespace Project3902.GameObjects.Enemies_and_NPCs.Interfaces
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            Console.WriteLine("E");
-            (Sprite as AnimatedSprite).Draw(spriteBatch, flip);
+            Sprite.Draw(spriteBatch);
         }
 
         public void OnCollide()

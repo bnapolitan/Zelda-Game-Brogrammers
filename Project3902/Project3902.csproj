@@ -93,13 +93,6 @@
     <Compile Include="LevelBuilding\Sprint2Level.cs" />
     <Compile Include="ObjectManagement\EnvironmentFactory.cs" />
     <Compile Include="Sprint2.cs" />
-    <Compile Include="Sprites\EnemySprites\GoriyaSprite.cs" />
-    <Compile Include="Sprites\EnemySprites\StalfosSprite.cs" />
-    <Compile Include="Sprites\EnemySprites\ZolSprite.cs" />
-    <Compile Include="Sprites\EnemySprites\WallmasterSprite.cs" />
-    <Compile Include="Sprites\EnemySprites\RopeSprite.cs" />
-    <Compile Include="Sprites\EnemySprites\KeeseSprite.cs" />
-    <Compile Include="Sprites\EnemySprites\GelSprite.cs" />
     <Compile Include="Sprites\Sprint0Sprites\UpAndDownSprite.cs" />
     <Compile Include="Text\ITextSprite.cs" />
     <Compile Include="Text\SimpleText.cs" />

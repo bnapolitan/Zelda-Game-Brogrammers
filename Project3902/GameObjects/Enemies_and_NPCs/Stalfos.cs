@@ -20,9 +20,6 @@ namespace Project3902.GameObjects.Enemies_and_NPCs
         private Vector2 relPos = new Vector2(0, 0);
         private Vector2 originalPos;
         private Vector2 direction;
-        private SpriteEffects flip = SpriteEffects.None;
-        private float frameNow = 0;
-        private float maxFrame = 5;
 
         public Stalfos(Vector2 pos, float moveSpeed, Vector2 initDirection)
         {
@@ -59,13 +56,11 @@ namespace Project3902.GameObjects.Enemies_and_NPCs
             if (relPos.Y > distance)
             {
                 direction *= -1;
-                flip = SpriteEffects.FlipHorizontally;
                 relPos = new Vector2(0, 0);
             }
             else if (relPos.Y < -distance)
             {
                 direction *= -1;
-                flip = SpriteEffects.None;
                 relPos = new Vector2(0, 0);
             }
             Sprite.Update(gameTime);
