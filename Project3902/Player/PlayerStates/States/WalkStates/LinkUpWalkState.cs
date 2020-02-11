@@ -14,7 +14,7 @@ namespace Project3902
         public LinkUpWalkState(Link link, LinkStateMachine machine)
             : base(link, machine)
         {
-            stateSprite = LinkFactory.Instance.CreateUpWalkSprite(link);
+            Sprite = LinkFactory.Instance.CreateUpWalkSprite(link);
         }
 
         public override void MoveUp()

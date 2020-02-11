@@ -18,7 +18,7 @@ namespace Project3902
             BaseSprite thisSprite = LinkFactory.Instance.CreateHorizontalItemSprite(link) as BaseSprite;
             thisSprite.Flip = SpriteEffects.FlipHorizontally;
 
-            stateSprite = thisSprite;
+            Sprite = thisSprite;
         }
 
         protected override void EndUse()

@@ -45,6 +45,8 @@
     <Compile Include="Commands\Sprint0Commands\SetMovingNonanimatedCommand.cs" />
     <Compile Include="Commands\Sprint0Commands\SetNonmovingAnimatedCommand.cs" />
     <Compile Include="Commands\Sprint0Commands\SetSpriteMouseCommand.cs" />
+    <Compile Include="Sprites\Item\CycPrvItm.cs" />
+    <Compile Include="Sprites\Item\CycNxtItm.cs" />
     <Compile Include="Commands\Sprint2Commands\CycleLastEnvironmentObjectCommand.cs" />
     <Compile Include="Commands\Sprint2Commands\CycleNextEnvironmentObjectCommand.cs" />
     <Compile Include="Controllers\IController.cs" />
@@ -107,6 +109,11 @@
     <Compile Include="Player\PlayerStates\States\WalkStates\LinkRightWalkState.cs" />
     <Compile Include="Player\PlayerStates\States\WalkStates\LinkUpWalkState.cs" />
     <Compile Include="Sprint2.cs" />
+    <Compile Include="Sprites\Item\ItemReg.cs" />
+    <Compile Include="Sprites\Item\ItemCtl.cs" />
+    <Compile Include="Sprites\Item\FixedItem.cs" />
+    <Compile Include="Sprites\Item\IItemCtl.cs" />
+    <Compile Include="Sprites\Item\ItemSprite.cs" />
     <Compile Include="Sprites\VariedOriginsSprite.cs" />
     <Compile Include="StateMachine\IState.cs" />
     <Compile Include="StateMachine\IStateMachine.cs" />
