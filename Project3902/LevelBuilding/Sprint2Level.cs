@@ -26,6 +26,12 @@ namespace Project3902.LevelBuilding.Sprint2Level
             list.Add(EnemyFactory.Instance.CreateStalfos(new Vector2(400, 200)));
             list.Add(EnemyFactory.Instance.CreateWallmaster(new Vector2(400, 200)));
             list.Add(EnemyFactory.Instance.CreateGreenZol(new Vector2(400, 200)));
+            list.Add(EnemyFactory.Instance.createAquamentus(new Vector2(400, 200)));
+            list.Add(EnemyFactory.Instance.createRedMerchant(new Vector2(400, 200)));
+            list.Add(EnemyFactory.Instance.createDongo(new Vector2(400, 200)));
+            list.Add(EnemyFactory.Instance.createOldMan(new Vector2(400, 200)));
+            list.Add(EnemyFactory.Instance.createFlame(new Vector2(400, 200)));
+            list.Add(EnemyFactory.Instance.createFireball(new Vector2(400, 200)));
             return list;
         }
     }
