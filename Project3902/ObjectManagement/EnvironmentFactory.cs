@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Project3902.ObjectManagement
 {
-    class EnvironmentFactory
+    class EnvironmentFactory : ISpriteFactory
     {
         private SpriteAtlas dungeonSpriteAtlas;
 		private SpriteAtlas linkSpriteAtlas;

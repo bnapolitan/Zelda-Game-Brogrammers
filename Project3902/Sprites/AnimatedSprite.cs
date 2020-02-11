@@ -7,49 +7,32 @@ namespace Project3902
 {
     class AnimatedSprite : BaseSprite
     {
-        protected int currentFrame;
         private float frameTime;
         private float lastFrameChange;
-
-        public new Vector2 Scale
-        {
-            get
-            {
-                return scale;
-            }
-            set
-            {
-                scale = value;
-                SetWidthHeight(currentFrame);
-            }
-        }
 
         public AnimatedSprite(IGameObject gameObject, SpriteAtlas atlas, List<Rectangle> sourceRects, float frameTime, Vector2? scale = null)
             : base(gameObject, atlas, new MultipleSource(sourceRects), scale)
         {
             this.frameTime = frameTime;
+            lastFrameChange = 0;
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            Console.WriteLine("D");
-            spriteBatch.Draw(atlas.Texture, CalculateDestRect(), source.GetSourceRectangle(currentFrame), Color.White);
-        }
-
-        public void Draw(SpriteBatch spriteBatch, SpriteEffects effect)
-        {
-            Console.WriteLine("C");
-            spriteBatch.Draw(atlas.Texture, CalculateDestRect(), source.GetSourceRectangle(currentFrame), Color.White, 0f, Vector2.Zero, effect, 0f);
-        }
 
         public override void Update(GameTime gameTime)
         {
             if (lastFrameChange + frameTime <= gameTime.TotalGameTime.TotalSeconds)
             {
+                // Store number of frames somewhere instead of accessing it constantly.
                 currentFrame = (currentFrame + 1) % source.GetNumberFrames();
                 lastFrameChange = (float) gameTime.TotalGameTime.TotalSeconds;
-                SetWidthHeight(currentFrame);
+                SetWidthHeight();
             }
+        }
+
+        public void ResetAnimation()
+        {
+            lastFrameChange = 0;
+            currentFrame = 0;
         }
     }
 }

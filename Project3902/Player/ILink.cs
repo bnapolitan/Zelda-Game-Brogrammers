@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Project3902
 {
-    interface ICharacter : IGameObject, IUpdatable, IDrawable, ICollideable
+    interface ILink : ICharacter, ILinkActions
     {
-        float Health { get; set; }
+        
     }
 }

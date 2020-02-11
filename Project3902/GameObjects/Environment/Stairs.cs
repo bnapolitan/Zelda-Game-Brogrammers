@@ -14,6 +14,7 @@ namespace Project3902.GameObjects.Environment
             : base(position) { }
 
         public Rectangle hitbox { get; set; }
+        public Rectangle Collider { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public void OnCollide()
         {

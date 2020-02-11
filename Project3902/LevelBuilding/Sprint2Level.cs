@@ -7,15 +7,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project3902.LevelBuilding.Sprint2Level
+namespace Project3902
 {
     class Sprint2Level
     {
+        private Vector2 environmentPosition;
+
         public Sprint2Level()
         {
-
+            environmentPosition = new Vector2(400, 200);
         }
 
+        public List<IGameObject> CreateInteractiveEnvironmentObjects()
+        {
+            var list = new List<IGameObject>();
+            list.Add(EnvironmentFactory.Instance.CreateStairs(environmentPosition));
+            list.Add(EnvironmentFactory.Instance.CreateLadderTile(environmentPosition));
+            list.Add(EnvironmentFactory.Instance.CreateGapTile(environmentPosition));
+            list.Add(EnvironmentFactory.Instance.CreateFire(environmentPosition));
+            list.Add(EnvironmentFactory.Instance.CreateBrickTile(environmentPosition));
+            list.Add(EnvironmentFactory.Instance.CreateBombedOpening(environmentPosition));
+            return list;
+        }
+        
         public List<IGameObject> CreateEnemyObjects()
         {
             var list = new List<IGameObject>();
@@ -34,5 +48,6 @@ namespace Project3902.LevelBuilding.Sprint2Level
             list.Add(EnemyFactory.Instance.createFireball(new Vector2(400, 200)));
             return list;
         }
+        
     }
 }

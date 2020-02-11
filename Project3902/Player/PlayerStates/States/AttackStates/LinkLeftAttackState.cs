@@ -1,0 +1,26 @@
+﻿using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Project3902
+{
+    class LinkLeftAttackState : BaseLinkAttackState
+    {
+        public LinkLeftAttackState(Link link, LinkStateMachine machine)
+            : base(link, machine)
+        {
+            BaseSprite thisSprite = LinkFactory.Instance.CreateLeftAttackSprite(link) as BaseSprite;
+            thisSprite.Flip = SpriteEffects.FlipHorizontally;
+
+            Sprite = thisSprite;
+        }
+
+        protected override void EndAttack()
+        {
+            machine.SwitchState(LinkStates.LeftWalk);
+        }
+    }
+}
