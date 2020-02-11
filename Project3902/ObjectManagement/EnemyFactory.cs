@@ -16,6 +16,8 @@ namespace Project3902.ObjectManagement
     {
 		private SpriteAtlas dungeonSpriteAtlas;
 		private SpriteAtlas dungeons2;
+		private SpriteAtlas NPCSpriteAtlas;
+		private SpriteAtlas BossSpriteAtlas;
 
 		private static EnemyFactory instance = new EnemyFactory();
 
@@ -35,6 +37,8 @@ namespace Project3902.ObjectManagement
 		{
 			dungeonSpriteAtlas = new SpriteAtlas(content.Load<Texture2D>("DungeonEnemies"));
 			dungeons2 = new SpriteAtlas(content.Load<Texture2D>("Dungeon_Enemies_2"));
+			NPCSpriteAtlas = new SpriteAtlas(content.Load<Texture2D>("ZeldaNPCSpriteSheet"));
+			BossSpriteAtlas = new SpriteAtlas(content.Load<Texture2D>("ZeldaBossSprites"));
 		}
 
 		public IGameObject CreateAquaGel(Vector2 position)
@@ -186,6 +190,81 @@ namespace Project3902.ObjectManagement
 			createdObject.rightFacingRope = new RopeSprite(createdObject, dungeons2, rightRopeSource, 0.5f, new Vector2(6, 6));
 			createdObject.leftFacingRope = new RopeSprite(createdObject, dungeons2, leftRopeSource, 0.5f, new Vector2(6, 6));
 			return createdObject;
+		}
+		public IGameObject createAquamentus(Vector2 position)
+		{
+			var createdObject = new Aquamentus(position, 2, new Vector2(1, 0));
+			List<Rectangle> AquamentusSource = new List<Rectangle> { new Rectangle(1, 11, 24, 30), new Rectangle(26, 11, 24, 30), new Rectangle(51, 11, 24, 30), new Rectangle(76, 11, 24, 30) };
+			var sprite = new AnimatedSprite(createdObject, BossSpriteAtlas, AquamentusSource, 3);
+			createdObject.Sprite = sprite;
+			return createdObject;
+		}
+
+		public IGameObject createDongo(Vector2 position)
+		{
+			var createdObject = new Dodongo(position, 2, new Vector2(1, 0));
+			List<Rectangle> DodongoSource = new List<Rectangle> { new Rectangle(1, 58, 16, 14), new Rectangle(18, 58, 16, 14), new Rectangle(35, 58, 16, 14), new Rectangle(52, 58, 16, 14), new Rectangle(69, 58, 30, 14), new Rectangle(102, 58, 30, 14), new Rectangle(135, 58, 30, 14) };
+			var sprite = new AnimatedSprite(createdObject, BossSpriteAtlas, DodongoSource, 3);
+			createdObject.Sprite = sprite;
+			return createdObject;
+		}
+
+		public IGameObject createFireball(Vector2 position)
+		{
+			var createdObject = new Fireball(position, 2, new Vector2(1, 0));
+			List<Rectangle> FireballSource = new List<Rectangle> { new Rectangle(256, 154, 8, 15) };
+			var sprite = new AnimatedSprite(createdObject, BossSpriteAtlas, FireballSource, 3);
+			createdObject.Sprite = sprite;
+			return createdObject;
+
+		}
+
+		public IGameObject createFlame(Vector2 position)
+		{
+			var createdObject = new Flame(position, 2, new Vector2(1, 0));
+			List<Rectangle> FlameSource = new List<Rectangle> { new Rectangle(52, 11, 15, 16) };
+			var sprite = new AnimatedSprite(createdObject, NPCSpriteAtlas, FlameSource, 3);
+			createdObject.Sprite = sprite;
+			return createdObject;
+		}
+
+		public IGameObject createOldMan(Vector2 position)
+		{
+			var createdObject = new OldMan(position, 2, new Vector2(1, 0));
+			List<Rectangle> OldManSource = new List<Rectangle> { new Rectangle(1, 11, 16, 16), new Rectangle(18, 11, 16, 16), new Rectangle(35, 11, 16, 16) };
+			var sprite = new AnimatedSprite(createdObject, NPCSpriteAtlas, OldManSource, 3);
+			createdObject.Sprite = sprite;
+			return createdObject;
+		}
+
+		public IGameObject createGreenMerchant(Vector2 position)
+		{
+			var createdObject = new Merchant(position, 2, new Vector2(1, 0));
+			List<Rectangle> MerchantSource = new List<Rectangle> { new Rectangle(109, 11, 16, 16) };
+			var sprite = new AnimatedSprite(createdObject, NPCSpriteAtlas, MerchantSource, 3);
+			createdObject.Sprite = sprite;
+			return createdObject;
+
+		}
+
+		public IGameObject createWhiteMerchant(Vector2 position)
+		{
+			var createdObject = new Merchant(position, 2, new Vector2(1, 0));
+			List<Rectangle> MerchantSource = new List<Rectangle> { new Rectangle(126, 11, 16, 16) };
+			var sprite = new AnimatedSprite(createdObject, NPCSpriteAtlas, MerchantSource, 3);
+			createdObject.Sprite = sprite;
+			return createdObject;
+
+		}
+
+		public IGameObject createRedMerchant(Vector2 position)
+		{
+			var createdObject = new Merchant(position, 2, new Vector2(1, 0));
+			List<Rectangle> MerchantSource = new List<Rectangle> { new Rectangle(143, 11, 16, 16) };
+			var sprite = new AnimatedSprite(createdObject, NPCSpriteAtlas, MerchantSource, 3);
+			createdObject.Sprite = sprite;
+			return createdObject;
+
 		}
 	}
 }
