@@ -11,6 +11,7 @@ namespace Project3902
     {
         private float itemUseTime = 1.0f;
         private float timeSinceUse = 0;
+        protected Vector2 direction;
 
         public BaseLinkItemState(Link link, LinkStateMachine machine)
             : base(link, machine) { }
@@ -27,6 +28,7 @@ namespace Project3902
         public override void Enter()
         {
             timeSinceUse = 0;
+            link.CurrentWeapon.Launch(link.Position, direction);
         }
 
         protected abstract void EndUse();
@@ -43,7 +45,7 @@ namespace Project3902
 
         public override void TakeDamage(float damage)
         {
-            // ouchie!!
+            link.Health -= damage;
         }
 
         public override void UseItem() { }

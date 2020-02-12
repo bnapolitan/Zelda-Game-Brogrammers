@@ -67,7 +67,7 @@ namespace Project3902
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            
+
             //renderTarget = new RenderTarget2D(GraphicsDevice, 256, 176);
             //actualScreenRect = new Rectangle(0, 0, GraphicsDeviceManager.DefaultBackBufferWidth, GraphicsDeviceManager.DefaultBackBufferHeight);
 
@@ -76,6 +76,8 @@ namespace Project3902
             // Create player.
             LinkFactory.Instance.LoadAllTextures(Content);
             Link = LinkFactory.Instance.CreateLink(new Vector2(100, 100), this);
+
+            WeaponFactory.Instance.LoadAllTextures(Content);
 
             // Create list of all items to be cycled through. Use a Factory class to create them.
             // Same for enemies.
@@ -99,7 +101,8 @@ namespace Project3902
             mouseController.Update();
             //keyboardController.Update();
             KeyboardState state = Keyboard.GetState();
-            if (state.IsKeyDown(Keys.O)&&!OKeyDown){
+            if (state.IsKeyDown(Keys.O) && !OKeyDown)
+            {
                 OKeyDown = true;
                 CycleEnemyLast();
             }
@@ -107,7 +110,7 @@ namespace Project3902
             {
                 OKeyDown = false;
             }
-            if (state.IsKeyDown(Keys.P)&&!PKeyDown)
+            if (state.IsKeyDown(Keys.P) && !PKeyDown)
             {
                 PKeyDown = true;
                 CycleEnemyNext();

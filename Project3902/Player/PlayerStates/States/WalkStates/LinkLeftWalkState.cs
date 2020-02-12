@@ -15,10 +15,7 @@ namespace Project3902
         public LinkLeftWalkState(Link link, LinkStateMachine machine)
             : base(link, machine)
         {
-            BaseSprite thisSprite = LinkFactory.Instance.CreateHorizontalWalkSprite(link) as BaseSprite;
-            thisSprite.Flip = SpriteEffects.FlipHorizontally;
-
-            Sprite = thisSprite;
+            Sprite = LinkFactory.Instance.CreateLeftWalkSprite(link);
         }
 
         public override void MoveLeft()

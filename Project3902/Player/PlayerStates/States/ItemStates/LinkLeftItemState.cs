@@ -15,10 +15,14 @@ namespace Project3902
         public LinkLeftItemState(Link link, LinkStateMachine machine)
             : base(link, machine)
         {
-            BaseSprite thisSprite = LinkFactory.Instance.CreateHorizontalItemSprite(link) as BaseSprite;
-            thisSprite.Flip = SpriteEffects.FlipHorizontally;
+            Sprite = LinkFactory.Instance.CreateLeftItemSprite(link);
+        }
 
-            Sprite = thisSprite;
+        public override void Enter()
+        {
+            direction = new Vector2(-1, 0);
+
+            base.Enter();
         }
 
         protected override void EndUse()

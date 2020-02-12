@@ -17,6 +17,13 @@ namespace Project3902
             Sprite = LinkFactory.Instance.CreateDownItemSprite(link);
         }
 
+        public override void Enter()
+        {
+            direction = new Vector2(0, 1);
+
+            base.Enter();
+        }
+
         protected override void EndUse()
         {
             machine.SwitchState(LinkStates.DownWalk);

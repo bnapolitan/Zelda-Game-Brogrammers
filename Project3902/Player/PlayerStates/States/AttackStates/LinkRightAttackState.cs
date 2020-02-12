@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,13 @@ namespace Project3902
             : base(link, machine)
         {
             Sprite = LinkFactory.Instance.CreateRightAttackSprite(link);
+        }
+
+        public override void Enter()
+        {
+            direction = new Vector2(1, 0);
+
+            base.Enter();
         }
 
         protected override void EndAttack()
