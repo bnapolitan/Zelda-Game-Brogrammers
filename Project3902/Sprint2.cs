@@ -72,6 +72,9 @@ namespace Project3902
         {
             mouseController.Update();
 
+            //Environment
+            interactiveEnvironmentObjects[currentInteractiveEnvironmentObject].Update(gameTime);
+
             base.Update(gameTime);
         }
 
