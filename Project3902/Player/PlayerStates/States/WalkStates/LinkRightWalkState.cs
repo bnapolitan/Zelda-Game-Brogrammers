@@ -13,7 +13,7 @@ namespace Project3902
         public LinkRightWalkState(Link link, LinkStateMachine machine)
             : base(link, machine) 
         {
-            Sprite = LinkFactory.Instance.CreateHorizontalWalkSprite(link);
+            Sprite = LinkFactory.Instance.CreateRightWalkSprite(link);
         }
 
         public override void MoveRight()

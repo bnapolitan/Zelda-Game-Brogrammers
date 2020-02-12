@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using Project3902.GameObjects;
 using Project3902.ObjectManagement;
 using System;
@@ -34,6 +35,8 @@ namespace Project3902
 
         IController<MouseActions> mouseController;
 
+        private bool OKeyDown = false;
+
         public Sprint2()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -64,6 +67,7 @@ namespace Project3902
 
             // Create player.
             LinkFactory.Instance.LoadAllTextures(Content);
+            WeaponFactory.Instance.LoadAllTextures(Content);
             Link = LinkFactory.Instance.CreateLink(new Vector2(100, 100), this);
 
             // Create list of all items to be cycled through. Use a Factory class to create them.
@@ -83,6 +87,17 @@ namespace Project3902
         protected override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+            KeyboardState state = Keyboard.GetState();
+            if (state.IsKeyDown(Keys.O) && !OKeyDown)
+            {
+                OKeyDown = true;
+                // Cycle enemies
+            }
+            if (state.IsKeyUp(Keys.O))
+            {
+                OKeyDown = false;
+            }
 
             mouseController.Update();
 

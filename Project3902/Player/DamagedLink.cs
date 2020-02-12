@@ -30,6 +30,7 @@ namespace Project3902
         public ISprite Sprite { get => decoratedLink.Sprite; set => decoratedLink.Sprite = value; }
         public bool Active { get => decoratedLink.Active; set => decoratedLink.Active = value; }
         public Rectangle Collider { get => decoratedLink.Collider; set => decoratedLink.Collider = value; }
+        public float MaxHealth { get => decoratedLink.MaxHealth; set => decoratedLink.MaxHealth = value; }
 
         public DamagedLink(ILink decoratedLink, Sprint2 game)
         {

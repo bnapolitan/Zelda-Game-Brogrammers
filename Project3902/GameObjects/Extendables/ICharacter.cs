@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Project3902
 {
-    interface ICharacter : IGameObject, IUpdatable, IDrawable, ICollideable
+    interface ICharacter : IGameObject, ICollideable
     {
         float Health { get; set; }
     }

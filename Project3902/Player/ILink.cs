@@ -8,6 +8,6 @@ namespace Project3902
 {
     interface ILink : ICharacter, ILinkActions
     {
-        
+        float MaxHealth { get; set; }
     }
 }

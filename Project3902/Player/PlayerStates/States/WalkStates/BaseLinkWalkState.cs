@@ -38,7 +38,7 @@ namespace Project3902
 
         public override void TakeDamage(float damage)
         {
-            // Ow!
+            link.Health -= damage;
         }
 
     }

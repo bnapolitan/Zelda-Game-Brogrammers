@@ -71,6 +71,11 @@
     <Compile Include="GameObjects\Extendables\ICharacter.cs" />
     <Compile Include="GameObjects\Extendables\ICollideable.cs" />
     <Compile Include="GameObjects\IGameObject.cs" />
+    <Compile Include="GameObjects\Weapons\BlueCandleWeapon.cs" />
+    <Compile Include="GameObjects\Weapons\BoomerangWeapon.cs" />
+    <Compile Include="GameObjects\Weapons\IProjectile.cs" />
+    <Compile Include="GameObjects\Weapons\SwordProjectile.cs" />
+    <Compile Include="ObjectManagement\WeaponFactory.cs" />
     <Compile Include="LevelBuilding\Sprint2Level.cs" />
     <Compile Include="ObjectManagement\EnvironmentFactory.cs" />
     <Compile Include="ObjectManagement\ISpriteFactory.cs" />
@@ -87,6 +92,8 @@
     <Compile Include="Player\PlayerCommands\LinkMoveRightCommand.cs" />
     <Compile Include="Player\PlayerCommands\LinkMoveUpCommand.cs" />
     <Compile Include="Player\PlayerCommands\LinkTakeDamageCommand.cs" />
+    <Compile Include="Player\PlayerCommands\LinkUseBlueCandleCommand.cs" />
+    <Compile Include="Player\PlayerCommands\LinkUseBoomerangCommand.cs" />
     <Compile Include="Player\PlayerStates\ILinkState.cs" />
     <Compile Include="Player\PlayerStates\LinkStateMachine.cs" />
     <Compile Include="Player\PlayerStates\LinkStates.cs" />
@@ -107,6 +114,7 @@
     <Compile Include="Player\PlayerStates\States\WalkStates\LinkRightWalkState.cs" />
     <Compile Include="Player\PlayerStates\States\WalkStates\LinkUpWalkState.cs" />
     <Compile Include="Sprint2.cs" />
+    <Compile Include="Sprites\FlippingSprite.cs" />
     <Compile Include="Sprites\VariedOriginsSprite.cs" />
     <Compile Include="StateMachine\IState.cs" />
     <Compile Include="StateMachine\IStateMachine.cs" />
