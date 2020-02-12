@@ -45,7 +45,9 @@
     <Compile Include="Commands\Sprint0Commands\SetMovingNonanimatedCommand.cs" />
     <Compile Include="Commands\Sprint0Commands\SetNonmovingAnimatedCommand.cs" />
     <Compile Include="Commands\Sprint0Commands\SetSpriteMouseCommand.cs" />
+    <Compile Include="Commands\Sprint2Commands\CycleLastEnemyObjectCommand.cs" />
     <Compile Include="Commands\Sprint2Commands\CycleLastEnvironmentObjectCommand.cs" />
+    <Compile Include="Commands\Sprint2Commands\CycleNextEnemyObjectCommand.cs" />
     <Compile Include="Commands\Sprint2Commands\CycleNextEnvironmentObjectCommand.cs" />
     <Compile Include="Controllers\IController.cs" />
     <Compile Include="Controllers\MouseActions.cs" />

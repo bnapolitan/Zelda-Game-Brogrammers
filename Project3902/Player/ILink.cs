@@ -9,5 +9,8 @@ namespace Project3902
     interface ILink : ICharacter, ILinkActions
     {
         float MaxHealth { get; set; }
+
+        IProjectile CurrentWeapon { get; set; }
+        IProjectile SwordProjectile { get; set; }
     }
 }
