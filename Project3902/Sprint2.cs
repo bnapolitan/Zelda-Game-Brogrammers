@@ -117,6 +117,10 @@ namespace Project3902
                 PKeyDown = false;
             }
             enemyObjects[currentEnemyObject].Update(gameTime);
+
+            //Environment
+            interactiveEnvironmentObjects[currentInteractiveEnvironmentObject].Update(gameTime);
+
             base.Update(gameTime);
 
             Link.Update(gameTime);

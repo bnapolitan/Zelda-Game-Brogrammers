@@ -29,6 +29,9 @@ namespace Project3902
             list.Add(EnvironmentFactory.Instance.CreateFire(environmentPosition));
             list.Add(EnvironmentFactory.Instance.CreateBrickTile(environmentPosition));
             list.Add(EnvironmentFactory.Instance.CreateBombedOpening(environmentPosition));
+            list.Add(EnvironmentFactory.Instance.CreateEnemyCloudAppearance(environmentPosition));
+            list.Add(EnvironmentFactory.Instance.CreateFloorTile(environmentPosition));
+            list.Add(EnvironmentFactory.Instance.CreateRoomBorder(environmentPosition));
             return list;
         }
         
