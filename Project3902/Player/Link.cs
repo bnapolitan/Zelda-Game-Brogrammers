@@ -29,13 +29,13 @@ namespace Project3902
 
         public IProjectile SwordProjectile { get; set; }
 
-        private Sprint2 game;
+        private FinalGame game;
 
         private LinkStateMachine machine;
 
         private KeyboardController controller;
 
-        public Link(Vector2 position, Sprint2 game)
+        public Link(Vector2 position, FinalGame game)
         {
             Position = position;
             this.game = game;

@@ -70,16 +70,18 @@ namespace Project3902
 
         protected override void LoadContent()
         {
+            //COMMENTS MADE IN HERE THAT ARE NEEDED TO RUN LEVEL LATER
+
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             //renderTarget = new RenderTarget2D(GraphicsDevice, 256, 176);
             //actualScreenRect = new Rectangle(0, 0, GraphicsDeviceManager.DefaultBackBufferWidth, GraphicsDeviceManager.DefaultBackBufferHeight);
 
-            var level = new Sprint2Level(this);
+            //var level = new Sprint2Level(this);
 
             // Create player.
             LinkFactory.Instance.LoadAllTextures(Content);
-            Link = LinkFactory.Instance.CreateLink(new Vector2(100, 100), this);
+            //Link = LinkFactory.Instance.CreateLink(new Vector2(100, 100), this);
 
             WeaponFactory.Instance.LoadAllTextures(Content);
 
@@ -88,12 +90,12 @@ namespace Project3902
 
             // Create environment.
             EnvironmentFactory.Instance.LoadAllTextures(Content);
-            interactiveEnvironmentObjects = level.CreateInteractiveEnvironmentObjects();
+            //interactiveEnvironmentObjects = level.CreateInteractiveEnvironmentObjects();
             currentInteractiveEnvironmentObject = 0;
 
             //Create Enemies
             EnemyFactory.Instance.LoadAllTextures(Content);
-            enemyObjects = level.CreateEnemyObjects();
+            //enemyObjects = level.CreateEnemyObjects();
             currentEnemyObject = 0;
         }
 

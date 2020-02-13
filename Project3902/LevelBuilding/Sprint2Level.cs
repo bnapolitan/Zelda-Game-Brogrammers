@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Project3902.GameObjects;
 using Project3902.GameObjects.Enemies_and_NPCs;
+using Project3902.LevelBuilding.Interface;
 using Project3902.ObjectManagement;
 using System;
 using System.Collections.Generic;
@@ -10,13 +11,13 @@ using System.Threading.Tasks;
 
 namespace Project3902
 {
-    class Sprint2Level
+    class Sprint2Level : ILevel
     {
-        public Sprint2 Game { get; }
+        public FinalGame Game { get; }
         private Vector2 environmentPosition;
         private Vector2 enemyPosition;
 
-        public Sprint2Level(Sprint2 game)
+        public Sprint2Level(FinalGame game)
         {
             Game = game;
             environmentPosition = new Vector2(300, 170);

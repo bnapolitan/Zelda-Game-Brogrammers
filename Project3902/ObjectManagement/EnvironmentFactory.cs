@@ -14,6 +14,7 @@ namespace Project3902.ObjectManagement
     {
         private SpriteAtlas dungeonSpriteAtlas;
 		private SpriteAtlas linkSpriteAtlas;
+		private Vector2 environmentScale = new Vector2(4, 4);
 
 		private static EnvironmentFactory instance = new EnvironmentFactory();
 
@@ -86,7 +87,7 @@ namespace Project3902.ObjectManagement
 		public IGameObject CreateRoomBorder(Vector2 position)
 		{
 			var createdObject = new RoomBorder(position);
-			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(521, 11, 256, 176));
+			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(521, 11, 256, 176), environmentScale);
 			createdObject.Sprite = sprite;
 			return createdObject;
 		}
@@ -94,7 +95,23 @@ namespace Project3902.ObjectManagement
 		public IGameObject CreateFloorTile(Vector2 position)
 		{
 			var createdObject = new FloorTile(position);
-			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(984, 11, 16, 16));
+			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(984, 11, 16, 16), environmentScale);
+			createdObject.Sprite = sprite;
+			return createdObject;
+		}
+
+		public IGameObject CreateLeftStatue(Vector2 position)
+		{
+			var createdObject = new FloorTile(position);
+			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(468, 75, 16, 16), environmentScale);
+			createdObject.Sprite = sprite;
+			return createdObject;
+		}
+
+		public IGameObject CreateRightStatue(Vector2 position)
+		{
+			var createdObject = new FloorTile(position);
+			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(468, 91, 16, 16), environmentScale);
 			createdObject.Sprite = sprite;
 			return createdObject;
 		}

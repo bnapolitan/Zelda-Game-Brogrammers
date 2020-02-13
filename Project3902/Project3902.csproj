@@ -55,6 +55,7 @@
     <Compile Include="Commands\Sprint0Commands\ICommand.cs" />
     <Compile Include="Commands\Sprint0Commands\ExitGameCommand.cs" />
     <Compile Include="Controllers\KeyboardController.cs" />
+    <Compile Include="FinalGame.cs" />
     <Compile Include="GameObjects\Enemies_and_NPCs\Aquamentus.cs" />
     <Compile Include="GameObjects\Enemies_and_NPCs\Dodongo.cs" />
     <Compile Include="GameObjects\EnemyProjectiles\Boomerang.cs" />
@@ -94,6 +95,9 @@
     <Compile Include="GameObjects\Weapons\BoomerangWeapon.cs" />
     <Compile Include="GameObjects\Extendables\IProjectile.cs" />
     <Compile Include="GameObjects\Weapons\SwordProjectile.cs" />
+    <Compile Include="LevelBuilding\DungeonRoom2.cs" />
+    <Compile Include="LevelBuilding\DungeonRoom1.cs" />
+    <Compile Include="LevelBuilding\Interface\ILevel.cs" />
     <Compile Include="ObjectManagement\EnemyFactory.cs" />
     <Compile Include="ObjectManagement\WeaponFactory.cs" />
     <Compile Include="LevelBuilding\Sprint2Level.cs" />
