@@ -6,39 +6,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project3902.GameObjects.Enemies_and_NPCs
+namespace Project3902.GameObjects.EnemyProjectiles
 {
-    class Fireball : IEnemy
+    class Fireball : IProjectile
     {
-        public float Health { get; set; }
         public Vector2 Position { get; set; }
         public ISprite Sprite { get; set; }
         public bool Active { get; set; }
         public Rectangle Collider { get; set; }
-        private float speed;
-        private float distance = 100;
+        public Vector2 Direction { get; set; }
+        public float Speed { get; set; }
+
+        private float distance = 500;
         private Vector2 relPos = new Vector2(0, 0);
-        private Vector2 direction;
-        private SpriteEffects flip = SpriteEffects.None;
 
         public Fireball(Vector2 pos, float moveSpeed, Vector2 initDirection)
         {
             Position = pos;
+            Direction = initDirection;
+            Speed = moveSpeed;
             Active = true;
-            speed = moveSpeed;
-            direction = initDirection;
-        }
-        public void TakeDamage()
-        {
-
-        }
-        public void Attack()
-        {
-
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            if (!Active)
+            {
+                return;
+            }
+
             Sprite.Draw(spriteBatch);
         }
 
@@ -49,21 +45,25 @@ namespace Project3902.GameObjects.Enemies_and_NPCs
 
         public void Update(GameTime gameTime)
         {
-            Position += direction * speed;
-            relPos += direction * speed;
-            if (relPos.X > distance)
+            if (!Active)
             {
-                direction *= -1;
-                flip = SpriteEffects.FlipHorizontally;
-                relPos = new Vector2(0, 0);
+                return;
             }
-            else if (relPos.X < -distance)
+
+            Position += Direction * Speed;
+            relPos += Direction * Speed;
+            if (relPos.Length() >= distance)
             {
-                direction *= -1;
-                flip = SpriteEffects.None;
-                relPos = new Vector2(0, 0);
+                Active = false;
             }
             Sprite.Update(gameTime);
+        }
+
+        public void Launch(Vector2 position, Vector2 direction)
+        {
+            Position = position;
+            Direction = direction;
+            Active = true;
         }
     }
 }

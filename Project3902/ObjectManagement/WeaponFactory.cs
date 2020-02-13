@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Project3902.GameObjects.Enemies_and_NPCs;
+using Project3902.GameObjects.EnemyProjectiles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +14,7 @@ namespace Project3902
     class WeaponFactory : ISpriteFactory
     {
         private SpriteAtlas weaponAtlas;
+        private SpriteAtlas bossSpriteAtlas;
         private Vector2 weaponScale = new Vector2(4, 4);
 
         private Vector2 up = new Vector2(0, -1);
@@ -28,6 +31,7 @@ namespace Project3902
         public void LoadAllTextures(ContentManager content)
         {
             weaponAtlas = new SpriteAtlas(content.Load<Texture2D>("linkspritesheet"));
+            bossSpriteAtlas = new SpriteAtlas(content.Load<Texture2D>("ZeldaBossSprites"));
         }
 
         public IProjectile CreateBoomerangProjectile()
@@ -75,6 +79,26 @@ namespace Project3902
             sprite.Flip = flip;
 
             return sprite;
+        }
+
+        public IProjectile CreateFireballProjectile(Vector2 pos, Vector2 direction)
+        {
+            var createdObject = new Fireball(pos, 4f, direction);
+            List<Rectangle> fireballSource = new List<Rectangle> { new Rectangle(128, 11, 8, 16) };
+            var sprite = new AnimatedSprite(createdObject, bossSpriteAtlas, fireballSource, 0.5f, new Vector2(2, 2));
+            createdObject.Sprite = sprite;
+            return createdObject;
+        }
+
+        public IProjectile CreateBoomerangProjectile(Vector2 pos, Vector2 direction)
+        {
+            var createdObject = new Boomerang(pos, 300f, direction);
+            List<Rectangle> boomerangSource = new List<Rectangle> { 
+                new Rectangle(128, 204, 8, 8), new Rectangle(128, 204, 8, 8), new Rectangle(137, 204, 8, 8), new Rectangle(146, 204, 8, 8), 
+                new Rectangle(128, 204, 8, 8), new Rectangle(155, 204, 8, 8), new Rectangle(164, 204, 8, 8), new Rectangle(173, 204, 8, 8) };
+            var sprite = new AnimatedSprite(createdObject, weaponAtlas, boomerangSource, 0.1f, new Vector2(4, 4));
+            createdObject.Sprite = sprite;
+            return createdObject;
         }
     }
 }
