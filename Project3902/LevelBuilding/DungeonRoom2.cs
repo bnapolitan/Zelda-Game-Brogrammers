@@ -25,7 +25,9 @@ namespace Project3902
         public List<IGameObject> CreateInteractiveEnvironmentObjects()
         {
             var list = new List<IGameObject>();
-            for (int j = 128; j < 650; j += 64)
+            list.Add(envFactory.CreateRoomBorder(new Vector2(0, 0)));
+
+            for (int j = 128; j < 560; j += 64)
             {
                 for (int i = 128; i < 839; i += 64)
                 {
@@ -33,7 +35,10 @@ namespace Project3902
                 }
             }
 
-            list.Add(envFactory.CreateRoomBorder(new Vector2(0,0)));
+            list.Add(envFactory.CreateWallTop(new Vector2(448, 0)));
+            list.Add(envFactory.CreateWallLeft(new Vector2(0, 288)));
+            list.Add(envFactory.CreateOpenDoorRight(new Vector2(896, 288)));
+            list.Add(envFactory.CreateWallBottom(new Vector2(448, 576)));
             return list;
         }
 

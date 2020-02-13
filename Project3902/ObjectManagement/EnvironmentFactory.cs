@@ -76,10 +76,36 @@ namespace Project3902.ObjectManagement
 			return createdObject;
 		}
 
-		public IGameObject CreateBombedOpening(Vector2 position)
+		public IGameObject CreateBombedOpeningTop(Vector2 position)
 		{
 			var createdObject = new BombedOpening(position);
 			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(947, 11, 32, 32));
+			createdObject.Sprite = sprite;
+			return createdObject;
+		}
+
+		public IGameObject CreateBombedOpeningBottom(Vector2 position)
+		{
+			var createdObject = new BombedOpening(position);
+			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(947, 11, 32, 32));
+			sprite.Flip = SpriteEffects.FlipVertically;
+			createdObject.Sprite = sprite;
+			return createdObject;
+		}
+
+		public IGameObject CreateBombedOpeningLeft(Vector2 position)
+		{
+			var createdObject = new BombedOpening(position);
+			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(947, 44, 32, 32));
+			createdObject.Sprite = sprite;
+			return createdObject;
+		}
+
+		public IGameObject CreateBombedOpeningRight(Vector2 position)
+		{
+			var createdObject = new BombedOpening(position);
+			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(947, 44, 32, 32));
+			sprite.Flip = SpriteEffects.FlipHorizontally;
 			createdObject.Sprite = sprite;
 			return createdObject;
 		}
@@ -100,9 +126,17 @@ namespace Project3902.ObjectManagement
 			return createdObject;
 		}
 
-		public IGameObject CreateLeftStatue(Vector2 position)
+		public IGameObject CreateFloorTileDirt(Vector2 position)
 		{
 			var createdObject = new FloorTile(position);
+			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(1001, 28, 16, 16), environmentScale);
+			createdObject.Sprite = sprite;
+			return createdObject;
+		}
+
+		public IGameObject CreateLeftStatue(Vector2 position)
+		{
+			var createdObject = new Statues(position);
 			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(468, 75, 16, 16), environmentScale);
 			createdObject.Sprite = sprite;
 			return createdObject;
@@ -110,7 +144,7 @@ namespace Project3902.ObjectManagement
 
 		public IGameObject CreateRightStatue(Vector2 position)
 		{
-			var createdObject = new FloorTile(position);
+			var createdObject = new Statues(position);
 			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(468, 91, 16, 16), environmentScale);
 			createdObject.Sprite = sprite;
 			return createdObject;
@@ -122,6 +156,150 @@ namespace Project3902.ObjectManagement
 			var sprite = new AnimatedSprite(createdObject, linkSpriteAtlas, 
 				new List<Rectangle>{new Rectangle(138, 185, 16, 16), new Rectangle(155, 185, 16, 16), new Rectangle(172, 185, 16, 16)},
 				(float)0.5);
+			createdObject.Sprite = sprite;
+			return createdObject;
+		}
+
+		public IGameObject CreateLockDoorTop(Vector2 position)
+		{
+			var createdObject = new LockDoor(position);
+			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(881, 11, 32, 32), environmentScale);
+			createdObject.Sprite = sprite;
+			return createdObject;
+		}
+
+		public IGameObject CreateLockDoorBottom(Vector2 position)
+		{
+			var createdObject = new LockDoor(position);
+			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(881, 11, 32, 32), environmentScale);
+			sprite.Flip = SpriteEffects.FlipVertically;
+			createdObject.Sprite = sprite;
+			return createdObject;
+		}
+
+		public IGameObject CreateLockDoorLeft(Vector2 position)
+		{
+			var createdObject = new LockDoor(position);
+			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(881, 44, 32, 32), environmentScale);
+			createdObject.Sprite = sprite;
+			return createdObject;
+		}
+
+		public IGameObject CreateLockDoorRight(Vector2 position)
+		{
+			var createdObject = new LockDoor(position);
+			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(881, 44, 32, 32), environmentScale);
+			sprite.Flip = SpriteEffects.FlipHorizontally;
+			createdObject.Sprite = sprite;
+			return createdObject;
+		}
+
+		public IGameObject CreateOpenDoorTop(Vector2 position)
+		{
+			var createdObject = new OpenDoor(position);
+			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(848, 11, 32, 32), environmentScale);
+			createdObject.Sprite = sprite;
+			return createdObject;
+		}
+
+		public IGameObject CreateOpenDoorBottom(Vector2 position)
+		{
+			var createdObject = new OpenDoor(position);
+			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(848, 11, 32, 32), environmentScale);
+			sprite.Flip = SpriteEffects.FlipVertically;
+			createdObject.Sprite = sprite;
+			return createdObject;
+		}
+
+		public IGameObject CreateOpenDoorLeft(Vector2 position)
+		{
+			var createdObject = new OpenDoor(position);
+			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(848, 44, 32, 32), environmentScale);
+			createdObject.Sprite = sprite;
+			return createdObject;
+		}
+
+		public IGameObject CreateOpenDoorRight(Vector2 position)
+		{
+			var createdObject = new OpenDoor(position);
+			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(848, 44, 32, 32), environmentScale);
+			sprite.Flip = SpriteEffects.FlipHorizontally;
+			createdObject.Sprite = sprite;
+			return createdObject;
+		}
+
+		public IGameObject CreateShutDoorTop(Vector2 position)
+		{
+			var createdObject = new ShutDoor(position);
+			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(914, 11, 32, 32), environmentScale);
+			createdObject.Sprite = sprite;
+			return createdObject;
+		}
+
+		public IGameObject CreateShutDoorBottom(Vector2 position)
+		{
+			var createdObject = new ShutDoor(position);
+			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(914, 11, 32, 32), environmentScale);
+			sprite.Flip = SpriteEffects.FlipVertically;
+			createdObject.Sprite = sprite;
+			return createdObject;
+		}
+
+		public IGameObject CreateShutDoorLeft(Vector2 position)
+		{
+			var createdObject = new ShutDoor(position);
+			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(914, 44, 32, 32), environmentScale);
+			createdObject.Sprite = sprite;
+			return createdObject;
+		}
+
+		public IGameObject CreateShutDoorRight(Vector2 position)
+		{
+			var createdObject = new ShutDoor(position);
+			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(914, 44, 32, 32), environmentScale);
+			sprite.Flip = SpriteEffects.FlipHorizontally;
+			createdObject.Sprite = sprite;
+			return createdObject;
+		}
+
+		public IGameObject CreateWallTop(Vector2 position)
+		{
+			var createdObject = new Wall(position);
+			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(815, 11, 32, 32), environmentScale);
+			createdObject.Sprite = sprite;
+			return createdObject;
+		}
+
+		public IGameObject CreateWallBottom(Vector2 position)
+		{
+			var createdObject = new Wall(position);
+			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(815, 11, 32, 32), environmentScale);
+			sprite.Flip = SpriteEffects.FlipVertically;
+			createdObject.Sprite = sprite;
+			return createdObject;
+		}
+
+		public IGameObject CreateWallLeft(Vector2 position)
+		{
+			var createdObject = new Wall(position);
+			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(815, 44, 32, 32), environmentScale);
+			createdObject.Sprite = sprite;
+			return createdObject;
+		}
+
+		public IGameObject CreateWallRight(Vector2 position)
+		{
+			var createdObject = new Wall(position);
+			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(815, 44, 32, 32), environmentScale);
+			sprite.Flip = SpriteEffects.FlipHorizontally;
+			createdObject.Sprite = sprite;
+			return createdObject;
+		}
+
+		public IGameObject CreateMoveableBlock(Vector2 position)
+		{
+			var createdObject = new MoveableBlock(position);
+			var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(1001, 11, 16, 16), environmentScale);
 			createdObject.Sprite = sprite;
 			return createdObject;
 		}

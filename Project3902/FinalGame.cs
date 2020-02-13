@@ -50,8 +50,8 @@ namespace Project3902
         {
             IsMouseVisible = true;
 
-            graphics.PreferredBackBufferWidth = 1030;
-            graphics.PreferredBackBufferHeight = 710;
+            graphics.PreferredBackBufferWidth = 1024;
+            graphics.PreferredBackBufferHeight = 672;
             graphics.ApplyChanges();
 
             // Set up controllers.
