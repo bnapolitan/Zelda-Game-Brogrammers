@@ -59,7 +59,7 @@ namespace Project3902
 
             // Set up controllers.
             SetUpMouseController();
-            //SetUpKeyboardController();
+            SetUpKeyboardController();
 
             base.Initialize();
         }
@@ -99,26 +99,8 @@ namespace Project3902
         protected override void Update(GameTime gameTime)
         {
             mouseController.Update();
-            //keyboardController.Update();
-            KeyboardState state = Keyboard.GetState();
-            if (state.IsKeyDown(Keys.O) && !OKeyDown)
-            {
-                OKeyDown = true;
-                CycleEnemyLast();
-            }
-            if (state.IsKeyUp(Keys.O))
-            {
-                OKeyDown = false;
-            }
-            if (state.IsKeyDown(Keys.P) && !PKeyDown)
-            {
-                PKeyDown = true;
-                CycleEnemyNext();
-            }
-            if (state.IsKeyUp(Keys.P))
-            {
-                PKeyDown = false;
-            }
+            keyboardController.Update();
+
             enemyObjects[currentEnemyObject].Update(gameTime);
             base.Update(gameTime);
 
@@ -161,16 +143,16 @@ namespace Project3902
         {
             mouseController = new MouseController();
 
-            mouseController.RegisterCommand(MouseActions.Left, new CycleNextEnvironmentObjectCommand(this));
-            mouseController.RegisterCommand(MouseActions.Right, new CycleLastEnvironmentObjectCommand(this));
+            mouseController.RegisterCommand(MouseActions.Left, new CycleNextEnvironmentObjectCommand(this), InputState.Pressed);
+            mouseController.RegisterCommand(MouseActions.Right, new CycleLastEnvironmentObjectCommand(this), InputState.Pressed);
         }
 
         private void SetUpKeyboardController()
         {
             keyboardController = new KeyboardController();
 
-            keyboardController.RegisterCommand(Microsoft.Xna.Framework.Input.Keys.P, new CycleNextEnemyObjectCommand(this));
-            keyboardController.RegisterCommand(Microsoft.Xna.Framework.Input.Keys.O, new CycleLastEnemyObjectCommand(this));
+            keyboardController.RegisterCommand(Keys.P, new CycleNextEnemyObjectCommand(this), InputState.Pressed);
+            keyboardController.RegisterCommand(Keys.O, new CycleLastEnemyObjectCommand(this), InputState.Pressed);
         }
 
         public void CycleEnvironmentNext()

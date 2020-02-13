@@ -50,6 +50,8 @@
     <Compile Include="Commands\Sprint2Commands\CycleNextEnemyObjectCommand.cs" />
     <Compile Include="Commands\Sprint2Commands\CycleNextEnvironmentObjectCommand.cs" />
     <Compile Include="Controllers\IController.cs" />
+    <Compile Include="Controllers\InputObject.cs" />
+    <Compile Include="Controllers\InputState.cs" />
     <Compile Include="Controllers\MouseActions.cs" />
     <Compile Include="Controllers\MouseController.cs" />
     <Compile Include="Commands\Sprint0Commands\ICommand.cs" />
