@@ -14,7 +14,18 @@ namespace Project3902
         public LinkRightItemState(Link link, LinkStateMachine machine)
             : base(link, machine)
         {
+<<<<<<< HEAD
             Sprite = LinkFactory.Instance.CreateHorizontalItemSprite(link);
+=======
+            Sprite = LinkFactory.Instance.CreateRightItemSprite(link);
+        }
+
+        public override void Enter()
+        {
+            direction = new Vector2(1, 0);
+
+            base.Enter();
+>>>>>>> 95d9c339c8a72c1ded13f19176bc635ef4bcf063
         }
 
         protected override void EndUse()
