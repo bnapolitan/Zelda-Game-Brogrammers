@@ -24,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE;WINDOWS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -33,6 +34,7 @@
     <DefineConstants>TRACE;WINDOWS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
@@ -79,8 +81,14 @@
     <Compile Include="GameObjects\Environment\GapTile.cs" />
     <Compile Include="GameObjects\Environment\BrickTile.cs" />
     <Compile Include="GameObjects\Environment\LadderTile.cs" />
+    <Compile Include="GameObjects\Environment\LockDoor.cs" />
+    <Compile Include="GameObjects\Environment\MoveableBlock.cs" />
+    <Compile Include="GameObjects\Environment\OpenDoor.cs" />
+    <Compile Include="GameObjects\Environment\ShutDoor.cs" />
     <Compile Include="GameObjects\Environment\Stairs.cs" />
     <Compile Include="GameObjects\Environment\Interfaces\IInteractiveEnvironmentObject.cs" />
+    <Compile Include="GameObjects\Environment\Statues.cs" />
+    <Compile Include="GameObjects\Environment\Wall.cs" />
     <Compile Include="GameObjects\Extendables\IUpdatable.cs" />
     <Compile Include="GameObjects\Extendables\IDrawable.cs" />
     <Compile Include="GameObjects\Environment\Interfaces\IBackgroundEnvironmentObject.cs" />
