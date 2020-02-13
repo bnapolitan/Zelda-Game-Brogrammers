@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project3902
+namespace Project3902.GameObjects
 {
-    interface ICharacter : IGameObject, ICollideable
+    interface IEnemy: ICharacter
     {
-        float Health { get; set; }
+        void TakeDamage();
+        void Attack();
     }
 }

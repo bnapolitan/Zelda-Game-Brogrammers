@@ -17,6 +17,7 @@ namespace Project3902
             lastFrameChange = 0;
         }
 
+
         public override void Update(GameTime gameTime)
         {
             if (lastFrameChange + frameTime <= gameTime.TotalGameTime.TotalSeconds)

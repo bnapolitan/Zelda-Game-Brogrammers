@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project3902
+namespace Project3902.GameObjects
 {
-    interface ICharacter : IGameObject, ICollideable
+    interface INPC: ICharacter
     {
-        float Health { get; set; }
     }
 }

@@ -12,6 +12,8 @@ namespace Project3902
     class Link : ILink
     {
         public float Health { get; set; }
+        public float MaxHealth { get; set; }
+
         public Vector2 Position { get; set; }
 
         public ISprite Sprite { get => machine.Sprite; set { } }
@@ -21,6 +23,11 @@ namespace Project3902
         public Rectangle Collider { get => collider; set => collider = value; }
 
         public float MovementSpeed { get; set; } = 200f;
+
+        // Want this to be an IWeapon, but such an interface wouldn't have much use over IProjectile...
+        public IProjectile CurrentWeapon { get; set; }
+
+        public IProjectile SwordProjectile { get; set; }
 
         private Sprint2 game;
 
@@ -33,16 +40,25 @@ namespace Project3902
             Position = position;
             this.game = game;
 
+            Health = 5;
+            MaxHealth = Health;
+
             machine = new LinkStateMachine(this);
 
             controller = LinkFactory.Instance.CreateLinkController(this, game);
 
             collider = new Rectangle(Position.ToPoint(), new Point(16, 16) * Sprite.Scale.ToPoint());
+
+            CurrentWeapon = WeaponFactory.Instance.CreateBlueCandleProjectile();
+            SwordProjectile = new SwordProjectile(); // Replace with factory method.
         }
 
         public void Update(GameTime gameTime)
         {
             controller.Update();
+            CurrentWeapon.Update(gameTime);
+            SwordProjectile.Update(gameTime);
+
             machine.Update(gameTime);
 
             collider.Location = Position.ToPoint();
@@ -51,6 +67,8 @@ namespace Project3902
         public void Draw(SpriteBatch spriteBatch)
         {
             machine.Draw(spriteBatch);
+            CurrentWeapon.Draw(spriteBatch);
+            SwordProjectile.Draw(spriteBatch);
         }
 
         public void TakeDamage(float damage)

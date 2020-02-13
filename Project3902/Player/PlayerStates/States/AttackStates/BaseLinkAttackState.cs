@@ -11,6 +11,7 @@ namespace Project3902
     {
         private float timeSinceStart = 0;
         private float attackTime = .45f; // Equal to the attack animation time.
+        protected Vector2 direction;
 
         public BaseLinkAttackState(Link link, LinkStateMachine machine)
             : base(link, machine) { }
@@ -28,6 +29,11 @@ namespace Project3902
         {
             timeSinceStart = 0;
             (stateSprite as AnimatedSprite).ResetAnimation();
+
+            if (link.Health == link.MaxHealth)
+            {
+                link.SwordProjectile.Launch(link.Position + link.Sprite.Scale * new Vector2(4, 4), direction);
+            }
         }
 
         protected abstract void EndAttack();
@@ -50,7 +56,7 @@ namespace Project3902
 
         public override void TakeDamage(float damage)
         {
-            // oof.
+            link.Health -= damage;
         }
     }
 }
