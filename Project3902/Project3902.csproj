@@ -24,7 +24,6 @@
     <DefineConstants>DEBUG;TRACE;WINDOWS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -34,7 +33,6 @@
     <DefineConstants>TRACE;WINDOWS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
@@ -61,8 +59,7 @@
     <Compile Include="Controllers\KeyboardController.cs" />
     <Compile Include="GameObjects\Enemies_and_NPCs\Aquamentus.cs" />
     <Compile Include="GameObjects\Enemies_and_NPCs\Dodongo.cs" />
-    <Compile Include="GameObjects\EnemyProjectiles\Boomerang.cs" />
-    <Compile Include="GameObjects\EnemyProjectiles\Fireball.cs" />
+    <Compile Include="GameObjects\Enemies_and_NPCs\Fireball.cs" />
     <Compile Include="GameObjects\Enemies_and_NPCs\Flame.cs" />
     <Compile Include="GameObjects\Enemies_and_NPCs\Gel.cs" />
     <Compile Include="GameObjects\Enemies_and_NPCs\Goriya.cs" />
@@ -83,26 +80,19 @@
     <Compile Include="GameObjects\Environment\GapTile.cs" />
     <Compile Include="GameObjects\Environment\BrickTile.cs" />
     <Compile Include="GameObjects\Environment\LadderTile.cs" />
-    <Compile Include="GameObjects\Environment\LockDoor.cs" />
-    <Compile Include="GameObjects\Environment\MoveableBlock.cs" />
-    <Compile Include="GameObjects\Environment\OpenDoor.cs" />
-    <Compile Include="GameObjects\Environment\ShutDoor.cs" />
     <Compile Include="GameObjects\Environment\Stairs.cs" />
     <Compile Include="GameObjects\Environment\Interfaces\IInteractiveEnvironmentObject.cs" />
-    <Compile Include="GameObjects\Environment\Statues.cs" />
-    <Compile Include="GameObjects\Environment\Wall.cs" />
     <Compile Include="GameObjects\Extendables\IUpdatable.cs" />
     <Compile Include="GameObjects\Extendables\IDrawable.cs" />
     <Compile Include="GameObjects\Environment\Interfaces\IBackgroundEnvironmentObject.cs" />
     <Compile Include="Commands\Sprint0Commands\SetNonmovingNonanimatedCommand.cs" />
-    <Compile Include="GameObjects\ProjectileLaunchingEnemy.cs" />
     <Compile Include="GameObjects\FixedGameObject.cs" />
     <Compile Include="GameObjects\Extendables\ICharacter.cs" />
     <Compile Include="GameObjects\Extendables\ICollideable.cs" />
     <Compile Include="GameObjects\IGameObject.cs" />
     <Compile Include="GameObjects\Weapons\BlueCandleWeapon.cs" />
     <Compile Include="GameObjects\Weapons\BoomerangWeapon.cs" />
-    <Compile Include="GameObjects\Extendables\IProjectile.cs" />
+    <Compile Include="GameObjects\Weapons\IProjectile.cs" />
     <Compile Include="GameObjects\Weapons\SwordProjectile.cs" />
     <Compile Include="ObjectManagement\EnemyFactory.cs" />
     <Compile Include="ObjectManagement\WeaponFactory.cs" />

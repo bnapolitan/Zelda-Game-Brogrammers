@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project3902.GameObjects.Enemies_and_NPCs.Interfaces
+namespace Project3902.GameObjects.Enemies_and_NPCs
 {
-    class Goriya : IEnemy
+    class Fireball : IEnemy
     {
         public float Health { get; set; }
         public Vector2 Position { get; set; }
@@ -19,12 +19,9 @@ namespace Project3902.GameObjects.Enemies_and_NPCs.Interfaces
         private float distance = 100;
         private Vector2 relPos = new Vector2(0, 0);
         private Vector2 direction;
-        public ISprite rightFacingGoriya;
-        public ISprite leftFacingGoriya;
-        public ISprite downFacingGoriya;
-        public ISprite upFacingGoriya;
+        private SpriteEffects flip = SpriteEffects.None;
 
-        public Goriya(Vector2 pos, float moveSpeed, Vector2 initDirection)
+        public Fireball(Vector2 pos, float moveSpeed, Vector2 initDirection)
         {
             Position = pos;
             Active = true;
@@ -52,31 +49,18 @@ namespace Project3902.GameObjects.Enemies_and_NPCs.Interfaces
 
         public void Update(GameTime gameTime)
         {
-            Console.WriteLine("A");
             Position += direction * speed;
             relPos += direction * speed;
             if (relPos.X > distance)
             {
-                direction =new Vector2(0,1);
-                Sprite = downFacingGoriya;
+                direction *= -1;
+                flip = SpriteEffects.FlipHorizontally;
                 relPos = new Vector2(0, 0);
             }
-            else if (relPos.Y > distance)
+            else if (relPos.X < -distance)
             {
-                direction = new Vector2(-1,0);
-                Sprite = leftFacingGoriya;
-                relPos = new Vector2(0, 0);
-            }
-            else if(relPos.X < -distance)
-            {
-                direction = new Vector2(0, -1);
-                Sprite = upFacingGoriya;
-                relPos = new Vector2(0, 0);
-            }
-            else if (relPos.Y < -distance)
-            {
-                direction = new Vector2(1, 0);
-                Sprite = rightFacingGoriya;
+                direction *= -1;
+                flip = SpriteEffects.None;
                 relPos = new Vector2(0, 0);
             }
             Sprite.Update(gameTime);

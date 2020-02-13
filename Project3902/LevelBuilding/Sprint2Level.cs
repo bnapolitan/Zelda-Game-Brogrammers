@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Project3902.GameObjects;
-using Project3902.GameObjects.Enemies_and_NPCs;
 using Project3902.ObjectManagement;
 using System;
 using System.Collections.Generic;
@@ -12,15 +11,13 @@ namespace Project3902
 {
     class Sprint2Level
     {
-        public Sprint2 Game { get; }
         private Vector2 environmentPosition;
         private Vector2 enemyPosition;
 
-        public Sprint2Level(Sprint2 game)
+        public Sprint2Level()
         {
-            Game = game;
-            environmentPosition = new Vector2(300, 170);
-            enemyPosition = new Vector2(700, 260);
+            environmentPosition = new Vector2(400, 200);
+            enemyPosition = new Vector2(500, 300);
         }
 
         public List<IGameObject> CreateInteractiveEnvironmentObjects()
@@ -32,9 +29,6 @@ namespace Project3902
             list.Add(EnvironmentFactory.Instance.CreateFire(environmentPosition));
             list.Add(EnvironmentFactory.Instance.CreateBrickTile(environmentPosition));
             list.Add(EnvironmentFactory.Instance.CreateBombedOpening(environmentPosition));
-            list.Add(EnvironmentFactory.Instance.CreateEnemyCloudAppearance(environmentPosition));
-            list.Add(EnvironmentFactory.Instance.CreateFloorTile(environmentPosition));
-            list.Add(EnvironmentFactory.Instance.CreateRoomBorder(environmentPosition));
             return list;
         }
         
@@ -42,20 +36,18 @@ namespace Project3902
         {
             var list = new List<IGameObject>();
             list.Add(EnemyFactory.Instance.CreateAquaGel(enemyPosition));
+            list.Add(EnemyFactory.Instance.CreateBlueGoriya(enemyPosition));
             list.Add(EnemyFactory.Instance.CreateRedKeese(enemyPosition));
             list.Add(EnemyFactory.Instance.CreateRope(enemyPosition));
             list.Add(EnemyFactory.Instance.CreateStalfos(enemyPosition));
             list.Add(EnemyFactory.Instance.CreateWallmaster(enemyPosition));
             list.Add(EnemyFactory.Instance.CreateGreenZol(enemyPosition));
-
-            var aquamentus = new Aquamentus(enemyPosition, 1, new Vector2(1, 0), this.Game);
-            list.Add(aquamentus);
-            list.Add(EnemyFactory.Instance.CreateBlueGoriya(enemyPosition));
-
+            list.Add(EnemyFactory.Instance.createAquamentus(enemyPosition));
             list.Add(EnemyFactory.Instance.createRedMerchant(enemyPosition));
             list.Add(EnemyFactory.Instance.createDongo(enemyPosition));
             list.Add(EnemyFactory.Instance.createOldMan(enemyPosition));
             list.Add(EnemyFactory.Instance.createFlame(enemyPosition));
+            list.Add(EnemyFactory.Instance.createFireball(enemyPosition));
             return list;
         }
         

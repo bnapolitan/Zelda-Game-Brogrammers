@@ -13,14 +13,7 @@ namespace Project3902
         public LinkLeftAttackState(Link link, LinkStateMachine machine)
             : base(link, machine)
         {
-<<<<<<< HEAD
-            BaseSprite thisSprite = LinkFactory.Instance.CreateLeftAttackSprite(link) as BaseSprite;
-            thisSprite.Flip = SpriteEffects.FlipHorizontally;
-
-            Sprite = thisSprite;
-=======
             Sprite = LinkFactory.Instance.CreateLeftAttackSprite(link);
->>>>>>> 95d9c339c8a72c1ded13f19176bc635ef4bcf063
         }
 
         public override void Enter()
