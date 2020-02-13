@@ -15,6 +15,8 @@ namespace Project3902
             : base(link, machine)
         {
             Sprite = LinkFactory.Instance.CreateDownItemSprite(link);
+<<<<<<< HEAD
+=======
         }
 
         public override void Enter()
@@ -22,6 +24,7 @@ namespace Project3902
             direction = new Vector2(0, 1);
 
             base.Enter();
+>>>>>>> 95d9c339c8a72c1ded13f19176bc635ef4bcf063
         }
 
         protected override void EndUse()

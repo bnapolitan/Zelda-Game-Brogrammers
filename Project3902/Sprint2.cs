@@ -32,7 +32,7 @@ namespace Project3902
 
         public ILink Link { get; set; }
 
-        List<IGameObject> interactiveEnvironmentObjects;
+        public List<IGameObject> interactiveEnvironmentObjects;
         int currentInteractiveEnvironmentObject;
 
         List<IGameObject> enemyObjects;
@@ -57,6 +57,10 @@ namespace Project3902
         {
             IsMouseVisible = true;
 
+            graphics.PreferredBackBufferWidth = 1280;
+            graphics.PreferredBackBufferHeight = 720;
+            graphics.ApplyChanges();
+
             // Set up controllers.
             SetUpMouseController();
             SetUpKeyboardController();
@@ -71,7 +75,7 @@ namespace Project3902
             //renderTarget = new RenderTarget2D(GraphicsDevice, 256, 176);
             //actualScreenRect = new Rectangle(0, 0, GraphicsDeviceManager.DefaultBackBufferWidth, GraphicsDeviceManager.DefaultBackBufferHeight);
 
-            var level = new Sprint2Level();
+            var level = new Sprint2Level(this);
 
             // Create player.
             LinkFactory.Instance.LoadAllTextures(Content);
@@ -86,6 +90,8 @@ namespace Project3902
             EnvironmentFactory.Instance.LoadAllTextures(Content);
             interactiveEnvironmentObjects = level.CreateInteractiveEnvironmentObjects();
             currentInteractiveEnvironmentObject = 0;
+
+            //Create Enemies
             EnemyFactory.Instance.LoadAllTextures(Content);
             enemyObjects = level.CreateEnemyObjects();
             currentEnemyObject = 0;
@@ -102,6 +108,10 @@ namespace Project3902
             keyboardController.Update();
 
             enemyObjects[currentEnemyObject].Update(gameTime);
+
+            //Environment
+            interactiveEnvironmentObjects[currentInteractiveEnvironmentObject].Update(gameTime);
+
             base.Update(gameTime);
 
             Link.Update(gameTime);
