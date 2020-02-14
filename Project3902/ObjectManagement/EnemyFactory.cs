@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Project3902.GameObjects.Enemies_and_NPCs;
 using Project3902.GameObjects.Enemies_and_NPCs.Interfaces;
+using Project3902.GameObjects.EnemyProjectiles;
 using System;
 using System.Collections.Generic;
 using System.Linq;

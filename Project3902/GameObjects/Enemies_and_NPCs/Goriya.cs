@@ -52,7 +52,6 @@ namespace Project3902.GameObjects.Enemies_and_NPCs.Interfaces
 
         public void Update(GameTime gameTime)
         {
-            Console.WriteLine("A");
             Position += direction * speed;
             relPos += direction * speed;
             if (relPos.X > distance)
