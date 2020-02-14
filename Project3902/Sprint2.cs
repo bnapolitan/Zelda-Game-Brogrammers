@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using Project3902.GameObjects;
 using Project3902.ObjectManagement;
 using System;
@@ -24,6 +25,7 @@ namespace Project3902
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        private ItemSprite Items;
         //RenderTarget2D renderTarget;
         //Rectangle actualScreenRect;
 
@@ -33,6 +35,7 @@ namespace Project3902
         int currentInteractiveEnvironmentObject;
 
         IController<MouseActions> mouseController;
+        IController<Keys> ItemKey;
 
         public Sprint2()
         {
@@ -43,13 +46,25 @@ namespace Project3902
             Content.RootDirectory = "Content";
         }
 
+        public static class currentFram
+        {
+            private static int cur = 0;
+
+            public static int Current
+            {
+                get { return cur; }
+                set { cur = value; }
+
+            }
+        }
+
         protected override void Initialize()
         {
             IsMouseVisible = true;
 
             // Set up controllers.
             SetUpMouseController();
-
+            ItKbRegister();
             base.Initialize();
         }
 
@@ -65,6 +80,7 @@ namespace Project3902
             // Create player.
             LinkFactory.Instance.LoadAllTextures(Content);
             Link = LinkFactory.Instance.CreateLink(new Vector2(100, 100), this);
+            Items = new FixedItem(Content.Load<Texture2D>("Items"), 1, 14);
 
             // Create list of all items to be cycled through. Use a Factory class to create them.
             // Same for enemies.
@@ -85,7 +101,7 @@ namespace Project3902
             base.Update(gameTime);
 
             mouseController.Update();
-
+            ItemKey.Update();
             Link.Update(gameTime);
         }
 
@@ -103,6 +119,11 @@ namespace Project3902
             // Player
             Link.Draw(spriteBatch);
 
+            //Item
+            Vector2 ItPosition = new Vector2(150,300);
+            Items.Draw(spriteBatch, ItPosition);
+
+
             // An IDrawable's Draw() method does not call spriteBatch.Begin() or spriteBatch.End().
 
             //Environment
@@ -119,6 +140,32 @@ namespace Project3902
             base.Draw(gameTime);
         }
 
+
+        //Item control
+        public void items()
+        {
+            this.Items = new FixedItem(Content.Load<Texture2D>("Luigi/Zelda"), 1, 14);
+        }
+
+        private void ItKbRegister()
+        {
+            ItemKey = new ItemReg();
+
+            ItemKey.RegisterCommand(Keys.I, new CycNxtItm(this));
+            ItemKey.RegisterCommand(Keys.U, new CycPrvItm(this));
+        }
+        public void cycNxtItm()
+        {
+            Sprint2.currentFram.Current++;
+            this.Items = new FixedItem(Content.Load<Texture2D>("Items"), 1, 14);
+        }
+
+        public void cycPrvItm()
+        {
+            Sprint2.currentFram.Current--;
+            this.Items = new FixedItem(Content.Load<Texture2D>("Items"), 1, 14);
+        }
+
         private void SetUpMouseController()
         {
             mouseController = new MouseController();
@@ -131,6 +178,7 @@ namespace Project3902
         {
             currentInteractiveEnvironmentObject = (currentInteractiveEnvironmentObject + 1) % interactiveEnvironmentObjects.Count;
         }
+
 
         public void CycleEnvironmentLast()
         {
