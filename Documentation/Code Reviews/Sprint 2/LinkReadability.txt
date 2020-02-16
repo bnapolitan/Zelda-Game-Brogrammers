@@ -1,0 +1,34 @@
+Readability Review 
+
+ 
+
+Author of Code Review: Suraj Suresh 
+
+Date of Code Review: 02/14/19 
+
+Sprint Number: 2 
+
+File Being Reviewed: Link.cs 
+
+Author of File: Austin Rogers 
+
+Minutes Taken for Review: 10 
+
+Comments on Readability: 
+
+-Properties and private variables have clear names that show purpose 
+	-There is a private collider variable and a public Collider property, not sure what the difference is 
+
+-Initialization of variables in constructor is clear, no unknown constants or method calls 
+
+-Update and Draw both just contain calls to Update and Draw of relevant objects, making this section clear to understand 
+
+-Majority of methods just contain corresponding method call in LinkStateMachine 
+	-Makes reading Link class very easy 
+	-Movement logic contained within another class so user does not have to see all of it contained within main Link class (which would be long and tedious to follow) 
+
+-Whitespace and indentation makes code easy to follow 
+
+-Only confusing part might be understanding what ToPoint() does to update collider location without comment explaining 
+
+ 

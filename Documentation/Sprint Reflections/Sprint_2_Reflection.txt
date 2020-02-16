@@ -1,0 +1,38 @@
+Sprint 2 Reflection 
+
+Brogrammers 
+
+MWF 10:20 
+
+ 
+
+At the beginning of Sprint 2, our group was still getting used to setting up our code repository and agile task 
+board. Many of us hadn’t worked extensively with these tools before, so it took some practice and adjustment to 
+develop proper code sharing techniques. During the first week, we were able to use time outside of class to 
+analyze the Sprint 2 requirements and delegate work among members using cards on Trello. Additionally, more 
+experienced members of the team were able to explain proper branching and code review techniques so that we could 
+avoid any issues reaching the master branch. 
+
+After these initial steps were taken, our team was able to start working on the Sprint 2 implementation by the end 
+of the first week. Most members were able to effectively create their own branches and work on specific classes 
+and interfaces that were directly assigned to them. For any changes to interfaces that could affect multiple 
+members of the group, discussions were held on the group’s Slack. By the end of week 2, most of the implementation
+ had been finished, with only minor tasks like projectiles still needing to be implemented. 
+
+Throughout the process, members were able to ask each other implementation questions, which led to there being 
+several occurrences of “unofficial code review”. In future sprints, our group hopes to take more time to formally 
+analyze code quality from earlier dates (perhaps starting from the middle of the second week).  
+
+For this sprint, the initial assignments were as follows: Austin took care of Link and the Link state machine, 
+Suraj and Dan took care of enemy characters, Xueyang managed item objects, and both Huang and Ben added 
+environment objects. In addition to these tasks, which were completed in time, multiple members of the 
+group were also able to work on different factory and controller objects while Ben was able to work on 
+setting up classes that would allow the user to toggle between objects on the screen and build levels.  
+
+By the end of this sprint, our group is in a good spot. In addition to fulfilling the sprint requirements, 
+we have also been able to set up classes with additional consideration being given to collision handling, 
+something focused on in the next sprint. Additionally, we have begun to craft level environments that closely 
+resemble the game’s eventual appearance in future sprints. This extra work will allow us to move forward to 
+Sprint 3 with more ease. The practice we have gained with branching and merging should also allow us to commit 
+code more effectively and be able to start reviewing each other’s code earlier in future sprints. This will 
+make our code even more readable and maintainable in the future. 
