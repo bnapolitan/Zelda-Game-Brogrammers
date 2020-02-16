@@ -1,0 +1,14 @@
+Readability Review - Enviroment Factory
+Author: Dan Bellini 
+Completed On: 2/15/20, Sprint 2
+File Name: EnviromentFactory.cs 
+File Authors: Ben Napolitan, Huang Huang
+Time to complete: 20 minutes
+
+Overall the class is very readable. It contains three fields all with names that describe their purpose accurately.
+This class has many methods that all have simple but readable names. The fields that hold the atlases are helpful
+to describe where each texture is coming from while also making the class more readable. One thing that could help
+improve readability would be to make code blocks to hold methods that make similar items such as grouping tiles
+together or grouping doors together. For the most part all methods follow the same structure so if you understand
+how one method works you understand how all of the methods work. There are also no formatting or other related
+issues with the class.
