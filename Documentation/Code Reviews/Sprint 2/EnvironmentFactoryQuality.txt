@@ -1,0 +1,16 @@
+Code Review - Enviroment Factory
+Author: Dan Bellini
+Completed On: 2/15/20, Sprint 2
+File Name: EnviromentFactory.cs
+File Authors: Ben Napolitan, Huang Huang
+Time to complete: 25 minutes
+
+The first thing that I notice about this class is that it is a singleton class. This is because we are never going to need
+more than one enviroment factory so making this class a singleton is appropriate. There are three fields one holds the only
+instance of the class and is called instance. The other two fields hold the texture altases. The constructor of the class
+does not do anything which is appropiate for a singleton class. The loadAllTextures method takes the content manager as a 
+parameter and loads the textures into the texture atlas fields. All remaining methods created the different requested
+environment pieces. This class has very high cohesion because it is doing many operations that are very similar. Each method
+that creates an environment object takes the position as a parameter, creates the object and its sprite the returns the newly
+created IGameObject. All methods in the class are short and do a specific job. The class is also loosely coupled as it does
+not have refernces to any other classes.
