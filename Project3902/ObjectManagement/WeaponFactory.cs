@@ -31,7 +31,8 @@ namespace Project3902
         public void LoadAllTextures(ContentManager content)
         {
             weaponAtlas = new SpriteAtlas(content.Load<Texture2D>("linkspritesheet"));
-            bossSpriteAtlas = new SpriteAtlas(content.Load<Texture2D>("ZeldaBossSprites"));
+            bossSpriteAtlas = new SpriteAtlas(content.Load<Texture2D>("Dungeon_Enemies_2"));
+           
         }
 
         public IProjectile CreateBoomerangProjectile()
@@ -84,7 +85,7 @@ namespace Project3902
         public IProjectile CreateFireballProjectile(Vector2 pos, Vector2 direction)
         {
             var createdObject = new Fireball(pos, 4f, direction);
-            List<Rectangle> fireballSource = new List<Rectangle> { new Rectangle(128, 11, 8, 16) };
+            List<Rectangle> fireballSource = new List<Rectangle> { new Rectangle(334, 3, 8, 9) };
             var sprite = new AnimatedSprite(createdObject, bossSpriteAtlas, fireballSource, 0.5f, new Vector2(2, 2));
             createdObject.Sprite = sprite;
             return createdObject;

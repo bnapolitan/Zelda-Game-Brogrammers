@@ -52,7 +52,7 @@ namespace Project3902
             list.Add(aquamentus);
             list.Add(EnemyFactory.Instance.CreateBlueGoriya(enemyPosition));
 
-            list.Add(EnemyFactory.Instance.createRedMerchant(enemyPosition));
+            list.Add(EnemyFactory.Instance.createGreenMerchant(enemyPosition));
             list.Add(EnemyFactory.Instance.createDongo(enemyPosition));
             list.Add(EnemyFactory.Instance.createOldMan(enemyPosition));
             list.Add(EnemyFactory.Instance.createFlame(enemyPosition));
