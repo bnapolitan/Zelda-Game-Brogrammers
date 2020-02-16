@@ -1,0 +1,17 @@
+Author of the code review: Huang Huang
+
+Date of the code review: 2020/2/16
+
+Sprint number: #2
+
+Name of the .cs file being reviewed: AnimatedSprite.cs
+
+Author of the .cs file being reviewed: Austin Rogers
+
+Specific comments on code quality: 
+
+This file is really important, because each Sprint project need this file to animate sprites. 
+All the code in this file looks well. 
+In the future, as for each Sprint project, it will be easy to make some changes 
+in this file and these changes won’t make seriously conflict for the whole project. 
+For example, changes in the function update will not affect other files. 
