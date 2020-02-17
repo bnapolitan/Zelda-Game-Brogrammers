@@ -1,96 +1,83 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Project3902.ObjectManagement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project3902.GameObjects.Enemies_and_NPCs
+namespace Project3902.GameObjects.Enemies_and_NPCs.Interfaces
 {
-    class Goriya : ProjectileLaunchingEnemy
+    class Goriya : IEnemy
     {
+        public float Health { get; set; }
+        public Vector2 Position { get; set; }
+        public ISprite Sprite { get; set; }
+        public bool Active { get; set; }
+        public Rectangle Collider { get; set; }
         private float speed;
         private float distance = 100;
         private Vector2 relPos = new Vector2(0, 0);
+        private Vector2 direction;
         public ISprite rightFacingGoriya;
         public ISprite leftFacingGoriya;
         public ISprite downFacingGoriya;
         public ISprite upFacingGoriya;
-        private int framesBeforeAttack = 180;
-        private int currentFrame = 0;
-        private IProjectile boomerang;
-        private bool isShooting = false;
 
-        public Goriya(Vector2 pos, float moveSpeed, Vector2 initDirection) : base(pos, moveSpeed, initDirection) { }
-
-        public override void Attack()
+        public Goriya(Vector2 pos, float moveSpeed, Vector2 initDirection)
         {
-            boomerang = WeaponFactory.Instance.CreateBoomerangProjectile(Position, Direction);
+            Position = pos;
+            Active = true;
+            speed = moveSpeed;
+            direction = initDirection;
+        }
+        public void TakeDamage()
+        {
+
+        }
+        public void Attack()
+        {
+
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch)
         {
-            if(isShooting)
-            {
-                boomerang.Draw(spriteBatch);
-            }
-
             Sprite.Draw(spriteBatch);
         }
 
-        public override void Update(GameTime gameTime)
+        public void OnCollide()
         {
-            if (currentFrame >= framesBeforeAttack)
+
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            Position += direction * speed;
+            relPos += direction * speed;
+            if (relPos.X > distance)
             {
-                this.Attack();
-                isShooting = true;
-                currentFrame = 0;
+                direction =new Vector2(0,1);
+                Sprite = downFacingGoriya;
+                relPos = new Vector2(0, 0);
             }
-
-            if (!isShooting)
+            else if (relPos.Y > distance)
             {
-                Position += Direction * MoveSpeed;
-                relPos += Direction * MoveSpeed;
-                if (relPos.X > distance)
-                {
-                    Direction = new Vector2(0, 1);
-                    Sprite = downFacingGoriya;
-                    relPos = new Vector2(0, 0);
-                }
-                else if (relPos.Y > distance)
-                {
-                    Direction = new Vector2(-1, 0);
-                    Sprite = leftFacingGoriya;
-                    relPos = new Vector2(0, 0);
-                }
-                else if (relPos.X < -distance)
-                {
-                    Direction = new Vector2(0, -1);
-                    Sprite = upFacingGoriya;
-                    relPos = new Vector2(0, 0);
-                }
-                else if (relPos.Y < -distance)
-                {
-                    Direction = new Vector2(1, 0);
-                    Sprite = rightFacingGoriya;
-                    relPos = new Vector2(0, 0);
-                }
+                direction = new Vector2(-1,0);
+                Sprite = leftFacingGoriya;
+                relPos = new Vector2(0, 0);
             }
-
-            currentFrame++;
-
-            if (isShooting)
+            else if(relPos.X < -distance)
             {
-                boomerang.Update(gameTime);
-                if(!boomerang.Active)
-                {
-                    isShooting = false;
-                    currentFrame = 0;
-                }
+                direction = new Vector2(0, -1);
+                Sprite = upFacingGoriya;
+                relPos = new Vector2(0, 0);
             }
-
+            else if (relPos.Y < -distance)
+            {
+                direction = new Vector2(1, 0);
+                Sprite = rightFacingGoriya;
+                relPos = new Vector2(0, 0);
+            }
             Sprite.Update(gameTime);
         }
     }

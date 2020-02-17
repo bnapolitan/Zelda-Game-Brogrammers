@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace Project3902
 {
-    class ExitGameCommand : ICommand
+    class CycPrvItm : ICommand
     {
         private Sprint2 game;
 
-        public ExitGameCommand(Sprint2 game)
+        public CycPrvItm(Sprint2 game)
         {
             this.game = game;
         }
 
         public void Execute()
         {
-            game.Exit();
+            game.cycPrvItm();
         }
     }
 }

@@ -56,6 +56,9 @@
 /processorParam:TextureFormat=Color
 /build:DungeonSpriteSheet.png
 
+
+#begin Items.png
+
 #begin File.fx
 /importer:EffectImporter
 /processor:EffectProcessor
@@ -72,6 +75,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+/build:Items.png
 /build:OverworldEnemies.png
 
 #begin OverworldSpriteSheet.png
@@ -145,4 +149,3 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:zeldaspritesheet.png;linkspritesheet.png
-

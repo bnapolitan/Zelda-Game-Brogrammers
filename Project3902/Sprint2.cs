@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using Project3902.GameObjects;
 using Project3902.ObjectManagement;
 using Project3902.Commands.Sprint2Commands;
@@ -27,18 +28,20 @@ namespace Project3902
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        private ItemSprite Items;
         //RenderTarget2D renderTarget;
         //Rectangle actualScreenRect;
 
         public ILink Link { get; set; }
 
-        public List<IGameObject> interactiveEnvironmentObjects;
+        List<IGameObject> interactiveEnvironmentObjects;
         int currentInteractiveEnvironmentObject;
 
         List<IGameObject> enemyObjects;
         int currentEnemyObject;
 
         IController<MouseActions> mouseController;
+        IController<Keys> ItemKey;
         KeyboardController keyboardController;
 
         private bool OKeyDown = false;
@@ -53,17 +56,25 @@ namespace Project3902
             Content.RootDirectory = "Content";
         }
 
+        public static class currentFram
+        {
+            private static int cur = 0;
+
+            public static int Current
+            {
+                get { return cur; }
+                set { cur = value; }
+
+            }
+        }
+
         protected override void Initialize()
         {
             IsMouseVisible = true;
 
-            graphics.PreferredBackBufferWidth = 1280;
-            graphics.PreferredBackBufferHeight = 720;
-            graphics.ApplyChanges();
-
             // Set up controllers.
             SetUpMouseController();
-            //SetUpKeyboardController();
+            SetUpKeyboardController();
 
             base.Initialize();
         }
@@ -75,11 +86,12 @@ namespace Project3902
             //renderTarget = new RenderTarget2D(GraphicsDevice, 256, 176);
             //actualScreenRect = new Rectangle(0, 0, GraphicsDeviceManager.DefaultBackBufferWidth, GraphicsDeviceManager.DefaultBackBufferHeight);
 
-            var level = new Sprint2Level(this);
+            var level = new Sprint2Level();
 
             // Create player.
             LinkFactory.Instance.LoadAllTextures(Content);
             Link = LinkFactory.Instance.CreateLink(new Vector2(100, 100), this);
+            Items = new FixedItem(Content.Load<Texture2D>("Items"), 1, 14);
 
             WeaponFactory.Instance.LoadAllTextures(Content);
 
@@ -90,8 +102,6 @@ namespace Project3902
             EnvironmentFactory.Instance.LoadAllTextures(Content);
             interactiveEnvironmentObjects = level.CreateInteractiveEnvironmentObjects();
             currentInteractiveEnvironmentObject = 0;
-
-            //Create Enemies
             EnemyFactory.Instance.LoadAllTextures(Content);
             enemyObjects = level.CreateEnemyObjects();
             currentEnemyObject = 0;
@@ -105,31 +115,9 @@ namespace Project3902
         protected override void Update(GameTime gameTime)
         {
             mouseController.Update();
-            //keyboardController.Update();
-            KeyboardState state = Keyboard.GetState();
-            if (state.IsKeyDown(Keys.O) && !OKeyDown)
-            {
-                OKeyDown = true;
-                CycleEnemyLast();
-            }
-            if (state.IsKeyUp(Keys.O))
-            {
-                OKeyDown = false;
-            }
-            if (state.IsKeyDown(Keys.P) && !PKeyDown)
-            {
-                PKeyDown = true;
-                CycleEnemyNext();
-            }
-            if (state.IsKeyUp(Keys.P))
-            {
-                PKeyDown = false;
-            }
+            keyboardController.Update();
+
             enemyObjects[currentEnemyObject].Update(gameTime);
-
-            //Environment
-            interactiveEnvironmentObjects[currentInteractiveEnvironmentObject].Update(gameTime);
-
             base.Update(gameTime);
 
             Link.Update(gameTime);
@@ -149,6 +137,11 @@ namespace Project3902
             // Player
             Link.Draw(spriteBatch);
 
+            //Item
+            Vector2 ItPosition = new Vector2(150,300);
+            Items.Draw(spriteBatch, ItPosition);
+
+
             // An IDrawable's Draw() method does not call spriteBatch.Begin() or spriteBatch.End().
             //Environment
             enemyObjects[currentEnemyObject].Draw(spriteBatch);
@@ -167,26 +160,49 @@ namespace Project3902
             base.Draw(gameTime);
         }
 
+
+        //Item control
+        public void items()
+        {
+            this.Items = new FixedItem(Content.Load<Texture2D>("Luigi/Zelda"), 1, 14);
+        }
+
+        public void cycNxtItm()
+        {
+            Sprint2.currentFram.Current++;
+            this.Items = new FixedItem(Content.Load<Texture2D>("Items"), 1, 14);
+        }
+
+        public void cycPrvItm()
+        {
+            Sprint2.currentFram.Current--;
+            this.Items = new FixedItem(Content.Load<Texture2D>("Items"), 1, 14);
+        }
+
         private void SetUpMouseController()
         {
             mouseController = new MouseController();
 
-            mouseController.RegisterCommand(MouseActions.Left, new CycleNextEnvironmentObjectCommand(this));
-            mouseController.RegisterCommand(MouseActions.Right, new CycleLastEnvironmentObjectCommand(this));
+            mouseController.RegisterCommand(MouseActions.Left, new CycleNextEnvironmentObjectCommand(this), InputState.Pressed);
+            mouseController.RegisterCommand(MouseActions.Right, new CycleLastEnvironmentObjectCommand(this), InputState.Pressed);
         }
 
         private void SetUpKeyboardController()
         {
             keyboardController = new KeyboardController();
 
-            keyboardController.RegisterCommand(Microsoft.Xna.Framework.Input.Keys.P, new CycleNextEnemyObjectCommand(this));
-            keyboardController.RegisterCommand(Microsoft.Xna.Framework.Input.Keys.O, new CycleLastEnemyObjectCommand(this));
+            keyboardController.RegisterCommand(Keys.P, new CycleNextEnemyObjectCommand(this), InputState.Pressed);
+            keyboardController.RegisterCommand(Keys.O, new CycleLastEnemyObjectCommand(this), InputState.Pressed);
+            keyboardController.RegisterCommand(Keys.I, new CycNxtItm(this), InputState.Pressed);
+            keyboardController.RegisterCommand(Keys.U, new CycPrvItm(this), InputState.Pressed);
+            keyboardController.RegisterCommand(Keys.Q, new ExitGameCommand(this));
         }
 
         public void CycleEnvironmentNext()
         {
             currentInteractiveEnvironmentObject = (currentInteractiveEnvironmentObject + 1) % interactiveEnvironmentObjects.Count;
         }
+
 
         public void CycleEnvironmentLast()
         {

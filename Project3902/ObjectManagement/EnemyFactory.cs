@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Project3902.GameObjects.Enemies_and_NPCs;
 using Project3902.GameObjects.Enemies_and_NPCs.Interfaces;
+using Project3902.GameObjects.EnemyProjectiles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -190,6 +191,14 @@ namespace Project3902.ObjectManagement
 			createdObject.leftFacingRope = new AnimatedSprite(createdObject, dungeons2, leftRopeSource, 0.5f, new Vector2(6, 6));
 			return createdObject;
 		}
+		public IGameObject createAquamentus(Vector2 position)
+		{
+			var createdObject = new Aquamentus(position, 2, new Vector2(1, 0));
+			List<Rectangle> AquamentusSource = new List<Rectangle> { new Rectangle(1, 11, 24, 30), new Rectangle(26, 11, 24, 30), new Rectangle(51, 11, 24, 30), new Rectangle(76, 11, 24, 30) };
+			var sprite = new AnimatedSprite(createdObject, BossSpriteAtlas, AquamentusSource, 3);
+			createdObject.Sprite = sprite;
+			return createdObject;
+		}
 
 		public IGameObject createDongo(Vector2 position)
 		{
@@ -198,6 +207,16 @@ namespace Project3902.ObjectManagement
 			var sprite = new AnimatedSprite(createdObject, BossSpriteAtlas, DodongoSource, .5f, new Vector2(6,6));
 			createdObject.Sprite = sprite;
 			return createdObject;
+		}
+
+		public IGameObject createFireball(Vector2 position)
+		{
+			var createdObject = new Fireball(position, 2, new Vector2(1, 0));
+			List<Rectangle> FireballSource = new List<Rectangle> { new Rectangle(256, 154, 8, 15) };
+			var sprite = new AnimatedSprite(createdObject, BossSpriteAtlas, FireballSource, 3);
+			createdObject.Sprite = sprite;
+			return createdObject;
+
 		}
 
 		public IGameObject createFlame(Vector2 position)
