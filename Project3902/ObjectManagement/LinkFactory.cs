@@ -14,7 +14,7 @@ namespace Project3902
     {
         private SpriteAtlas linkAtlas;
         private Vector2 linkScale = new Vector2(4, 4);
-        private float attackTime = .15f;
+        private float attackFrameTime = .15f;
 
         public static LinkFactory Instance { get; } = new LinkFactory();
 
@@ -46,21 +46,31 @@ namespace Project3902
             controller.RegisterCommand(Keys.A, new LinkMoveLeftCommand(link));
             controller.RegisterCommand(Keys.D, new LinkMoveRightCommand(link));
 
-            controller.RegisterCommand(Keys.Z, new LinkAttackCommand(link));
-            controller.RegisterCommand(Keys.N, new LinkAttackCommand(link));
+            controller.RegisterCommand(Keys.Z, new LinkAttackCommand(link), InputState.Pressed);
+            controller.RegisterCommand(Keys.N, new LinkAttackCommand(link), InputState.Pressed);
 
-            controller.RegisterCommand(Keys.D1, new LinkUseItemCommand(link));
+            controller.RegisterCommand(Keys.D1, new LinkUseBoomerangCommand(link), InputState.Pressed);
+            controller.RegisterCommand(Keys.D2, new LinkUseBlueCandleCommand(link), InputState.Pressed);
 
-            controller.RegisterCommand(Keys.E, new LinkTakeDamageCommand(link, game));
+            controller.RegisterCommand(Keys.E, new LinkTakeDamageCommand(link, game), InputState.Pressed);
 
             return controller;
         }
 
         /* Walk sprites. */
-        public ISprite CreateHorizontalWalkSprite(IGameObject link)
+        public ISprite CreateRightWalkSprite(IGameObject link)
         {
             List<Rectangle> sourceRects = new List<Rectangle> { new Rectangle(35, 11, 16, 16), new Rectangle(52, 11, 16, 16) };
             return new AnimatedSprite(link, linkAtlas, sourceRects, .2f, linkScale);
+        }
+
+        public ISprite CreateLeftWalkSprite(IGameObject link)
+        {
+            List<Rectangle> sourceRects = new List<Rectangle> { new Rectangle(35, 11, 16, 16), new Rectangle(52, 11, 16, 16) };
+            var sprite = new AnimatedSprite(link, linkAtlas, sourceRects, .2f, linkScale);
+            sprite.Flip = SpriteEffects.FlipHorizontally;
+
+            return sprite;
         }
 
         public ISprite CreateUpWalkSprite(IGameObject link)
@@ -82,7 +92,7 @@ namespace Project3902
 
             List<Rectangle> sourceRects = new List<Rectangle> { new Rectangle(1, 77, 16, 16), new Rectangle(18, 77, 27, 16),
                                                                 new Rectangle(46, 77, 23, 16), new Rectangle(70, 77, 19, 16)};
-            return new AnimatedSprite(link, linkAtlas, sourceRects, attackTime, linkScale);
+            return new AnimatedSprite(link, linkAtlas, sourceRects, attackFrameTime, linkScale);
         }
 
         public ISprite CreateLeftAttackSprite(IGameObject link)
@@ -90,7 +100,10 @@ namespace Project3902
             List<Rectangle> sourceRects = new List<Rectangle> { new Rectangle(1, 77, 16, 16), new Rectangle(18, 77, 27, 16), 
                                                                 new Rectangle(46, 77, 23, 16), new Rectangle(70, 77, 19, 16)};
             List<Vector2> origins = new List<Vector2> { new Vector2(0, 0), new Vector2(11, 0), new Vector2(7, 0), new Vector2(3, 0)};
-            return new VariedOriginsSprite(link, linkAtlas, sourceRects, origins, attackTime, linkScale);
+            var sprite = new VariedOriginsSprite(link, linkAtlas, sourceRects, origins, attackFrameTime, linkScale);
+            sprite.Flip = SpriteEffects.FlipHorizontally;
+
+            return sprite;
         }
 
         public ISprite CreateUpAttackSprite(IGameObject link)
@@ -98,7 +111,7 @@ namespace Project3902
             List<Rectangle> sourceRects = new List<Rectangle> { new Rectangle(1, 109, 16, 16), new Rectangle(18, 97, 16, 28),
                                                                 new Rectangle(35, 98, 16, 27), new Rectangle(52, 106, 16, 19)};
             List<Vector2> origins = new List<Vector2> { new Vector2(0, 0), new Vector2(0, 12), new Vector2(0, 11), new Vector2(0, 3) };
-            return new VariedOriginsSprite(link, linkAtlas, sourceRects, origins, attackTime, linkScale);
+            return new VariedOriginsSprite(link, linkAtlas, sourceRects, origins, attackFrameTime, linkScale);
         }
 
         public ISprite CreateDownAttackSprite(IGameObject link)
@@ -107,13 +120,21 @@ namespace Project3902
 
             List<Rectangle> sourceRects = new List<Rectangle> { new Rectangle(1, 47, 16, 16), new Rectangle(18, 47, 16, 27), 
                                                                 new Rectangle(35, 47, 16, 23), new Rectangle(52, 47, 16, 19) };
-            return new AnimatedSprite(link, linkAtlas, sourceRects, attackTime, linkScale);
+            return new AnimatedSprite(link, linkAtlas, sourceRects, attackFrameTime, linkScale);
         }
 
         /* Item sprites */
-        public ISprite CreateHorizontalItemSprite(IGameObject link)
+        public ISprite CreateRightItemSprite(IGameObject link)
         {
             return new FixedSprite(link, linkAtlas, new Rectangle(124, 11, 16, 16), linkScale);
+        }
+
+        public ISprite CreateLeftItemSprite(IGameObject link)
+        {
+            var sprite = new FixedSprite(link, linkAtlas, new Rectangle(124, 11, 16, 16), linkScale);
+            sprite.Flip = SpriteEffects.FlipHorizontally;
+
+            return sprite;
         }
 
         public ISprite CreateUpItemSprite(IGameObject link)
