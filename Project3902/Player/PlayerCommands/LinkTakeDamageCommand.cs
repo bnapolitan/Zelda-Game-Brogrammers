@@ -19,6 +19,7 @@ namespace Project3902
 
         public void Execute()
         {
+            link.TakeDamage(1);
             game.Link = new DamagedLink(link, game);
         }
     }

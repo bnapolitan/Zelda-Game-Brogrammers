@@ -105,7 +105,7 @@ namespace Project3902
             mouseController = new MouseController();
 
             mouseController.RegisterCommand(MouseActions.Left, new SetSpriteMouseCommand(this));
-            mouseController.RegisterCommand(MouseActions.Right, new ExitGameCommand(this));
+            //mouseController.RegisterCommand(MouseActions.Right, new ExitGameCommand(this));
         }
 
         private void SetUpKeyboardController()
@@ -124,8 +124,8 @@ namespace Project3902
             keyboardController.RegisterCommand(Keys.D4, new SetMovingAnimatedCommand(this));
             keyboardController.RegisterCommand(Keys.NumPad4, new SetMovingAnimatedCommand(this));
 
-            keyboardController.RegisterCommand(Keys.D0, new ExitGameCommand(this));
-            keyboardController.RegisterCommand(Keys.NumPad0, new ExitGameCommand(this));
+            //keyboardController.RegisterCommand(Keys.D0, new ExitGameCommand(this));
+            //keyboardController.RegisterCommand(Keys.NumPad0, new ExitGameCommand(this));
         }
 
         private void CreateSprites()

@@ -3,11 +3,14 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Project3902.GameObjects;
 using Project3902.ObjectManagement;
+using Project3902.Commands.Sprint2Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Project3902.GameObjects.Enemies_and_NPCs.Interfaces;
+using Microsoft.Xna.Framework.Input;
 
 /* 
  * Team:
@@ -34,8 +37,15 @@ namespace Project3902
         List<IGameObject> interactiveEnvironmentObjects;
         int currentInteractiveEnvironmentObject;
 
+        List<IGameObject> enemyObjects;
+        int currentEnemyObject;
+
         IController<MouseActions> mouseController;
         IController<Keys> ItemKey;
+        KeyboardController keyboardController;
+
+        private bool OKeyDown = false;
+        private bool PKeyDown = false;
 
         public Sprint2()
         {
@@ -64,14 +74,15 @@ namespace Project3902
 
             // Set up controllers.
             SetUpMouseController();
-            ItKbRegister();
+            SetUpKeyboardController();
+
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            
+
             //renderTarget = new RenderTarget2D(GraphicsDevice, 256, 176);
             //actualScreenRect = new Rectangle(0, 0, GraphicsDeviceManager.DefaultBackBufferWidth, GraphicsDeviceManager.DefaultBackBufferHeight);
 
@@ -82,6 +93,8 @@ namespace Project3902
             Link = LinkFactory.Instance.CreateLink(new Vector2(100, 100), this);
             Items = new FixedItem(Content.Load<Texture2D>("Items"), 1, 14);
 
+            WeaponFactory.Instance.LoadAllTextures(Content);
+
             // Create list of all items to be cycled through. Use a Factory class to create them.
             // Same for enemies.
 
@@ -89,6 +102,9 @@ namespace Project3902
             EnvironmentFactory.Instance.LoadAllTextures(Content);
             interactiveEnvironmentObjects = level.CreateInteractiveEnvironmentObjects();
             currentInteractiveEnvironmentObject = 0;
+            EnemyFactory.Instance.LoadAllTextures(Content);
+            enemyObjects = level.CreateEnemyObjects();
+            currentEnemyObject = 0;
         }
 
         protected override void UnloadContent()
@@ -98,10 +114,12 @@ namespace Project3902
 
         protected override void Update(GameTime gameTime)
         {
+            mouseController.Update();
+            keyboardController.Update();
+
+            enemyObjects[currentEnemyObject].Update(gameTime);
             base.Update(gameTime);
 
-            mouseController.Update();
-            ItemKey.Update();
             Link.Update(gameTime);
         }
 
@@ -125,6 +143,8 @@ namespace Project3902
 
 
             // An IDrawable's Draw() method does not call spriteBatch.Begin() or spriteBatch.End().
+            //Environment
+            enemyObjects[currentEnemyObject].Draw(spriteBatch);
 
             //Environment
             interactiveEnvironmentObjects[currentInteractiveEnvironmentObject].Draw(spriteBatch);
@@ -147,13 +167,6 @@ namespace Project3902
             this.Items = new FixedItem(Content.Load<Texture2D>("Luigi/Zelda"), 1, 14);
         }
 
-        private void ItKbRegister()
-        {
-            ItemKey = new ItemReg();
-
-            ItemKey.RegisterCommand(Keys.I, new CycNxtItm(this));
-            ItemKey.RegisterCommand(Keys.U, new CycPrvItm(this));
-        }
         public void cycNxtItm()
         {
             Sprint2.currentFram.Current++;
@@ -170,8 +183,19 @@ namespace Project3902
         {
             mouseController = new MouseController();
 
-            mouseController.RegisterCommand(MouseActions.Left, new CycleNextEnvironmentObjectCommand(this));
-            mouseController.RegisterCommand(MouseActions.Right, new CycleLastEnvironmentObjectCommand(this));
+            mouseController.RegisterCommand(MouseActions.Left, new CycleNextEnvironmentObjectCommand(this), InputState.Pressed);
+            mouseController.RegisterCommand(MouseActions.Right, new CycleLastEnvironmentObjectCommand(this), InputState.Pressed);
+        }
+
+        private void SetUpKeyboardController()
+        {
+            keyboardController = new KeyboardController();
+
+            keyboardController.RegisterCommand(Keys.P, new CycleNextEnemyObjectCommand(this), InputState.Pressed);
+            keyboardController.RegisterCommand(Keys.O, new CycleLastEnemyObjectCommand(this), InputState.Pressed);
+            keyboardController.RegisterCommand(Keys.I, new CycNxtItm(this), InputState.Pressed);
+            keyboardController.RegisterCommand(Keys.U, new CycPrvItm(this), InputState.Pressed);
+            keyboardController.RegisterCommand(Keys.Q, new ExitGameCommand(this));
         }
 
         public void CycleEnvironmentNext()
@@ -190,6 +214,23 @@ namespace Project3902
             {
                 currentInteractiveEnvironmentObject--;
             }
+        }
+        public void CycleEnemyNext()
+        {
+            currentEnemyObject = (currentEnemyObject + 1) % enemyObjects.Count;
+        }
+
+        public void CycleEnemyLast()
+        {
+            if (currentEnemyObject == 0)
+            {
+                currentEnemyObject = enemyObjects.Count - 1;
+            }
+            else
+            {
+                currentEnemyObject--;
+            }
+
         }
     }
 }
