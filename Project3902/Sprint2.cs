@@ -74,7 +74,6 @@ namespace Project3902
 
             // Set up controllers.
             SetUpMouseController();
-            ItKbRegister();
             SetUpKeyboardController();
 
             base.Initialize();
@@ -116,7 +115,6 @@ namespace Project3902
         protected override void Update(GameTime gameTime)
         {
             mouseController.Update();
-            ItemKey.Update();
             keyboardController.Update();
 
             enemyObjects[currentEnemyObject].Update(gameTime);
@@ -169,13 +167,6 @@ namespace Project3902
             this.Items = new FixedItem(Content.Load<Texture2D>("Luigi/Zelda"), 1, 14);
         }
 
-        private void ItKbRegister()
-        {
-            ItemKey = new ItemReg();
-
-            ItemKey.RegisterCommand(Keys.I, new CycNxtItm(this));
-            ItemKey.RegisterCommand(Keys.U, new CycPrvItm(this));
-        }
         public void cycNxtItm()
         {
             Sprint2.currentFram.Current++;
@@ -202,6 +193,8 @@ namespace Project3902
 
             keyboardController.RegisterCommand(Keys.P, new CycleNextEnemyObjectCommand(this), InputState.Pressed);
             keyboardController.RegisterCommand(Keys.O, new CycleLastEnemyObjectCommand(this), InputState.Pressed);
+            keyboardController.RegisterCommand(Keys.I, new CycNxtItm(this), InputState.Pressed);
+            keyboardController.RegisterCommand(Keys.U, new CycPrvItm(this), InputState.Pressed);
             keyboardController.RegisterCommand(Keys.Q, new ExitGameCommand(this));
         }
 

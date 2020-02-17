@@ -18,11 +18,6 @@ namespace Project3902
             ItemCtlKey = new Dictionary<Keys, ICommand>();
         }
 
-        public void RegisterCommand(Keys key, ICommand command)
-        {
-            ItemCtlKey.Add(key, command);
-        }
-
         public void Update()
         {
             Keys[] pressedKeys = Keyboard.GetState().GetPressedKeys();
@@ -33,6 +28,15 @@ namespace Project3902
                     ItemCtlKey[key].Execute();
             }
         }
-        
+
+        public void RegisterCommand(Keys input, ICommand command, InputState state)
+        {
+            ItemCtlKey.Add(input, command);
+        }
+
+        public void RegisterCommand(Keys input, ICommand command)
+        {
+            ItemCtlKey.Add(input, command);
+        }
     }
 }
