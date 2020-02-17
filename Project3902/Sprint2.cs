@@ -153,6 +153,7 @@ namespace Project3902
 
             keyboardController.RegisterCommand(Keys.P, new CycleNextEnemyObjectCommand(this), InputState.Pressed);
             keyboardController.RegisterCommand(Keys.O, new CycleLastEnemyObjectCommand(this), InputState.Pressed);
+            keyboardController.RegisterCommand(Keys.Q, new ExitGameCommand(this));
         }
 
         public void CycleEnvironmentNext()
