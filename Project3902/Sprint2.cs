@@ -41,11 +41,7 @@ namespace Project3902
         int currentEnemyObject;
 
         IController<MouseActions> mouseController;
-        IController<Keys> ItemKey;
         KeyboardController keyboardController;
-
-        private bool OKeyDown = false;
-        private bool PKeyDown = false;
 
         public Sprint2()
         {
@@ -86,7 +82,7 @@ namespace Project3902
             //renderTarget = new RenderTarget2D(GraphicsDevice, 256, 176);
             //actualScreenRect = new Rectangle(0, 0, GraphicsDeviceManager.DefaultBackBufferWidth, GraphicsDeviceManager.DefaultBackBufferHeight);
 
-            var level = new Sprint2Level();
+            var level = new Sprint2Level(this);
 
             // Create player.
             LinkFactory.Instance.LoadAllTextures(Content);

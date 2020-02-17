@@ -50,7 +50,7 @@ namespace Project3902
             int column = currentFrame % Columns;
 
             Rectangle sourceRectangle = new Rectangle(width * currentFrame, 0, width, height);
-            Rectangle destinationRectangle = new Rectangle(200, 200, width, height);
+            Rectangle destinationRectangle = new Rectangle(100, 250, width, height);
 
             //spriteBatch.Begin();
             spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);

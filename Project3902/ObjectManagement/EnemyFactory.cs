@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Project3902.GameObjects.Enemies_and_NPCs;
 using Project3902.GameObjects.Enemies_and_NPCs.Interfaces;
-using Project3902.GameObjects.EnemyProjectiles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +11,8 @@ using System.Threading.Tasks;
 
 namespace Project3902.ObjectManagement
 {
-    class EnemyFactory
-    {
+	class EnemyFactory
+	{
 		private SpriteAtlas dungeonSpriteAtlas;
 		private SpriteAtlas dungeons2;
 		private SpriteAtlas NPCSpriteAtlas;
@@ -43,9 +42,9 @@ namespace Project3902.ObjectManagement
 
 		public IGameObject CreateAquaGel(Vector2 position)
 		{
-			var createdObject = new Gel(position, 2, new Vector2(1,0));
+			var createdObject = new Gel(position, 2, new Vector2(1, 0));
 			List<Rectangle> aquaGelSource = new List<Rectangle> { new Rectangle(403, 183, 10, 10), new Rectangle(403, 213, 10, 10) };
-			var sprite = new AnimatedSprite(createdObject, dungeons2, aquaGelSource, 0.5f, new Vector2(6,6));
+			var sprite = new AnimatedSprite(createdObject, dungeons2, aquaGelSource, 0.5f, new Vector2(6, 6));
 			createdObject.Sprite = sprite;
 			return createdObject;
 		}
@@ -72,7 +71,7 @@ namespace Project3902.ObjectManagement
 		{
 			var createdObject = new Gel(position, 2, new Vector2(1, 0));
 			List<Rectangle> brownGelSource = new List<Rectangle> { new Rectangle(19, 28, 8, 16), new Rectangle(28, 28, 8, 16) };
-			var sprite = new AnimatedSprite(createdObject, dungeonSpriteAtlas, brownGelSource, 0.5f,new Vector2(6, 6));
+			var sprite = new AnimatedSprite(createdObject, dungeonSpriteAtlas, brownGelSource, 0.5f, new Vector2(6, 6));
 			createdObject.Sprite = sprite;
 			return createdObject;
 		}
@@ -119,7 +118,7 @@ namespace Project3902.ObjectManagement
 		public IGameObject CreateBlueKeese(Vector2 position)
 		{
 			var createdObject = new Keese(position, 2, new Vector2(1, 0));
-			List<Rectangle> blueKeeseSource = new List<Rectangle> { new Rectangle(234, 268, 18, 18), new Rectangle(259, 268, 18, 18)};
+			List<Rectangle> blueKeeseSource = new List<Rectangle> { new Rectangle(234, 268, 18, 18), new Rectangle(259, 268, 18, 18) };
 			var sprite = new AnimatedSprite(createdObject, dungeons2, blueKeeseSource, 0.5f, new Vector2(6, 6));
 			createdObject.Sprite = sprite;
 			return createdObject;
@@ -127,7 +126,7 @@ namespace Project3902.ObjectManagement
 
 		public IGameObject CreateRedKeese(Vector2 position)
 		{
-			var createdObject = new Keese(position, 2, new Vector2(1,0));
+			var createdObject = new Keese(position, 2, new Vector2(1, 0));
 			List<Rectangle> redKeeseSource = new List<Rectangle> { new Rectangle(279, 268, 18, 18), new Rectangle(304, 268, 18, 18) };
 			var sprite = new AnimatedSprite(createdObject, dungeons2, redKeeseSource, 0.5f, new Vector2(6, 6));
 			createdObject.Sprite = sprite;
@@ -136,7 +135,7 @@ namespace Project3902.ObjectManagement
 
 		public IGameObject CreateStalfos(Vector2 position)
 		{
-			var createdObject = new Stalfos(position, 2, new Vector2(0,1));
+			var createdObject = new Stalfos(position, 2, new Vector2(0, 1));
 			List<Rectangle> stalfosSource = new List<Rectangle> { new Rectangle(418, 119, 18, 18), new Rectangle(418, 149, 18, 18) };
 			var sprite = new AnimatedSprite(createdObject, dungeons2, stalfosSource, 0.5f, new Vector2(6, 6));
 			createdObject.Sprite = sprite;
@@ -167,7 +166,7 @@ namespace Project3902.ObjectManagement
 		{
 			var createdObject = new Zol(position, 2, new Vector2(1, 0));
 			List<Rectangle> grayZolSource = new List<Rectangle> { new Rectangle(360, 180, 16, 16), new Rectangle(360, 210, 16, 16) };
-			var sprite = new AnimatedSprite(createdObject, dungeons2, grayZolSource, 0.5f,  new Vector2(6, 6));
+			var sprite = new AnimatedSprite(createdObject, dungeons2, grayZolSource, 0.5f, new Vector2(6, 6));
 			createdObject.Sprite = sprite;
 			return createdObject;
 		}
@@ -191,39 +190,21 @@ namespace Project3902.ObjectManagement
 			createdObject.leftFacingRope = new AnimatedSprite(createdObject, dungeons2, leftRopeSource, 0.5f, new Vector2(6, 6));
 			return createdObject;
 		}
-		public IGameObject createAquamentus(Vector2 position)
-		{
-			var createdObject = new Aquamentus(position, 2, new Vector2(1, 0));
-			List<Rectangle> AquamentusSource = new List<Rectangle> { new Rectangle(1, 11, 24, 30), new Rectangle(26, 11, 24, 30), new Rectangle(51, 11, 24, 30), new Rectangle(76, 11, 24, 30) };
-			var sprite = new AnimatedSprite(createdObject, BossSpriteAtlas, AquamentusSource, 3);
-			createdObject.Sprite = sprite;
-			return createdObject;
-		}
 
 		public IGameObject createDongo(Vector2 position)
 		{
 			var createdObject = new Dodongo(position, 2, new Vector2(1, 0));
-			List<Rectangle> DodongoSource = new List<Rectangle> { new Rectangle(1, 121, 14, 16), new Rectangle(1, 91, 14, 16), new Rectangle(25, 121, 27, 16), new Rectangle(25, 91, 27, 16), new Rectangle(61, 91, 14, 16), new Rectangle(61, 121, 14, 16), new Rectangle(85,91,27,16), new Rectangle(85,121,27,16) };
-			var sprite = new AnimatedSprite(createdObject, BossSpriteAtlas, DodongoSource, .5f, new Vector2(6,6));
+			List<Rectangle> DodongoSource = new List<Rectangle> { new Rectangle(1, 121, 14, 16), new Rectangle(1, 91, 14, 16), new Rectangle(25, 121, 27, 16), new Rectangle(25, 91, 27, 16), new Rectangle(61, 91, 14, 16), new Rectangle(61, 121, 14, 16), new Rectangle(85, 91, 27, 16), new Rectangle(85, 121, 27, 16) };
+			var sprite = new AnimatedSprite(createdObject, BossSpriteAtlas, DodongoSource, .5f, new Vector2(6, 6));
 			createdObject.Sprite = sprite;
 			return createdObject;
-		}
-
-		public IGameObject createFireball(Vector2 position)
-		{
-			var createdObject = new Fireball(position, 2, new Vector2(1, 0));
-			List<Rectangle> FireballSource = new List<Rectangle> { new Rectangle(256, 154, 8, 15) };
-			var sprite = new AnimatedSprite(createdObject, BossSpriteAtlas, FireballSource, 3);
-			createdObject.Sprite = sprite;
-			return createdObject;
-
 		}
 
 		public IGameObject createFlame(Vector2 position)
 		{
 			var createdObject = new Flame(position, 2, new Vector2(1, 0));
 			List<Rectangle> FlameSource = new List<Rectangle> { new Rectangle(300, 0, 15, 15), new Rectangle(300, 30, 15, 15) };
-			var sprite = new AnimatedSprite(createdObject, dungeons2, FlameSource, .5f, new Vector2(6,6));
+			var sprite = new AnimatedSprite(createdObject, dungeons2, FlameSource, .5f, new Vector2(6, 6));
 			createdObject.Sprite = sprite;
 			return createdObject;
 		}
@@ -232,7 +213,7 @@ namespace Project3902.ObjectManagement
 		{
 			var createdObject = new OldMan(position, 2, new Vector2(1, 0));
 			List<Rectangle> OldManSource = new List<Rectangle> { new Rectangle(0, 5, 15, 15), new Rectangle(30, 5, 15, 15), new Rectangle(61, 5, 15, 15) };
-			var sprite = new AnimatedSprite(createdObject, NPCSpriteAtlas, OldManSource, .5f, new Vector2(6,6));
+			var sprite = new AnimatedSprite(createdObject, NPCSpriteAtlas, OldManSource, .5f, new Vector2(6, 6));
 			createdObject.Sprite = sprite;
 			return createdObject;
 		}
@@ -241,7 +222,7 @@ namespace Project3902.ObjectManagement
 		{
 			var createdObject = new Merchant(position, 2, new Vector2(1, 0));
 			List<Rectangle> MerchantSource = new List<Rectangle> { new Rectangle(91, 5, 15, 15) };
-			var sprite = new AnimatedSprite(createdObject, NPCSpriteAtlas, MerchantSource, .5f, new Vector2(6,6));
+			var sprite = new AnimatedSprite(createdObject, NPCSpriteAtlas, MerchantSource, .5f, new Vector2(6, 6));
 			createdObject.Sprite = sprite;
 			return createdObject;
 

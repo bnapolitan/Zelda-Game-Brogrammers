@@ -1,68 +1,85 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Project3902.ObjectManagement;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project3902.GameObjects.Enemies_and_NPCs
 {
-    class Aquamentus : IEnemy
+    class Aquamentus : ProjectileLaunchingEnemy
     {
-        public float Health { get; set; }
-        public Vector2 Position { get; set; }
-        public ISprite Sprite { get; set; }
-        public bool Active { get; set; }
-        public Rectangle Collider { get; set; }
-        private float speed;
+        public Sprint2 Game { get; }
         private float distance = 100;
         private Vector2 relPos = new Vector2(0, 0);
-        private Vector2 direction;
-        private SpriteEffects flip = SpriteEffects.None;
+        private int framesBeforeAttack = 120;
+        private int currentFrame = 0;
+        private IProjectile fireball;
+        private IProjectile fireball2;
+        private IProjectile fireball3;
+        private bool isShooting = false;
 
-        public Aquamentus(Vector2 pos, float moveSpeed, Vector2 initDirection)
+        public Aquamentus(Vector2 pos, float moveSpeed, Vector2 initDirection, Sprint2 game) : base(pos, moveSpeed, initDirection)
         {
-            Position = pos;
-            Active = true;
-            speed = moveSpeed;
-            direction = initDirection;
-        }
-        public void TakeDamage()
-        {
-
-        }
-        public void Attack()
-        {
-
+            this.Game = game;
+            Sprite = EnemyFactory.Instance.CreateAquamentusSprite(this);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Attack()
         {
+            Vector2 fireball1Movement = Game.Link.Position - Position;
+            fireball1Movement.Normalize();
+
+            var angle = Math.Atan2(fireball1Movement.Y, fireball1Movement.X);
+
+            // TODO : Move these into Game object lists
+
+            fireball = WeaponFactory.Instance.CreateFireballProjectile(Position, fireball1Movement);
+            fireball2 = WeaponFactory.Instance.CreateFireballProjectile(Position, new Vector2((float)Math.Cos(angle + .524), (float)Math.Sin(angle + .524)));
+            fireball3 = WeaponFactory.Instance.CreateFireballProjectile(Position, new Vector2((float)Math.Cos(angle - .524), (float)Math.Sin(angle - .524)));
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            if (isShooting)
+            {
+                fireball.Draw(spriteBatch);
+                fireball2.Draw(spriteBatch);
+                fireball3.Draw(spriteBatch);
+            }
+
             Sprite.Draw(spriteBatch);
         }
 
-        public void OnCollide()
+        public override void Update(GameTime gameTime)
         {
+            if (currentFrame >= framesBeforeAttack)
+            {
+                this.Attack();
+                isShooting = true;
+                currentFrame = 0;
+            }
 
-        }
-
-        public void Update(GameTime gameTime)
-        {
-            Position += direction * speed;
-            relPos += direction * speed;
+            Position += Direction * MoveSpeed;
+            relPos += Direction * MoveSpeed;
             if (relPos.X > distance)
             {
-                direction *= -1;
-                flip = SpriteEffects.FlipHorizontally;
+                Direction *= -1;
                 relPos = new Vector2(0, 0);
             }
             else if (relPos.X < -distance)
             {
-                direction *= -1;
-                flip = SpriteEffects.None;
+                Direction *= -1;
                 relPos = new Vector2(0, 0);
             }
+
+            currentFrame++;
+
+            if (isShooting)
+            {
+                fireball.Update(gameTime);
+                fireball2.Update(gameTime);
+                fireball3.Update(gameTime);
+            }
+
             Sprite.Update(gameTime);
         }
     }
