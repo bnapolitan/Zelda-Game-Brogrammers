@@ -14,5 +14,9 @@ Environment cycling:
  - Right click to go backwards in the cycle
 
 Enemy/NPC cycling:
- - O to go fowards in the cycle
- - P to go backwards in the cycle
+ - P to go fowards in the cycle
+ - O to go backwards in the cycle
+
+Item cycling:
+ - I to go forwards in the cycle
+ - U to go backwards in the cycle
