@@ -1,5 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.8\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props" Condition="Exists('..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.8\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" />
+  <Import Project="..\packages\Microsoft.NetFramework.Analyzers.2.9.8\build\Microsoft.NetFramework.Analyzers.props" Condition="Exists('..\packages\Microsoft.NetFramework.Analyzers.2.9.8\build\Microsoft.NetFramework.Analyzers.props')" />
+  <Import Project="..\packages\Microsoft.NetCore.Analyzers.2.9.8\build\Microsoft.NetCore.Analyzers.props" Condition="Exists('..\packages\Microsoft.NetCore.Analyzers.2.9.8\build\Microsoft.NetCore.Analyzers.props')" />
+  <Import Project="..\packages\Microsoft.CodeQuality.Analyzers.2.9.8\build\Microsoft.CodeQuality.Analyzers.props" Condition="Exists('..\packages\Microsoft.CodeQuality.Analyzers.2.9.8\build\Microsoft.CodeQuality.Analyzers.props')" />
+  <Import Project="..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.8\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props" Condition="Exists('..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.8\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props')" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -14,6 +19,8 @@
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>Windows</MonoGamePlatform>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -25,6 +32,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <LangVersion>7.3</LangVersion>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -47,6 +55,7 @@
     <Compile Include="Commands\Sprint0Commands\SetMovingNonanimatedCommand.cs" />
     <Compile Include="Commands\Sprint0Commands\SetNonmovingAnimatedCommand.cs" />
     <Compile Include="Commands\Sprint0Commands\SetSpriteMouseCommand.cs" />
+    <Compile Include="GlobalSuppressions2.cs" />
     <Compile Include="Sprites\Item\CycPrvItm.cs" />
     <Compile Include="Sprites\Item\CycNxtItm.cs" />
     <Compile Include="Commands\Sprint2Commands\CycleLastEnemyObjectCommand.cs" />
@@ -60,22 +69,22 @@
     <Compile Include="Commands\Sprint0Commands\ICommand.cs" />
     <Compile Include="Commands\Sprint0Commands\ExitGameCommand.cs" />
     <Compile Include="Controllers\KeyboardController.cs" />
-    <Compile Include="GameObjects\Enemies_and_NPCs\Aquamentus.cs" />
-    <Compile Include="GameObjects\Enemies_and_NPCs\Dodongo.cs" />
+    <Compile Include="GameObjects\EnemiesAndNPCs\Aquamentus.cs" />
+    <Compile Include="GameObjects\EnemiesAndNPCs\Dodongo.cs" />
     <Compile Include="GameObjects\EnemyProjectiles\Boomerang.cs" />
     <Compile Include="GameObjects\EnemyProjectiles\Fireball.cs" />
-    <Compile Include="GameObjects\Enemies_and_NPCs\Flame.cs" />
-    <Compile Include="GameObjects\Enemies_and_NPCs\Gel.cs" />
-    <Compile Include="GameObjects\Enemies_and_NPCs\Goriya.cs" />
-    <Compile Include="GameObjects\Enemies_and_NPCs\Interfaces\IEnemy.cs" />
-    <Compile Include="GameObjects\Enemies_and_NPCs\Interfaces\INPC.cs" />
-    <Compile Include="GameObjects\Enemies_and_NPCs\Keese.cs" />
-    <Compile Include="GameObjects\Enemies_and_NPCs\Merchant.cs" />
-    <Compile Include="GameObjects\Enemies_and_NPCs\OldMan.cs" />
-    <Compile Include="GameObjects\Enemies_and_NPCs\Rope.cs" />
-    <Compile Include="GameObjects\Enemies_and_NPCs\Stalfos.cs" />
-    <Compile Include="GameObjects\Enemies_and_NPCs\Wallmaster.cs" />
-    <Compile Include="GameObjects\Enemies_and_NPCs\Zol.cs" />
+    <Compile Include="GameObjects\EnemiesAndNPCs\Flame.cs" />
+    <Compile Include="GameObjects\EnemiesAndNPCs\Gel.cs" />
+    <Compile Include="GameObjects\EnemiesAndNPCs\Goriya.cs" />
+    <Compile Include="GameObjects\EnemiesAndNPCs\Interfaces\IEnemy.cs" />
+    <Compile Include="GameObjects\EnemiesAndNPCs\Interfaces\INPC.cs" />
+    <Compile Include="GameObjects\EnemiesAndNPCs\Keese.cs" />
+    <Compile Include="GameObjects\EnemiesAndNPCs\Merchant.cs" />
+    <Compile Include="GameObjects\EnemiesAndNPCs\OldMan.cs" />
+    <Compile Include="GameObjects\EnemiesAndNPCs\Rope.cs" />
+    <Compile Include="GameObjects\EnemiesAndNPCs\Stalfos.cs" />
+    <Compile Include="GameObjects\EnemiesAndNPCs\Wallmaster.cs" />
+    <Compile Include="GameObjects\EnemiesAndNPCs\Zol.cs" />
     <Compile Include="GameObjects\Environment\Background\EnemyCloudAppearance.cs" />
     <Compile Include="GameObjects\Environment\Background\FloorTile.cs" />
     <Compile Include="GameObjects\Environment\Background\RoomBorder.cs" />
@@ -156,7 +165,6 @@
     <Compile Include="StateMachine\IStateMachine.cs" />
     <Compile Include="Text\ITextSprite.cs" />
     <Compile Include="Text\SimpleText.cs" />
-    <Compile Include="Sprites\SimpleSprite.cs" />
     <Compile Include="Sprites\Sprint0Sprites\CircleMoveSprite.cs" />
     <Compile Include="Sprites\FixedSprite.cs" />
     <Compile Include="AtlasUtils\IAtlasSource.cs" />
@@ -184,10 +192,31 @@
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.manifest" />
+    <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.8\analyzers\dotnet\cs\Microsoft.CodeAnalysis.VersionCheckAnalyzer.resources.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.8\analyzers\dotnet\Microsoft.CodeAnalysis.VersionCheckAnalyzer.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeQuality.Analyzers.2.9.8\analyzers\dotnet\cs\Humanizer.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeQuality.Analyzers.2.9.8\analyzers\dotnet\cs\Microsoft.CodeQuality.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeQuality.Analyzers.2.9.8\analyzers\dotnet\cs\Microsoft.CodeQuality.CSharp.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetCore.Analyzers.2.9.8\analyzers\dotnet\cs\Microsoft.NetCore.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetCore.Analyzers.2.9.8\analyzers\dotnet\cs\Microsoft.NetCore.CSharp.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.2.9.8\analyzers\dotnet\cs\Microsoft.NetFramework.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.2.9.8\analyzers\dotnet\cs\Microsoft.NetFramework.CSharp.Analyzers.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.8\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.8\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeQuality.Analyzers.2.9.8\build\Microsoft.CodeQuality.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeQuality.Analyzers.2.9.8\build\Microsoft.CodeQuality.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.NetCore.Analyzers.2.9.8\build\Microsoft.NetCore.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NetCore.Analyzers.2.9.8\build\Microsoft.NetCore.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.NetFramework.Analyzers.2.9.8\build\Microsoft.NetFramework.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NetFramework.Analyzers.2.9.8\build\Microsoft.NetFramework.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.8\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.8\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

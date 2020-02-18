@@ -1,16 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Project3902.GameObjects;
-using Project3902.ObjectManagement;
 using Project3902.Commands.Sprint2Commands;
-using System;
+using Project3902.ObjectManagement;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Project3902.GameObjects.Enemies_and_NPCs.Interfaces;
-using Microsoft.Xna.Framework.Input;
 
 /* 
  * Team:

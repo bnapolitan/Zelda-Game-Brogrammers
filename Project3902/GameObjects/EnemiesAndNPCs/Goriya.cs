@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project3902.GameObjects.Enemies_and_NPCs
+namespace Project3902.GameObjects.EnemiesAndNPCs
 {
     class Goriya : ProjectileLaunchingEnemy
     {

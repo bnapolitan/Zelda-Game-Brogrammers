@@ -1,13 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Project3902.GameObjects.Enemies_and_NPCs;
-using Project3902.GameObjects.Enemies_and_NPCs.Interfaces;
-using System;
+using Project3902.GameObjects.EnemiesAndNPCs;
+using Project3902.GameObjects.EnemiesAndNPCs.Interfaces;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project3902.ObjectManagement
 {
@@ -148,8 +144,8 @@ namespace Project3902.ObjectManagement
 			List<Rectangle> leftWallmasterSource = new List<Rectangle> { new Rectangle(239, 0, 18, 18), new Rectangle(239, 29, 18, 18) };
 			List<Rectangle> rightWallmasterSource = new List<Rectangle> { new Rectangle(269, 0, 18, 18), new Rectangle(269, 29, 18, 18) };
 			createdObject.Sprite = new AnimatedSprite(createdObject, dungeons2, rightWallmasterSource, 0.5f, new Vector2(6, 6));
-			createdObject.rightFacingWallmaster = new AnimatedSprite(createdObject, dungeons2, rightWallmasterSource, 0.5f, new Vector2(6, 6));
-			createdObject.leftFacingWallmaster = new AnimatedSprite(createdObject, dungeons2, leftWallmasterSource, 0.5f, new Vector2(6, 6));
+			createdObject.RightFacingWallmaster = new AnimatedSprite(createdObject, dungeons2, rightWallmasterSource, 0.5f, new Vector2(6, 6));
+			createdObject.LeftFacingWallmaster = new AnimatedSprite(createdObject, dungeons2, leftWallmasterSource, 0.5f, new Vector2(6, 6));
 			return createdObject;
 		}
 
@@ -186,8 +182,8 @@ namespace Project3902.ObjectManagement
 			List<Rectangle> leftRopeSource = new List<Rectangle> { new Rectangle(0, 298, 18, 18), new Rectangle(0, 328, 18, 18) };
 			List<Rectangle> rightRopeSource = new List<Rectangle> { new Rectangle(29, 298, 18, 18), new Rectangle(29, 328, 18, 18) };
 			createdObject.Sprite = new AnimatedSprite(createdObject, dungeons2, rightRopeSource, 0.5f, new Vector2(6, 6));
-			createdObject.rightFacingRope = new AnimatedSprite(createdObject, dungeons2, rightRopeSource, 0.5f, new Vector2(6, 6));
-			createdObject.leftFacingRope = new AnimatedSprite(createdObject, dungeons2, leftRopeSource, 0.5f, new Vector2(6, 6));
+			createdObject.RightFacingRope = new AnimatedSprite(createdObject, dungeons2, rightRopeSource, 0.5f, new Vector2(6, 6));
+			createdObject.LeftFacingRope = new AnimatedSprite(createdObject, dungeons2, leftRopeSource, 0.5f, new Vector2(6, 6));
 			return createdObject;
 		}
 

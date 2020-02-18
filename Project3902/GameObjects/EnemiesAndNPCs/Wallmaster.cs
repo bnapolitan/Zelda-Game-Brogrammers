@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project3902.GameObjects.Enemies_and_NPCs
+namespace Project3902.GameObjects.EnemiesAndNPCs.Interfaces
 {
-    class Flame : IEnemy
+    class Wallmaster : IEnemy
     {
         public float Health { get; set; }
         public Vector2 Position { get; set; }
@@ -19,8 +19,10 @@ namespace Project3902.GameObjects.Enemies_and_NPCs
         private float distance = 100;
         private Vector2 relPos = new Vector2(0, 0);
         private Vector2 direction;
+        public ISprite RightFacingWallmaster { get; set; }
+        public ISprite LeftFacingWallmaster { get; set; }
 
-        public Flame(Vector2 pos, float moveSpeed, Vector2 initDirection)
+        public Wallmaster(Vector2 pos, float moveSpeed, Vector2 initDirection)
         {
             Position = pos;
             Active = true;
@@ -53,11 +55,13 @@ namespace Project3902.GameObjects.Enemies_and_NPCs
             if (relPos.X > distance)
             {
                 direction *= -1;
+                Sprite = LeftFacingWallmaster;
                 relPos = new Vector2(0, 0);
             }
             else if (relPos.X < -distance)
             {
                 direction *= -1;
+                Sprite = RightFacingWallmaster;
                 relPos = new Vector2(0, 0);
             }
             Sprite.Update(gameTime);

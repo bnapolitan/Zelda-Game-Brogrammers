@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Project3902.ObjectManagement;
 using System;
 
-namespace Project3902.GameObjects.Enemies_and_NPCs
+namespace Project3902.GameObjects.EnemiesAndNPCs
 {
     class Aquamentus : ProjectileLaunchingEnemy
     {

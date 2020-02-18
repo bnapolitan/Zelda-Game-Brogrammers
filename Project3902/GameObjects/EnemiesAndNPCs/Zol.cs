@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project3902.GameObjects.Enemies_and_NPCs
+namespace Project3902.GameObjects.EnemiesAndNPCs
 {
-    class Merchant : IEnemy
+    class Zol : IEnemy
     {
         public float Health { get; set; }
         public Vector2 Position { get; set; }
@@ -20,7 +20,7 @@ namespace Project3902.GameObjects.Enemies_and_NPCs
         private Vector2 relPos = new Vector2(0, 0);
         private Vector2 direction;
 
-        public Merchant(Vector2 pos, float moveSpeed, Vector2 initDirection)
+        public Zol(Vector2 pos, float moveSpeed, Vector2 initDirection)
         {
             Position = pos;
             Active = true;

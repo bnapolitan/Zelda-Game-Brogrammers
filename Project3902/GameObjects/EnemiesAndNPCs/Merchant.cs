@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project3902.GameObjects.Enemies_and_NPCs.Interfaces
+namespace Project3902.GameObjects.EnemiesAndNPCs
 {
-    class Rope : IEnemy
+    class Merchant : IEnemy
     {
         public float Health { get; set; }
         public Vector2 Position { get; set; }
@@ -19,10 +19,8 @@ namespace Project3902.GameObjects.Enemies_and_NPCs.Interfaces
         private float distance = 100;
         private Vector2 relPos = new Vector2(0, 0);
         private Vector2 direction;
-        public ISprite rightFacingRope;
-        public ISprite leftFacingRope;
 
-        public Rope(Vector2 pos, float moveSpeed, Vector2 initDirection)
+        public Merchant(Vector2 pos, float moveSpeed, Vector2 initDirection)
         {
             Position = pos;
             Active = true;
@@ -55,13 +53,11 @@ namespace Project3902.GameObjects.Enemies_and_NPCs.Interfaces
             if (relPos.X > distance)
             {
                 direction *= -1;
-                Sprite = leftFacingRope;
                 relPos = new Vector2(0, 0);
             }
             else if (relPos.X < -distance)
             {
                 direction *= -1;
-                Sprite = rightFacingRope;
                 relPos = new Vector2(0, 0);
             }
             Sprite.Update(gameTime);

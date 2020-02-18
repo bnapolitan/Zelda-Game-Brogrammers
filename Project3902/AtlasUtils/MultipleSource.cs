@@ -28,7 +28,7 @@ namespace Project3902
 
         public int GetNumberFrames()
         {
-            return sourceRects.Count();
+            return sourceRects.Count;
         }
     }
 }
