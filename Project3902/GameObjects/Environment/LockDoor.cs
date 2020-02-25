@@ -8,17 +8,10 @@ using System.Threading.Tasks;
 
 namespace Project3902.GameObjects.Environment
 {
-    class LockDoor : FixedGameObject, IInteractiveEnvironmentObject
+    class LockDoor : BaseEnvironment
     {
 
         public LockDoor(Vector2 position)
             : base(position) { }
-
-        public Rectangle hitbox { get; set; }
-        public Rectangle Collider { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-        public void OnCollide()
-        {
-        }
     }
 }

@@ -80,6 +80,10 @@ namespace Project3902
             // Create player.
             LinkFactory.Instance.LoadAllTextures(Content);
             Link = LinkFactory.Instance.CreateLink(new Vector2(100, 100), this);
+            CollisionHandler.Instance.RegisterCollidable(Link, Layer.Player, Layer.Enemy, Layer.Wall, Layer.Pickup);
+
+            ShapeSpriteFactory.Instance.CreateShapeTextures(GraphicsDevice);
+
             Items = new FixedItem(Content.Load<Texture2D>("Items"), 1, 14);
 
             WeaponFactory.Instance.LoadAllTextures(Content);
@@ -110,6 +114,8 @@ namespace Project3902
             base.Update(gameTime);
 
             Link.Update(gameTime);
+
+            CollisionHandler.Instance.CheckCollisions();
         }
 
         protected override void Draw(GameTime gameTime)

@@ -39,18 +39,20 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            base.Draw(spriteBatch);
+
             if (isShooting)
             {
                 fireball.Draw(spriteBatch);
                 fireball2.Draw(spriteBatch);
                 fireball3.Draw(spriteBatch);
             }
-
-            Sprite.Draw(spriteBatch);
         }
 
         public override void Update(GameTime gameTime)
         {
+            base.Update(gameTime);
+
             if (currentFrame >= framesBeforeAttack)
             {
                 this.Attack();
@@ -79,8 +81,10 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
                 fireball2.Update(gameTime);
                 fireball3.Update(gameTime);
             }
-
-            Sprite.Update(gameTime);
         }
+
+        public override void OnCollide(Collider other) { }
+
+        public override void TakeDamage() { }
     }
 }

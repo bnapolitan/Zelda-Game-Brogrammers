@@ -8,13 +8,8 @@ using System.Threading.Tasks;
 
 namespace Project3902.GameObjects.EnemiesAndNPCs
 {
-    class Stalfos : IEnemy
+    class Stalfos : BaseEnemy
     {
-        public float Health { get; set; }
-        public Vector2 Position { get; set; }
-        public ISprite Sprite { get; set; }
-        public bool Active { get; set; }
-        public Rectangle Collider { get; set; }
         private float speed;
         private float distance = 100;
         private Vector2 relPos = new Vector2(0, 0);
@@ -29,26 +24,8 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
             direction = initDirection;
             originalPos = pos;
         }
-        public void TakeDamage()
-        {
 
-        }
-        public void Attack()
-        {
-
-        }
-
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            Sprite.Draw(spriteBatch);
-        }
-
-        public void OnCollide()
-        {
-
-        }
-
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
          
             Position += direction * speed;
@@ -63,7 +40,23 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
                 direction *= -1;
                 relPos = new Vector2(0, 0);
             }
-            Sprite.Update(gameTime);
+
+            base.Update(gameTime);
+        }
+
+        public override void Attack()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void OnCollide(Collider other)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void TakeDamage()
+        {
+            throw new NotImplementedException();
         }
     }
 }

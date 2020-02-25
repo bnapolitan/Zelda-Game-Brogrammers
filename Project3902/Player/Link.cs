@@ -19,15 +19,13 @@ namespace Project3902
         public ISprite Sprite { get => machine.Sprite; set { } }
         public bool Active { get; set; }
 
-        private Rectangle collider;
-        public Rectangle Collider { get => collider; set => collider = value; }
-
         public float MovementSpeed { get; set; } = 200f;
 
         // Want this to be an IWeapon, but such an interface wouldn't have much use over IProjectile...
         public IProjectile CurrentWeapon { get; set; }
 
         public IProjectile SwordProjectile { get; set; }
+        public Collider Collider { get; set; }
 
         private Sprint2 game;
 
@@ -47,7 +45,7 @@ namespace Project3902
 
             controller = LinkFactory.Instance.CreateLinkController(this, game);
 
-            collider = new Rectangle(Position.ToPoint(), new Point(16, 16) * Sprite.Scale.ToPoint());
+            Collider = new Collider(this, new Rectangle(new Point(0, 0), new Point(16, 16) * Sprite.Scale.ToPoint()));
 
             CurrentWeapon = WeaponFactory.Instance.CreateBlueCandleProjectile();
             SwordProjectile = new SwordProjectile(); // Replace with factory method.
@@ -61,11 +59,12 @@ namespace Project3902
 
             machine.Update(gameTime);
 
-            collider.Location = Position.ToPoint();
+            Collider.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            Collider.Draw(spriteBatch);
             machine.Draw(spriteBatch);
             CurrentWeapon.Draw(spriteBatch);
             SwordProjectile.Draw(spriteBatch);
@@ -101,13 +100,20 @@ namespace Project3902
             machine.Attack();
         }
 
-        public void OnCollide()
-        {
-        }
-
         public void UseItem()
         {
             machine.UseItem();
+        }
+
+        public void OnCollide(Collider other)
+        {
+            if (other.GameObject is Gel)
+            {
+                Console.WriteLine("Link is colliding with an IEnemy: " + other.GameObject.ToString());
+                // Example response:
+                new LinkTakeDamageCommand(this, game).Execute();
+                Position = new Vector2(Position.X - 20, Position.Y);
+            }
         }
     }
 }

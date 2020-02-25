@@ -36,12 +36,19 @@ namespace Project3902.ObjectManagement
 			BossSpriteAtlas = new SpriteAtlas(content.Load<Texture2D>("ZeldaBosses"));
 		}
 
+		public static void RegisterEnemyForCollision(IEnemy enemy)
+		{
+			enemy.Collider = new Collider(enemy, new Rectangle(0, 0, 16, 16));
+			CollisionHandler.Instance.RegisterCollidable(enemy, Layer.Enemy);
+		}
+
 		public IGameObject CreateAquaGel(Vector2 position)
 		{
 			var createdObject = new Gel(position, 2, new Vector2(1, 0));
 			List<Rectangle> aquaGelSource = new List<Rectangle> { new Rectangle(403, 183, 10, 10), new Rectangle(403, 213, 10, 10) };
 			var sprite = new AnimatedSprite(createdObject, dungeons2, aquaGelSource, 0.5f, new Vector2(6, 6));
 			createdObject.Sprite = sprite;
+			RegisterEnemyForCollision(createdObject);
 			return createdObject;
 		}
 
@@ -51,6 +58,8 @@ namespace Project3902.ObjectManagement
 			List<Rectangle> blueGelSource = new List<Rectangle> { new Rectangle(19, 11, 8, 16), new Rectangle(28, 11, 8, 16) };
 			var sprite = new AnimatedSprite(createdObject, dungeonSpriteAtlas, blueGelSource, 0.5f, new Vector2(6, 6));
 			createdObject.Sprite = sprite;
+			RegisterEnemyForCollision(createdObject);
+
 			return createdObject;
 		}
 
@@ -60,6 +69,8 @@ namespace Project3902.ObjectManagement
 			List<Rectangle> greenGelSource = new List<Rectangle> { new Rectangle(37, 11, 8, 16), new Rectangle(46, 11, 8, 16) };
 			var sprite = new AnimatedSprite(createdObject, dungeonSpriteAtlas, greenGelSource, 0.5f, new Vector2(6, 6));
 			createdObject.Sprite = sprite;
+			RegisterEnemyForCollision(createdObject);
+
 			return createdObject;
 		}
 
@@ -69,6 +80,8 @@ namespace Project3902.ObjectManagement
 			List<Rectangle> brownGelSource = new List<Rectangle> { new Rectangle(19, 28, 8, 16), new Rectangle(28, 28, 8, 16) };
 			var sprite = new AnimatedSprite(createdObject, dungeonSpriteAtlas, brownGelSource, 0.5f, new Vector2(6, 6));
 			createdObject.Sprite = sprite;
+			RegisterEnemyForCollision(createdObject);
+
 			return createdObject;
 		}
 
@@ -78,6 +91,8 @@ namespace Project3902.ObjectManagement
 			List<Rectangle> blackGelSource = new List<Rectangle> { new Rectangle(423, 183, 10, 10), new Rectangle(423, 213, 10, 10) };
 			var sprite = new AnimatedSprite(createdObject, dungeons2, blackGelSource, 0.5f, new Vector2(6, 6));
 			createdObject.Sprite = sprite;
+			RegisterEnemyForCollision(createdObject);
+
 			return createdObject;
 		}
 
@@ -93,6 +108,9 @@ namespace Project3902.ObjectManagement
 			createdObject.leftFacingGoriya = new AnimatedSprite(createdObject, dungeons2, leftGoriyaSource, 0.5f, new Vector2(6, 6));
 			createdObject.upFacingGoriya = new AnimatedSprite(createdObject, dungeons2, upGoriyaSource, 0.5f, new Vector2(6, 6));
 			createdObject.downFacingGoriya = new AnimatedSprite(createdObject, dungeons2, downGoriyaSource, 0.5f, new Vector2(6, 6));
+
+			RegisterEnemyForCollision(createdObject);
+
 			return createdObject;
 		}
 
@@ -108,6 +126,9 @@ namespace Project3902.ObjectManagement
 			createdObject.leftFacingGoriya = new AnimatedSprite(createdObject, dungeons2, leftGoriyaSource, 0.5f, new Vector2(6, 6));
 			createdObject.upFacingGoriya = new AnimatedSprite(createdObject, dungeons2, upGoriyaSource, 0.5f, new Vector2(6, 6));
 			createdObject.downFacingGoriya = new AnimatedSprite(createdObject, dungeons2, downGoriyaSource, 0.5f, new Vector2(6, 6));
+
+			RegisterEnemyForCollision(createdObject);
+
 			return createdObject;
 		}
 
@@ -117,6 +138,8 @@ namespace Project3902.ObjectManagement
 			List<Rectangle> blueKeeseSource = new List<Rectangle> { new Rectangle(234, 268, 18, 18), new Rectangle(259, 268, 18, 18) };
 			var sprite = new AnimatedSprite(createdObject, dungeons2, blueKeeseSource, 0.5f, new Vector2(6, 6));
 			createdObject.Sprite = sprite;
+			RegisterEnemyForCollision(createdObject);
+
 			return createdObject;
 		}
 
@@ -126,6 +149,8 @@ namespace Project3902.ObjectManagement
 			List<Rectangle> redKeeseSource = new List<Rectangle> { new Rectangle(279, 268, 18, 18), new Rectangle(304, 268, 18, 18) };
 			var sprite = new AnimatedSprite(createdObject, dungeons2, redKeeseSource, 0.5f, new Vector2(6, 6));
 			createdObject.Sprite = sprite;
+			RegisterEnemyForCollision(createdObject);
+
 			return createdObject;
 		}
 
@@ -135,6 +160,8 @@ namespace Project3902.ObjectManagement
 			List<Rectangle> stalfosSource = new List<Rectangle> { new Rectangle(418, 119, 18, 18), new Rectangle(418, 149, 18, 18) };
 			var sprite = new AnimatedSprite(createdObject, dungeons2, stalfosSource, 0.5f, new Vector2(6, 6));
 			createdObject.Sprite = sprite;
+			RegisterEnemyForCollision(createdObject);
+
 			return createdObject;
 		}
 
@@ -146,6 +173,8 @@ namespace Project3902.ObjectManagement
 			createdObject.Sprite = new AnimatedSprite(createdObject, dungeons2, rightWallmasterSource, 0.5f, new Vector2(6, 6));
 			createdObject.RightFacingWallmaster = new AnimatedSprite(createdObject, dungeons2, rightWallmasterSource, 0.5f, new Vector2(6, 6));
 			createdObject.LeftFacingWallmaster = new AnimatedSprite(createdObject, dungeons2, leftWallmasterSource, 0.5f, new Vector2(6, 6));
+			RegisterEnemyForCollision(createdObject);
+
 			return createdObject;
 		}
 
@@ -155,6 +184,8 @@ namespace Project3902.ObjectManagement
 			List<Rectangle> greenZolSource = new List<Rectangle> { new Rectangle(380, 180, 16, 16), new Rectangle(380, 210, 16, 16) };
 			var sprite = new AnimatedSprite(createdObject, dungeons2, greenZolSource, 0.5f, new Vector2(6, 6));
 			createdObject.Sprite = sprite;
+			RegisterEnemyForCollision(createdObject);
+
 			return createdObject;
 		}
 
@@ -164,6 +195,8 @@ namespace Project3902.ObjectManagement
 			List<Rectangle> grayZolSource = new List<Rectangle> { new Rectangle(360, 180, 16, 16), new Rectangle(360, 210, 16, 16) };
 			var sprite = new AnimatedSprite(createdObject, dungeons2, grayZolSource, 0.5f, new Vector2(6, 6));
 			createdObject.Sprite = sprite;
+			RegisterEnemyForCollision(createdObject);
+
 			return createdObject;
 		}
 
@@ -173,6 +206,8 @@ namespace Project3902.ObjectManagement
 			List<Rectangle> brownZolSource = new List<Rectangle> { new Rectangle(77, 28, 16, 16), new Rectangle(94, 28, 16, 16) };
 			var sprite = new AnimatedSprite(createdObject, dungeonSpriteAtlas, brownZolSource, 0.5f, new Vector2(6, 6));
 			createdObject.Sprite = sprite;
+			RegisterEnemyForCollision(createdObject);
+
 			return createdObject;
 		}
 
@@ -184,6 +219,8 @@ namespace Project3902.ObjectManagement
 			createdObject.Sprite = new AnimatedSprite(createdObject, dungeons2, rightRopeSource, 0.5f, new Vector2(6, 6));
 			createdObject.RightFacingRope = new AnimatedSprite(createdObject, dungeons2, rightRopeSource, 0.5f, new Vector2(6, 6));
 			createdObject.LeftFacingRope = new AnimatedSprite(createdObject, dungeons2, leftRopeSource, 0.5f, new Vector2(6, 6));
+			RegisterEnemyForCollision(createdObject);
+
 			return createdObject;
 		}
 
@@ -193,6 +230,8 @@ namespace Project3902.ObjectManagement
 			List<Rectangle> DodongoSource = new List<Rectangle> { new Rectangle(1, 121, 14, 16), new Rectangle(1, 91, 14, 16), new Rectangle(25, 121, 27, 16), new Rectangle(25, 91, 27, 16), new Rectangle(61, 91, 14, 16), new Rectangle(61, 121, 14, 16), new Rectangle(85, 91, 27, 16), new Rectangle(85, 121, 27, 16) };
 			var sprite = new AnimatedSprite(createdObject, BossSpriteAtlas, DodongoSource, .5f, new Vector2(6, 6));
 			createdObject.Sprite = sprite;
+			RegisterEnemyForCollision(createdObject);
+
 			return createdObject;
 		}
 
@@ -202,6 +241,8 @@ namespace Project3902.ObjectManagement
 			List<Rectangle> FlameSource = new List<Rectangle> { new Rectangle(300, 0, 15, 15), new Rectangle(300, 30, 15, 15) };
 			var sprite = new AnimatedSprite(createdObject, dungeons2, FlameSource, .5f, new Vector2(6, 6));
 			createdObject.Sprite = sprite;
+			RegisterEnemyForCollision(createdObject);
+
 			return createdObject;
 		}
 
@@ -211,6 +252,8 @@ namespace Project3902.ObjectManagement
 			List<Rectangle> OldManSource = new List<Rectangle> { new Rectangle(0, 5, 15, 15), new Rectangle(30, 5, 15, 15), new Rectangle(61, 5, 15, 15) };
 			var sprite = new AnimatedSprite(createdObject, NPCSpriteAtlas, OldManSource, .5f, new Vector2(6, 6));
 			createdObject.Sprite = sprite;
+			RegisterEnemyForCollision(createdObject);
+
 			return createdObject;
 		}
 
@@ -220,6 +263,8 @@ namespace Project3902.ObjectManagement
 			List<Rectangle> MerchantSource = new List<Rectangle> { new Rectangle(91, 5, 15, 15) };
 			var sprite = new AnimatedSprite(createdObject, NPCSpriteAtlas, MerchantSource, .5f, new Vector2(6, 6));
 			createdObject.Sprite = sprite;
+			RegisterEnemyForCollision(createdObject);
+
 			return createdObject;
 
 		}

@@ -55,7 +55,15 @@
     <Compile Include="Commands\Sprint0Commands\SetMovingNonanimatedCommand.cs" />
     <Compile Include="Commands\Sprint0Commands\SetNonmovingAnimatedCommand.cs" />
     <Compile Include="Commands\Sprint0Commands\SetSpriteMouseCommand.cs" />
+    <Compile Include="GameObjects\EnemiesAndNPCs\BaseEnemy.cs" />
+    <Compile Include="GameObjects\Environment\BaseEnvironment.cs" />
+    <Compile Include="GameObjects\Weapons\BaseProjectile.cs" />
     <Compile Include="GlobalSuppressions2.cs" />
+    <Compile Include="ObjectManagement\CollisionSystem\Collider.cs" />
+    <Compile Include="ObjectManagement\CollisionSystem\CollisionHandler.cs" />
+    <Compile Include="ObjectManagement\CollisionSystem\Layer.cs" />
+    <Compile Include="ObjectManagement\CollisionSystem\LayerMasksHolder.cs" />
+    <Compile Include="ObjectManagement\ShapeSpriteFactory.cs" />
     <Compile Include="Sprites\Item\CycPrvItm.cs" />
     <Compile Include="Sprites\Item\CycNxtItm.cs" />
     <Compile Include="Commands\Sprint2Commands\CycleLastEnemyObjectCommand.cs" />
@@ -108,7 +116,7 @@
     <Compile Include="GameObjects\ProjectileLaunchingEnemy.cs" />
     <Compile Include="GameObjects\FixedGameObject.cs" />
     <Compile Include="GameObjects\Extendables\ICharacter.cs" />
-    <Compile Include="GameObjects\Extendables\ICollideable.cs" />
+    <Compile Include="GameObjects\Extendables\ICollidable.cs" />
     <Compile Include="GameObjects\IGameObject.cs" />
     <Compile Include="GameObjects\Weapons\BlueCandleWeapon.cs" />
     <Compile Include="GameObjects\Weapons\BoomerangWeapon.cs" />

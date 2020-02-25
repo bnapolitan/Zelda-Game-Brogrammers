@@ -44,6 +44,7 @@ namespace Project3902
             list.Add(EnemyFactory.Instance.CreateGreenZol(enemyPosition));
 
             var aquamentus = new Aquamentus(enemyPosition, 1, new Vector2(1, 0), this.Game);
+            EnemyFactory.RegisterEnemyForCollision(aquamentus);
             list.Add(aquamentus);
             list.Add(EnemyFactory.Instance.CreateBlueGoriya(enemyPosition));
 

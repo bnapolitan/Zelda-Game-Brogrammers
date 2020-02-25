@@ -29,10 +29,10 @@ namespace Project3902
         public Vector2 Position { get => decoratedLink.Position; set => decoratedLink.Position = value; }
         public ISprite Sprite { get => decoratedLink.Sprite; set => decoratedLink.Sprite = value; }
         public bool Active { get => decoratedLink.Active; set => decoratedLink.Active = value; }
-        public Rectangle Collider { get => decoratedLink.Collider; set => decoratedLink.Collider = value; }
         public float MaxHealth { get => decoratedLink.MaxHealth; set => decoratedLink.MaxHealth = value; }
         public IProjectile CurrentWeapon { get => decoratedLink.CurrentWeapon; set => decoratedLink.CurrentWeapon = value; }
         public IProjectile SwordProjectile { get => decoratedLink.SwordProjectile; set => decoratedLink.SwordProjectile = value; }
+        public Collider Collider { get => decoratedLink.Collider; set => decoratedLink.Collider = value; }
 
         public DamagedLink(ILink decoratedLink, Sprint2 game)
         {
@@ -96,11 +96,6 @@ namespace Project3902
             decoratedLink.MoveUp();
         }
 
-        public void OnCollide()
-        {
-            decoratedLink.OnCollide();
-        }
-
         public void TakeDamage(float damage)
         {
             // Does not take damage while damaged.
@@ -114,6 +109,11 @@ namespace Project3902
         public void UseItem()
         {
             decoratedLink.UseItem();
+        }
+
+        public void OnCollide(Collider other)
+        {
+            decoratedLink.OnCollide(other);
         }
     }
 }

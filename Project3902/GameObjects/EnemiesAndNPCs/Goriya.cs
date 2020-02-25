@@ -31,16 +31,18 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            base.Draw(spriteBatch);
+
             if (isShooting)
             {
                 boomerang.Draw(spriteBatch);
             }
-
-            Sprite.Draw(spriteBatch);
         }
 
         public override void Update(GameTime gameTime)
         {
+            base.Update(gameTime);
+
             if (currentFrame >= framesBeforeAttack)
             {
                 this.Attack();
@@ -89,8 +91,16 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
                     currentFrame = 0;
                 }
             }
+        }
 
-            Sprite.Update(gameTime);
+        public override void OnCollide(Collider other)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void TakeDamage()
+        {
+            throw new NotImplementedException();
         }
     }
 }

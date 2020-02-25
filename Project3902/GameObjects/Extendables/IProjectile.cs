@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Project3902
 {
-    interface IProjectile : IGameObject, ICollideable
+    interface IProjectile : IGameObject, ICollidable
     {
         // Not sure if Direction and Speed should be interface members
         Vector2 Direction { get; set; }

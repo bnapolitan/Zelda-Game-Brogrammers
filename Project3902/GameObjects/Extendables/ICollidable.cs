@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Project3902
 {
-    interface ICollideable
+    interface ICollidable
     {
-        Rectangle Collider { get; set; }
+        Collider Collider { get; set; }
 
-        void OnCollide();
+        void OnCollide(Collider other);
     }
 }

@@ -1,21 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Project3902.GameObjects.EnemiesAndNPCs
+namespace Project3902
 {
-    class Gel: IEnemy
+    class Gel: BaseEnemy
     {
-        public float Health { get; set; }
-        public Vector2 Position { get; set; }
-        public ISprite Sprite { get; set; }
-        public bool Active { get; set; }
-        public Rectangle Collider { get; set; }
-
         private float speed;
         private float distance=100;
         private Vector2 relPos=new Vector2(0,0);
@@ -28,27 +17,19 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
             speed = moveSpeed;
             direction = initDirection;
         }
-        public void TakeDamage()
+        public override void TakeDamage()
         {
 
         }
-        public void Attack()
-        {
-
-        }
-
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            Sprite.Draw(spriteBatch);
-        }
-
-        public void OnCollide()
+        public override void Attack()
         {
 
         }
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
+            base.Update(gameTime);
+
             Position+=direction * speed;
             relPos+=direction*speed;
             if (relPos.X > distance)
@@ -61,7 +42,10 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
                 direction *= -1;
                 relPos=new Vector2(0,0);
             }
-            Sprite.Update(gameTime);
+        }
+
+        public override void OnCollide(Collider other)
+        {
         }
     }
 }
