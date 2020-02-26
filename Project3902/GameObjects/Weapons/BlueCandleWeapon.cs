@@ -8,15 +8,8 @@ using System.Threading.Tasks;
 
 namespace Project3902
 {
-    class BlueCandleWeapon : IProjectile
+    class BlueCandleWeapon : BaseProjectile
     {
-        public Vector2 Position { get; set; }
-        public ISprite Sprite { get; set; }
-        public bool Active { get; set; } = false;
-        public Rectangle Collider { get; set; }
-        public Vector2 Direction { get; set; }
-        public float Speed { get; set; }
-
         private float activeTime = 0;
         private float maxActiveTime = 1f;
         private float startSpeed = 1000f;
@@ -26,32 +19,19 @@ namespace Project3902
             Sprite = WeaponFactory.Instance.CreateBlueCandleFireSprite(this);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            if (!Active)
-                return;
-
-            Sprite.Draw(spriteBatch);
-        }
-
         public void OnCollide() { }
 
-        public void Launch(Vector2 position, Vector2 direction)
+        public override void Launch(Vector2 position, Vector2 direction)
         {
-            Position = position;
-            Direction = direction;
-            Speed = startSpeed;
+            base.Launch(position, direction);
 
+            Speed = startSpeed;
             activeTime = 0;
-            Active = true;
         }
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
-            if (!Active)
-                return;
-
-            Sprite.Update(gameTime);
+            base.Update(gameTime);
 
             float elapsed = (float) gameTime.ElapsedGameTime.TotalSeconds;
 

@@ -1,0 +1,12 @@
+﻿Author: Austin Rogers.1274
+Date: 2/16/2020
+Sprint #: 2
+File being reviewed: EnemyFactory.cs
+Author of file under review: Suraj Suresh
+
+Time to complete review: 10min
+
+Comments:
+Overall, readability is very good. Field and function names are all highly descriptive and so, for example, it is easy to quickly find the function corresponding to an enemy type you may be looking for. Within functions, variable names are still highly descriptive, though this may be coming at the cost of excessive repeated code.
+
+The overall formatting of the file is sensible as well. Functions for different colors of one enemy are grouped together. Every function follows the same pattern: create the game object, create the sprite, assign the sprite, and return the game object, so it is consistently easy to follow.

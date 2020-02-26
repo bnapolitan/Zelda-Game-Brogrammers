@@ -46,13 +46,13 @@ namespace Project3902
             controller.RegisterCommand(Keys.A, new LinkMoveLeftCommand(link));
             controller.RegisterCommand(Keys.D, new LinkMoveRightCommand(link));
 
-            controller.RegisterCommand(Keys.Z, new LinkAttackCommand(link));
-            controller.RegisterCommand(Keys.N, new LinkAttackCommand(link));
+            controller.RegisterCommand(Keys.Z, new LinkAttackCommand(link), InputState.Pressed);
+            controller.RegisterCommand(Keys.N, new LinkAttackCommand(link), InputState.Pressed);
 
-            controller.RegisterCommand(Keys.D1, new LinkUseBoomerangCommand(link));
-            controller.RegisterCommand(Keys.D2, new LinkUseBlueCandleCommand(link));
+            controller.RegisterCommand(Keys.D1, new LinkUseBoomerangCommand(link), InputState.Pressed);
+            controller.RegisterCommand(Keys.D2, new LinkUseBlueCandleCommand(link), InputState.Pressed);
 
-            controller.RegisterCommand(Keys.E, new LinkTakeDamageCommand(link, game));
+            controller.RegisterCommand(Keys.E, new LinkTakeDamageCommand(link, game), InputState.Pressed);
 
             return controller;
         }

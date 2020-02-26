@@ -9,13 +9,8 @@ using System.Threading.Tasks;
 
 namespace Project3902
 {
-    abstract class ProjectileLaunchingEnemy : IEnemy
+    abstract class ProjectileLaunchingEnemy : BaseEnemy
     {
-        public float Health { get; set; }
-        public Vector2 Position { get; set; }
-        public ISprite Sprite { get; set; }
-        public bool Active { get; set; }
-        public Rectangle Collider { get; set; }
         public float MoveSpeed { get; set; }
         public Vector2 Direction { get; set; }
 
@@ -26,20 +21,5 @@ namespace Project3902
             MoveSpeed = moveSpeed;
             Direction = initDirection;
         }
-
-        public void TakeDamage()
-        {
-
-        }
-        public abstract void Attack();
-
-        public abstract void Draw(SpriteBatch spriteBatch);
-
-        public void OnCollide()
-        {
-
-        }
-
-        public abstract void Update(GameTime gameTime);
     }
 }

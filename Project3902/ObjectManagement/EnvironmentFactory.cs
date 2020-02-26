@@ -153,9 +153,7 @@ namespace Project3902.ObjectManagement
 		public IGameObject CreateEnemyCloudAppearance(Vector2 position)
 		{
 			var createdObject = new EnemyCloudAppearance(position);
-			var sprite = new AnimatedSprite(createdObject, linkSpriteAtlas, 
-				new List<Rectangle>{new Rectangle(138, 185, 16, 16), new Rectangle(155, 185, 16, 16), new Rectangle(172, 185, 16, 16)},
-				(float)0.5);
+			var sprite = new FixedSprite(createdObject, linkSpriteAtlas, new Rectangle(138, 185, 16, 16));
 			createdObject.Sprite = sprite;
 			return createdObject;
 		}

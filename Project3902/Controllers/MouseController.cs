@@ -9,61 +9,131 @@ namespace Project3902
 {
     class MouseController : IController<MouseActions>
     {
-        private Dictionary<MouseActions, ICommand> mouseMappings;
-        private bool isLeftPressed = false;
-        private bool isRightPressed = false;
-        private bool isMiddlePressed = false;
+        private Dictionary<MouseActions, ICommand> continuousActions;
+        private Dictionary<MouseActions, ICommand> pressedActions;
+        private Dictionary<MouseActions, ICommand> releasedActions;
+
+        private MouseState currentState;
+        private MouseState previousState;
 
         public MouseController()
         {
-            mouseMappings = new Dictionary<MouseActions, ICommand>();
+            continuousActions = new Dictionary<MouseActions, ICommand>();
+            pressedActions = new Dictionary<MouseActions, ICommand>();
+            releasedActions = new Dictionary<MouseActions, ICommand>();
         }
 
         public void RegisterCommand(MouseActions button, ICommand command)
         {
-            mouseMappings.Add(button, command);
+            continuousActions.Add(button, command);
+        }
+
+        public void RegisterCommand(MouseActions button, ICommand command, InputState state)
+        {
+            switch(state)
+            {
+                case InputState.Held:
+                    continuousActions.Add(button, command);
+                    break;
+                case InputState.Pressed:
+                    pressedActions.Add(button, command);
+                    break;
+                case InputState.Released:
+                    releasedActions.Add(button, command);
+                    break;
+            }
         }
 
         public void Update()
         {
-            MouseState state = Mouse.GetState();
+            previousState = currentState;
+            currentState = Mouse.GetState();
 
-            if (mouseMappings.ContainsKey(MouseActions.Left))
+            HandleHeldActions();
+
+            HandlePressedActions();
+
+            HandleReleasedActions();
+
+        }
+
+        private void HandleHeldActions()
+        {
+            if (continuousActions.ContainsKey(MouseActions.Left))
             {
-                if (state.LeftButton == ButtonState.Pressed && !isLeftPressed)
+                if (currentState.LeftButton == ButtonState.Pressed)
                 {
-                    mouseMappings[MouseActions.Left].Execute();
-                    isLeftPressed = true;
-                }
-                if(state.LeftButton == ButtonState.Released)
-                {
-                    isLeftPressed = false;
+                    continuousActions[MouseActions.Left].Execute();
                 }
             }
 
-            if (mouseMappings.ContainsKey(MouseActions.Middle))
+            if (continuousActions.ContainsKey(MouseActions.Middle))
             {
-                if (state.MiddleButton == ButtonState.Pressed && !isMiddlePressed)
+                if (currentState.MiddleButton == ButtonState.Pressed)
                 {
-                    mouseMappings[MouseActions.Middle].Execute();
-                    isMiddlePressed = true;
-                }
-                if (state.MiddleButton == ButtonState.Released)
-                {
-                    isMiddlePressed = false;
+                    continuousActions[MouseActions.Middle].Execute();
                 }
             }
 
-            if (mouseMappings.ContainsKey(MouseActions.Right))
+            if (continuousActions.ContainsKey(MouseActions.Right))
             {
-                if (state.RightButton == ButtonState.Pressed && !isRightPressed)
+                if (currentState.RightButton == ButtonState.Pressed)
                 {
-                    mouseMappings[MouseActions.Right].Execute();
-                    isRightPressed = true;
+                    continuousActions[MouseActions.Right].Execute();
                 }
-                if (state.RightButton == ButtonState.Released)
+            }
+        }
+
+        private void HandlePressedActions()
+        {
+            if (pressedActions.ContainsKey(MouseActions.Left))
+            {
+                if (currentState.LeftButton == ButtonState.Pressed && previousState.LeftButton == ButtonState.Released)
                 {
-                    isRightPressed = false;
+                    pressedActions[MouseActions.Left].Execute();
+                }
+            }
+
+            if (pressedActions.ContainsKey(MouseActions.Middle))
+            {
+                if (currentState.MiddleButton == ButtonState.Pressed && previousState.MiddleButton == ButtonState.Released)
+                {
+                    pressedActions[MouseActions.Middle].Execute();
+                }
+            }
+
+            if (pressedActions.ContainsKey(MouseActions.Right))
+            {
+                if (currentState.RightButton == ButtonState.Pressed && previousState.RightButton == ButtonState.Released)
+                {
+                    pressedActions[MouseActions.Right].Execute();
+                }
+            }
+        }
+
+        private void HandleReleasedActions()
+        {
+            if (releasedActions.ContainsKey(MouseActions.Left))
+            {
+                if (currentState.LeftButton == ButtonState.Released && previousState.LeftButton == ButtonState.Pressed)
+                {
+                    releasedActions[MouseActions.Left].Execute();
+                }
+            }
+
+            if (releasedActions.ContainsKey(MouseActions.Middle))
+            {
+                if (currentState.MiddleButton == ButtonState.Released && previousState.MiddleButton == ButtonState.Pressed)
+                {
+                    releasedActions[MouseActions.Middle].Execute();
+                }
+            }
+
+            if (releasedActions.ContainsKey(MouseActions.Right))
+            {
+                if (currentState.RightButton == ButtonState.Released && previousState.RightButton == ButtonState.Pressed)
+                {
+                    releasedActions[MouseActions.Right].Execute();
                 }
             }
         }

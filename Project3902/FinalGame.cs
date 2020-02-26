@@ -50,6 +50,7 @@ namespace Project3902
         {
             IsMouseVisible = true;
 
+            SetUpKeyboardController();
             graphics.PreferredBackBufferWidth = 1024;
             graphics.PreferredBackBufferHeight = 672;
             graphics.ApplyChanges();

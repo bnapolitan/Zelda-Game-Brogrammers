@@ -1,0 +1,22 @@
+﻿Author: Ben Napolitan.7
+Date: 2/17/2020
+Sprint #: 2
+File being reviewed: FixedItem.cs
+Author of file under review: Xueyang Li
+
+
+Comments on code maintainability/quality:
+This file falls in line with our structure of sprites. However, there are concerns I have with some aspects of the file that don't seem maintainable.
+
+For starters, FixedItem contains a controller for items and registers commands. This does not appear cohesive as the sprite is not very linked to commands and this should likely be handled elsewhere.
+
+Second, the file contains a boolean for "FairyMov" which is a specific case. This would likely be better suited in its own class for the fairy instead, as most of the items won't use that boolean.
+
+The class contains position variables hard-coded in. Despite the application in this current sprint, it will be more helpful down the line to be able to put the position in as a parameter.
+
+Finally, the sprites don't have game objects, which will be needed down the line for interactivity.
+
+
+Hypothetical change:
+A potential change would be to extrapolate multiple sprites for specific cases or reusing the already established sprite structures for the items (FixedSprite.cs, AnimatedSprite.cs).
+Game objects should be linked to sprites, and functions should be designed to be more modular (parameters).

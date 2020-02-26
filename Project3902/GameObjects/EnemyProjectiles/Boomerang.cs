@@ -13,9 +13,9 @@ namespace Project3902.GameObjects.EnemyProjectiles
         public Vector2 Position { get; set; }
         public ISprite Sprite { get; set; }
         public bool Active { get; set; }
-        public Rectangle Collider { get; set; }
         public Vector2 Direction { get; set; }
         public float Speed { get; set; }
+        public Collider Collider { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         private float maxSpeed = 1000f;
         private float minSpeed = 500f;
@@ -77,6 +77,11 @@ namespace Project3902.GameObjects.EnemyProjectiles
             Position = position;
             Direction = direction;
             Active = true;
+        }
+
+        public void OnCollide(Collider other)
+        {
+            throw new NotImplementedException();
         }
     }
 }

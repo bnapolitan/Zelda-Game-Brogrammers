@@ -9,26 +9,68 @@ namespace Project3902
 {
     class KeyboardController : IController<Keys>
     {
-        private Dictionary<Keys, ICommand> keyboardMappings;
+        private Dictionary<Keys, ICommand> heldKeys;
+        private Dictionary<Keys, ICommand> pressedKeys;
+        private Dictionary<Keys, ICommand> releasedKeys;
+
+        private KeyboardState currentState;
+        private KeyboardState previousState;
 
         public KeyboardController()
         {
-            keyboardMappings = new Dictionary<Keys, ICommand>();
+            heldKeys = new Dictionary<Keys, ICommand>();
+            pressedKeys = new Dictionary<Keys, ICommand>();
+            releasedKeys = new Dictionary<Keys, ICommand>();
+
+            currentState = Keyboard.GetState();
         }
 
         public void RegisterCommand(Keys key, ICommand command)
         {
-            keyboardMappings.Add(key, command);
+            heldKeys.Add(key, command);
+        }
+
+        public void RegisterCommand(Keys key, ICommand command, InputState state)
+        {
+            switch (state)
+            {
+                case InputState.Held:
+                    heldKeys.Add(key, command);
+                    break;
+                case InputState.Pressed:
+                    pressedKeys.Add(key, command);
+                    break;
+                case InputState.Released:
+                    releasedKeys.Add(key, command);
+                    break;
+            }
         }
 
         public void Update()
         {
-            Keys[] pressedKeys = Keyboard.GetState().GetPressedKeys();
+            previousState = currentState;
+            currentState = Keyboard.GetState();
 
-            foreach (Keys key in pressedKeys)
+            foreach (Keys key in heldKeys.Keys)
             {
-                if (keyboardMappings.ContainsKey(key))
-                    keyboardMappings[key].Execute();
+                if (currentState.IsKeyDown(key))
+                    heldKeys[key].Execute();
+            }
+
+            foreach (Keys key in pressedKeys.Keys)
+            {
+                if (currentState.IsKeyDown(key) && !previousState.IsKeyDown(key))
+                {
+                    pressedKeys[key].Execute();
+                }
+            }
+
+            foreach (Keys key in releasedKeys.Keys)
+            {
+                if (!currentState.IsKeyDown(key) && previousState.IsKeyDown(key))
+                {
+                    releasedKeys[key].Execute();
+                }
             }
         }
     }

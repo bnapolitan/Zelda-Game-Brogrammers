@@ -56,6 +56,9 @@
 /processorParam:TextureFormat=Color
 /build:DungeonSpriteSheet.png
 
+
+#begin Items.png
+
 #begin File.fx
 /importer:EffectImporter
 /processor:EffectProcessor
@@ -72,6 +75,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+/build:Items.png
 /build:OverworldEnemies.png
 
 #begin OverworldSpriteSheet.png
@@ -86,6 +90,18 @@
 /processorParam:TextureFormat=Color
 /build:OverworldSpriteSheet.png
 
+#begin ZeldaBosses.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:ZeldaBosses.png
+
 #begin ZeldaBossSprites.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -97,6 +113,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:ZeldaBossSprites.png
+
+#begin ZeldaCharacter.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:ZeldaCharacter.png
 
 #begin ZeldaNPCSpriteSheet.png
 /importer:TextureImporter
@@ -121,4 +149,3 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:zeldaspritesheet.png;linkspritesheet.png
-

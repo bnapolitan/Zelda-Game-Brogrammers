@@ -1,0 +1,17 @@
+﻿Author: Austin Rogers.1274
+Date: 2/16/2020
+Sprint #: 2
+File being reviewed: EnemyFactory.cs
+Author of file under review: Suraj Suresh
+
+
+Comments on code quality:
+Overall, the EnemyFactory class is well structured. Its functions are cohesive, doing nothing but creating various enemies. Its coupling is high; however, that is expected for a factory class, and it does not know about any types other than those which are necessary for its function: various Sprites and Enemy types. Each creation function in the factory takes minimal parameters, nothing more than simply positions to place created enemies at so the burden of information is on the factory, not the client.
+
+A potential issue is the amount of repeated code. For example, each of the Gel creation functions do the exact same thing, except with different source Rectangles. It may be preferred to place all the repeated code in a general CreateGel(List<Rectangle>) function that specific Gel creators can call.
+
+Also, there are a lot of repeated magic numbers, specifically in the constructors for AnimatedSprites, frame time and scale parameters. It would probably be useful to include a private field in EnemyFactory like enemyScale to pass to every AnimatedSprite constructor so that if we want to change the scale of enemies, we can do so from one point of control. Same goes for other repeated values, like Gel move speed.
+
+
+Hypothetical change:
+A possible change would be to add another color of any of the already existing enemy types. This would be fairly easy to do, though not necessarily in an ideal manner. To add a new Gel color, the best way would be to copy paste one of the existing functions and just change the source rectangles to correspond to my new enemy color. The above recommendation would make this much more convenient, as in if there were a general Gel creation function, making a new type of Gel would just require specifying a new List of Rectangles, instead of copy/pasting code.

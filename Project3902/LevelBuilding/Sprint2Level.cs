@@ -3,11 +3,7 @@ using Project3902.GameObjects;
 using Project3902.GameObjects.Enemies_and_NPCs;
 using Project3902.LevelBuilding.Interface;
 using Project3902.ObjectManagement;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project3902
 {
@@ -20,8 +16,8 @@ namespace Project3902
         public Sprint2Level(FinalGame game)
         {
             Game = game;
-            environmentPosition = new Vector2(300, 170);
-            enemyPosition = new Vector2(700, 260);
+            environmentPosition = new Vector2(450, 50);
+            enemyPosition = new Vector2(450, 250);
         }
 
         public List<IGameObject> CreateInteractiveEnvironmentObjects()
@@ -38,7 +34,7 @@ namespace Project3902
             list.Add(EnvironmentFactory.Instance.CreateRoomBorder(environmentPosition));
             return list;
         }
-        
+
         public List<IGameObject> CreateEnemyObjects()
         {
             var list = new List<IGameObject>();
@@ -50,15 +46,16 @@ namespace Project3902
             list.Add(EnemyFactory.Instance.CreateGreenZol(enemyPosition));
 
             var aquamentus = new Aquamentus(enemyPosition, 1, new Vector2(1, 0), this.Game);
+            EnemyFactory.RegisterEnemyForCollision(aquamentus);
             list.Add(aquamentus);
             list.Add(EnemyFactory.Instance.CreateBlueGoriya(enemyPosition));
 
-            list.Add(EnemyFactory.Instance.createRedMerchant(enemyPosition));
+            list.Add(EnemyFactory.Instance.createGreenMerchant(enemyPosition));
             list.Add(EnemyFactory.Instance.createDongo(enemyPosition));
             list.Add(EnemyFactory.Instance.createOldMan(enemyPosition));
             list.Add(EnemyFactory.Instance.createFlame(enemyPosition));
             return list;
         }
-        
+
     }
 }
