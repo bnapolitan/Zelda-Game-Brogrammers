@@ -11,18 +11,20 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
 {
     class Goriya : ProjectileLaunchingEnemy
     {
-        private float distance = 100;
+        private readonly float distance = 100;
         private Vector2 relPos = new Vector2(0, 0);
         public ISprite rightFacingGoriya;
         public ISprite leftFacingGoriya;
         public ISprite downFacingGoriya;
         public ISprite upFacingGoriya;
-        private int framesBeforeAttack = 180;
+        private readonly int framesBeforeAttack = 180;
         private int currentFrame = 0;
         private IProjectile boomerang;
         private bool isShooting = false;
 
-        public Goriya(Vector2 pos, float moveSpeed, Vector2 initDirection) : base(pos, moveSpeed, initDirection) { }
+        public Goriya(Vector2 pos, float moveSpeed, Vector2 initDirection) : base(pos, moveSpeed, initDirection) {
+
+        }
 
         public override void Attack()
         {

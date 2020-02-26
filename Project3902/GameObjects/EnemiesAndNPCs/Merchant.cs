@@ -10,8 +10,8 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
 {
     class Merchant : BaseEnemy
     {
-        private float speed;
-        private float distance = 100;
+        private readonly float speed;
+        private readonly float distance = 100;
         private Vector2 relPos = new Vector2(0, 0);
         private Vector2 direction;
 

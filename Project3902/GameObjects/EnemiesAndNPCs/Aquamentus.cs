@@ -8,9 +8,9 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
     class Aquamentus : ProjectileLaunchingEnemy
     {
         public Sprint2 Game { get; }
-        private float distance = 100;
+        private readonly float distance = 100;
         private Vector2 relPos = new Vector2(0, 0);
-        private int framesBeforeAttack = 120;
+        private readonly int framesBeforeAttack = 120;
         private int currentFrame = 0;
         private IProjectile fireball;
         private IProjectile fireball2;
