@@ -107,7 +107,7 @@ namespace Project3902
 
         public void OnCollide(Collider other)
         {
-            if (other.GameObject is Gel)
+            if (other.GameObject is Gel) // Could replace Gel with any enemy type, or even IEnemy
             {
                 Console.WriteLine("Link is colliding with an IEnemy: " + other.GameObject.ToString());
                 // Example response:
