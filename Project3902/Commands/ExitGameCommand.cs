@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace Project3902
 {
-    class SetMovingNonanimatedCommand : ICommand
+    class ExitGameCommand : ICommand
     {
-        private Sprint0 game;
+        private FinalGame game;
 
-        public SetMovingNonanimatedCommand(Sprint0 game)
+        public ExitGameCommand(FinalGame game)
         {
             this.game = game;
         }
 
         public void Execute()
         {
-            game.SetMovingNonanimatedSprite();
+            game.Exit();
         }
     }
 }

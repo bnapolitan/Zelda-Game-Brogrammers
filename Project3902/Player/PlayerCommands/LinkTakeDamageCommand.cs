@@ -9,9 +9,9 @@ namespace Project3902
     class LinkTakeDamageCommand : ICommand
     {
         private ILink link;
-        private Sprint2 game;
+        private FinalGame game;
 
-        public LinkTakeDamageCommand(ILink link, Sprint2 game)
+        public LinkTakeDamageCommand(ILink link, FinalGame game)
         {
             this.link = link;
             this.game = game;

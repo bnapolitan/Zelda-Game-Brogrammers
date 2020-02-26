@@ -6,7 +6,21 @@ namespace Project3902
     abstract class BaseEnemy : IEnemy
     {
         public float Health { get; set; }
-        public Vector2 Position { get; set; }
+
+        private Vector2 position;
+        public Vector2 Position
+        {
+            get
+            {
+                return position;
+            }
+            set
+            {
+                position = value;
+                if (Collider != null)
+                    Collider.AlignHitbox();
+            }
+        }
         public ISprite Sprite { get; set; }
         public bool Active { get; set; }
         public Collider Collider { get; set; }
@@ -26,7 +40,6 @@ namespace Project3902
         public virtual void Update(GameTime gameTime)
         {
             Sprite.Update(gameTime);
-            Collider.Update(gameTime);
         }
     }
 }

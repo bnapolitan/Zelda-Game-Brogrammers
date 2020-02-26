@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace Project3902
 {
-    class ExitGameCommand : ICommand
+    class CycleLastEnvironmentObjectCommand : ICommand
     {
-        private Sprint2 game;
+        private FinalGame game;
 
-        public ExitGameCommand(Sprint2 game)
+        public CycleLastEnvironmentObjectCommand(FinalGame game)
         {
             this.game = game;
         }
 
         public void Execute()
         {
-            game.Exit();
+            game.CycleEnvironmentLast();
         }
     }
 }

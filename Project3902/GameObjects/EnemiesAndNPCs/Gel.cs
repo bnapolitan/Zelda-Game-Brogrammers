@@ -17,6 +17,7 @@ namespace Project3902
             speed = moveSpeed;
             direction = initDirection;
         }
+
         public override void TakeDamage()
         {
 

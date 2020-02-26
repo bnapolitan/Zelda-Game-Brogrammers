@@ -1,11 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project3902
 {
@@ -14,7 +9,19 @@ namespace Project3902
         public float Health { get; set; }
         public float MaxHealth { get; set; }
 
-        public Vector2 Position { get; set; }
+        private Vector2 position;
+
+        public Vector2 Position { 
+            get 
+            {
+                return position;
+            }
+            set 
+            {
+                position = value;
+                Collider.AlignHitbox();
+            }
+        }
 
         public ISprite Sprite { get => machine.Sprite; set { } }
         public bool Active { get; set; }
@@ -27,15 +34,14 @@ namespace Project3902
         public IProjectile SwordProjectile { get; set; }
         public Collider Collider { get; set; }
 
-        private Sprint2 game;
+        private FinalGame game;
 
         private LinkStateMachine machine;
 
         private KeyboardController controller;
 
-        public Link(Vector2 position, Sprint2 game)
+        public Link(Vector2 position, FinalGame game)
         {
-            Position = position;
             this.game = game;
 
             Health = 5;
@@ -49,6 +55,8 @@ namespace Project3902
 
             CurrentWeapon = WeaponFactory.Instance.CreateBlueCandleProjectile();
             SwordProjectile = new SwordProjectile(); // Replace with factory method.
+
+            Position = position;
         }
 
         public void Update(GameTime gameTime)
@@ -58,8 +66,6 @@ namespace Project3902
             SwordProjectile.Update(gameTime);
 
             machine.Update(gameTime);
-
-            Collider.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -107,7 +113,7 @@ namespace Project3902
 
         public void OnCollide(Collider other)
         {
-            if (other.GameObject is Gel)
+            if (other.GameObject is Gel) // Could replace Gel with any enemy type, or even IEnemy
             {
                 Console.WriteLine("Link is colliding with an IEnemy: " + other.GameObject.ToString());
                 // Example response:

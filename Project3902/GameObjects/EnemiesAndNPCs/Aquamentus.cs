@@ -7,8 +7,8 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
 {
     class Aquamentus : ProjectileLaunchingEnemy
     {
-        public Sprint2 Game { get; }
-        private readonly float distance = 100;
+        public FinalGame Game { get; }
+        private float distance = 100;
         private Vector2 relPos = new Vector2(0, 0);
         private readonly int framesBeforeAttack = 120;
         private int currentFrame = 0;
@@ -17,7 +17,7 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
         private IProjectile fireball3;
         private bool isShooting = false;
 
-        public Aquamentus(Vector2 pos, float moveSpeed, Vector2 initDirection, Sprint2 game) : base(pos, moveSpeed, initDirection)
+        public Aquamentus(Vector2 pos, float moveSpeed, Vector2 initDirection, FinalGame game) : base(pos, moveSpeed, initDirection)
         {
             this.Game = game;
             Sprite = EnemyFactory.Instance.CreateAquamentusSprite(this);

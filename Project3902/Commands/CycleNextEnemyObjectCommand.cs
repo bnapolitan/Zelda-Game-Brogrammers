@@ -4,20 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project3902
+namespace Project3902.Commands.Sprint2Commands
 {
-    class SetMovingAnimatedCommand : ICommand
+    class CycleNextEnemyObjectCommand: ICommand
     {
-        private Sprint0 game;
+        private FinalGame game;
 
-        public SetMovingAnimatedCommand(Sprint0 game)
+        public CycleNextEnemyObjectCommand(FinalGame game)
         {
             this.game = game;
         }
 
         public void Execute()
         {
-            game.SetMovingAnimatedSprite();
+            game.CycleEnemyNext();
         }
     }
 }

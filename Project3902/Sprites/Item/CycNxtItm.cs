@@ -8,9 +8,9 @@ namespace Project3902
 {
     class CycNxtItm: ICommand
     {
-        private Sprint2 game;
+        private FinalGame game;
 
-        public CycNxtItm(Sprint2 game)
+        public CycNxtItm(FinalGame game)
         {
             this.game = game;
         }
