@@ -51,10 +51,6 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Commands\Sprint0Commands\SetMovingAnimatedCommand.cs" />
-    <Compile Include="Commands\Sprint0Commands\SetMovingNonanimatedCommand.cs" />
-    <Compile Include="Commands\Sprint0Commands\SetNonmovingAnimatedCommand.cs" />
-    <Compile Include="Commands\Sprint0Commands\SetSpriteMouseCommand.cs" />
     <Compile Include="GameObjects\EnemiesAndNPCs\BaseEnemy.cs" />
     <Compile Include="GameObjects\Environment\BaseEnvironment.cs" />
     <Compile Include="GameObjects\Weapons\BaseProjectile.cs" />
@@ -74,8 +70,8 @@
     <Compile Include="Controllers\InputState.cs" />
     <Compile Include="Controllers\MouseActions.cs" />
     <Compile Include="Controllers\MouseController.cs" />
-    <Compile Include="Commands\Sprint0Commands\ICommand.cs" />
-    <Compile Include="Commands\Sprint0Commands\ExitGameCommand.cs" />
+    <Compile Include="Commands\ICommand.cs" />
+    <Compile Include="Commands\ExitGameCommand.cs" />
     <Compile Include="Controllers\KeyboardController.cs" />
     <Compile Include="GameObjects\EnemiesAndNPCs\Aquamentus.cs" />
     <Compile Include="GameObjects\EnemiesAndNPCs\Dodongo.cs" />
@@ -112,7 +108,6 @@
     <Compile Include="GameObjects\Extendables\IUpdatable.cs" />
     <Compile Include="GameObjects\Extendables\IDrawable.cs" />
     <Compile Include="GameObjects\Environment\Interfaces\IBackgroundEnvironmentObject.cs" />
-    <Compile Include="Commands\Sprint0Commands\SetNonmovingNonanimatedCommand.cs" />
     <Compile Include="GameObjects\ProjectileLaunchingEnemy.cs" />
     <Compile Include="GameObjects\FixedGameObject.cs" />
     <Compile Include="GameObjects\Extendables\ICharacter.cs" />
@@ -161,7 +156,7 @@
     <Compile Include="Player\PlayerStates\States\WalkStates\LinkLeftWalkState.cs" />
     <Compile Include="Player\PlayerStates\States\WalkStates\LinkRightWalkState.cs" />
     <Compile Include="Player\PlayerStates\States\WalkStates\LinkUpWalkState.cs" />
-    <Compile Include="Sprint2.cs" />
+    <Compile Include="FinalGame.cs" />
     <Compile Include="Sprites\Item\ItemReg.cs" />
     <Compile Include="Sprites\Item\ItemCtl.cs" />
     <Compile Include="Sprites\Item\FixedItem.cs" />
@@ -173,15 +168,14 @@
     <Compile Include="StateMachine\IStateMachine.cs" />
     <Compile Include="Text\ITextSprite.cs" />
     <Compile Include="Text\SimpleText.cs" />
-    <Compile Include="Sprites\Sprint0Sprites\CircleMoveSprite.cs" />
+    <Compile Include="Sprites\CircleMoveSprite.cs" />
     <Compile Include="Sprites\FixedSprite.cs" />
     <Compile Include="AtlasUtils\IAtlasSource.cs" />
     <Compile Include="Sprites\ISprite.cs" />
-    <Compile Include="Sprites\Sprint0Sprites\BackAndForthSprite.cs" />
+    <Compile Include="Sprites\BackAndForthSprite.cs" />
     <Compile Include="AtlasUtils\MultipleSource.cs" />
     <Compile Include="Sprites\BaseSprite.cs" />
     <Compile Include="AtlasUtils\SingleSource.cs" />
-    <Compile Include="Sprint0.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AtlasUtils\SpriteAtlas.cs" />

@@ -8,9 +8,9 @@ namespace Project3902.Commands.Sprint2Commands
 {
     class CycleLastEnemyObjectCommand :ICommand
     {
-        private Sprint2 game;
+        private FinalGame game;
 
-        public CycleLastEnemyObjectCommand(Sprint2 game)
+        public CycleLastEnemyObjectCommand(FinalGame game)
         {
             this.game = game;
         }

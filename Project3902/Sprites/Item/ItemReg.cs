@@ -10,7 +10,7 @@ namespace Project3902
     class ItemReg : IController<Keys>
     {
         public Dictionary<Keys, ICommand> ItemCtlKey;
-        public Sprint2 Game { get; set; }
+        public FinalGame Game { get; set; }
 
 
         public ItemReg()

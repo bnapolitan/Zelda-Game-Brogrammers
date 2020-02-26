@@ -8,7 +8,7 @@ namespace Project3902
         private bool debug = true;
 
         // Local to GameObject.
-        Rectangle rect;
+        Rectangle localRect;
 
         // In World space
         public Rectangle Hitbox { get; set; }
@@ -18,7 +18,7 @@ namespace Project3902
         public Collider(IGameObject gameObject, Rectangle localHitbox)
         {
             GameObject = gameObject;
-            rect = localHitbox;
+            localRect = localHitbox;
             AlignHitbox();
         }
 
@@ -36,7 +36,7 @@ namespace Project3902
         {
             var gameObjectPosition = GameObject.Position.ToPoint();
 
-            Hitbox = new Rectangle(rect.X + gameObjectPosition.X, rect.Y + gameObjectPosition.Y, rect.Width, rect.Height);
+            Hitbox = new Rectangle(localRect.X + gameObjectPosition.X, localRect.Y + gameObjectPosition.Y, localRect.Width, localRect.Height);
         }
 
         public void Draw(SpriteBatch spriteBatch)

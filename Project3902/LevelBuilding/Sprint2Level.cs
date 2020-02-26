@@ -7,11 +7,11 @@ namespace Project3902
 {
     class Sprint2Level
     {
-        public Sprint2 Game { get; }
+        public FinalGame Game { get; }
         private Vector2 environmentPosition;
         private Vector2 enemyPosition;
 
-        public Sprint2Level(Sprint2 game)
+        public Sprint2Level(FinalGame game)
         {
             Game = game;
             environmentPosition = new Vector2(450, 50);

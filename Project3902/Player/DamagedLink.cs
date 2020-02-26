@@ -23,7 +23,7 @@ namespace Project3902
         private Color originalColor = Color.White;
         private Color tint;
 
-        private Sprint2 game;
+        private FinalGame game;
 
         public float Health { get => decoratedLink.Health; set => decoratedLink.Health = value; }
         public Vector2 Position { get => decoratedLink.Position; set => decoratedLink.Position = value; }
@@ -34,7 +34,7 @@ namespace Project3902
         public IProjectile SwordProjectile { get => decoratedLink.SwordProjectile; set => decoratedLink.SwordProjectile = value; }
         public Collider Collider { get => decoratedLink.Collider; set => decoratedLink.Collider = value; }
 
-        public DamagedLink(ILink decoratedLink, Sprint2 game)
+        public DamagedLink(ILink decoratedLink, FinalGame game)
         {
             this.decoratedLink = decoratedLink;
             this.game = game;

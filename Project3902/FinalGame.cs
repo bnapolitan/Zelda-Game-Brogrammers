@@ -17,7 +17,7 @@ using System.Collections.Generic;
 
 namespace Project3902
 {
-    class Sprint2 : Game
+    class FinalGame : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -36,7 +36,7 @@ namespace Project3902
         IController<MouseActions> mouseController;
         KeyboardController keyboardController;
 
-        public Sprint2()
+        public FinalGame()
         {
             graphics = new GraphicsDeviceManager(this);
             //graphics.PreferredBackBufferWidth = 256 * 3;
@@ -164,13 +164,13 @@ namespace Project3902
 
         public void cycNxtItm()
         {
-            Sprint2.currentFram.Current++;
+            FinalGame.currentFram.Current++;
             this.Items = new FixedItem(Content.Load<Texture2D>("Items"), 1, 14);
         }
 
         public void cycPrvItm()
         {
-            Sprint2.currentFram.Current--;
+            FinalGame.currentFram.Current--;
             this.Items = new FixedItem(Content.Load<Texture2D>("Items"), 1, 14);
         }
 

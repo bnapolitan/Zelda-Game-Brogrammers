@@ -27,12 +27,12 @@ namespace Project3902
             linkAtlas = new SpriteAtlas(content.Load<Texture2D>("linkspritesheet"));
         }
 
-        public Link CreateLink(Vector2 position, Sprint2 game)
+        public Link CreateLink(Vector2 position, FinalGame game)
         {
             return new Link(position, game);
         }
 
-        public KeyboardController CreateLinkController(Link link, Sprint2 game)
+        public KeyboardController CreateLinkController(Link link, FinalGame game)
         {
             var controller = new KeyboardController();
 

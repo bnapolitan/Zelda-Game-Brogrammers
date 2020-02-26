@@ -10,7 +10,7 @@ namespace Project3902
     class ItemCtl 
     {
         public static ItemCtl Instance { get; } = new ItemCtl();
-        public ItemReg ItemRegister( Sprint2 game)
+        public ItemReg ItemRegister( FinalGame game)
         {
             var ItController = new ItemReg();
 

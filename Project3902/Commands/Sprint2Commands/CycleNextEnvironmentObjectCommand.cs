@@ -8,9 +8,9 @@ namespace Project3902
 {
     class CycleNextEnvironmentObjectCommand : ICommand
     {
-        private Sprint2 game;
+        private FinalGame game;
 
-        public CycleNextEnvironmentObjectCommand(Sprint2 game)
+        public CycleNextEnvironmentObjectCommand(FinalGame game)
         {
             this.game = game;
         }

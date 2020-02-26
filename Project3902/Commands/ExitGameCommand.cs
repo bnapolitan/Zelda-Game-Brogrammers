@@ -8,9 +8,9 @@ namespace Project3902
 {
     class ExitGameCommand : ICommand
     {
-        private Sprint2 game;
+        private FinalGame game;
 
-        public ExitGameCommand(Sprint2 game)
+        public ExitGameCommand(FinalGame game)
         {
             this.game = game;
         }

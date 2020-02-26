@@ -38,6 +38,9 @@ namespace Project3902.ObjectManagement
 
 		public static void RegisterEnemyForCollision(IEnemy enemy)
 		{
+			// REPLACE: create colliders in individual Create...() methods below with correct sizes.
+			// See CreateAquaGel for example.
+			enemy.Collider = new Collider(enemy, new Rectangle(0, 0, 10, 10));
 			CollisionHandler.Instance.RegisterCollidable(enemy, Layer.Enemy, Layer.Wall);
 		}
 
@@ -53,6 +56,7 @@ namespace Project3902.ObjectManagement
 			createdObject.Collider = collider;
 
 			RegisterEnemyForCollision(createdObject);
+
 			return createdObject;
 		}
 

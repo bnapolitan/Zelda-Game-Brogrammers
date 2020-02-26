@@ -17,7 +17,7 @@ namespace Project3902
         private int currentFrame;
         private int totalFrames;
         private ItemReg ItController;
-        private Sprint2 game;
+        private FinalGame game;
         int posiX = 200;
         int posiY = 200;
         bool FairyMov = false;
@@ -27,7 +27,7 @@ namespace Project3902
             Texture = texture;
             Rows = rows;
             Columns = columns;
-            currentFrame = Sprint2.currentFram.Current;
+            currentFrame = FinalGame.currentFram.Current;
             totalFrames = Rows * Columns;
 
             ItController = ItemCtl.Instance.ItemRegister(game);
@@ -36,7 +36,7 @@ namespace Project3902
                 currentFrame = 0;
             if (currentFrame == -1)
                 currentFrame = totalFrames - 1;
-            Sprint2.currentFram.Current = currentFrame;
+            FinalGame.currentFram.Current = currentFrame;
         }
 
         public void Update()
@@ -51,7 +51,7 @@ namespace Project3902
             int height = Texture.Height / Rows;
             int row = (int)((float)currentFrame / (float)Columns);
             int column = currentFrame % Columns;
-            if (Sprint2.currentFram.Current == 1 && posiX<300 && !FairyMov) {  
+            if (FinalGame.currentFram.Current == 1 && posiX<300 && !FairyMov) {  
                 posiX += 4;
                 if (posiX >= 300) { FairyMov = true; }
             }
