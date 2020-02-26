@@ -14,7 +14,19 @@ namespace Project3902
         public float Health { get; set; }
         public float MaxHealth { get; set; }
 
-        public Vector2 Position { get; set; }
+        private Vector2 position;
+
+        public Vector2 Position { 
+            get 
+            {
+                return position;
+            }
+            set 
+            {
+                position = value;
+                Collider.AlignHitbox();
+            }
+        }
 
         public ISprite Sprite { get => machine.Sprite; set { } }
         public bool Active { get; set; }
@@ -35,7 +47,6 @@ namespace Project3902
 
         public Link(Vector2 position, FinalGame game)
         {
-            Position = position;
             this.game = game;
 
             Health = 5;
@@ -49,6 +60,8 @@ namespace Project3902
 
             CurrentWeapon = WeaponFactory.Instance.CreateBlueCandleProjectile();
             SwordProjectile = new SwordProjectile(); // Replace with factory method.
+
+            Position = position;
         }
 
         public void Update(GameTime gameTime)
@@ -58,8 +71,6 @@ namespace Project3902
             SwordProjectile.Update(gameTime);
 
             machine.Update(gameTime);
-
-            Collider.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)

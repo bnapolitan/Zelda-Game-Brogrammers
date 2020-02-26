@@ -3,14 +3,12 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Project3902
 {
-    class Collider : IUpdatable, IDrawable
+    class Collider : IDrawable
     {
         private bool debug = true;
 
-        // Local to GameObject.
-        Rectangle localRect;
+        private Rectangle localRect;
 
-        // In World space
         public Rectangle Hitbox { get; set; }
 
         public IGameObject GameObject { get; set; }
@@ -22,17 +20,12 @@ namespace Project3902
             AlignHitbox();
         }
 
-        public void Update(GameTime gameTime)
-        {
-            AlignHitbox();
-        }
-
         public bool Intersects(Collider other)
         {
             return Hitbox.Intersects(other.Hitbox);
         }
 
-        private void AlignHitbox()
+        public void AlignHitbox()
         {
             var gameObjectPosition = GameObject.Position.ToPoint();
 
