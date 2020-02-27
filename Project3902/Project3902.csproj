@@ -54,17 +54,13 @@
     <Compile Include="GameObjects\Environment\BaseEnvironment.cs" />
     <Compile Include="GameObjects\Weapons\BaseProjectile.cs" />
     <Compile Include="GlobalSuppressions2.cs" />
+    <Compile Include="LevelBuilding\LevelBuilder.cs" />
+    <Compile Include="LevelBuilding\ObjectLookup.cs" />
     <Compile Include="ObjectManagement\CollisionSystem\Collider.cs" />
     <Compile Include="ObjectManagement\CollisionSystem\CollisionHandler.cs" />
     <Compile Include="ObjectManagement\CollisionSystem\Layer.cs" />
     <Compile Include="ObjectManagement\CollisionSystem\LayerMasksHolder.cs" />
     <Compile Include="ObjectManagement\ShapeSpriteFactory.cs" />
-    <Compile Include="Sprites\Item\CycPrvItm.cs" />
-    <Compile Include="Sprites\Item\CycNxtItm.cs" />
-    <Compile Include="Commands\CycleLastEnemyObjectCommand.cs" />
-    <Compile Include="Commands\CycleLastEnvironmentObjectCommand.cs" />
-    <Compile Include="Commands\CycleNextEnemyObjectCommand.cs" />
-    <Compile Include="Commands\CycleNextEnvironmentObjectCommand.cs" />
     <Compile Include="Controllers\IController.cs" />
     <Compile Include="Controllers\InputState.cs" />
     <Compile Include="Controllers\MouseActions.cs" />
@@ -160,7 +156,6 @@
     <Compile Include="Player\PlayerStates\States\WalkStates\LinkUpWalkState.cs" />
     <Compile Include="FinalGame.cs" />
     <Compile Include="Sprites\Item\ItemReg.cs" />
-    <Compile Include="Sprites\Item\ItemCtl.cs" />
     <Compile Include="Sprites\Item\FixedItem.cs" />
     <Compile Include="Sprites\Item\IItemCtl.cs" />
     <Compile Include="Sprites\Item\ItemSprite.cs" />
@@ -208,6 +203,9 @@
     <Analyzer Include="..\packages\Microsoft.NetCore.Analyzers.2.9.8\analyzers\dotnet\cs\Microsoft.NetCore.CSharp.Analyzers.dll" />
     <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.2.9.8\analyzers\dotnet\cs\Microsoft.NetFramework.Analyzers.dll" />
     <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.2.9.8\analyzers\dotnet\cs\Microsoft.NetFramework.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="LevelBuilding\Levels\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
