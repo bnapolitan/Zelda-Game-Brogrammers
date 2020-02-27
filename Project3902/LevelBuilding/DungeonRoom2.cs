@@ -1,13 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
-using Project3902.GameObjects;
-using Project3902.GameObjects.Enemies_and_NPCs;
 using Project3902.LevelBuilding.Interface;
 using Project3902.ObjectManagement;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project3902
 {

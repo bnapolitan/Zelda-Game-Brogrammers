@@ -1,15 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Project3902.GameObjects;
 using Project3902.ObjectManagement;
-using Project3902.Commands.Sprint2Commands;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Project3902.GameObjects.Enemies_and_NPCs.Interfaces;
-using Microsoft.Xna.Framework.Input;
 
 /* 
  * Team:
@@ -27,8 +19,6 @@ namespace Project3902
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        //RenderTarget2D renderTarget;
-        //Rectangle actualScreenRect;
 
         public ILink Link { get; set; }
 
@@ -46,18 +36,29 @@ namespace Project3902
             Content.RootDirectory = "Content";
         }
 
+        public static class currentFram
+        {
+            private static int cur = 0;
+
+            public static int Current
+            {
+                get { return cur; }
+                set { cur = value; }
+
+            }
+        }
+
         protected override void Initialize()
         {
             IsMouseVisible = true;
 
-            SetUpKeyboardController();
             graphics.PreferredBackBufferWidth = 1024;
             graphics.PreferredBackBufferHeight = 672;
             graphics.ApplyChanges();
 
             // Set up controllers.
             SetUpMouseController();
-            //SetUpKeyboardController();
+            SetUpKeyboardController();
 
             base.Initialize();
         }
@@ -66,7 +67,7 @@ namespace Project3902
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            var level = new DungeonRoom1(this);
+            var level = new LevelBuilder(this, "DungeonRoom1");
 
             // Create player.
             LinkFactory.Instance.LoadAllTextures(Content);
@@ -94,7 +95,7 @@ namespace Project3902
         protected override void Update(GameTime gameTime)
         {
             mouseController.Update();
-            //keyboardController.Update();
+            keyboardController.Update();
 
             //Environment
             foreach (IGameObject gameObject in enemyObjects)
@@ -115,7 +116,6 @@ namespace Project3902
 
         protected override void Draw(GameTime gameTime)
         {
-            //GraphicsDevice.SetRenderTarget(renderTarget);
 
             GraphicsDevice.Clear(Color.Black);
 

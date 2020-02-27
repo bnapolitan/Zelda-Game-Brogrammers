@@ -8,17 +8,10 @@ using System.Threading.Tasks;
 
 namespace Project3902.GameObjects.Environment
 {
-    class ShutDoor : FixedGameObject, IInteractiveEnvironmentObject
+    class ShutDoor : FixedGameObject
     {
 
         public ShutDoor(Vector2 position)
             : base(position) { }
-
-        public Rectangle hitbox { get; set; }
-        public Rectangle Collider { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-        public void OnCollide()
-        {
-        }
     }
 }
