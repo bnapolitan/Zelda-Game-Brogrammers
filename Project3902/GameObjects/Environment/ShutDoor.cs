@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Project3902.GameObjects.Environment
 {
-    class ShutDoor : BaseEnvironment
+    class ShutDoor : FixedGameObject
     {
 
         public ShutDoor(Vector2 position)

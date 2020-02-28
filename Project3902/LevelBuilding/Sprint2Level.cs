@@ -1,11 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Project3902.GameObjects.EnemiesAndNPCs;
+using Project3902.LevelBuilding.Interface;
 using Project3902.ObjectManagement;
 using System.Collections.Generic;
 
 namespace Project3902
 {
-    class Sprint2Level
+    class Sprint2Level : ILevel
     {
         public FinalGame Game { get; }
         private Vector2 environmentPosition;
@@ -26,7 +27,7 @@ namespace Project3902
             list.Add(EnvironmentFactory.Instance.CreateGapTile(environmentPosition));
             list.Add(EnvironmentFactory.Instance.CreateFire(environmentPosition));
             list.Add(EnvironmentFactory.Instance.CreateBrickTile(environmentPosition));
-            list.Add(EnvironmentFactory.Instance.CreateBombedOpening(environmentPosition));
+            list.Add(EnvironmentFactory.Instance.CreateBombedOpeningTop(environmentPosition));
             list.Add(EnvironmentFactory.Instance.CreateEnemyCloudAppearance(environmentPosition));
             list.Add(EnvironmentFactory.Instance.CreateFloorTile(environmentPosition));
             list.Add(EnvironmentFactory.Instance.CreateRoomBorder(environmentPosition));

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Project3902.GameObjects.Environment
 {
-    class Wall : BaseEnvironment
+    class Wall : FixedGameObject
     {
 
         public Wall(Vector2 position)

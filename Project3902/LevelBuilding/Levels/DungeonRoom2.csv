@@ -1,0 +1,9 @@
+Environment
+WallTop, 448, 0
+WallLeft, 0, 288
+OpenDoorRight, 896, 288
+WallBottom, 448, 576
+Enemies
+BlueKeese, 192, 192
+BlueKeese, 320, 256
+BlueKeese, 192, 448
