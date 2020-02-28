@@ -10,6 +10,7 @@ namespace Project3902
 {
     abstract class BaseProjectile : IProjectile
     {
+
         public Vector2 Direction { get; set; }
         public float Speed { get; set; }
         public Vector2 Position { get; set; }

@@ -26,14 +26,15 @@ namespace Project3902
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-
+            Collider.AlignHitbox();
+            Console.WriteLine(Collider.Hitbox);
             float distTraveled = (Position - startingPos).Length();
 
             Speed = (maxDistance - distTraveled) / maxDistance * maxSpeed;
             if (Speed < maxSpeed * .5f)
                 Speed = maxSpeed * .5f;
 
-            if (distTraveled > maxDistance)
+            if ((distTraveled > maxDistance) && Active)
             {
                 Position = startingPos + maxDistance * Direction;
                 Direction *= -1;
