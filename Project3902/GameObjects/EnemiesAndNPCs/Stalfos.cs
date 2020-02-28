@@ -10,32 +10,30 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
 {
     class Stalfos : BaseEnemy
     {
-        private readonly float speed;
         private readonly float distance = 100;
         private Vector2 relPos = new Vector2(0, 0);
-        private Vector2 direction;
 
         public Stalfos(Vector2 pos, float moveSpeed, Vector2 initDirection)
         {
             Position = pos;
             Active = true;
-            speed = moveSpeed;
-            direction = initDirection;
+            MoveSpeed = moveSpeed;
+            Direction = initDirection;
         }
 
         public override void Update(GameTime gameTime)
         {
          
-            Position += direction * speed;
-            relPos += direction * speed;
+            Position += Direction * MoveSpeed;
+            relPos += Direction * MoveSpeed;
             if (relPos.Y > distance)
             {
-                direction *= -1;
+                Direction *= -1;
                 relPos = new Vector2(0, 0);
             }
             else if (relPos.Y < -distance)
             {
-                direction *= -1;
+                Direction *= -1;
                 relPos = new Vector2(0, 0);
             }
 

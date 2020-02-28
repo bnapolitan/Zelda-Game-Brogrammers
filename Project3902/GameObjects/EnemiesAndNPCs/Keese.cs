@@ -10,51 +10,46 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
 {
     class Keese : BaseEnemy
     {
-        private readonly float speed;
         private readonly float distance = 100;
         private Vector2 relPos = new Vector2(0, 0);
-        private Vector2 direction;
 
         public Keese(Vector2 pos, float moveSpeed, Vector2 initDirection)
         {
             Position = pos;
             Active = true;
-            speed = moveSpeed;
-            direction = initDirection;
+            MoveSpeed = moveSpeed;
+            Direction = initDirection;
         }
+        public override void TakeDamage()
+        {
+
+        }
+        public override void Attack()
+        {
+
+        }
+
 
         public override void Update(GameTime gameTime)
         {
-            Position += direction * speed;
-            relPos += direction * speed;
+            base.Update(gameTime);
+
+            Position += Direction * MoveSpeed;
+            relPos += Direction * MoveSpeed;
             if (relPos.X > distance)
             {
-                direction *= -1;
+                Direction *= -1;
                 relPos = new Vector2(0, 0);
             }
             else if (relPos.X < -distance)
             {
-                direction *= -1;
+                Direction *= -1;
                 relPos = new Vector2(0, 0);
             }
-
-            base.Update(gameTime);
-        }
-
-        public override void Attack()
-        {
-            throw new NotImplementedException();
         }
 
         public override void OnCollide(Collider other)
         {
-            throw new NotImplementedException();
         }
-
-        public override void TakeDamage()
-        {
-            throw new NotImplementedException();
-        }
-
     }
 }

@@ -10,10 +10,8 @@ namespace Project3902.GameObjects.EnemiesAndNPCs.Interfaces
 {
     class Rope : BaseEnemy
     {
-        private readonly float speed;
         private readonly float distance = 100;
         private Vector2 relPos = new Vector2(0, 0);
-        private Vector2 direction;
         public ISprite RightFacingRope { get; set; }
         public ISprite LeftFacingRope { get; set; }
 
@@ -21,23 +19,23 @@ namespace Project3902.GameObjects.EnemiesAndNPCs.Interfaces
         {
             Position = pos;
             Active = true;
-            speed = moveSpeed;
-            direction = initDirection;
+            MoveSpeed = moveSpeed;
+            Direction = initDirection;
         }
 
         public override void Update(GameTime gameTime)
         {
-            Position += direction * speed;
-            relPos += direction * speed;
+            Position += Direction * MoveSpeed;
+            relPos += Direction * MoveSpeed;
             if (relPos.X > distance)
             {
-                direction *= -1;
+                Direction *= -1;
                 Sprite = LeftFacingRope;
                 relPos = new Vector2(0, 0);
             }
             else if (relPos.X < -distance)
             {
-                direction *= -1;
+                Direction *= -1;
                 Sprite = RightFacingRope;
                 relPos = new Vector2(0, 0);
             }
