@@ -54,7 +54,7 @@ namespace Project3902
             Collider = new Collider(this, new Rectangle(new Point(0, 0), new Point(16, 16) * Sprite.Scale.ToPoint()));
 
             CurrentWeapon = WeaponFactory.Instance.CreateBlueCandleProjectile();
-            SwordProjectile = new SwordProjectile(); // Replace with factory method.
+            SwordProjectile = WeaponFactory.Instance.CreateSwordProjectile();
 
             Position = position;
         }

@@ -21,20 +21,32 @@ namespace Project3902
             Sprite = WeaponFactory.Instance.CreateBoomerangSprite(this);
         }
 
-        public void OnCollide() { }
+        public override void OnCollide(Collider other) {
+            if(other.GameObject is Gel)
+            {
+                Console.WriteLine("Collided With Gel");
+                Direction *= -1;
+            }
+        }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
             Collider.AlignHitbox();
-            Console.WriteLine(Collider.Hitbox);
+           
+            if (!Active)
+            {
+                return;
+            }
+
             float distTraveled = (Position - startingPos).Length();
 
             Speed = (maxDistance - distTraveled) / maxDistance * maxSpeed;
-            if (Speed < maxSpeed * .5f)
+
+            if ((Speed < maxSpeed * .5f));
                 Speed = maxSpeed * .5f;
 
-            if ((distTraveled > maxDistance) && Active)
+            if ((distTraveled > maxDistance))
             {
                 Position = startingPos + maxDistance * Direction;
                 Direction *= -1;

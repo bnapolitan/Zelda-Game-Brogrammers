@@ -46,6 +46,9 @@ namespace Project3902
             }
         }
 
+        public Vector2 Size { get; set; }
+        
+
         public SpriteEffects Flip { get; set; } = SpriteEffects.None;
 
         public BaseSprite(IGameObject gameObject, SpriteAtlas atlas, IAtlasSource source, Vector2? scale = null)
@@ -53,6 +56,7 @@ namespace Project3902
             GameObject = gameObject;
             this.atlas = atlas;
             this.source = source;
+            this.Size = source.GetFrameSize(0);
             Scale = scale ?? new Vector2(1, 1);
         }
 

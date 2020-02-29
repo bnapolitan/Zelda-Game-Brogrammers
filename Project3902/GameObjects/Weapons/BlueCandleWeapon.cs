@@ -32,7 +32,7 @@ namespace Project3902
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-
+            Collider.AlignHitbox();
             float elapsed = (float) gameTime.ElapsedGameTime.TotalSeconds;
 
             Speed *= .9f;
