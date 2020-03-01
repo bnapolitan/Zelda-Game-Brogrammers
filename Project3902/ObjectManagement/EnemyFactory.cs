@@ -135,8 +135,8 @@ namespace Project3902.ObjectManagement
 		public IGameObject CreateBlueKeese(Vector2 position)
 		{
 			var createdObject = new Keese(position, 2, new Vector2(1, 0));
-			List<Rectangle> blueKeeseSource = new List<Rectangle> { new Rectangle(234, 268, 18, 18), new Rectangle(259, 268, 18, 18) };
-			var sprite = new AnimatedSprite(createdObject, dungeons2, blueKeeseSource, 0.5f, new Vector2(6, 6));
+			List<Rectangle> blueKeeseSource = new List<Rectangle> { new Rectangle(234, 268, 18, 18), new Rectangle(259, 268, 18, 18)};
+			var sprite = new AnimatedSprite(createdObject, dungeons2, blueKeeseSource, 0.5f, new Vector2(4, 4));
 			createdObject.Sprite = sprite;
 			RegisterEnemyForCollision(createdObject);
 
