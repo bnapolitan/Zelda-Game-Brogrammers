@@ -6,6 +6,7 @@ namespace Project3902
     class Collider : IDrawable
     {
         private readonly bool debug = true;
+        private readonly Color tint = new Color(255, 0, 0, 100);
 
         private Rectangle localRect;
 
@@ -40,7 +41,7 @@ namespace Project3902
         public void Draw(SpriteBatch spriteBatch)
         {
             if (debug)
-                spriteBatch.Draw(ShapeSpriteFactory.Instance.WhiteRect, Hitbox, new Rectangle(0, 0, 1, 1), Color.Red);
+                spriteBatch.Draw(ShapeSpriteFactory.Instance.WhiteRect, Hitbox, new Rectangle(0, 0, 1, 1), tint);
         }
     }
 }

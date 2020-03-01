@@ -1,19 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project3902
 {
     class BoomerangWeapon : BaseProjectile
     {
-        private float initialSpeed = 300f;
-        private float maxSpeed = 1000f;
+        private readonly float initialSpeed = 300f;
+        private readonly float maxSpeed = 1000f;
         private Vector2 startingPos;
-        private float maxDistance = 300f;
+        private readonly float maxDistance = 300f;
         private bool turned = false;
 
         public BoomerangWeapon()
@@ -21,7 +15,6 @@ namespace Project3902
             Sprite = WeaponFactory.Instance.CreateBoomerangSprite(this);
         }
 
-        public void OnCollide() { }
 
         public override void Update(GameTime gameTime)
         {
