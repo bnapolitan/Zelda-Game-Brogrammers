@@ -346,28 +346,7 @@ namespace Project3902.ObjectManagement
 			return createdObject;
 
 		}
-		/*
-		public IGameObject createWhiteMerchant(Vector2 position)
-		{
-			var createdObject = new Merchant(position, 2, new Vector2(1, 0));
-			List<Rectangle> MerchantSource = new List<Rectangle> { new Rectangle(126, 11, 16, 16) };
-			var sprite = new AnimatedSprite(createdObject, NPCSpriteAtlas, MerchantSource, 3);
-			createdObject.Sprite = sprite;
-			return createdObject;
 
-		}
-
-		public IGameObject createRedMerchant(Vector2 position)
-		{
-			var createdObject = new Merchant(position, 2, new Vector2(1, 0));
-			List<Rectangle> MerchantSource = new List<Rectangle> { new Rectangle(143, 11, 16, 16) };
-			var sprite = new AnimatedSprite(createdObject, NPCSpriteAtlas, MerchantSource, 3);
-			createdObject.Sprite = sprite;
-			return createdObject;
-
-		}
-		*/
-		/********* SPRITES **********/
 
 		public ISprite CreateAquamentusSprite(IGameObject gameObject)
 		{

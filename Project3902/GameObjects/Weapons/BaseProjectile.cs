@@ -10,6 +10,7 @@ namespace Project3902
 {
     abstract class BaseProjectile : IProjectile
     {
+
         public Vector2 Direction { get; set; }
         public float Speed { get; set; }
         public Vector2 Position { get; set; }
@@ -21,7 +22,7 @@ namespace Project3902
         {
             if (!Active)
                 return;
-
+            Collider.Draw(spriteBatch);
             Sprite.Draw(spriteBatch);
         }
 
@@ -33,7 +34,7 @@ namespace Project3902
             Active = true;
         }
 
-        public void OnCollide(Collider other)
+        public virtual void OnCollide(Collider other)
         {
             throw new NotImplementedException();
         }
