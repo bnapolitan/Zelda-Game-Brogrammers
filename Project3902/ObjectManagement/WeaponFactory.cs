@@ -2,11 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Project3902.GameObjects.EnemyProjectiles;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project3902
 {
@@ -14,11 +10,11 @@ namespace Project3902
     {
         private SpriteAtlas weaponAtlas;
         private SpriteAtlas bossSpriteAtlas;
-        private Vector2 weaponScale = new Vector2(4, 4);
+        private readonly Vector2 weaponScale = new Vector2(4, 4);
 
-        private Vector2 up = new Vector2(0, -1);
-        private Vector2 down = new Vector2(0, 1);
-        private Vector2 left = new Vector2(-1, 0);
+        private readonly Vector2 up = new Vector2(0, -1);
+        private readonly Vector2 down = new Vector2(0, 1);
+        private readonly Vector2 left = new Vector2(-1, 0);
 
         public static WeaponFactory Instance { get; } = new WeaponFactory();
 
@@ -55,6 +51,11 @@ namespace Project3902
         public ISprite CreateBlueCandleFireSprite(IGameObject fire)
         {
             return new FlippingSprite(fire, weaponAtlas, new Rectangle(191, 185, 16, 16), .1f, weaponScale);
+        }
+
+        public IProjectile CreateSwordProjectile()
+        {
+            return new SwordProjectile();
         }
 
         public ISprite CreateSwordProjectileSprite(IGameObject swordProjectile, Vector2 direction)

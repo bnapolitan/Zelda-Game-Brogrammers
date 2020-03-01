@@ -14,15 +14,7 @@ namespace Project3902.ObjectManagement
 		private SpriteAtlas NPCSpriteAtlas;
 		private SpriteAtlas BossSpriteAtlas;
 
-		private static EnemyFactory instance = new EnemyFactory();
-
-		public static EnemyFactory Instance
-		{
-			get
-			{
-				return instance;
-			}
-		}
+        public static EnemyFactory Instance { get; } = new EnemyFactory();
 
 		private EnemyFactory()
 		{

@@ -1,10 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project3902
 {
@@ -19,6 +13,7 @@ namespace Project3902
         public override void MoveDown()
         {
             velocity = new Vector2(0, link.MovementSpeed);
+            link.FacingDirection = new Vector2(0, 1);
         }
 
         public override void Attack()

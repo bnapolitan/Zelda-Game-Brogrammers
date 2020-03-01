@@ -1,17 +1,13 @@
 ﻿using Microsoft.Xna.Framework.Input;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project3902
 {
     class MouseController : IController<MouseActions>
     {
-        private Dictionary<MouseActions, ICommand> continuousActions;
-        private Dictionary<MouseActions, ICommand> pressedActions;
-        private Dictionary<MouseActions, ICommand> releasedActions;
+        private readonly Dictionary<MouseActions, ICommand> continuousActions;
+        private readonly Dictionary<MouseActions, ICommand> pressedActions;
+        private readonly Dictionary<MouseActions, ICommand> releasedActions;
 
         private MouseState currentState;
         private MouseState previousState;

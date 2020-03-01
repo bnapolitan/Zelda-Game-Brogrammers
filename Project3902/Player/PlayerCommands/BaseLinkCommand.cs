@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Project3902
+﻿namespace Project3902
 {
     abstract class BaseLinkCommand : ICommand
     {
-        protected Link link;
+        protected readonly ILink link;
 
-        public BaseLinkCommand(Link link)
+        public BaseLinkCommand(ILink link)
         {
             this.link = link;
         }

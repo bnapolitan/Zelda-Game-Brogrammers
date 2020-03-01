@@ -5,7 +5,7 @@ namespace Project3902
 {
     class Collider : IDrawable
     {
-        private bool debug = true;
+        private readonly bool debug = true;
 
         private Rectangle localRect;
 
@@ -23,6 +23,11 @@ namespace Project3902
         public bool Intersects(Collider other)
         {
             return Hitbox.Intersects(other.Hitbox);
+        }
+
+        public bool Intersects(Rectangle otherRect)
+        {
+            return Hitbox.Intersects(otherRect);
         }
 
         public void AlignHitbox()
