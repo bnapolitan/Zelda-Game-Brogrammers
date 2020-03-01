@@ -31,6 +31,14 @@ namespace Project3902
 
         public void OnCollide() { }
 
+        public override void OnCollide(Collider other)
+        {
+            if(other.GameObject is Gel)
+            {
+                Console.WriteLine("Sword Collided");
+            }
+        }
+
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
