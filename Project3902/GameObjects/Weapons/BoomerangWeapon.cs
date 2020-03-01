@@ -22,11 +22,14 @@ namespace Project3902
         }
 
         public override void OnCollide(Collider other) {
-            if(other.GameObject is Gel)
+            if(other.GameObject is Gel )
             {
                 Console.WriteLine("Collided With Gel");
                 Direction *= -1;
+                turned = true;
+                Position = Position + (Direction * ((Speed/30) + 3));
             }
+
         }
 
         public override void Update(GameTime gameTime)
@@ -40,6 +43,7 @@ namespace Project3902
             }
 
             float distTraveled = (Position - startingPos).Length();
+
 
             Speed = (maxDistance - distTraveled) / maxDistance * maxSpeed;
 
@@ -56,6 +60,10 @@ namespace Project3902
             if (turned && distTraveled <= 20f)
                 Active = false;
 
+            if (Position == startingPos && (distTraveled > 0))
+            {
+                Active = false;
+            }
             Position += Direction * Speed * (float) gameTime.ElapsedGameTime.TotalSeconds;
             
         }

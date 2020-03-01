@@ -19,7 +19,15 @@ namespace Project3902
             Sprite = WeaponFactory.Instance.CreateBlueCandleFireSprite(this);
         }
 
-        public void OnCollide() { }
+        public override void OnCollide(Collider other)
+        {
+            if(other.GameObject is Gel)
+            {
+                Console.WriteLine("Flame Collided with Gel");
+            }
+
+        
+        }
 
         public override void Launch(Vector2 position, Vector2 direction)
         {
