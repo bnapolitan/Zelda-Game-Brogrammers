@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Project3902.GameObjects.Environment
 {
-    class Statues : BaseEnvironment
+    class Statues : FixedGameObject
     {
 
         public Statues(Vector2 position)

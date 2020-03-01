@@ -30,8 +30,6 @@ namespace Project3902
             currentFrame = FinalGame.currentFram.Current;
             totalFrames = Rows * Columns;
 
-            ItController = ItemCtl.Instance.ItemRegister(game);
-
             if (currentFrame == totalFrames)
                 currentFrame = 0;
             if (currentFrame == -1)
