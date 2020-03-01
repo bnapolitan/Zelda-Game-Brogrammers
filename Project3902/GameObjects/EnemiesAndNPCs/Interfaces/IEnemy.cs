@@ -5,5 +5,6 @@ namespace Project3902
     {
         void TakeDamage();
         void Attack();
+        float Damage { get; set; }
     }
 }

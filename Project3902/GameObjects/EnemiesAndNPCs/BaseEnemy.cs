@@ -24,6 +24,7 @@ namespace Project3902
         public ISprite Sprite { get; set; }
         public bool Active { get; set; }
         public Collider Collider { get; set; }
+        public float Damage { get; set; } = 1f;
 
         public abstract void Attack();
 

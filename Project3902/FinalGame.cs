@@ -19,7 +19,7 @@ namespace Project3902
 {
     class FinalGame : Game
     {
-        GraphicsDeviceManager graphics;
+        readonly GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         private ItemSprite Items;
 
@@ -33,6 +33,9 @@ namespace Project3902
 
         IController<MouseActions> mouseController;
         KeyboardController keyboardController;
+
+
+        KeyboardController playerController;
 
         public FinalGame()
         {
@@ -73,6 +76,8 @@ namespace Project3902
             Link = LinkFactory.Instance.CreateLink(new Vector2(100, 100), this);
             CollisionHandler.Instance.RegisterCollidable(Link, Layer.Player, Layer.Enemy, Layer.Wall, Layer.Pickup);
 
+            playerController = LinkFactory.Instance.CreateLinkController(Link);
+
             ShapeSpriteFactory.Instance.CreateShapeTextures(GraphicsDevice);
 
             Items = new FixedItem(Content.Load<Texture2D>("Items"), 1, 14);
@@ -97,6 +102,7 @@ namespace Project3902
         {
             mouseController.Update();
             keyboardController.Update();
+            playerController.Update();
 
             enemyObjects[currentEnemyObject].Update(gameTime);
             base.Update(gameTime);
