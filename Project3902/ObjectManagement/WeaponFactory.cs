@@ -35,7 +35,12 @@ namespace Project3902
 
         public IProjectile CreateBoomerangProjectile()
         {
-            return new BoomerangWeapon();
+            var boomerang = new BoomerangWeapon();
+            var collider = new Collider(boomerang, new Rectangle(0, 0, 8 * (int)boomerang.Sprite.Scale.X, 8 * (int)boomerang.Sprite.Scale.Y));
+            boomerang.Collider = collider;
+            CollisionHandler.Instance.RegisterCollidable(boomerang, Layer.Projectile, Layer.Enemy, Layer.Wall);
+            //Console.WriteLine("Collider Created");
+            return boomerang;
         }
 
         public ISprite CreateBoomerangSprite(IGameObject boomerang)
@@ -49,7 +54,11 @@ namespace Project3902
 
         public IProjectile CreateBlueCandleProjectile()
         {
-            return new BlueCandleWeapon();
+            var candle = new BlueCandleWeapon();
+            var collider = new Collider(candle, new Rectangle(0, 0, 16 * (int)candle.Sprite.Scale.X, 16 * (int)candle.Sprite.Scale.Y));
+            candle.Collider = collider;
+            CollisionHandler.Instance.RegisterCollidable(candle, Layer.Projectile, Layer.Enemy, Layer.Wall);
+            return candle;
         }
 
         public ISprite CreateBlueCandleFireSprite(IGameObject fire)
@@ -79,13 +88,26 @@ namespace Project3902
 
             return sprite;
         }
-
+        
+        public IProjectile CreateSwordProjectile()
+        {
+            var sword = new SwordProjectile();
+            var rect = new Rectangle(0, 0, (int)sword.Sprite.Scale.X * (int)sword.Sprite.Size.X, (int)sword.Sprite.Scale.Y * (int)sword.Sprite.Size.Y);
+            var collider = new Collider(sword, rect);
+            sword.Collider = collider;
+            CollisionHandler.Instance.RegisterCollidable(sword, Layer.Projectile, Layer.Enemy, Layer.Wall);
+            return sword;
+        }
+        
         public IProjectile CreateFireballProjectile(Vector2 pos, Vector2 direction)
         {
             var createdObject = new Fireball(pos, 4f, direction);
             List<Rectangle> fireballSource = new List<Rectangle> { new Rectangle(334, 3, 8, 9) };
             var sprite = new AnimatedSprite(createdObject, bossSpriteAtlas, fireballSource, 0.5f, new Vector2(2, 2));
             createdObject.Sprite = sprite;
+            var collider = new Collider(createdObject, new Rectangle(0, 0, 8 * (int)sprite.Scale.X, 9 * (int)sprite.Scale.Y));
+            createdObject.Collider = collider;
+            CollisionHandler.Instance.RegisterCollidable(createdObject,Layer.Projectile, Layer.Player, Layer.Enemy, Layer.Wall);
             return createdObject;
         }
 
@@ -97,6 +119,9 @@ namespace Project3902
                 new Rectangle(128, 204, 8, 8), new Rectangle(155, 204, 8, 8), new Rectangle(164, 204, 8, 8), new Rectangle(173, 204, 8, 8) };
             var sprite = new AnimatedSprite(createdObject, weaponAtlas, boomerangSource, 0.1f, new Vector2(4, 4));
             createdObject.Sprite = sprite;
+            var collider = new Collider(createdObject, new Rectangle(0, 0, 8 * (int)sprite.Scale.X, 8 * (int)sprite.Scale.Y));
+            createdObject.Collider = collider;
+            CollisionHandler.Instance.RegisterCollidable(createdObject, Layer.Projectile, Layer.Enemy);
             return createdObject;
         }
     }

@@ -16,6 +16,7 @@ namespace Project3902
 
         public SwordProjectile()
         {
+            Sprite = WeaponFactory.Instance.CreateSwordProjectileSprite(this, Direction);
         }
 
         public override void Launch(Vector2 position, Vector2 direction)
@@ -30,9 +31,18 @@ namespace Project3902
 
         public void OnCollide() { }
 
+        public override void OnCollide(Collider other)
+        {
+            if(other.GameObject is Gel)
+            {
+                Console.WriteLine("Sword Collided");
+            }
+        }
+
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            Collider.AlignHitbox();
 
             float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
 

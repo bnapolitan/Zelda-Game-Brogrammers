@@ -10,12 +10,24 @@ namespace Project3902.GameObjects.EnemyProjectiles
 {
     class Boomerang : IProjectile
     {
-        public Vector2 Position { get; set; }
+        
+        public Vector2 Position
+        {
+            get
+            {
+                return Position;
+            }
+            set
+            {
+                Position = value;
+                Collider.AlignHitbox();
+            }
+        }
         public ISprite Sprite { get; set; }
         public bool Active { get; set; }
         public Vector2 Direction { get; set; }
         public float Speed { get; set; }
-        public Collider Collider { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Collider Collider { get; set; }
 
         private float maxSpeed = 1000f;
         private float minSpeed = 500f;
@@ -37,14 +49,11 @@ namespace Project3902.GameObjects.EnemyProjectiles
             {
                 return;
             }
-
+            Collider.Draw(spriteBatch);
             Sprite.Draw(spriteBatch);
+            
         }
 
-        public void OnCollide()
-        {
-
-        }
 
         public void Update(GameTime gameTime)
         {
@@ -52,7 +61,6 @@ namespace Project3902.GameObjects.EnemyProjectiles
                 return;
 
             Sprite.Update(gameTime);
-
             float distTraveled = relPos.Length();
 
             Speed = (distance - distTraveled) / distance * maxSpeed;
@@ -81,7 +89,10 @@ namespace Project3902.GameObjects.EnemyProjectiles
 
         public void OnCollide(Collider other)
         {
-            throw new NotImplementedException();
+            if (other.GameObject is IEnemy)
+            {
+                Direction = Direction * -1;
+            }
         }
     }
 }
