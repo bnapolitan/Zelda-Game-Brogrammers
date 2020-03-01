@@ -45,10 +45,7 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
             throw new NotImplementedException();
         }
 
-        public override void OnCollide(Collider other)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public override void TakeDamage()
         {

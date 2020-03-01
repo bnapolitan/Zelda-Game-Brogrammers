@@ -48,8 +48,6 @@ namespace Project3902
             }
         }
 
-        public override void OnCollide(Collider other)
-        {
-        }
+        
     }
 }

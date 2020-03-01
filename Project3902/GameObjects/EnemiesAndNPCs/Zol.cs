@@ -46,7 +46,11 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
 
         public override void OnCollide(Collider other)
         {
-            throw new NotImplementedException();
+            base.OnCollide(other);
+            if (Active == false)
+            {
+                //create two Gels
+            }
         }
 
         public override void TakeDamage()

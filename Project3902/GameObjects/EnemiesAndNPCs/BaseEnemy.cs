@@ -51,7 +51,7 @@ namespace Project3902
             }
             else if(other.GameObject is BaseEnvironment) 
             {
-                Direction*=-1;
+                Direction=new Vector2(Direction.Y, Direction.X*-1);
             }
         }
 

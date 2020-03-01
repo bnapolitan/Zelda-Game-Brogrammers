@@ -90,7 +90,10 @@ namespace Project3902.LevelBuilding
             {
                 return enemyFactory.CreateBlueKeese(position);
             }
-
+            if(name=="AquaGel")
+            {
+                return enemyFactory.CreateAquaGel(position);
+            }
             throw new Exception($"The object {name} has not been mapped in ObjectLookup yet!");
         }
     }

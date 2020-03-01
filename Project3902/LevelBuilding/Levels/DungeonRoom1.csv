@@ -29,3 +29,5 @@ LockDoorTop, 448, 0
 OpenDoorLeft, 0, 288
 OpenDoorRight, 896, 288
 OpenDoorBottom, 448, 576
+Enemies
+AquaGel, 500, 200
