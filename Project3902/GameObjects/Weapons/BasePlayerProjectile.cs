@@ -4,7 +4,7 @@ using System;
 
 namespace Project3902
 {
-    abstract class BaseProjectile : IProjectile
+    abstract class BasePlayerProjectile : IProjectile
     {
         public Vector2 Direction { get; set; }
         public float Speed { get; set; }
@@ -29,7 +29,7 @@ namespace Project3902
             Active = true;
         }
 
-        public void OnCollide(Collider other)
+        public virtual void OnCollide(Collider other)
         {
             throw new NotImplementedException();
         }

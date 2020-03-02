@@ -2,7 +2,7 @@
 
 namespace Project3902
 {
-    class BoomerangWeapon : BaseProjectile
+    class BoomerangWeapon : BasePlayerProjectile
     {
         private readonly float initialSpeed = 300f;
         private readonly float maxSpeed = 1000f;

@@ -2,7 +2,7 @@
 
 namespace Project3902
 {
-    class BlueCandleWeapon : BaseProjectile
+    class BlueCandleWeapon : BasePlayerProjectile
     {
         private float activeTime = 0;
         private readonly float maxActiveTime = 1f;

@@ -2,7 +2,7 @@
 
 namespace Project3902
 {
-    class SwordProjectile : BaseProjectile
+    class SwordProjectile : BasePlayerProjectile
     {
         private readonly float speed = 600f;
         private float flightTime = 0;
