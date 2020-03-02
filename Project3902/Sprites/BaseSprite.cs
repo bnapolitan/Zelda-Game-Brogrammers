@@ -1,16 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 
 namespace Project3902
 {
-    // BaseSprite contains the necessary components of a sprite, but defines
-    // no behavior on its own (ie. in Update()).
-    // Keeps its position in line with a supplied IGameObject.
-    // It also requires child classes to decide which IAtlasSource implementation they use.
     abstract class BaseSprite : ISprite
     {
-        // 'width' and 'height' represent the actual width and height the sprite will appear in pixels
         protected float width;
         protected float height;
 

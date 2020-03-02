@@ -29,17 +29,14 @@ namespace Project3902
         public override void Update(GameTime gameTime)
         {
             if (velocity != Vector2.Zero)
+            {
                 Sprite.Update(gameTime);
-
-            link.Position += velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                link.Position += velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }
 
             velocity = Vector2.Zero;
         }
 
-        public override void TakeDamage(float damage)
-        {
-            link.Health -= damage;
-        }
 
     }
 }

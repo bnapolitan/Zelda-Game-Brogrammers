@@ -56,9 +56,7 @@ namespace Project3902
             graphics.PreferredBackBufferHeight = 672;
             graphics.ApplyChanges();
 
-            // Set up controllers.
             SetUpMouseController();
-            SetUpKeyboardController();
 
             base.Initialize();
         }
@@ -67,28 +65,28 @@ namespace Project3902
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            var level = new LevelBuilder(this, "DungeonRoom1");
+            var level = new LevelBuilder(this, "DungeonRoom2");
 
-            // Create player.
             LinkFactory.Instance.LoadAllTextures(Content);
             Link = LinkFactory.Instance.CreateLink(new Vector2(100, 100), this);
             CollisionHandler.Instance.RegisterCollidable(Link, Layer.Player, Layer.Enemy, Layer.Wall, Layer.Pickup);
 
-            ShapeSpriteFactory.Instance.CreateShapeTextures(GraphicsDevice);
-            WeaponFactory.Instance.LoadAllTextures(Content);
+            keyboardController = LinkFactory.Instance.CreateLinkController(Link);
 
             // Create list of all items to be cycled through. Use a Factory class to create them.
             // Same for enemies.
+            ShapeSpriteFactory.Instance.CreateShapeTextures(GraphicsDevice);
 
-            // Create environment.
+            WeaponFactory.Instance.LoadAllTextures(Content);
+
             EnvironmentFactory.Instance.LoadAllTextures(Content);
             interactiveEnvironmentObjects = level.CreateInteractiveEnvironmentObjects();
 
-            //Create Enemies
             EnemyFactory.Instance.LoadAllTextures(Content);
             enemyObjects = level.CreateEnemyObjects();
             CollisionHandler.Instance.RegisterGame(this);
         }
+
 
         protected override void UnloadContent()
         {
@@ -100,13 +98,11 @@ namespace Project3902
             mouseController.Update();
             keyboardController.Update();
 
-            //Environment
-            foreach (IGameObject gameObject in enemyObjects)
+            foreach (IGameObject gameObject in interactiveEnvironmentObjects)
             {
                 gameObject.Update(gameTime);
             }
 
-            //Enemies
             foreach (IGameObject gameObject in enemyObjects)
             {
                 gameObject.Update(gameTime);
@@ -115,6 +111,7 @@ namespace Project3902
             base.Update(gameTime);
 
             Link.Update(gameTime);
+
             CollisionHandler.Instance.CheckCollisions();
         }
 
@@ -123,25 +120,18 @@ namespace Project3902
 
             GraphicsDevice.Clear(Color.Black);
 
-            // Point filter keeps pixel art looking crisp.
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
-            // All our drawing code goes here.
-
-            // An IDrawable's Draw() method does not call spriteBatch.Begin() or spriteBatch.End().
-            //Environment
             foreach(IGameObject gameObject in interactiveEnvironmentObjects)
             {
                 gameObject.Draw(spriteBatch);
             }
 
-            //Enemies
             foreach (IGameObject gameObject in enemyObjects)
             {
                 gameObject.Draw(spriteBatch);
             }
 
-            // Player
             Link.Draw(spriteBatch);
 
             spriteBatch.End();
@@ -156,11 +146,5 @@ namespace Project3902
             //Fill with functionality later
         }
 
-        private void SetUpKeyboardController()
-        {
-            keyboardController = new KeyboardController();
-
-            //No current keys needed besides Link actions
-        }
     }
 }

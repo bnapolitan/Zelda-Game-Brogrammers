@@ -1,7 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
-
-namespace Project3902
+﻿namespace Project3902
 {
     interface IController<T>
     {

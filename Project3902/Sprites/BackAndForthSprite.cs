@@ -6,8 +6,8 @@ namespace Project3902
 {
     class BackAndForthSprite : AnimatedSprite
     {
-        private float speed;
-        private float distance;
+        private readonly float speed;
+        private readonly float distance;
         private Vector2 relPosition;
         private Vector2 direction;
         private SpriteEffects flip = SpriteEffects.None;

@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace Project3902
 {
-    class BoomerangWeapon : BaseProjectile
+    class BoomerangWeapon : BasePlayerProjectile
     {
-        private float initialSpeed = 300f;
-        private float maxSpeed = 1000f;
+        private readonly float initialSpeed = 300f;
+        private readonly float maxSpeed = 1000f;
         private Vector2 startingPos;
-        private float maxDistance = 300f;
+        private readonly float maxDistance = 300f;
         private bool turned = false;
 
         public BoomerangWeapon()

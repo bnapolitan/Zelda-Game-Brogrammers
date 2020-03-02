@@ -1,18 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project3902
 {
-    class SwordProjectile : BaseProjectile
+    class SwordProjectile : BasePlayerProjectile
     {
-        private float speed = 600f;
+        private readonly float speed = 600f;
         private float flightTime = 0;
-        private float maxFlightTime = .4f;
+        private readonly float maxFlightTime = .4f;
 
         public SwordProjectile()
         {

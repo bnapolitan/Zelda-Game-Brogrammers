@@ -1,21 +1,16 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Project3902.GameObjects;
 
 namespace Project3902
 {
     abstract class BaseLinkState : ILinkState
     {
-        protected ISprite stateSprite;
         protected LinkStateMachine machine;
         protected Link link;
 
-        public ISprite Sprite { get => stateSprite; set => stateSprite = value; }
-
+        public ISprite Sprite { get; set; }
+        public Collider Collider { get => link.Collider; set { } }
 
         public BaseLinkState(Link link, LinkStateMachine machine)
         {
@@ -25,12 +20,12 @@ namespace Project3902
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            stateSprite.Draw(spriteBatch);
+            Sprite.Draw(spriteBatch);
         }
 
         public virtual void Enter()
         {
-            link.Sprite = stateSprite;
+
         }
 
         public virtual void Exit()
@@ -42,14 +37,51 @@ namespace Project3902
         public abstract void MoveLeft();
         public abstract void MoveRight();
         public abstract void MoveUp();
-        public abstract void TakeDamage(float damage);
-        public abstract void Attack();
 
-        public virtual void Update(GameTime gameTime)
+        public void TakeDamage(float damage)
         {
-            stateSprite.Update(gameTime);
+            if (!link.Damaged)
+            {
+                link.Health -= damage;
+                LinkFactory.Instance.CreateDamagedLink();
+            }
         }
 
+        public abstract void Attack();
+
+        public abstract void Update(GameTime gameTime);
+
         public abstract void UseItem();
+
+        public virtual void OnCollide(Collider other)
+        {
+            if (other.GameObject is IInteractiveEnvironmentObject)
+            {
+                MoveOutOfWall(other);
+            }
+            else if (other.GameObject is IEnemy)
+            {
+                TakeDamage((other.GameObject as IEnemy).Damage);
+            }
+        }
+
+        private void MoveOutOfWall(Collider other)
+        {
+            var unitDirection = link.Position - link.PreviousPosition;
+            unitDirection.Normalize();
+
+            var hitboxSize = link.Collider.Hitbox.Size;
+
+            var testRect = new Rectangle(link.PreviousPosition.ToPoint(), hitboxSize);
+
+            while (!other.Intersects(testRect))
+            {
+                testRect.Location += unitDirection.ToPoint();
+            }
+
+            testRect.Location -= unitDirection.ToPoint();
+
+            link.Position = testRect.Location.ToVector2();
+        }
     }
 }

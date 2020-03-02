@@ -10,6 +10,10 @@ namespace Project3902
         private FinalGame game;
         private Dictionary<ICollidable, LayerMasksHolder> dict;
 
+        private Dictionary<ICollidable, LayerMasksHolder> toAdd;
+
+        private List<ICollidable> toDelete;
+
         private CollisionHandler() 
         {
             Flush();
@@ -22,11 +26,24 @@ namespace Project3902
         public void RegisterCollidable(ICollidable collidable, Layer mainLayer, params Layer[] masks)
         {
             var holder = new LayerMasksHolder(mainLayer, masks);
-            dict.Add(collidable, holder);
+            toAdd.Add(collidable, holder);
+        }
+
+        public void RemoveCollidable(ICollidable collidable)
+        {
+            toDelete.Add(collidable);
         }
 
         public void CheckCollisions()
         {
+            foreach (var collidable in toDelete)
+                dict.Remove(collidable);
+            toDelete = new List<ICollidable>();
+
+            foreach (var collidable in toAdd)
+                dict.Add(collidable.Key, collidable.Value);
+            toAdd = new Dictionary<ICollidable, LayerMasksHolder>();
+
             foreach (ICollidable collider in dict.Keys)
             {
                 foreach (ICollidable collidee in dict.Keys)
@@ -58,6 +75,8 @@ namespace Project3902
         public void Flush()
         {
             dict = new Dictionary<ICollidable, LayerMasksHolder>();
+            toAdd = new Dictionary<ICollidable, LayerMasksHolder>();
+            toDelete = new List<ICollidable>();
         }
     }
 }

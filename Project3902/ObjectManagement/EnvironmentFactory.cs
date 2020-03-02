@@ -2,29 +2,16 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Project3902.GameObjects.Environment;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project3902.ObjectManagement
 {
-    class EnvironmentFactory : ISpriteFactory
+	class EnvironmentFactory : ISpriteFactory
     {
         private SpriteAtlas dungeonSpriteAtlas;
 		private SpriteAtlas linkSpriteAtlas;
 		private Vector2 environmentScale = new Vector2(4, 4);
 
-		private static EnvironmentFactory instance = new EnvironmentFactory();
-
-		public static EnvironmentFactory Instance
-		{
-			get
-			{
-				return instance;
-			}
-		}
+        public static EnvironmentFactory Instance { get; } = new EnvironmentFactory();
 
 		private EnvironmentFactory()
 		{

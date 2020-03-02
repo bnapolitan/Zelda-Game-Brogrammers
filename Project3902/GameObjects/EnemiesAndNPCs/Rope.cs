@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project3902.GameObjects.EnemiesAndNPCs.Interfaces
+namespace Project3902.GameObjects.EnemiesAndNPCs
 {
     class Rope : BaseEnemy
     {

@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 
 namespace Project3902
 {
@@ -9,8 +8,10 @@ namespace Project3902
         public float Health { get; set; }
         public float MaxHealth { get; set; }
 
-        private Vector2 position;
+        public bool Damaged { get; set; } = false;
 
+        private Vector2 position;
+        public Vector2 PreviousPosition { get; set; }
         public Vector2 Position { 
             get 
             {
@@ -18,6 +19,7 @@ namespace Project3902
             }
             set 
             {
+                PreviousPosition = position;
                 position = value;
                 Collider.AlignHitbox();
             }
@@ -25,31 +27,22 @@ namespace Project3902
 
         public ISprite Sprite { get => machine.Sprite; set { } }
         public bool Active { get; set; }
-
         public float MovementSpeed { get; set; } = 200f;
 
-        // Want this to be an IWeapon, but such an interface wouldn't have much use over IProjectile...
         public IProjectile CurrentWeapon { get; set; }
-
         public IProjectile SwordProjectile { get; set; }
+
         public Collider Collider { get; set; }
+        public Vector2 FacingDirection { get; set; } = new Vector2(1, 0);
 
-        private FinalGame game;
+        private readonly LinkStateMachine machine;
 
-        private LinkStateMachine machine;
-
-        private KeyboardController controller;
-
-        public Link(Vector2 position, FinalGame game)
+        public Link(Vector2 position)
         {
-            this.game = game;
-
             Health = 5;
             MaxHealth = Health;
 
             machine = new LinkStateMachine(this);
-
-            controller = LinkFactory.Instance.CreateLinkController(this, game);
 
             Collider = new Collider(this, new Rectangle(new Point(0, 0), new Point(16, 16) * Sprite.Scale.ToPoint()));
 
@@ -61,7 +54,6 @@ namespace Project3902
 
         public void Update(GameTime gameTime)
         {
-            controller.Update();
             CurrentWeapon.Update(gameTime);
             SwordProjectile.Update(gameTime);
 
@@ -71,7 +63,9 @@ namespace Project3902
         public void Draw(SpriteBatch spriteBatch)
         {
             Collider.Draw(spriteBatch);
+
             machine.Draw(spriteBatch);
+
             CurrentWeapon.Draw(spriteBatch);
             SwordProjectile.Draw(spriteBatch);
         }
@@ -113,13 +107,7 @@ namespace Project3902
 
         public void OnCollide(Collider other)
         {
-            if (other.GameObject is Gel) // Could replace Gel with any enemy type, or even IEnemy
-            {
-                Console.WriteLine("Link is colliding with an IEnemy: " + other.GameObject.ToString());
-                // Example response:
-                new LinkTakeDamageCommand(this, game).Execute();
-                Position = new Vector2(Position.X - 20, Position.Y);
-            }
+            machine.OnCollide(other);
         }
     }
 }

@@ -1,17 +1,13 @@
 ﻿using Microsoft.Xna.Framework.Input;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project3902
 {
     class KeyboardController : IController<Keys>
     {
-        private Dictionary<Keys, ICommand> heldKeys;
-        private Dictionary<Keys, ICommand> pressedKeys;
-        private Dictionary<Keys, ICommand> releasedKeys;
+        private readonly Dictionary<Keys, ICommand> heldKeys;
+        private readonly Dictionary<Keys, ICommand> pressedKeys;
+        private readonly Dictionary<Keys, ICommand> releasedKeys;
 
         private KeyboardState currentState;
         private KeyboardState previousState;

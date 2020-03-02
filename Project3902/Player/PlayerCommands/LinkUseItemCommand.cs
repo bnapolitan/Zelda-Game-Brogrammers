@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Project3902
+﻿namespace Project3902
 {
     class LinkUseItemCommand : BaseLinkCommand
     {
-        public LinkUseItemCommand(Link link)
+        public LinkUseItemCommand(ILink link)
             : base(link) { }
 
         public override void Execute()

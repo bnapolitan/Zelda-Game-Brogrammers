@@ -1,16 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project3902
 {
     abstract class BaseLinkAttackState : BaseLinkState
     {
         private float timeSinceStart = 0;
-        private float attackTime = .45f; // Equal to the attack animation time.
+        private readonly float attackTime = .45f;
         protected Vector2 direction;
 
         public BaseLinkAttackState(Link link, LinkStateMachine machine)
@@ -18,7 +13,7 @@ namespace Project3902
 
         public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
+            Sprite.Update(gameTime);
 
             timeSinceStart += (float) gameTime.ElapsedGameTime.TotalSeconds;
             if (timeSinceStart >= attackTime)
@@ -28,7 +23,7 @@ namespace Project3902
         public override void Enter()
         {
             timeSinceStart = 0;
-            (stateSprite as AnimatedSprite).ResetAnimation();
+            (Sprite as AnimatedSprite).ResetAnimation();
 
             if (link.Health == link.MaxHealth)
             {
@@ -38,25 +33,13 @@ namespace Project3902
 
         protected abstract void EndAttack();
 
-        // Does not move while attacking.
         public override void MoveDown() { }
         public override void MoveLeft() { }
         public override void MoveRight() { }
         public override void MoveUp() { }
 
-        public override void Attack()
-        {
-            // Already attacking.
-        }
+        public override void Attack() { }
 
-        public override void UseItem()
-        {
-            // Busy attacking.
-        }
-
-        public override void TakeDamage(float damage)
-        {
-            link.Health -= damage;
-        }
+        public override void UseItem() { }
     }
 }

@@ -1,29 +1,24 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project3902
 {
     class DamagedLink : ILink
     {
 
-        private ILink decoratedLink;
+        private readonly ILink decoratedLink;
 
         private float timeSinceDamage = 0f;
-        private float damageTime = 2f;
+        private readonly float damageTime = 2f;
 
-        private float flickerTime = .25f;
+        private readonly float flickerTime = .25f;
         private float timeSinceFlicker = 0f;
 
         private Color damageColor = Color.Maroon;
         private Color originalColor = Color.White;
         private Color tint;
 
-        private FinalGame game;
+        private readonly FinalGame game;
 
         public float Health { get => decoratedLink.Health; set => decoratedLink.Health = value; }
         public Vector2 Position { get => decoratedLink.Position; set => decoratedLink.Position = value; }
@@ -33,22 +28,35 @@ namespace Project3902
         public IProjectile CurrentWeapon { get => decoratedLink.CurrentWeapon; set => decoratedLink.CurrentWeapon = value; }
         public IProjectile SwordProjectile { get => decoratedLink.SwordProjectile; set => decoratedLink.SwordProjectile = value; }
         public Collider Collider { get => decoratedLink.Collider; set => decoratedLink.Collider = value; }
+        public bool Damaged { get => decoratedLink.Damaged; set => decoratedLink.Damaged = value; }
+        public Vector2 FacingDirection { get => decoratedLink.FacingDirection; set => decoratedLink.FacingDirection = value; }
+
+        private readonly Vector2 knockbackDirection;
+        private readonly float knockbackSpeed = 700;
+        private readonly float knockbackTime = .20f;
+        private float timeSinceKnockback = 0f;
 
         public DamagedLink(ILink decoratedLink, FinalGame game)
         {
             this.decoratedLink = decoratedLink;
             this.game = game;
 
+            Damaged = true;
+
             tint = damageColor;
+
+            knockbackDirection = -FacingDirection;
         }
 
         public void RemoveDecorator()
         {
+            Damaged = false;
             game.Link = decoratedLink;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            Collider.Draw(spriteBatch);
             (Sprite as BaseSprite).DrawTinted(spriteBatch, tint);
             CurrentWeapon.Draw(spriteBatch);
             SwordProjectile.Draw(spriteBatch);
@@ -59,6 +67,7 @@ namespace Project3902
             float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
             timeSinceDamage += elapsed;
             timeSinceFlicker += elapsed;
+            timeSinceKnockback += elapsed;
 
             if (timeSinceDamage >= damageTime)
                 RemoveDecorator();
@@ -71,6 +80,11 @@ namespace Project3902
                     tint = originalColor;
                 else
                     tint = damageColor;
+            }
+
+            if (timeSinceKnockback < knockbackTime)
+            {
+                Position += knockbackDirection * knockbackSpeed * elapsed;
             }
 
             decoratedLink.Update(gameTime);
@@ -98,7 +112,7 @@ namespace Project3902
 
         public void TakeDamage(float damage)
         {
-            // Does not take damage while damaged.
+            decoratedLink.TakeDamage(damage);
         }
 
         public void Attack()
