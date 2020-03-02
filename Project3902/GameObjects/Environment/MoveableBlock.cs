@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Project3902.GameObjects.Environment
 {
-    class MoveableBlock : FixedGameObject
+    class MoveableBlock : BaseEnvironment
     {
 
         public MoveableBlock(Vector2 position)
