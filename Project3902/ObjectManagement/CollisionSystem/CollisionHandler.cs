@@ -4,9 +4,9 @@ namespace Project3902
 {
     class CollisionHandler
     {
-
+        
         public static CollisionHandler Instance { get; } = new CollisionHandler();
-
+        private FinalGame gameObject;
         private Dictionary<ICollidable, LayerMasksHolder> dict;
 
         private CollisionHandler() 
@@ -14,6 +14,10 @@ namespace Project3902
             Flush();
         }
 
+        public void RegisterGame(FinalGame game)
+        {
+            gameObject = game;
+        }
         public void RegisterCollidable(ICollidable collidable, Layer mainLayer, params Layer[] masks)
         {
             var holder = new LayerMasksHolder(mainLayer, masks);
