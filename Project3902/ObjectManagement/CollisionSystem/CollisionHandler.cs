@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Project3902.GameObjects;
+using System.Collections.Generic;
 
 namespace Project3902
 {
@@ -6,7 +7,7 @@ namespace Project3902
     {
         
         public static CollisionHandler Instance { get; } = new CollisionHandler();
-        private FinalGame gameObject;
+        private FinalGame game;
         private Dictionary<ICollidable, LayerMasksHolder> dict;
 
         private CollisionHandler() 
@@ -16,7 +17,7 @@ namespace Project3902
 
         public void RegisterGame(FinalGame game)
         {
-            gameObject = game;
+            this.game = game;
         }
         public void RegisterCollidable(ICollidable collidable, Layer mainLayer, params Layer[] masks)
         {
@@ -44,6 +45,14 @@ namespace Project3902
         public void RemoveCollider(ICollidable gameObject)
         {
             dict.Remove(gameObject);
+            if(gameObject is IEnemy)
+            {
+                game.enemyObjects.Remove(gameObject as IGameObject);
+            }
+            if(gameObject is IInteractiveEnvironmentObject)
+            {
+                game.interactiveEnvironmentObjects.Remove(gameObject as IGameObject);
+            }
         }
 
         public void Flush()

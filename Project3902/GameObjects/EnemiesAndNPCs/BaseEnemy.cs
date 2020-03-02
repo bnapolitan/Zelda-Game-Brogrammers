@@ -47,6 +47,7 @@ namespace Project3902
                 if (Health == 0)
                 {
                     Active = false;
+                    CollisionHandler.Instance.RemoveCollider(this);
                 }
                 Vector2 Move = (other.GameObject as IProjectile).Direction * 40;
                 //Position = new Vector2(Position.X +Move.X, Position.Y+Move.Y);
