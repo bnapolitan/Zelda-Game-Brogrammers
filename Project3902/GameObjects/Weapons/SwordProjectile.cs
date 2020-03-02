@@ -29,12 +29,11 @@ namespace Project3902
             flightTime = 0;
         }
 
-        public void OnCollide() { }
-
         public override void OnCollide(Collider other)
         {
             if(other.GameObject is IEnemy)
             {
+                
             }
         }
 

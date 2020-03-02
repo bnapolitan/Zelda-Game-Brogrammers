@@ -87,6 +87,7 @@ namespace Project3902
             //Create Enemies
             EnemyFactory.Instance.LoadAllTextures(Content);
             enemyObjects = level.CreateEnemyObjects();
+            CollisionHandler.Instance.RegisterGame(this);
         }
 
         protected override void UnloadContent()

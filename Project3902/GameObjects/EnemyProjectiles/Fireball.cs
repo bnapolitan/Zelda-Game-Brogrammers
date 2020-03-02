@@ -1,17 +1,18 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Project3902.ObjectManagement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project3902.GameObjects.EnemyProjectiles
+namespace Project3902
 {
-    class Fireball : IProjectile
+    class Fireball : BaseProjectile
     {
         private Vector2 position;
-        public Vector2 Position
+        public new Vector2 Position
         {
             get
             {
@@ -24,26 +25,24 @@ namespace Project3902.GameObjects.EnemyProjectiles
                     Collider.AlignHitbox();
             }
         }
-        public ISprite Sprite { get; set; }
-        public bool Active { get; set; }
-        public Vector2 Direction { get; set; }
-        public float Speed { get; set; }
-        Collider ICollidable.Collider { get ; set ; }
-
-        public Collider Collider;
 
         private float distance = 500;
         private Vector2 relPos = new Vector2(0, 0);
 
         public Fireball(Vector2 pos, float moveSpeed, Vector2 initDirection)
         {
+            Sprite = WeaponFactory.Instance.CreateFireballSprite(this);
             position = pos;
             Direction = initDirection;
             Speed = moveSpeed;
             Active = true;
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public override void OnCollide(Collider other)
+        {
+            
+        }
+        public new void Draw(SpriteBatch spriteBatch)
         {
             if (!Active)
             {
@@ -51,15 +50,10 @@ namespace Project3902.GameObjects.EnemyProjectiles
             }
             Collider.Draw(spriteBatch);
             Sprite.Draw(spriteBatch);
-            
-        }
-
-        public void OnCollide()
-        {
 
         }
 
-        public void Update(GameTime gameTime)
+        public new void Update(GameTime gameTime)
         {
             if (!Active)
             {
@@ -75,16 +69,15 @@ namespace Project3902.GameObjects.EnemyProjectiles
             Sprite.Update(gameTime);
         }
 
-        public void Launch(Vector2 position, Vector2 direction)
+        public new void Launch(Vector2 position, Vector2 direction)
         {
             Position = position;
             Direction = direction;
             Active = true;
         }
 
-        public void OnCollide(Collider other)
-        {
-            throw new NotImplementedException();
-        }
+
+
+
     }
 }
