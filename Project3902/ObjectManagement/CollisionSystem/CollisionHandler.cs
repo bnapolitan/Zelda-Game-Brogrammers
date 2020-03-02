@@ -40,6 +40,10 @@ namespace Project3902
             {
                 game.interactiveEnvironmentObjects.Remove(collidable as IGameObject);
             }
+            if (collidable is IItem)
+            {
+                game.itemObjects.Remove(collidable as IGameObject);
+            }
         }
 
         public void CheckCollisions()

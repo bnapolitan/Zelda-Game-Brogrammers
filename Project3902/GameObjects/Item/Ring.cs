@@ -42,10 +42,6 @@ namespace Project3902
             Sprite.Draw(spriteBatch);
         }
 
-        public void OnCollide()
-        {
-
-        }
 
         public void Update(GameTime gameTime)
         {

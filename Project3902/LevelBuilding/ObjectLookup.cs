@@ -11,8 +11,9 @@ namespace Project3902.LevelBuilding
     class ObjectLookup
     {
         public static IDictionary<string, string> ObjectMappings;
-        private EnvironmentFactory envFactory = EnvironmentFactory.Instance;
-        private EnemyFactory enemyFactory = EnemyFactory.Instance;
+        private readonly EnvironmentFactory envFactory = EnvironmentFactory.Instance;
+        private readonly EnemyFactory enemyFactory = EnemyFactory.Instance;
+        private readonly ItemFactory itemFactory = ItemFactory.Instance;
 
         public ObjectLookup()
         {
@@ -81,6 +82,21 @@ namespace Project3902.LevelBuilding
                 return envFactory.CreateWallBottom(position);
             }
 
+            throw new Exception($"The object {name} has not been mapped in ObjectLookup yet!");
+        }
+
+        public IGameObject CreateItemObject(string name, Vector2 position)
+        {
+            if (name == "Rupee")
+            {
+                Console.WriteLine("Rupee Added");
+                return itemFactory.CreateRupee(position);
+            }
+            if (name == "Heart")
+            {
+                Console.WriteLine("Heart Added");
+                return itemFactory.CreateHeart(position);
+            }
             throw new Exception($"The object {name} has not been mapped in ObjectLookup yet!");
         }
 

@@ -63,6 +63,10 @@ namespace Project3902
             {
                 TakeDamage((other.GameObject as IEnemy).Damage);
             }
+            else if(other.GameObject is IItem)
+            {
+                CollisionHandler.Instance.RemoveCollidable(other.GameObject as ICollidable);
+            }
         }
 
         private void MoveOutOfWall(Collider other)

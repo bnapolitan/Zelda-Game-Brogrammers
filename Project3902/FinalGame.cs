@@ -24,9 +24,8 @@ namespace Project3902
 
         public List<IGameObject> interactiveEnvironmentObjects;
 
-        List<IGameObject> enemyObjects;
-        List<IGameObject> itemObjects;
-        int currentItem;
+        public List<IGameObject> enemyObjects;
+        public List<IGameObject> itemObjects;
 
         IController<MouseActions> mouseController;
         KeyboardController keyboardController;
@@ -71,7 +70,7 @@ namespace Project3902
 
             LinkFactory.Instance.LoadAllTextures(Content);
             Link = LinkFactory.Instance.CreateLink(new Vector2(100, 100), this);
-            CollisionHandler.Instance.RegisterCollidable(Link, Layer.Player, Layer.Enemy, Layer.Wall, Layer.Pickup);
+            CollisionHandler.Instance.RegisterCollidable(Link, Layer.Player, Layer.Enemy, Layer.Wall, Layer.Pickup, Layer.Projectile);
 
             keyboardController = LinkFactory.Instance.CreateLinkController(Link);
 
@@ -86,9 +85,10 @@ namespace Project3902
 
             EnemyFactory.Instance.LoadAllTextures(Content);
             enemyObjects = level.CreateEnemyObjects();
+
             ItemFactory.Instance.LoadAllTextures(Content);
-            itemObjects = new Sprint2Level(this).CreateItem();
-            currentItem = 0;
+            itemObjects = level.CreateItemObjects();
+
             CollisionHandler.Instance.RegisterGame(this);
         }
 
@@ -102,7 +102,6 @@ namespace Project3902
         {
             mouseController.Update();
             keyboardController.Update();
-            itemObjects[currentItem].Update(gameTime);
 
             foreach (IGameObject gameObject in interactiveEnvironmentObjects)
             {
@@ -110,6 +109,11 @@ namespace Project3902
             }
 
             foreach (IGameObject gameObject in enemyObjects)
+            {
+                gameObject.Update(gameTime);
+            }
+
+            foreach (IGameObject gameObject in itemObjects)
             {
                 gameObject.Update(gameTime);
             }
@@ -138,8 +142,12 @@ namespace Project3902
                 gameObject.Draw(spriteBatch);
             }
 
+            foreach (IGameObject gameObject in itemObjects)
+            {
+                gameObject.Draw(spriteBatch);
+            }
 
-            itemObjects[currentItem].Draw(spriteBatch);
+
 
             Link.Draw(spriteBatch);
 
@@ -153,24 +161,6 @@ namespace Project3902
             mouseController = new MouseController();
 
             //Fill with functionality later
-        }
-
-        public void CycleItemNext()
-        {
-            currentItem = (currentItem + 1) % itemObjects.Count;
-        }
-
-        public void CycleItemLast()
-        {
-            if (currentItem == 0)
-            {
-                currentItem = itemObjects.Count - 1;
-            }
-            else
-            {
-                currentItem--;
-            }
-
         }
 
     }

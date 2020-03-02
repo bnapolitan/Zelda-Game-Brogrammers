@@ -50,10 +50,9 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="GameObjects\BlankGameObject.cs" />
     <Compile Include="GameObjects\EnemiesAndNPCs\BaseEnemy.cs" />
     <Compile Include="GameObjects\Environment\BaseEnvironment.cs" />
-    <Compile Include="GameObjects\Item\CycPrvItm.cs" />
-    <Compile Include="GameObjects\Item\CycNxtItm.cs" />
     <Compile Include="GameObjects\Item\Sword.cs" />
     <Compile Include="GameObjects\Item\Rupee.cs" />
     <Compile Include="GameObjects\Item\Watch.cs" />
@@ -90,7 +89,6 @@
     <Compile Include="GameObjects\EnemiesAndNPCs\Gel.cs" />
     <Compile Include="GameObjects\EnemiesAndNPCs\Goriya.cs" />
     <Compile Include="GameObjects\EnemiesAndNPCs\Interfaces\IEnemy.cs" />
-    <Compile Include="GameObjects\EnemiesAndNPCs\Interfaces\INPC.cs" />
     <Compile Include="GameObjects\EnemiesAndNPCs\Keese.cs" />
     <Compile Include="GameObjects\EnemiesAndNPCs\Merchant.cs" />
     <Compile Include="GameObjects\EnemiesAndNPCs\OldMan.cs" />

@@ -31,18 +31,6 @@ namespace Project3902
         {
             base.Update(gameTime);
 
-            /*Position += Direction * MoveSpeed;
-            relPos += Direction * MoveSpeed;
-            if (relPos.X > distance)
-            {
-                Direction *= -1;
-                relPos = new Vector2(0, 0);
-            }
-            else if (relPos.X < -distance)
-            {
-                Direction *= -1;
-                relPos = new Vector2(0, 0);
-            }*/
             if (steps == 0)
             {
                 Random random = new Random();
@@ -62,7 +50,7 @@ namespace Project3902
                         Direction = new Vector2(0, -1);
                         break;
                 }
-                steps = random.Next(40, 125);
+                steps = random.Next(40, 300);
             }
             Position += Direction * MoveSpeed;
             steps--;

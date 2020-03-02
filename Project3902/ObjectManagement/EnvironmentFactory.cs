@@ -28,12 +28,12 @@ namespace Project3902.ObjectManagement
             linkSpriteAtlas = new SpriteAtlas(content.Load<Texture2D>("linkspritesheet"));
         }
 
-        public static void RegisterEnviromentForCollision(IInteractiveEnvironmentObject EnviromentObject)
+        public static void RegisterEnvironmentForCollision(IInteractiveEnvironmentObject EnvironmentObject)
         {
             // REPLACE: create colliders in individual Create...() methods below with correct sizes.
             // See CreateAquaGel for example.
-            EnviromentObject.Collider = new Collider(EnviromentObject, new Rectangle(0, 0, 64, 64));
-            CollisionHandler.Instance.RegisterCollidable(EnviromentObject, Layer.Enemy, Layer.Wall);
+            EnvironmentObject.Collider = new Collider(EnvironmentObject, new Rectangle(0, 0, 64, 64));
+            CollisionHandler.Instance.RegisterCollidable(EnvironmentObject, Layer.Wall);
         }
 
 
@@ -42,7 +42,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new Stairs(position);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(1035, 28, 16, 16));
             createdObject.Sprite = sprite;
-            RegisterEnviromentForCollision(createdObject);
+            RegisterEnvironmentForCollision(createdObject);
             return createdObject;
         }
 
@@ -51,7 +51,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new LadderTile(position);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(1001, 45, 16, 16));
             createdObject.Sprite = sprite;
-            RegisterEnviromentForCollision(createdObject);
+            RegisterEnvironmentForCollision(createdObject);
             return createdObject;
         }
 
@@ -60,7 +60,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new GapTile(position);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(984, 28, 16, 16));
             createdObject.Sprite = sprite;
-            RegisterEnviromentForCollision(createdObject);
+            RegisterEnvironmentForCollision(createdObject);
             return createdObject;
         }
 
@@ -69,7 +69,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new Fire(position);
             var sprite = new FixedSprite(createdObject, linkSpriteAtlas, new Rectangle(191, 185, 16, 16));
             createdObject.Sprite = sprite;
-            RegisterEnviromentForCollision(createdObject);
+            RegisterEnvironmentForCollision(createdObject);
             return createdObject;
         }
 
@@ -78,7 +78,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new BrickTile(position);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(984, 45, 16, 16));
             createdObject.Sprite = sprite;
-            RegisterEnviromentForCollision(createdObject);
+            RegisterEnvironmentForCollision(createdObject);
             return createdObject;
         }
 
@@ -87,7 +87,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new BombedOpening(position);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(947, 11, 32, 32));
             createdObject.Sprite = sprite;
-            RegisterEnviromentForCollision(createdObject);
+            RegisterEnvironmentForCollision(createdObject);
             return createdObject;
         }
 
@@ -97,7 +97,7 @@ namespace Project3902.ObjectManagement
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(947, 11, 32, 32));
             sprite.Flip = SpriteEffects.FlipVertically;
             createdObject.Sprite = sprite;
-            RegisterEnviromentForCollision(createdObject);
+            RegisterEnvironmentForCollision(createdObject);
             return createdObject;
         }
 
@@ -106,7 +106,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new BombedOpening(position);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(947, 44, 32, 32));
             createdObject.Sprite = sprite;
-            RegisterEnviromentForCollision(createdObject);
+            RegisterEnvironmentForCollision(createdObject);
             return createdObject;
         }
 
@@ -116,7 +116,7 @@ namespace Project3902.ObjectManagement
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(947, 44, 32, 32));
             sprite.Flip = SpriteEffects.FlipHorizontally;
             createdObject.Sprite = sprite;
-            RegisterEnviromentForCollision(createdObject);
+            RegisterEnvironmentForCollision(createdObject);
             return createdObject;
         }
 
@@ -149,7 +149,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new Statues(position);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(468, 75, 16, 16), environmentScale);
             createdObject.Sprite = sprite;
-            RegisterEnviromentForCollision(createdObject);
+            RegisterEnvironmentForCollision(createdObject);
             return createdObject;
         }
 
@@ -160,7 +160,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new Statues(position);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(468, 91, 16, 16), environmentScale);
             createdObject.Sprite = sprite;
-            RegisterEnviromentForCollision(createdObject);
+            RegisterEnvironmentForCollision(createdObject);
             return createdObject;
         }
 
@@ -179,7 +179,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new LockDoor(position);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(881, 11, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
-            RegisterEnviromentForCollision(createdObject);
+            RegisterEnvironmentForCollision(createdObject);
             return createdObject;
         }
 
@@ -188,7 +188,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new LockDoor(position);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(881, 110, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
-            RegisterEnviromentForCollision(createdObject);
+            RegisterEnvironmentForCollision(createdObject);
             return createdObject;
         }
 
@@ -199,7 +199,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new LockDoor(position);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(881, 44, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
-            RegisterEnviromentForCollision(createdObject);
+            RegisterEnvironmentForCollision(createdObject);
             return createdObject;
         }
 
@@ -208,7 +208,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new LockDoor(position);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(881, 77, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
-            RegisterEnviromentForCollision(createdObject);
+            RegisterEnvironmentForCollision(createdObject);
             return createdObject;
         }
 
@@ -217,7 +217,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new OpenDoor(position);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(848, 11, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
-            RegisterEnviromentForCollision(createdObject);
+            RegisterEnvironmentForCollision(createdObject);
             return createdObject;
         }
 
@@ -226,7 +226,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new OpenDoor(position);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(848, 110, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
-            RegisterEnviromentForCollision(createdObject);
+            RegisterEnvironmentForCollision(createdObject);
             return createdObject;
         }
 
@@ -235,7 +235,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new OpenDoor(position);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(848, 44, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
-            RegisterEnviromentForCollision(createdObject);
+            RegisterEnvironmentForCollision(createdObject);
             return createdObject;
         }
 
@@ -244,7 +244,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new OpenDoor(position);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(848, 77, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
-            RegisterEnviromentForCollision(createdObject);
+            RegisterEnvironmentForCollision(createdObject);
             return createdObject;
         }
 
@@ -253,7 +253,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new ShutDoor(position);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(914, 11, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
-            RegisterEnviromentForCollision(createdObject);
+            RegisterEnvironmentForCollision(createdObject);
             return createdObject;
         }
 
@@ -262,7 +262,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new ShutDoor(position);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(914, 110, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
-            RegisterEnviromentForCollision(createdObject);
+            RegisterEnvironmentForCollision(createdObject);
             return createdObject;
         }
 
@@ -271,7 +271,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new ShutDoor(position);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(914, 44, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
-            RegisterEnviromentForCollision(createdObject);
+            RegisterEnvironmentForCollision(createdObject);
             return createdObject;
         }
 
@@ -280,7 +280,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new ShutDoor(position);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(914, 77, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
-            RegisterEnviromentForCollision(createdObject);
+            RegisterEnvironmentForCollision(createdObject);
             return createdObject;
         }
         public IGameObject CreateMoveableBlock(Vector2 position)
@@ -288,7 +288,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new MoveableBlock(position);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(1001, 11, 16, 16), environmentScale);
             createdObject.Sprite = sprite;
-            RegisterEnviromentForCollision(createdObject);
+            RegisterEnvironmentForCollision(createdObject);
             return createdObject;
         }
 
@@ -297,7 +297,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new Wall(position);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(815, 11, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
-            RegisterEnviromentForCollision(createdObject);
+            RegisterEnvironmentForCollision(createdObject);
             return createdObject;
         }
 
@@ -306,7 +306,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new Wall(position);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(815, 110, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
-            RegisterEnviromentForCollision(createdObject);
+            RegisterEnvironmentForCollision(createdObject);
             return createdObject;
         }
 
@@ -315,7 +315,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new Wall(position);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(815, 44, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
-            RegisterEnviromentForCollision(createdObject);
+            RegisterEnvironmentForCollision(createdObject);
             return createdObject;
         }
 
@@ -324,7 +324,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new Wall(position);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(815, 77, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
-            RegisterEnviromentForCollision(createdObject);
+            RegisterEnvironmentForCollision(createdObject);
             return createdObject;
         }
 

@@ -43,12 +43,12 @@ namespace Project3902.ObjectManagement
 			// REPLACE: create colliders in individual Create...() methods below with correct sizes.
 			// See CreateAquaGel for example.
 			//enemy.Collider = new Collider(enemy, new Rectangle(0, 0, 10, 10));
-			CollisionHandler.Instance.RegisterCollidable(enemy, Layer.Wall, Layer.Projectile);
+			CollisionHandler.Instance.RegisterCollidable(enemy, Layer.Enemy, Layer.Wall, Layer.Projectile);
 		}
 
 		public IGameObject CreateAquaGel(Vector2 position)
 		{
-			var createdObject = new Gel(position, 0.5f, new Vector2(1, 0));
+			var createdObject = new Gel(position, 2f, new Vector2(1, 0));
 			List<Rectangle> aquaGelSource = new List<Rectangle> { new Rectangle(403, 183, 10, 10), new Rectangle(403, 213, 10, 10) };
 
 			var sprite = new AnimatedSprite(createdObject, dungeons2, aquaGelSource, 0.5f, enemyScale);
