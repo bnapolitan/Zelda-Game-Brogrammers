@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Project3902.GameObjects.Environment
 {
-    class OpenDoor : FixedGameObject
+    class OpenDoor : BaseEnvironment
     {
 
         public OpenDoor(Vector2 position)

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Project3902.GameObjects.Environment
 {
-    class LockDoor : FixedGameObject
+    class LockDoor : BaseEnvironment
     {
 
         public LockDoor(Vector2 position)
