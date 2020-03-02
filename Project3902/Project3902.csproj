@@ -52,7 +52,7 @@
   <ItemGroup>
     <Compile Include="GameObjects\EnemiesAndNPCs\BaseEnemy.cs" />
     <Compile Include="GameObjects\Environment\BaseEnvironment.cs" />
-    <Compile Include="GameObjects\Weapons\BaseProjectile.cs" />
+    <Compile Include="GameObjects\Weapons\BasePlayerProjectile.cs" />
     <Compile Include="GlobalSuppressions2.cs" />
     <Compile Include="LevelBuilding\LevelBuilder.cs" />
     <Compile Include="LevelBuilding\ObjectLookup.cs" />
