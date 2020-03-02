@@ -1,0 +1,19 @@
+Author of the code review: Huang Huang
+
+Date of the code review: 2020/2/16
+
+Sprint number: #2
+
+Name of the .cs file being reviewed: AnimatedSprite.cs
+
+Author of the .cs file being reviewed: Austin Rogers
+
+Number of minutes taken to complete the review: 10min
+
+Specific comments on readable: 
+
+I think the code in this file is easy to read. 
+As for the structure of this file: 
+the structure of each function in this file is easy to follow. 
+As for the each varibale：
+programmer can understand meaning of each variable easily by its name. 

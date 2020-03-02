@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -17,23 +17,24 @@ namespace Project3902
         private int currentFrame;
         private int totalFrames;
         private ItemReg ItController;
-        private Sprint2 game;
+        private FinalGame game;
+        int posiX = 200;
+        int posiY = 200;
+        bool FairyMov = false;
 
         public FixedItem(Texture2D texture, int rows, int columns)
         {
             Texture = texture;
             Rows = rows;
             Columns = columns;
-            currentFrame = Sprint2.currentFram.Current;
+            currentFrame = FinalGame.currentFram.Current;
             totalFrames = Rows * Columns;
-
-            ItController = ItemCtl.Instance.ItemRegister(game);
 
             if (currentFrame == totalFrames)
                 currentFrame = 0;
             if (currentFrame == -1)
                 currentFrame = totalFrames - 1;
-            Sprint2.currentFram.Current = currentFrame;
+            FinalGame.currentFram.Current = currentFrame;
         }
 
         public void Update()
@@ -48,9 +49,16 @@ namespace Project3902
             int height = Texture.Height / Rows;
             int row = (int)((float)currentFrame / (float)Columns);
             int column = currentFrame % Columns;
-
+            if (FinalGame.currentFram.Current == 1 && posiX<300 && !FairyMov) {  
+                posiX += 4;
+                if (posiX >= 300) { FairyMov = true; }
+            }
+            else if(FairyMov) { 
+                posiX -= 4;
+                if (posiX <= 200) { FairyMov = false; }
+            }
             Rectangle sourceRectangle = new Rectangle(width * currentFrame, 0, width, height);
-            Rectangle destinationRectangle = new Rectangle(200, 200, width, height);
+            Rectangle destinationRectangle = new Rectangle(posiX, posiY, width, height);
 
             //spriteBatch.Begin();
             spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);

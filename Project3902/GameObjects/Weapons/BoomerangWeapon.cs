@@ -1,25 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project3902
 {
-    class BoomerangWeapon : IProjectile
+    class BoomerangWeapon : BasePlayerProjectile
     {
-        public Vector2 Position { get; set; }
-        public ISprite Sprite { get; set; }
-        public bool Active { get; set; } = false;
-        public Rectangle Collider { get; set; }
-        public Vector2 Direction { get; set; }
-        public float Speed { get; set; } = 300f;
-
-        private float maxSpeed = 1000f;
+        private readonly float initialSpeed = 300f;
+        private readonly float maxSpeed = 1000f;
         private Vector2 startingPos;
-        private float maxDistance = 300f;
+        private readonly float maxDistance = 300f;
         private bool turned = false;
 
         public BoomerangWeapon()
@@ -27,24 +15,10 @@ namespace Project3902
             Sprite = WeaponFactory.Instance.CreateBoomerangSprite(this);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+
+        public override void Update(GameTime gameTime)
         {
-            if (!Active)
-                return;
-
-            Sprite.Draw(spriteBatch);
-        }
-
-        public void OnCollide() { }
-
-        public void Update(GameTime gameTime)
-        {
-            if (!Active)
-                return;
-
-            Sprite.Update(gameTime);
-
-            // This is a mess.
+            base.Update(gameTime);
 
             float distTraveled = (Position - startingPos).Length();
 
@@ -66,13 +40,14 @@ namespace Project3902
             
         }
 
-        public void Launch(Vector2 position, Vector2 direction)
+        public override void Launch(Vector2 position, Vector2 direction)
         {
-            startingPos = position;
-            Position = position;
-            Direction = direction;
+            base.Launch(position, direction);
 
-            Active = true;
+            startingPos = position;
+
+            Speed = initialSpeed;
+
             turned = false;
         }
     }

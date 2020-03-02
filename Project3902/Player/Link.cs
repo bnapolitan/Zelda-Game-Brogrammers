@@ -1,11 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project3902
 {
@@ -14,59 +8,64 @@ namespace Project3902
         public float Health { get; set; }
         public float MaxHealth { get; set; }
 
-        public Vector2 Position { get; set; }
+        public bool Damaged { get; set; } = false;
+
+        private Vector2 position;
+        public Vector2 PreviousPosition { get; set; }
+        public Vector2 Position { 
+            get 
+            {
+                return position;
+            }
+            set 
+            {
+                PreviousPosition = position;
+                position = value;
+                Collider.AlignHitbox();
+            }
+        }
 
         public ISprite Sprite { get => machine.Sprite; set { } }
         public bool Active { get; set; }
-
-        private Rectangle collider;
-        public Rectangle Collider { get => collider; set => collider = value; }
-
         public float MovementSpeed { get; set; } = 200f;
 
-        // Want this to be an IWeapon, but such an interface wouldn't have much use over IProjectile...
         public IProjectile CurrentWeapon { get; set; }
-
         public IProjectile SwordProjectile { get; set; }
 
-        private Sprint2 game;
+        public Collider Collider { get; set; }
+        public Vector2 FacingDirection { get; set; } = new Vector2(1, 0);
 
-        private LinkStateMachine machine;
+        private readonly LinkStateMachine machine;
 
-        private KeyboardController controller;
-
-        public Link(Vector2 position, Sprint2 game)
+        public Link(Vector2 position)
         {
-            Position = position;
-            this.game = game;
-
             Health = 5;
             MaxHealth = Health;
 
             machine = new LinkStateMachine(this);
 
-            controller = LinkFactory.Instance.CreateLinkController(this, game);
-
-            collider = new Rectangle(Position.ToPoint(), new Point(16, 16) * Sprite.Scale.ToPoint());
+            Collider = new Collider(this, new Rectangle(new Point(0, 0), new Point(16, 16) * Sprite.Scale.ToPoint()));
 
             CurrentWeapon = WeaponFactory.Instance.CreateBlueCandleProjectile();
-            SwordProjectile = new SwordProjectile(); // Replace with factory method.
+            SwordProjectile = WeaponFactory.Instance.CreateSwordProjectile();
+
+            Position = position;
         }
 
         public void Update(GameTime gameTime)
         {
-            controller.Update();
             CurrentWeapon.Update(gameTime);
             SwordProjectile.Update(gameTime);
 
             machine.Update(gameTime);
-
-            collider.Location = Position.ToPoint();
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            Collider.Draw(spriteBatch);
+
             machine.Draw(spriteBatch);
+
             CurrentWeapon.Draw(spriteBatch);
             SwordProjectile.Draw(spriteBatch);
         }
@@ -101,13 +100,14 @@ namespace Project3902
             machine.Attack();
         }
 
-        public void OnCollide()
-        {
-        }
-
         public void UseItem()
         {
             machine.UseItem();
+        }
+
+        public void OnCollide(Collider other)
+        {
+            machine.OnCollide(other);
         }
     }
 }

@@ -2,11 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project3902
 {
@@ -14,7 +10,8 @@ namespace Project3902
     {
         private SpriteAtlas linkAtlas;
         private Vector2 linkScale = new Vector2(4, 4);
-        private float attackFrameTime = .15f;
+        private readonly float attackFrameTime = .15f;
+        private LinkTakeDamageCommand takeDamageCommand;
 
         public static LinkFactory Instance { get; } = new LinkFactory();
 
@@ -27,12 +24,13 @@ namespace Project3902
             linkAtlas = new SpriteAtlas(content.Load<Texture2D>("linkspritesheet"));
         }
 
-        public Link CreateLink(Vector2 position, Sprint2 game)
+        public Link CreateLink(Vector2 position, FinalGame game)
         {
-            return new Link(position, game);
+            takeDamageCommand = new LinkTakeDamageCommand(game);
+            return new Link(position);
         }
 
-        public KeyboardController CreateLinkController(Link link, Sprint2 game)
+        public KeyboardController CreateLinkController(ILink link)
         {
             var controller = new KeyboardController();
 
@@ -52,7 +50,7 @@ namespace Project3902
             controller.RegisterCommand(Keys.D1, new LinkUseBoomerangCommand(link), InputState.Pressed);
             controller.RegisterCommand(Keys.D2, new LinkUseBlueCandleCommand(link), InputState.Pressed);
 
-            controller.RegisterCommand(Keys.E, new LinkTakeDamageCommand(link, game), InputState.Pressed);
+            controller.RegisterCommand(Keys.E, takeDamageCommand, InputState.Pressed);
 
             return controller;
         }
@@ -145,6 +143,11 @@ namespace Project3902
         public ISprite CreateDownItemSprite(IGameObject link)
         {
             return new FixedSprite(link, linkAtlas, new Rectangle(107, 11, 16, 16), linkScale);
+        }
+
+        public void CreateDamagedLink()
+        {
+            takeDamageCommand.Execute();
         }
     }
 }

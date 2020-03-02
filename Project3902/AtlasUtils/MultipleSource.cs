@@ -1,15 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project3902
 {
     class MultipleSource : IAtlasSource
     {
-        private List<Rectangle> sourceRects;
+        private readonly List<Rectangle> sourceRects;
 
         public MultipleSource(List<Rectangle> sourceRects)
         {
@@ -28,7 +24,7 @@ namespace Project3902
 
         public int GetNumberFrames()
         {
-            return sourceRects.Count();
+            return sourceRects.Count;
         }
     }
 }

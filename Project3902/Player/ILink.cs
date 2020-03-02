@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Xna.Framework;
 
 namespace Project3902
 {
     interface ILink : ICharacter, ILinkActions
     {
         float MaxHealth { get; set; }
+        bool Damaged { get; set; }
+        Vector2 FacingDirection { get; set; }
 
         IProjectile CurrentWeapon { get; set; }
         IProjectile SwordProjectile { get; set; }

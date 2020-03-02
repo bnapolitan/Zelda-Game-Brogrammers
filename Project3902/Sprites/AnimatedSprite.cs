@@ -1,13 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-using System;
 
 namespace Project3902
 {
     class AnimatedSprite : BaseSprite
     {
-        private float frameTime;
+        private readonly float frameTime;
         private float lastFrameChange;
 
         public AnimatedSprite(IGameObject gameObject, SpriteAtlas atlas, List<Rectangle> sourceRects, float frameTime, Vector2? scale = null)
@@ -22,7 +20,6 @@ namespace Project3902
         {
             if (lastFrameChange + frameTime <= gameTime.TotalGameTime.TotalSeconds)
             {
-                // Store number of frames somewhere instead of accessing it constantly.
                 currentFrame = (currentFrame + 1) % source.GetNumberFrames();
                 lastFrameChange = (float) gameTime.TotalGameTime.TotalSeconds;
                 SetWidthHeight();

@@ -1,0 +1,33 @@
+Code Quality Review 
+
+ 
+
+Author of Code Review: Suraj Suresh 
+
+Date of Code Review: 02/14/19 
+
+Sprint Number: 2 
+
+File Being Reviewed: Link.cs 
+
+Author of File: Austin Rogers 
+
+Code Quality Comments: 
+
+-Overall, good use of loose coupling, only having references to things that are necessary 
+	-Would move controller logic out of link class 
+	-This would reduce some coupling 
+
+-Instead of multiple different Draw and Update calls, can also make a list of GameObjects/Weapons and call Update and Draw on each object within the list 
+
+-Good encapsulation of Link’s movement logic 
+	-All small details not shown within main Link class 
+	-Instead handled in other state classes controlled by the LinkStateMachine 
+	-Also helps with maintainability in the future 
+	-If changes need to be made, you just need to create a new State class and add a simple method call to the state machine 
+	-Reduces amount of changes that would have to go into main Link class versus if you’d decided to keep movement logic in class 
+
+-To help with user’s understanding, maybe rename IProjectile to IWeapon and just have projectiles deal with a method that controls the movement away from/back to the character 
+	-Simple name change that would allow users to understand why current weapon, which isn’t necessarily a “projectile” in the future, would fit under the broader category of weapon 
+
+ 

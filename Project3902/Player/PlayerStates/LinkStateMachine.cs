@@ -1,18 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project3902
 {
     class LinkStateMachine : IStateMachine<LinkStates>, IDrawable, ILinkActions
     {
-        private Dictionary<LinkStates, ILinkState> states;
-        private Link link;
+        private readonly Dictionary<LinkStates, ILinkState> states;
 
         private ILinkState currentState;
 
@@ -21,8 +15,6 @@ namespace Project3902
 
         public LinkStateMachine(Link link)
         {
-            this.link = link;
-
             states = new Dictionary<LinkStates, ILinkState>
             {
                 { LinkStates.LeftWalk, new LinkLeftWalkState(link, this) },
@@ -39,7 +31,6 @@ namespace Project3902
                 { LinkStates.LeftItem, new LinkLeftItemState(link, this) }
             };
 
-            // Instead of having to check if the currentState is null in SwitchState()
             currentState = states[LinkStates.RightWalk];
             currentState.Enter();
         }
@@ -92,6 +83,11 @@ namespace Project3902
         public void UseItem()
         {
             currentState.UseItem();
+        }
+
+        public void OnCollide(Collider other)
+        {
+            currentState.OnCollide(other);
         }
     }
 }

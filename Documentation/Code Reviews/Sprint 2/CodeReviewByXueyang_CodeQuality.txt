@@ -1,0 +1,25 @@
+Author of the code review: Xueyang Li
+
+Date of the code review: 2020/2/17
+
+Sprint Number: 2
+
+Name of the .cs file being reviewed: Aquamentus.cs
+
+Author of the .cs file being reviewed: Dan Bellini
+
+Number of minutes taken to complete the review: 10min
+
+Specific comments on code quality: 
+	
+	This file is one of multiple files which implement Animated Enemys. Those files are very similar in structure. 
+
+	In this file, there is no redundant code. Except for variable initializations and methods declarations, only Draw(), Aquamentus(), and Update() have content, which are necessary to implement the  Aquamentus class.
+
+	Good and clear use of if-condition inside Update(), which makes the object able to move around. It's a easy and clean way to do so.
+
+
+A hypothetical change£º
+
+	If I have to make a change, I think instead of put many animated enemies in multiple files, we can implement a class for all animated enemies, and create instances for different enemies. This can make the project shorter and easier to understand.
+	
