@@ -94,6 +94,10 @@ namespace Project3902.LevelBuilding
             {
                 return enemyFactory.CreateAquaGel(position);
             }
+            if (name == "GrayZol")
+            {
+                return enemyFactory.CreateGrayZol(position);
+            }
             throw new Exception($"The object {name} has not been mapped in ObjectLookup yet!");
         }
     }

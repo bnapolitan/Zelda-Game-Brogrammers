@@ -48,7 +48,7 @@ namespace Project3902.ObjectManagement
 
 		public IGameObject CreateAquaGel(Vector2 position)
 		{
-			var createdObject = new Gel(position, 2, new Vector2(1, 0));
+			var createdObject = new Gel(position, 0.5f, new Vector2(1, 0));
 			List<Rectangle> aquaGelSource = new List<Rectangle> { new Rectangle(403, 183, 10, 10), new Rectangle(403, 213, 10, 10) };
 
 			var sprite = new AnimatedSprite(createdObject, dungeons2, aquaGelSource, 0.5f, enemyScale);
@@ -241,7 +241,7 @@ namespace Project3902.ObjectManagement
 
 		public IGameObject CreateGrayZol(Vector2 position)
 		{
-			var createdObject = new Zol(position, 2, new Vector2(1, 0));
+			var createdObject = new Zol(position, 0.5f, new Vector2(1, 0));
 			List<Rectangle> grayZolSource = new List<Rectangle> { new Rectangle(360, 180, 16, 16), new Rectangle(360, 210, 16, 16) };
 			var sprite = new AnimatedSprite(createdObject, dungeons2, grayZolSource, 0.5f, enemyScale);
 			createdObject.Sprite = sprite;

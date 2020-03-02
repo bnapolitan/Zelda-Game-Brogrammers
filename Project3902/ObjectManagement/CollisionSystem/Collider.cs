@@ -5,7 +5,7 @@ namespace Project3902
 {
     class Collider : IDrawable
     {
-        private bool debug = false;
+        private bool debug = true;
 
         private Rectangle localRect;
 

@@ -33,9 +33,8 @@ namespace Project3902
 
         public override void OnCollide(Collider other)
         {
-            if(other.GameObject is Gel)
+            if(other.GameObject is IEnemy)
             {
-                Console.WriteLine("Sword Collided");
             }
         }
 

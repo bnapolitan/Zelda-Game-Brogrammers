@@ -61,7 +61,7 @@ namespace Project3902
                         Direction = new Vector2(0, -1);
                         break;
                 }
-                steps = random.Next(40, 200);
+                steps = random.Next(40, 125);
             }
             Position += Direction * MoveSpeed;
             steps--;

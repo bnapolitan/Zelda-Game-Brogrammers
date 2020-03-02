@@ -37,6 +37,11 @@ namespace Project3902
             }
         }
 
+        public void RemoveCollider(ICollidable gameObject)
+        {
+            dict.Remove(gameObject);
+        }
+
         public void Flush()
         {
             dict = new Dictionary<ICollidable, LayerMasksHolder>();

@@ -24,7 +24,7 @@ namespace Project3902
 
         public List<IGameObject> interactiveEnvironmentObjects;
 
-        List<IGameObject> enemyObjects;
+        public List<IGameObject> enemyObjects;
 
         IController<MouseActions> mouseController;
         KeyboardController keyboardController;
@@ -72,7 +72,9 @@ namespace Project3902
             // Create player.
             LinkFactory.Instance.LoadAllTextures(Content);
             Link = LinkFactory.Instance.CreateLink(new Vector2(100, 100), this);
+            CollisionHandler.Instance.RegisterCollidable(Link, Layer.Player, Layer.Enemy, Layer.Wall, Layer.Pickup);
 
+            ShapeSpriteFactory.Instance.CreateShapeTextures(GraphicsDevice);
             WeaponFactory.Instance.LoadAllTextures(Content);
 
             // Create list of all items to be cycled through. Use a Factory class to create them.
@@ -112,6 +114,7 @@ namespace Project3902
             base.Update(gameTime);
 
             Link.Update(gameTime);
+            CollisionHandler.Instance.CheckCollisions();
         }
 
         protected override void Draw(GameTime gameTime)

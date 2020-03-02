@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Project3902.GameObjects.Environment;
+using System;
 
 namespace Project3902
 {
@@ -42,12 +43,13 @@ namespace Project3902
             if (other.GameObject is IProjectile) 
             {
                 Health--;
+                Console.WriteLine(Health);
                 if (Health == 0)
                 {
                     Active = false;
                 }
-                Vector2 Move = (other as IProjectile).Direction * 20;
-                Position = new Vector2(Position.X +Move.X, Position.Y+Move.Y);
+                Vector2 Move = (other.GameObject as IProjectile).Direction * 40;
+                //Position = new Vector2(Position.X +Move.X, Position.Y+Move.Y);
             }
             else if(other.GameObject is BaseEnvironment) 
             {
