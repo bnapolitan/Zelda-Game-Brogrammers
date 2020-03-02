@@ -65,7 +65,7 @@ namespace Project3902
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            var level = new LevelBuilder(this, "DungeonRoom2");
+            var level = new LevelBuilder(this, "DungeonRoom1");
 
             LinkFactory.Instance.LoadAllTextures(Content);
             Link = LinkFactory.Instance.CreateLink(new Vector2(100, 100), this);

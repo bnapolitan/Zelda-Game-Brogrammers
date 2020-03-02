@@ -19,7 +19,7 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
             Active = true;
             MoveSpeed = moveSpeed;
             Direction = initDirection;
-            Health = 2;
+            Health = 1;
         }
 
         public override void Update(GameTime gameTime)
@@ -50,7 +50,7 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
             base.OnCollide(other);
             if (Active == false)
             {
-                //create two Gels
+                
             }
         }
 

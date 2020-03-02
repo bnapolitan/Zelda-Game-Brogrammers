@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Project3902.GameObjects;
 using Project3902.GameObjects.Environment;
 using System;
 
@@ -48,12 +49,12 @@ namespace Project3902
                 if (Health == 0)
                 {
                     Active = false;
-                    CollisionHandler.Instance.RemoveCollider(this);
+                    CollisionHandler.Instance.RemoveCollidable(this);
                 }
-                Vector2 Move = (other.GameObject as IProjectile).Direction * 40;
-                //Position = new Vector2(Position.X +Move.X, Position.Y+Move.Y);
+                Vector2 Move = (other.GameObject as IProjectile).Direction * 40*-1;
+                Position = new Vector2(Position.X +Move.X, Position.Y+Move.Y);
             }
-            else if(other.GameObject is BaseEnvironment) 
+            else if(other.GameObject is IInteractiveEnvironmentObject) 
             {
                 Direction=new Vector2(Direction.Y, Direction.X*-1);
             }

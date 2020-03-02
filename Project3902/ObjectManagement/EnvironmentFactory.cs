@@ -217,7 +217,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new OpenDoor(position);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(848, 11, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
-
+            RegisterEnviromentForCollision(createdObject);
             return createdObject;
         }
 
@@ -226,7 +226,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new OpenDoor(position);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(848, 110, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
-
+            RegisterEnviromentForCollision(createdObject);
             return createdObject;
         }
 
@@ -235,7 +235,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new OpenDoor(position);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(848, 44, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
-
+            RegisterEnviromentForCollision(createdObject);
             return createdObject;
         }
 
@@ -244,7 +244,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new OpenDoor(position);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(848, 77, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
-
+            RegisterEnviromentForCollision(createdObject);
             return createdObject;
         }
 

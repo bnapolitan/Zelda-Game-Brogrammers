@@ -61,10 +61,10 @@ namespace Project3902
             return new FlippingSprite(fire, weaponAtlas, new Rectangle(191, 185, 16, 16), .1f, weaponScale);
         }
 
-        public IProjectile CreateSwordProjectile()
+        /*public IProjectile CreateSwordProjectile()
         {
             return new SwordProjectile();
-        }
+        }*/
 
         public ISprite CreateSwordProjectileSprite(IGameObject swordProjectile, Vector2 direction)
         {

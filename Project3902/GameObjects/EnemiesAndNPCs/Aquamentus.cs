@@ -21,6 +21,7 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
         {
             this.Game = game;
             Sprite = EnemyFactory.Instance.CreateAquamentusSprite(this);
+            Health = 5;
         }
 
         public override void Attack()

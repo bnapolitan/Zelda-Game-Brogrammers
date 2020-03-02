@@ -32,6 +32,14 @@ namespace Project3902
         public void RemoveCollidable(ICollidable collidable)
         {
             toDelete.Add(collidable);
+            if (collidable is IEnemy)
+            {
+                game.enemyObjects.Remove(collidable as IGameObject);
+            }
+            if (collidable is IInteractiveEnvironmentObject)
+            {
+                game.interactiveEnvironmentObjects.Remove(collidable as IGameObject);
+            }
         }
 
         public void CheckCollisions()
@@ -56,19 +64,6 @@ namespace Project3902
                         }
                     }
                 }
-            }
-        }
-
-        public void RemoveCollider(ICollidable gameObject)
-        {
-            dict.Remove(gameObject);
-            if(gameObject is IEnemy)
-            {
-                game.enemyObjects.Remove(gameObject as IGameObject);
-            }
-            if(gameObject is IInteractiveEnvironmentObject)
-            {
-                game.interactiveEnvironmentObjects.Remove(gameObject as IGameObject);
             }
         }
 

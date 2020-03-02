@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Project3902
 {
-    class Fireball : BaseProjectile
+    class Fireball : BasePlayerProjectile
     {
         private Vector2 position;
         public new Vector2 Position

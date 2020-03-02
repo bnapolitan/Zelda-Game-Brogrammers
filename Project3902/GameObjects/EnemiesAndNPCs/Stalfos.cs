@@ -19,6 +19,7 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
             Active = true;
             MoveSpeed = moveSpeed;
             Direction = initDirection;
+            Health = 1;
         }
 
         public override void Update(GameTime gameTime)

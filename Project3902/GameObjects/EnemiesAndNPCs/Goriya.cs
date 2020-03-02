@@ -23,7 +23,7 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
         private bool isShooting = false;
 
         public Goriya(Vector2 pos, float moveSpeed, Vector2 initDirection) : base(pos, moveSpeed, initDirection) {
-
+            Health = 2;
         }
 
         public override void Attack()

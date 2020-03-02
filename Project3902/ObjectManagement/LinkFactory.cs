@@ -9,7 +9,7 @@ namespace Project3902
     class LinkFactory : ISpriteFactory
     {
         private SpriteAtlas linkAtlas;
-        private Vector2 linkScale = new Vector2(4, 4);
+        private Vector2 linkScale = new Vector2(3.5f, 3.5f);
         private readonly float attackFrameTime = .15f;
         private LinkTakeDamageCommand takeDamageCommand;
 
