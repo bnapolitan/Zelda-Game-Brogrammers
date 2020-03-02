@@ -10,13 +10,14 @@ namespace Project3902
     {
         public FinalGame Game { get; }
         private Vector2 environmentPosition;
-        private Vector2 enemyPosition;
+        private Vector2 enemyPosition, itemPosition;
 
         public Sprint2Level(FinalGame game)
         {
             Game = game;
             environmentPosition = new Vector2(450, 50);
             enemyPosition = new Vector2(450, 250);
+            itemPosition = new Vector2(300,300);
         }
 
         public List<IGameObject> CreateInteractiveEnvironmentObjects()
@@ -54,6 +55,20 @@ namespace Project3902
             list.Add(EnemyFactory.Instance.createDongo(enemyPosition));
             list.Add(EnemyFactory.Instance.createOldMan(enemyPosition));
             list.Add(EnemyFactory.Instance.createFlame(enemyPosition));
+            return list;
+        }
+
+        public List<IGameObject> CreateItem()
+        {
+            var list = new List<IGameObject>();
+            list.Add(ItemFactory.Instance.CreateHeart(itemPosition));
+            list.Add(ItemFactory.Instance.CreateRupee(itemPosition));
+            list.Add(ItemFactory.Instance.Create1Rupee(itemPosition));
+            list.Add(ItemFactory.Instance.CreateFairy(itemPosition));
+            list.Add(ItemFactory.Instance.CreateWatch(itemPosition));
+            list.Add(ItemFactory.Instance.CreateBow(itemPosition));
+            list.Add(ItemFactory.Instance.CreateKey(itemPosition));
+            list.Add(ItemFactory.Instance.CreateArrow(itemPosition));
             return list;
         }
 

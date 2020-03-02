@@ -24,7 +24,9 @@ namespace Project3902
 
         public List<IGameObject> interactiveEnvironmentObjects;
 
-        public List<IGameObject> enemyObjects;
+        List<IGameObject> enemyObjects;
+        List<IGameObject> itemObjects;
+        int currentItem;
 
         IController<MouseActions> mouseController;
         KeyboardController keyboardController;
@@ -84,6 +86,9 @@ namespace Project3902
 
             EnemyFactory.Instance.LoadAllTextures(Content);
             enemyObjects = level.CreateEnemyObjects();
+            ItemFactory.Instance.LoadAllTextures(Content);
+            itemObjects = new Sprint2Level(this).CreateItem();
+            currentItem = 0;
             CollisionHandler.Instance.RegisterGame(this);
         }
 
@@ -97,6 +102,7 @@ namespace Project3902
         {
             mouseController.Update();
             keyboardController.Update();
+            itemObjects[currentItem].Update(gameTime);
 
             foreach (IGameObject gameObject in interactiveEnvironmentObjects)
             {
@@ -132,6 +138,9 @@ namespace Project3902
                 gameObject.Draw(spriteBatch);
             }
 
+
+            itemObjects[currentItem].Draw(spriteBatch);
+
             Link.Draw(spriteBatch);
 
             spriteBatch.End();
@@ -144,6 +153,24 @@ namespace Project3902
             mouseController = new MouseController();
 
             //Fill with functionality later
+        }
+
+        public void CycleItemNext()
+        {
+            currentItem = (currentItem + 1) % itemObjects.Count;
+        }
+
+        public void CycleItemLast()
+        {
+            if (currentItem == 0)
+            {
+                currentItem = itemObjects.Count - 1;
+            }
+            else
+            {
+                currentItem--;
+            }
+
         }
 
     }
