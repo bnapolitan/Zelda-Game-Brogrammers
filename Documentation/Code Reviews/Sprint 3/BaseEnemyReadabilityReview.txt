@@ -1,0 +1,17 @@
+Readabilty Review for BaseEnemy
+Author: Dan Bellini
+Date: March 4
+File: BaseEnemy.cs
+File Author: Suraj Suresh / Ben Napolitan
+Time to Complete: 25 min
+
+At the beginning of the class there are many fields that are used to keep track for different aspects of the
+enemy. One thing that stood out to me is that there are two position fields, one is public, one is private,
+and both are being used. This definitly makes the class a little more confusing and harder to read. Moving on
+to the methods the draw method is very clean, only calling the gameObjects and Colliders draw methods. The
+takeDamage and Attack methods are both abstract and implemented elsewhere simplifying the class. Finally the
+onCollide method, which handles enemy collisions, is relativly clean. It is broken into two parts one for 
+projectile collisions and one for environment collisions, but the method is short and very readable because
+the fields that are used are clear and well defined.
+
+

@@ -1,0 +1,15 @@
+Code Quality Review for BaseEnemy
+Author: Dan Bellini
+Date: March 4
+File: BaseEnemy.cs
+File Author: Suraj Suresh / Ben Napolitan
+Time to Complete: 15 min
+
+The first thing I notice about this class is that it implements the IEnemy Interface. Thus it has to implement
+the two methods that are defined in IEnemy and have a damage variable. Both of the inherited methods are set as
+abstract to be handled by the other classes that implement BaseEnemy. Some of the notable fields include a
+collider and a sprite object. While these increase coupling they are needed for the BaseEnemy class and have
+high cohesion. All the other fields keep track of the state of the enemy also increasing cohesion. The largest
+method in the class is the OnCollide method which does basic collision handling for walls and projectiles. These
+can be overridden in classes that implement BaseEnemy for more fleshed out collision handling. One thing that I
+would change about this class is removing the second position field as it useless.
