@@ -56,7 +56,6 @@ namespace Project3902
         {
             CurrentWeapon.Update(gameTime);
             SwordProjectile.Update(gameTime);
-
             machine.Update(gameTime);
         }
 
