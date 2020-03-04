@@ -18,7 +18,9 @@ namespace Project3902
             base.Launch(position, direction);
 
             Sprite = WeaponFactory.Instance.CreateSwordProjectileSprite(this, direction);
-
+            var rect = new Rectangle(0, 0, (int)Sprite.Scale.X *(int) Sprite.Size.X, (int)Sprite.Scale.Y * (int)Sprite.Size.Y);
+            var collider = new Collider(this, rect);
+            Collider = collider;
             Speed = speed;
             flightTime = 0;
         }
@@ -27,7 +29,7 @@ namespace Project3902
         {
             if(other.GameObject is IEnemy)
             {
-                
+                Active = false;
             }
         }
 
@@ -35,7 +37,7 @@ namespace Project3902
         {
             base.Update(gameTime);
             Collider.AlignHitbox();
-
+            
             float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             flightTime += elapsed;
