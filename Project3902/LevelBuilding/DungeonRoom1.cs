@@ -8,7 +8,7 @@ namespace Project3902
     class DungeonRoom1 : ILevel
     {
         public FinalGame Game { get; }
-        private EnvironmentFactory envFactory = EnvironmentFactory.Instance;
+        private readonly EnvironmentFactory envFactory = EnvironmentFactory.Instance;
 
         public DungeonRoom1(FinalGame game)
         {
@@ -17,8 +17,10 @@ namespace Project3902
 
         public List<IGameObject> CreateInteractiveEnvironmentObjects()
         {
-            var list = new List<IGameObject>();
-            list.Add(envFactory.CreateRoomBorder(new Vector2(0, 0)));
+            var list = new List<IGameObject>
+            {
+                envFactory.CreateRoomBorder(new Vector2(0, 0))
+            };
 
             for (int j = 128; j < 560; j += 64)
             {

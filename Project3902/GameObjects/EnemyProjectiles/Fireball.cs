@@ -1,11 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Project3902.ObjectManagement;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project3902
 {
@@ -26,7 +20,7 @@ namespace Project3902
             }
         }
 
-        private float distance = 500;
+        private readonly float distance = 500;
         private Vector2 relPos = new Vector2(0, 0);
 
         public Fireball(Vector2 pos, float moveSpeed, Vector2 initDirection)

@@ -1,10 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project3902.GameObjects.EnemyProjectiles
 {
@@ -29,9 +24,9 @@ namespace Project3902.GameObjects.EnemyProjectiles
         public float Speed { get; set; }
         public Collider Collider { get; set; }
 
-        private float maxSpeed = 1000f;
-        private float minSpeed = 500f;
-        private float distance = 500;
+        private readonly float maxSpeed = 1000f;
+        private readonly float minSpeed = 500f;
+        private readonly float distance = 500;
         private Vector2 relPos = new Vector2(0, 0);
         private bool turned = false;
 
@@ -91,7 +86,7 @@ namespace Project3902.GameObjects.EnemyProjectiles
         {
             if (other.GameObject is IEnemy)
             {
-                Direction = Direction * -1;
+                Direction *= -1;
             }
         }
     }

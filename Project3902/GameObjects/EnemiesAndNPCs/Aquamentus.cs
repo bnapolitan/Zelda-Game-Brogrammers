@@ -31,8 +31,6 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
 
             var angle = Math.Atan2(fireball1Movement.Y, fireball1Movement.X);
 
-            // TODO : Move these into Game object lists
-
             fireball = WeaponFactory.Instance.CreateFireballProjectile(Position, fireball1Movement);
             fireball2 = WeaponFactory.Instance.CreateFireballProjectile(Position, new Vector2((float)Math.Cos(angle + .524), (float)Math.Sin(angle + .524)));
             fireball3 = WeaponFactory.Instance.CreateFireballProjectile(Position, new Vector2((float)Math.Cos(angle - .524), (float)Math.Sin(angle - .524)));

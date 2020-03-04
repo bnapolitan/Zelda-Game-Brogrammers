@@ -34,8 +34,6 @@ namespace Project3902
         public void AlignHitbox()
         {
             var gameObjectPosition = GameObject.Position.ToPoint();
-
-            //Hitbox = new Rectangle(localRect.X + gameObjectPosition.X, localRect.Y + gameObjectPosition.Y, (int)GameObject.Sprite.Size.X * (int)GameObject.Sprite.Scale.X, (int)GameObject.Sprite.Size.Y * (int)GameObject.Sprite.Scale.Y);
             Hitbox = new Rectangle(localRect.X + gameObjectPosition.X, localRect.Y + gameObjectPosition.Y, localRect.Width, localRect.Height);
         }
 

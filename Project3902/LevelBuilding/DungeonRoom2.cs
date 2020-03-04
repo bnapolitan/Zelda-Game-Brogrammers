@@ -8,8 +8,8 @@ namespace Project3902
     class DungeonRoom2 : ILevel
     {
         public FinalGame Game { get; }
-        private EnvironmentFactory envFactory = EnvironmentFactory.Instance;
-        private EnemyFactory enemyFactory = EnemyFactory.Instance;
+        private readonly EnvironmentFactory envFactory = EnvironmentFactory.Instance;
+        private readonly EnemyFactory enemyFactory = EnemyFactory.Instance;
 
         public DungeonRoom2(FinalGame game)
         {
@@ -18,8 +18,10 @@ namespace Project3902
 
         public List<IGameObject> CreateInteractiveEnvironmentObjects()
         {
-            var list = new List<IGameObject>();
-            list.Add(envFactory.CreateRoomBorder(new Vector2(0, 0)));
+            var list = new List<IGameObject>
+            {
+                envFactory.CreateRoomBorder(new Vector2(0, 0))
+            };
 
             for (int j = 128; j < 560; j += 64)
             {
@@ -38,10 +40,12 @@ namespace Project3902
 
         public List<IGameObject> CreateEnemyObjects()
         {
-            var list = new List<IGameObject>();
-            list.Add(enemyFactory.CreateBlueKeese(new Vector2(192, 192)));
-            list.Add(enemyFactory.CreateBlueKeese(new Vector2(320, 256)));
-            list.Add(enemyFactory.CreateBlueKeese(new Vector2(192, 448)));
+            var list = new List<IGameObject>
+            {
+                enemyFactory.CreateBlueKeese(new Vector2(192, 192)),
+                enemyFactory.CreateBlueKeese(new Vector2(320, 256)),
+                enemyFactory.CreateBlueKeese(new Vector2(192, 448))
+            };
             return list;
         }
 

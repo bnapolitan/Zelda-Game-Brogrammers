@@ -22,28 +22,32 @@ namespace Project3902
 
         public List<IGameObject> CreateInteractiveEnvironmentObjects()
         {
-            var list = new List<IGameObject>();
-            list.Add(EnvironmentFactory.Instance.CreateStairs(environmentPosition));
-            list.Add(EnvironmentFactory.Instance.CreateLadderTile(environmentPosition));
-            list.Add(EnvironmentFactory.Instance.CreateGapTile(environmentPosition));
-            list.Add(EnvironmentFactory.Instance.CreateFire(environmentPosition));
-            list.Add(EnvironmentFactory.Instance.CreateBrickTile(environmentPosition));
-            list.Add(EnvironmentFactory.Instance.CreateBombedOpeningTop(environmentPosition));
-            list.Add(EnvironmentFactory.Instance.CreateEnemyCloudAppearance(environmentPosition));
-            list.Add(EnvironmentFactory.Instance.CreateFloorTile(environmentPosition));
-            list.Add(EnvironmentFactory.Instance.CreateRoomBorder(environmentPosition));
+            var list = new List<IGameObject>
+            {
+                EnvironmentFactory.Instance.CreateStairs(environmentPosition),
+                EnvironmentFactory.Instance.CreateLadderTile(environmentPosition),
+                EnvironmentFactory.Instance.CreateGapTile(environmentPosition),
+                EnvironmentFactory.Instance.CreateFire(environmentPosition),
+                EnvironmentFactory.Instance.CreateBrickTile(environmentPosition),
+                EnvironmentFactory.Instance.CreateBombedOpeningTop(environmentPosition),
+                EnvironmentFactory.Instance.CreateEnemyCloudAppearance(environmentPosition),
+                EnvironmentFactory.Instance.CreateFloorTile(environmentPosition),
+                EnvironmentFactory.Instance.CreateRoomBorder(environmentPosition)
+            };
             return list;
         }
 
         public List<IGameObject> CreateEnemyObjects()
         {
-            var list = new List<IGameObject>();
-            list.Add(EnemyFactory.Instance.CreateAquaGel(enemyPosition));
-            list.Add(EnemyFactory.Instance.CreateRedKeese(enemyPosition));
-            list.Add(EnemyFactory.Instance.CreateRope(enemyPosition));
-            list.Add(EnemyFactory.Instance.CreateStalfos(enemyPosition));
-            list.Add(EnemyFactory.Instance.CreateWallmaster(enemyPosition));
-            list.Add(EnemyFactory.Instance.CreateGreenZol(enemyPosition));
+            var list = new List<IGameObject>
+            {
+                EnemyFactory.Instance.CreateAquaGel(enemyPosition),
+                EnemyFactory.Instance.CreateRedKeese(enemyPosition),
+                EnemyFactory.Instance.CreateRope(enemyPosition),
+                EnemyFactory.Instance.CreateStalfos(enemyPosition),
+                EnemyFactory.Instance.CreateWallmaster(enemyPosition),
+                EnemyFactory.Instance.CreateGreenZol(enemyPosition)
+            };
 
             var aquamentus = new Aquamentus(enemyPosition, 1, new Vector2(1, 0), this.Game);
             aquamentus.Collider= new Collider(aquamentus, new Rectangle(0, 0, 24 * 6, 32 * 6));
@@ -51,24 +55,26 @@ namespace Project3902
             list.Add(aquamentus);
             list.Add(EnemyFactory.Instance.CreateBlueGoriya(enemyPosition));
 
-            list.Add(EnemyFactory.Instance.createGreenMerchant(enemyPosition));
-            list.Add(EnemyFactory.Instance.createDongo(enemyPosition));
-            list.Add(EnemyFactory.Instance.createOldMan(enemyPosition));
-            list.Add(EnemyFactory.Instance.createFlame(enemyPosition));
+            list.Add(EnemyFactory.Instance.CreateGreenMerchant(enemyPosition));
+            list.Add(EnemyFactory.Instance.CreateDongo(enemyPosition));
+            list.Add(EnemyFactory.Instance.CreateOldMan(enemyPosition));
+            list.Add(EnemyFactory.Instance.CreateFlame(enemyPosition));
             return list;
         }
 
         public List<IGameObject> CreateItem()
         {
-            var list = new List<IGameObject>();
-            list.Add(ItemFactory.Instance.CreateHeart(itemPosition));
-            list.Add(ItemFactory.Instance.CreateRupee(itemPosition));
-            list.Add(ItemFactory.Instance.Create1Rupee(itemPosition));
-            list.Add(ItemFactory.Instance.CreateFairy(itemPosition));
-            list.Add(ItemFactory.Instance.CreateWatch(itemPosition));
-            list.Add(ItemFactory.Instance.CreateBow(itemPosition));
-            list.Add(ItemFactory.Instance.CreateKey(itemPosition));
-            list.Add(ItemFactory.Instance.CreateArrow(itemPosition));
+            var list = new List<IGameObject>
+            {
+                ItemFactory.Instance.CreateHeart(itemPosition),
+                ItemFactory.Instance.CreateRupee(itemPosition),
+                ItemFactory.Instance.Create1Rupee(itemPosition),
+                ItemFactory.Instance.CreateFairy(itemPosition),
+                ItemFactory.Instance.CreateWatch(itemPosition),
+                ItemFactory.Instance.CreateBow(itemPosition),
+                ItemFactory.Instance.CreateKey(itemPosition),
+                ItemFactory.Instance.CreateArrow(itemPosition)
+            };
             return list;
         }
 

@@ -1,11 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Project3902.GameObjects.EnemiesAndNPCs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project3902
 {
@@ -25,10 +18,9 @@ namespace Project3902
         public override void OnCollide(Collider other) {
             if(other.GameObject is IEnemy )
             {
-                Console.WriteLine("Collided with Zol");
                 Direction *= -1;
                 turned = true;
-                Position = Position + (Direction * ((Speed/30) + 3));
+                Position += (Direction * ((Speed/30) + 3));
             }
 
         }
@@ -48,7 +40,7 @@ namespace Project3902
 
             Speed = (maxDistance - distTraveled) / maxDistance * maxSpeed;
 
-            if ((Speed < maxSpeed * .5f)) ;
+            if ((Speed < maxSpeed * .5f))
                 Speed = maxSpeed * .5f;
 
             if ((distTraveled > maxDistance))

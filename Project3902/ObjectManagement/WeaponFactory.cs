@@ -61,11 +61,6 @@ namespace Project3902
             return new FlippingSprite(fire, weaponAtlas, new Rectangle(191, 185, 16, 16), .1f, weaponScale);
         }
 
-        /*public IProjectile CreateSwordProjectile()
-        {
-            return new SwordProjectile();
-        }*/
-
         public ISprite CreateSwordProjectileSprite(IGameObject swordProjectile, Vector2 direction)
         {
 
@@ -83,17 +78,19 @@ namespace Project3902
                 flip = SpriteEffects.FlipVertically;
             }
 
-            //System.Console.WriteLine(sourceRect);
-            var sprite = new FixedSprite(swordProjectile, weaponAtlas, sourceRect, weaponScale);
-            sprite.Flip = flip;
-            //System.Console.WriteLine(sprite.Size);
+
+            var sprite = new FixedSprite(swordProjectile, weaponAtlas, sourceRect, weaponScale)
+            {
+                Flip = flip
+            };
+
             return sprite;
         }
         
         public IProjectile CreateSwordProjectile()
         {
             var sword = new SwordProjectile();
-            System.Console.WriteLine("here");
+
             var rect = new Rectangle(0, 0, (int)sword.Sprite.Scale.X * (int)sword.Sprite.Size.X, (int)sword.Sprite.Scale.Y * (int)sword.Sprite.Size.Y);
             var collider = new Collider(sword, rect);
             sword.Collider = collider;

@@ -3,10 +3,8 @@ using Project3902.GameObjects;
 using Project3902.LevelBuilding;
 using Project3902.LevelBuilding.Interface;
 using Project3902.ObjectManagement;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Xml;
 
 namespace Project3902
 {
@@ -25,8 +23,10 @@ namespace Project3902
 
         public List<IGameObject> CreateInteractiveEnvironmentObjects()
         {
-            var environmentObjects = new List<IGameObject>();
-            environmentObjects.Add(envFactory.CreateRoomBorder(new Vector2(0, 0)));
+            var environmentObjects = new List<IGameObject>
+            {
+                envFactory.CreateRoomBorder(new Vector2(0, 0))
+            };
 
             for (int j = 128; j < 560; j += 64)
             {

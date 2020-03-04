@@ -2,9 +2,6 @@
 using Project3902.ObjectManagement;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project3902.LevelBuilding
 {
@@ -89,12 +86,10 @@ namespace Project3902.LevelBuilding
         {
             if (name == "Rupee")
             {
-                Console.WriteLine("Rupee Added");
                 return itemFactory.CreateRupee(position);
             }
             if (name == "Heart")
             {
-                Console.WriteLine("Heart Added");
                 return itemFactory.CreateHeart(position);
             }
             throw new Exception($"The object {name} has not been mapped in ObjectLookup yet!");

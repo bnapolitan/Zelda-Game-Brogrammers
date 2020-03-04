@@ -3,8 +3,6 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Project3902.GameObjects;
 using Project3902.GameObjects.Environment;
-using System;
-using System.Collections.Generic;
 
 namespace Project3902.ObjectManagement
 {
@@ -13,7 +11,6 @@ namespace Project3902.ObjectManagement
         private SpriteAtlas dungeonSpriteAtlas;
         private SpriteAtlas linkSpriteAtlas;
         private Vector2 environmentScale = new Vector2(4, 4);
-        private SpriteAtlas dungeons2;
 
         public static EnvironmentFactory Instance { get; } = new EnvironmentFactory();
 
@@ -24,14 +21,11 @@ namespace Project3902.ObjectManagement
         public void LoadAllTextures(ContentManager content)
         {
             dungeonSpriteAtlas = new SpriteAtlas(content.Load<Texture2D>("DungeonSpriteSheet"));
-            dungeons2 = new SpriteAtlas(content.Load<Texture2D>("Dungeon_Enemies_2"));
             linkSpriteAtlas = new SpriteAtlas(content.Load<Texture2D>("linkspritesheet"));
         }
 
         public static void RegisterEnvironmentForCollision(IInteractiveEnvironmentObject EnvironmentObject)
         {
-            // REPLACE: create colliders in individual Create...() methods below with correct sizes.
-            // See CreateAquaGel for example.
             EnvironmentObject.Collider = new Collider(EnvironmentObject, new Rectangle(0, 0, 64, 64));
             CollisionHandler.Instance.RegisterCollidable(EnvironmentObject, Layer.Wall);
         }
@@ -94,8 +88,10 @@ namespace Project3902.ObjectManagement
         public IGameObject CreateBombedOpeningBottom(Vector2 position)
         {
             var createdObject = new BombedOpening(position);
-            var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(947, 11, 32, 32));
-            sprite.Flip = SpriteEffects.FlipVertically;
+            var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(947, 11, 32, 32))
+            {
+                Flip = SpriteEffects.FlipVertically
+            };
             createdObject.Sprite = sprite;
             RegisterEnvironmentForCollision(createdObject);
             return createdObject;
@@ -113,8 +109,10 @@ namespace Project3902.ObjectManagement
         public IGameObject CreateBombedOpeningRight(Vector2 position)
         {
             var createdObject = new BombedOpening(position);
-            var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(947, 44, 32, 32));
-            sprite.Flip = SpriteEffects.FlipHorizontally;
+            var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(947, 44, 32, 32))
+            {
+                Flip = SpriteEffects.FlipHorizontally
+            };
             createdObject.Sprite = sprite;
             RegisterEnvironmentForCollision(createdObject);
             return createdObject;

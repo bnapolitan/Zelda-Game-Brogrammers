@@ -167,10 +167,6 @@
     <Compile Include="Player\PlayerStates\States\WalkStates\LinkRightWalkState.cs" />
     <Compile Include="Player\PlayerStates\States\WalkStates\LinkUpWalkState.cs" />
     <Compile Include="FinalGame.cs" />
-    <Compile Include="GameObjects\Item\DeleteLater\ItemReg.cs" />
-    <Compile Include="GameObjects\Item\DeleteLater\FixedItem.cs" />
-    <Compile Include="GameObjects\Item\DeleteLater\IItemCtl.cs" />
-    <Compile Include="GameObjects\Item\DeleteLater\ItemSprite.cs" />
     <Compile Include="Sprites\FlippingSprite.cs" />
     <Compile Include="Sprites\VariedOriginsSprite.cs" />
     <Compile Include="StateMachine\IState.cs" />

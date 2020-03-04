@@ -16,15 +16,7 @@ namespace Project3902.ObjectManagement
 
 		private Vector2 enemyScale = new Vector2(6, 6);
 
-		private static EnemyFactory instance = new EnemyFactory();
-
-		public static EnemyFactory Instance
-		{
-			get
-			{
-				return instance;
-			}
-		}
+        public static EnemyFactory Instance { get; } = new EnemyFactory();
 
 		private EnemyFactory()
 		{
@@ -40,9 +32,6 @@ namespace Project3902.ObjectManagement
 
 		public static void RegisterEnemyForCollision(IEnemy enemy)
 		{
-			// REPLACE: create colliders in individual Create...() methods below with correct sizes.
-			// See CreateAquaGel for example.
-			//enemy.Collider = new Collider(enemy, new Rectangle(0, 0, 10, 10));
 			CollisionHandler.Instance.RegisterCollidable(enemy, Layer.Enemy, Layer.Wall, Layer.Projectile);
 		}
 
@@ -286,7 +275,7 @@ namespace Project3902.ObjectManagement
 			return createdObject;
 		}
 
-		public IGameObject createDongo(Vector2 position)
+		public IGameObject CreateDongo(Vector2 position)
 		{
 			var createdObject = new Dodongo(position, 2, new Vector2(1, 0));
 			List<Rectangle> DodongoSource = new List<Rectangle> { new Rectangle(1, 121, 14, 16), new Rectangle(1, 91, 14, 16), new Rectangle(25, 121, 27, 16), new Rectangle(25, 91, 27, 16), new Rectangle(61, 91, 14, 16), new Rectangle(61, 121, 14, 16), new Rectangle(85, 91, 27, 16), new Rectangle(85, 121, 27, 16) };
@@ -301,7 +290,7 @@ namespace Project3902.ObjectManagement
 			return createdObject;
 		}
 
-		public IGameObject createFlame(Vector2 position)
+		public IGameObject CreateFlame(Vector2 position)
 		{
 			var createdObject = new Flame(position, 2, new Vector2(1, 0));
 			List<Rectangle> FlameSource = new List<Rectangle> { new Rectangle(300, 0, 15, 15), new Rectangle(300, 30, 15, 15) };
@@ -316,7 +305,7 @@ namespace Project3902.ObjectManagement
 			return createdObject;
 		}
 
-		public IGameObject createOldMan(Vector2 position)
+		public IGameObject CreateOldMan(Vector2 position)
 		{
 			var createdObject = new OldMan(position, 2, new Vector2(1, 0));
 			List<Rectangle> OldManSource = new List<Rectangle> { new Rectangle(0, 5, 15, 15), new Rectangle(30, 5, 15, 15), new Rectangle(61, 5, 15, 15) };
@@ -331,7 +320,7 @@ namespace Project3902.ObjectManagement
 			return createdObject;
 		}
 
-		public IGameObject createGreenMerchant(Vector2 position)
+		public IGameObject CreateGreenMerchant(Vector2 position)
 		{
 			var createdObject = new Merchant(position, 2, new Vector2(1, 0));
 			List<Rectangle> MerchantSource = new List<Rectangle> { new Rectangle(91, 5, 15, 15) };

@@ -17,7 +17,7 @@ namespace Project3902
 {
     class FinalGame : Game
     {
-        GraphicsDeviceManager graphics;
+        readonly GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
         public ILink Link { get; set; }
@@ -35,18 +35,6 @@ namespace Project3902
             graphics = new GraphicsDeviceManager(this);
 
             Content.RootDirectory = "Content";
-        }
-
-        public static class currentFram
-        {
-            private static int cur = 0;
-
-            public static int Current
-            {
-                get { return cur; }
-                set { cur = value; }
-
-            }
         }
 
         protected override void Initialize()
@@ -74,8 +62,6 @@ namespace Project3902
 
             keyboardController = LinkFactory.Instance.CreateLinkController(Link);
 
-            // Create list of all items to be cycled through. Use a Factory class to create them.
-            // Same for enemies.
             ShapeSpriteFactory.Instance.CreateShapeTextures(GraphicsDevice);
 
             WeaponFactory.Instance.LoadAllTextures(Content);
@@ -160,7 +146,7 @@ namespace Project3902
         {
             mouseController = new MouseController();
 
-            //Fill with functionality later
+     
         }
 
     }

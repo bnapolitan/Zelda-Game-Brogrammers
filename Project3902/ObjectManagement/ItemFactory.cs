@@ -2,11 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Project3902.GameObjects;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project3902
 {
@@ -17,15 +13,7 @@ namespace Project3902
 		private SpriteAtlas FairySprite;
 		private SpriteAtlas FixSprite;
 
-		private static ItemFactory instance = new ItemFactory();
-
-		public static ItemFactory Instance
-		{
-			get
-			{
-				return instance;
-			}
-		}
+        public static ItemFactory Instance { get; } = new ItemFactory();
 
 		private ItemFactory()
 		{
@@ -41,15 +29,14 @@ namespace Project3902
 
 		public static void RegisterItemForCollision(IItem ItemObject)
 		{
-			// REPLACE: create colliders in individual Create...() methods below with correct sizes.
-			// See CreateAquaGel for example.
+
 			ItemObject.Collider = new Collider(ItemObject, new Rectangle(0, 0, 30, 30));
 			CollisionHandler.Instance.RegisterCollidable(ItemObject, Layer.Pickup);
 		}
 
 		public IGameObject CreateHeart(Vector2 position)
 		{
-			var createdObject = new Heart(position, 0, new Vector2(1, 0));
+			var createdObject = new Heart(position);
 			List<Rectangle> HeartSource = new List<Rectangle> { new Rectangle(0, 0, 15, 15), new Rectangle(15, 0, 15, 15) };
 			var sprite = new AnimatedSprite(createdObject, HeartSprite, HeartSource, .3f, new Vector2(3, 3));
 			createdObject.Sprite = sprite;
@@ -59,7 +46,7 @@ namespace Project3902
 
 		public IGameObject CreateRupee(Vector2 position)
 		{
-			var createdObject = new Rupee(position, 0, new Vector2(1, 0));
+			var createdObject = new Rupee(position);
 			List<Rectangle> RupeeSource = new List<Rectangle> { new Rectangle(0, 0, 30, 30), new Rectangle(30, 0, 30, 30) };
 			var sprite = new AnimatedSprite(createdObject, RupeeSprite, RupeeSource, .4f, new Vector2(3, 3));
 			createdObject.Sprite = sprite;
@@ -68,7 +55,7 @@ namespace Project3902
 		}
 		public IGameObject Create1Rupee(Vector2 position)
 		{
-			var createdObject = new Rupee(position, 0, new Vector2(1, 0));
+			var createdObject = new Rupee(position);
 			List<Rectangle> RupeeSource = new List<Rectangle> { new Rectangle(0, 0, 30, 30) };
 			var sprite = new AnimatedSprite(createdObject, RupeeSprite, RupeeSource, .4f, new Vector2(3, 3));
 			createdObject.Sprite = sprite;
@@ -88,7 +75,7 @@ namespace Project3902
 
 		public IGameObject CreateWatch(Vector2 position)
 		{
-			var createdObject = new Watch(position, 0, new Vector2(1, 0));
+			var createdObject = new Watch(position);
 			List<Rectangle> WatchSource = new List<Rectangle> { new Rectangle(35, 0, 15, 18) };
 			var sprite = new AnimatedSprite(createdObject, FixSprite, WatchSource, .4f, new Vector2(3, 3));
 			createdObject.Sprite = sprite;
@@ -98,7 +85,7 @@ namespace Project3902
 
 		public IGameObject CreateBow(Vector2 position)
 		{
-			var createdObject = new Bow(position, 0, new Vector2(1, 0));
+			var createdObject = new Bow(position);
 			List<Rectangle> BowSource = new List<Rectangle> { new Rectangle(155, 0, 15, 18) };
 			var sprite = new AnimatedSprite(createdObject, FixSprite, BowSource, .4f, new Vector2(3, 3));
 			createdObject.Sprite = sprite;
@@ -108,7 +95,7 @@ namespace Project3902
 
 		public IGameObject CreateKey(Vector2 position)
 		{
-			var createdObject = new Key(position, 0, new Vector2(1, 0));
+			var createdObject = new Key(position);
 			List<Rectangle> KeySource = new List<Rectangle> { new Rectangle(171, 0, 6, 18) };
 			var sprite = new AnimatedSprite(createdObject, FixSprite, KeySource, .4f, new Vector2(3, 3));
 			createdObject.Sprite = sprite;
@@ -118,7 +105,7 @@ namespace Project3902
 
 		public IGameObject CreateArrow(Vector2 position)
 		{
-			var createdObject = new Arrow(position, 0, new Vector2(1, 0));
+			var createdObject = new Arrow(position);
 			List<Rectangle> ArrowSource = new List<Rectangle> { new Rectangle(223, 0, 8, 18) };
 			var sprite = new AnimatedSprite(createdObject, FixSprite, ArrowSource, .4f, new Vector2(3, 3));
 			createdObject.Sprite = sprite;
