@@ -5,7 +5,7 @@ namespace Project3902
 {
     class Collider : IDrawable
     {
-        private readonly bool debug = true;
+        private readonly bool debug = false;
         private readonly Color tint = new Color(255, 0, 0, 100);
 
         private Rectangle localRect;

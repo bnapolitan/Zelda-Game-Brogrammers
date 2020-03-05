@@ -10,7 +10,7 @@ namespace Project3902
         public float Health { get; set; }
         public Vector2 Direction { get; set; }
         public float MoveSpeed { get; set; }
-
+        private Color tint = Color.White;
         private Vector2 position;
         public Vector2 Position
         {
@@ -35,7 +35,7 @@ namespace Project3902
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             Collider.Draw(spriteBatch);
-            Sprite.Draw(spriteBatch);
+            (Sprite as AnimatedSprite).DrawTinted(spriteBatch, tint);
             
         }
 
@@ -44,6 +44,7 @@ namespace Project3902
             if (other.GameObject is IProjectile) 
             {
                 Health--;
+                tint = Color.Red;
                 Console.WriteLine(Health);
                 if (Health == 0)
                 {
