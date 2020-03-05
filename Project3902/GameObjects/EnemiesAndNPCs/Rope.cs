@@ -34,32 +34,34 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
         {
             base.Update(gameTime);
 
-            if (steps == 0)
+            if (!attackedRecent)
             {
-                Random random = new Random();
-                int dvalue = random.Next(4);
-                switch (dvalue)
+                if (steps == 0)
                 {
-                    case 0:
-                        Direction = new Vector2(1, 0);
-                        Sprite = RightFacingRope;
-                        break;
-                    case 1:
-                        Direction = new Vector2(-1, 0);
-                        Sprite = LeftFacingRope;
-                        break;
-                    case 2:
-                        Direction = new Vector2(0, 1);
-                        break;
-                    case 3:
-                        Direction = new Vector2(0, -1);
-                        break;
+                    Random random = new Random();
+                    int dvalue = random.Next(4);
+                    switch (dvalue)
+                    {
+                        case 0:
+                            Direction = new Vector2(1, 0);
+                            Sprite = RightFacingRope;
+                            break;
+                        case 1:
+                            Direction = new Vector2(-1, 0);
+                            Sprite = LeftFacingRope;
+                            break;
+                        case 2:
+                            Direction = new Vector2(0, 1);
+                            break;
+                        case 3:
+                            Direction = new Vector2(0, -1);
+                            break;
+                    }
+                    steps = random.Next(40, 300);
                 }
-                steps = random.Next(40, 300);
+                Position += Direction * MoveSpeed;
+                steps--;
             }
-            Position += Direction * MoveSpeed;
-            steps--;
-            base.Update(gameTime);
         }
 
         public override void Attack()

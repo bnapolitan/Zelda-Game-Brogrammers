@@ -30,7 +30,11 @@ OpenDoorLeft, 0, 288
 OpenDoorRight, 896, 288
 OpenDoorBottom, 448, 576
 Items
-Rupee, 130, 130
-Heart, 130, 130
+Rupee, 660, 130
+Heart, 840, 530
 Enemies
 Stalfos, 500, 200
+BlueKeese, 135, 135
+Rope, 135, 510
+AquaGel, 300, 200
+GrayZol, 660, 300

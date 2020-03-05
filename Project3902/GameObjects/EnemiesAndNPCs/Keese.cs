@@ -28,18 +28,20 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-
-            Position += Direction * MoveSpeed;
-            relPos += Direction * MoveSpeed;
-            if (relPos.X > distance)
+            if (!attackedRecent)
             {
-                Direction *= -1;
-                relPos = new Vector2(0, 0);
-            }
-            else if (relPos.X < -distance)
-            {
-                Direction *= -1;
-                relPos = new Vector2(0, 0);
+                Position += Direction * MoveSpeed;
+                relPos += Direction * MoveSpeed;
+                if (relPos.X > distance)
+                {
+                    Direction *= -1;
+                    relPos = new Vector2(0, 0);
+                }
+                else if (relPos.X < -distance)
+                {
+                    Direction *= -1;
+                    relPos = new Vector2(0, 0);
+                }
             }
         }
 

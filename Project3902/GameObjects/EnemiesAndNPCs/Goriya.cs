@@ -35,6 +35,27 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
             }
         }
 
+        public override void OnCollide(Collider other)
+        {
+            base.OnCollide(other);
+            if (Direction.X == 1)
+            {
+                Sprite = rightFacingGoriya;
+            }
+            else if (Direction.X == -1)
+            {
+                Sprite = leftFacingGoriya;
+            }
+            else if (Direction.Y == 1)
+            {
+                Sprite = downFacingGoriya;
+            }
+            else if (Direction.Y == -1)
+            {
+                Sprite = upFacingGoriya;
+            }
+        }
+
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
@@ -48,36 +69,39 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
 
             if (!isShooting)
             {
-                if (steps == 0)
+                if (!attackedRecent)
                 {
-                    Random random = new Random();
-                    int dvalue = random.Next(4);
-                    switch (dvalue)
+                    if (steps == 0)
                     {
-                        case 0:
-                            Direction = new Vector2(1, 0);
-                            Sprite = rightFacingGoriya;
-                            break;
-                        case 1:
-                            Direction = new Vector2(-1, 0);
-                            Sprite = leftFacingGoriya;
-                            break;
-                        case 2:
-                            Direction = new Vector2(0, 1);
-                            Sprite = downFacingGoriya;
-                            break;
-                        case 3:
-                            Direction = new Vector2(0, -1);
-                            Sprite = upFacingGoriya;
-                            break;
+                        Random random = new Random();
+                        int dvalue = random.Next(4);
+                        switch (dvalue)
+                        {
+                            case 0:
+                                Direction = new Vector2(1, 0);
+                                Sprite = rightFacingGoriya;
+                                break;
+                            case 1:
+                                Direction = new Vector2(-1, 0);
+                                Sprite = leftFacingGoriya;
+                                break;
+                            case 2:
+                                Direction = new Vector2(0, 1);
+                                Sprite = downFacingGoriya;
+                                break;
+                            case 3:
+                                Direction = new Vector2(0, -1);
+                                Sprite = upFacingGoriya;
+                                break;
+                        }
+                        steps = random.Next(40, 300);
                     }
-                    steps = random.Next(40, 300);
+                    Position += Direction * MoveSpeed;
+                    steps--;
+                    currentFrame++;
                 }
-                Position += Direction * MoveSpeed;
-                steps--;
+                
             }
-
-            currentFrame++;
 
             if (isShooting)
             {

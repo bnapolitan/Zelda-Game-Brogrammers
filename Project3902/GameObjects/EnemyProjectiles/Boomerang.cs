@@ -32,11 +32,13 @@ namespace Project3902.GameObjects.EnemyProjectiles
         private readonly float minSpeed = 500f;
         private readonly float distance = 500;
         private Vector2 relPos = new Vector2(0, 0);
+        private Vector2 startingPos;
         private bool turned = false;
 
         public Boomerang(Vector2 pos, float moveSpeed, Vector2 initDirection)
         {
             Position = pos;
+            startingPos = pos;
             Direction = initDirection;
             Speed = moveSpeed;
             Active = true;
@@ -74,6 +76,11 @@ namespace Project3902.GameObjects.EnemyProjectiles
 
             if (turned && distTraveled <= 20f)
                 Active = false;
+
+            if (Position == startingPos && (distTraveled > 0))
+            {
+                Active = false;
+            }
 
             Position += Direction * Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             relPos += Direction * Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
