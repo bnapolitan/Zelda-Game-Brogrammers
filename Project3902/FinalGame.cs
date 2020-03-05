@@ -124,12 +124,12 @@ namespace Project3902
                 gameObject.Draw(spriteBatch);
             }
 
-            foreach (IGameObject gameObject in enemyObjects)
+            foreach (IGameObject gameObject in itemObjects)
             {
                 gameObject.Draw(spriteBatch);
             }
 
-            foreach (IGameObject gameObject in itemObjects)
+            foreach (IGameObject gameObject in enemyObjects)
             {
                 gameObject.Draw(spriteBatch);
             }

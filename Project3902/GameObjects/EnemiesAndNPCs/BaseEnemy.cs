@@ -11,6 +11,7 @@ namespace Project3902
         public Vector2 Direction { get; set; }
         public float MoveSpeed { get; set; }
         private Color tint = Color.White;
+        public Vector2 PreviousPosition { get; set; }
         private Vector2 position;
         public Vector2 Position
         {
@@ -20,6 +21,7 @@ namespace Project3902
             }
             set
             {
+                PreviousPosition = position;
                 position = value;
                 if (Collider != null)
                     Collider.AlignHitbox();
@@ -64,7 +66,8 @@ namespace Project3902
             }
             if(other.GameObject is IInteractiveEnvironmentObject) 
             {
-                Direction=new Vector2(Direction.Y, Direction.X*-1);
+                MoveOutOfWall(other);
+                //Direction=new Vector2(Direction.Y*, Direction.X*-1);
             }
         }
 
@@ -82,6 +85,26 @@ namespace Project3902
                     collisionDelay = 20;
                 }
             }
+        }
+
+        private void MoveOutOfWall(Collider other)
+        {
+            var unitDirection = Position - PreviousPosition;
+            unitDirection.Normalize();
+
+            var hitboxSize = Collider.Hitbox.Size;
+            var offset = Collider.Offset;
+
+            var testRect = new Rectangle((PreviousPosition + offset).ToPoint(), hitboxSize);
+
+            while (!other.Intersects(testRect))
+            {
+                testRect.Location += unitDirection.ToPoint();
+            }
+
+            testRect.Location -= unitDirection.ToPoint();
+
+            Position = testRect.Location.ToVector2() - offset;
         }
     }
 }

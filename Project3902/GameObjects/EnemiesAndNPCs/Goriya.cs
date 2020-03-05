@@ -6,13 +6,12 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
 {
     class Goriya : ProjectileLaunchingEnemy
     {
-        private readonly float distance = 100;
-        private Vector2 relPos = new Vector2(0, 0);
+        private float steps = 100;
         public ISprite rightFacingGoriya;
         public ISprite leftFacingGoriya;
         public ISprite downFacingGoriya;
         public ISprite upFacingGoriya;
-        private readonly int framesBeforeAttack = 180;
+        private readonly int framesBeforeAttack = 200;
         private int currentFrame = 0;
         private IProjectile boomerang;
         private bool isShooting = false;
@@ -49,32 +48,33 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
 
             if (!isShooting)
             {
+                if (steps == 0)
+                {
+                    Random random = new Random();
+                    int dvalue = random.Next(4);
+                    switch (dvalue)
+                    {
+                        case 0:
+                            Direction = new Vector2(1, 0);
+                            Sprite = rightFacingGoriya;
+                            break;
+                        case 1:
+                            Direction = new Vector2(-1, 0);
+                            Sprite = leftFacingGoriya;
+                            break;
+                        case 2:
+                            Direction = new Vector2(0, 1);
+                            Sprite = downFacingGoriya;
+                            break;
+                        case 3:
+                            Direction = new Vector2(0, -1);
+                            Sprite = upFacingGoriya;
+                            break;
+                    }
+                    steps = random.Next(40, 300);
+                }
                 Position += Direction * MoveSpeed;
-                relPos += Direction * MoveSpeed;
-                if (relPos.X > distance)
-                {
-                    Direction = new Vector2(0, 1);
-                    Sprite = downFacingGoriya;
-                    relPos = new Vector2(0, 0);
-                }
-                else if (relPos.Y > distance)
-                {
-                    Direction = new Vector2(-1, 0);
-                    Sprite = leftFacingGoriya;
-                    relPos = new Vector2(0, 0);
-                }
-                else if (relPos.X < -distance)
-                {
-                    Direction = new Vector2(0, -1);
-                    Sprite = upFacingGoriya;
-                    relPos = new Vector2(0, 0);
-                }
-                else if (relPos.Y < -distance)
-                {
-                    Direction = new Vector2(1, 0);
-                    Sprite = rightFacingGoriya;
-                    relPos = new Vector2(0, 0);
-                }
+                steps--;
             }
 
             currentFrame++;
