@@ -34,6 +34,9 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
             fireball = WeaponFactory.Instance.CreateFireballProjectile(Position, fireball1Movement);
             fireball2 = WeaponFactory.Instance.CreateFireballProjectile(Position, new Vector2((float)Math.Cos(angle + .524), (float)Math.Sin(angle + .524)));
             fireball3 = WeaponFactory.Instance.CreateFireballProjectile(Position, new Vector2((float)Math.Cos(angle - .524), (float)Math.Sin(angle - .524)));
+            fireball.Launch(Position, Direction);
+            fireball2.Launch(Position, Direction);
+            fireball3.Launch(Position, Direction);
         }
 
         public override void Draw(SpriteBatch spriteBatch)

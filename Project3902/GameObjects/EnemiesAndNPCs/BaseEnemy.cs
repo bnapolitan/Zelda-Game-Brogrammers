@@ -47,7 +47,7 @@ namespace Project3902
         {
             if (!attackedRecent)
             {
-                if ((other.GameObject is IProjectile) && !(other.GameObject is Boomerang))
+                if ((other.GameObject is IProjectile) && !(other.GameObject is Boomerang) && !(other.GameObject is Fireball))
                 {
                     
                     attackedRecent = true;

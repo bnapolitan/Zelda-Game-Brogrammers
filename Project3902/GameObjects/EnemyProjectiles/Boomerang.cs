@@ -5,6 +5,7 @@ namespace Project3902.GameObjects.EnemyProjectiles
 {
     class Boomerang : IProjectile
     {
+        private readonly float maxDistance = 300f;
         private Vector2 _position;
         public Vector2 Position
         {
@@ -58,18 +59,26 @@ namespace Project3902.GameObjects.EnemyProjectiles
 
         public void Update(GameTime gameTime)
         {
-            if (!Active)
-                return;
-
+            //base.Update(gameTime);
             Sprite.Update(gameTime);
-            float distTraveled = relPos.Length();
+            Collider.AlignHitbox();
 
-            Speed = (distance - distTraveled) / distance * maxSpeed;
-            if (Speed < minSpeed)
-                Speed = minSpeed;
-
-            if (distTraveled > distance)
+            if (!Active)
             {
+                return;
+            }
+
+            float distTraveled = (Position - startingPos).Length();
+
+
+            Speed = (maxDistance - distTraveled) / maxDistance * maxSpeed;
+
+            if ((Speed < maxSpeed * .5f))
+                Speed = maxSpeed * .5f;
+
+            if ((distTraveled > maxDistance))
+            {
+                Position = startingPos + maxDistance * Direction;
                 Direction *= -1;
                 turned = true;
             }
@@ -81,9 +90,7 @@ namespace Project3902.GameObjects.EnemyProjectiles
             {
                 Active = false;
             }
-
             Position += Direction * Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            relPos += Direction * Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
         }
 
         public void Launch(Vector2 position, Vector2 direction)
@@ -95,9 +102,14 @@ namespace Project3902.GameObjects.EnemyProjectiles
 
         public void OnCollide(Collider other)
         {
-            if (other.GameObject is IEnemy)
+            if (other.GameObject is Link || other.GameObject is IInteractiveEnvironmentObject || other.GameObject is IBackgroundEnvironmentObject)
             {
-                Direction *= -1;
+                if (!turned)
+                {
+                    Direction *= -1;
+                    turned = true;
+                    Position += (Direction * ((Speed / 30) + 3));
+                }
             }
         }
     }

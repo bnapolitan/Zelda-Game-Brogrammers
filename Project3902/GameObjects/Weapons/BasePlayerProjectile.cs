@@ -14,7 +14,7 @@ namespace Project3902
         public bool Active { get; set; }
         public Collider Collider { get; set; }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             if (!Active)
                 return;
