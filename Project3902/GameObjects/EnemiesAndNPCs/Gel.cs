@@ -6,7 +6,6 @@ namespace Project3902
     class Gel : BaseEnemy
     {
         private float steps = 100;
-        //private Vector2 relPos = new Vector2(0, 0);
 
         public Gel(Vector2 pos, float moveSpeed, Vector2 initDirection)
         {

@@ -13,7 +13,7 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
             Active = true;
             MoveSpeed = moveSpeed;
             Direction = initDirection;
-            Health = 2;
+            Health = 1;
         }
         public override void TakeDamage()
         {

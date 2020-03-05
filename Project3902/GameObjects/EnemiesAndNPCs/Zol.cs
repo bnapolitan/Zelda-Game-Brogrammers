@@ -1,13 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
+using Project3902.ObjectManagement;
 using System;
 
-namespace Project3902.GameObjects.EnemiesAndNPCs
+namespace Project3902
 {
     class Zol : BaseEnemy
     {
-        private readonly float distance = 100;
-        private Vector2 relPos = new Vector2(0, 0);
-
+        private float steps = 100;
+        private readonly EnemyFactory enemyFactory = EnemyFactory.Instance;
         public Zol(Vector2 pos, float moveSpeed, Vector2 initDirection)
         {
             Position = pos;
@@ -16,42 +16,45 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
             Direction = initDirection;
             Health = 1;
         }
+        public override void TakeDamage()
+        {
+
+        }
+        public override void Attack()
+        {
+
+        }
+
 
         public override void Update(GameTime gameTime)
         {
-            Position += Direction * MoveSpeed;
-            relPos += Direction * MoveSpeed;
-            if (relPos.X > distance)
-            {
-                Direction *= -1;
-                relPos = new Vector2(0, 0);
-            }
-            else if (relPos.X < -distance)
-            {
-                Direction *= -1;
-                relPos = new Vector2(0, 0);
-            }
-
             base.Update(gameTime);
-        }
 
-        public override void Attack()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void OnCollide(Collider other)
-        {
-            base.OnCollide(other);
-            if (Active == false)
+            if (steps == 0)
             {
-                
+                Random random = new Random();
+                int dvalue = random.Next(4);
+                switch (dvalue)
+                {
+                    case 0:
+                        Direction = new Vector2(1, 0);
+                        break;
+                    case 1:
+                        Direction = new Vector2(-1, 0);
+                        break;
+                    case 2:
+                        Direction = new Vector2(0, 1);
+                        break;
+                    case 3:
+                        Direction = new Vector2(0, -1);
+                        break;
+                }
+                steps = random.Next(40, 300);
             }
+            Position += Direction * MoveSpeed;
+            steps--;
         }
 
-        public override void TakeDamage()
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }

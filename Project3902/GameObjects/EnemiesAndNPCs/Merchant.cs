@@ -4,8 +4,6 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
 {
     class Merchant : BaseEnemy
     {
-        private readonly float distance = 100;
-        private Vector2 relPos = new Vector2(0, 0);
 
         public Merchant(Vector2 pos, float moveSpeed, Vector2 initDirection)
         {
@@ -28,18 +26,6 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
         {
             base.Update(gameTime);
 
-            Position += Direction * MoveSpeed;
-            relPos += Direction * MoveSpeed;
-            if (relPos.X > distance)
-            {
-                Direction *= -1;
-                relPos = new Vector2(0, 0);
-            }
-            else if (relPos.X < -distance)
-            {
-                Direction *= -1;
-                relPos = new Vector2(0, 0);
-            }
         }
 
         

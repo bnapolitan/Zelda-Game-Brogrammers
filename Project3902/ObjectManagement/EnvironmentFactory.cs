@@ -11,12 +11,13 @@ namespace Project3902.ObjectManagement
         private SpriteAtlas dungeonSpriteAtlas;
         private SpriteAtlas linkSpriteAtlas;
         private Vector2 environmentScale = new Vector2(4, 4);
-
+        
         public static EnvironmentFactory Instance { get; } = new EnvironmentFactory();
 
         private EnvironmentFactory()
         {
         }
+
 
         public void LoadAllTextures(ContentManager content)
         {

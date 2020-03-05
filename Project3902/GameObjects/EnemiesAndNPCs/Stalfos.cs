@@ -5,8 +5,7 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
 {
     class Stalfos : BaseEnemy
     {
-        private readonly float distance = 100;
-        private Vector2 relPos = new Vector2(0, 0);
+        private int steps = 100;
 
         public Stalfos(Vector2 pos, float moveSpeed, Vector2 initDirection)
         {
@@ -19,21 +18,32 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
 
         public override void Update(GameTime gameTime)
         {
-         
-            Position += Direction * MoveSpeed;
-            relPos += Direction * MoveSpeed;
-            if (relPos.Y > distance)
-            {
-                Direction *= -1;
-                relPos = new Vector2(0, 0);
-            }
-            else if (relPos.Y < -distance)
-            {
-                Direction *= -1;
-                relPos = new Vector2(0, 0);
-            }
 
             base.Update(gameTime);
+
+            if (steps == 0)
+            {
+                Random random = new Random();
+                int dvalue = random.Next(4);
+                switch (dvalue)
+                {
+                    case 0:
+                        Direction = new Vector2(1, 0);
+                        break;
+                    case 1:
+                        Direction = new Vector2(-1, 0);
+                        break;
+                    case 2:
+                        Direction = new Vector2(0, 1);
+                        break;
+                    case 3:
+                        Direction = new Vector2(0, -1);
+                        break;
+                }
+                steps = random.Next(40, 300);
+            }
+            Position += Direction * MoveSpeed;
+            steps--;
         }
 
         public override void Attack()

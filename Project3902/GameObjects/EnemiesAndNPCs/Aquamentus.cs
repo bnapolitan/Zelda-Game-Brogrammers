@@ -82,7 +82,9 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
             }
         }
 
-        public override void OnCollide(Collider other) { }
+        public override void OnCollide(Collider other) {
+            base.OnCollide(other);
+        }
 
         public override void TakeDamage() { }
     }

@@ -30,7 +30,7 @@ OpenDoorLeft, 0, 288
 OpenDoorRight, 896, 288
 OpenDoorBottom, 448, 576
 Items
-Rupee, 500, 300
-Heart, 500, 400
+Rupee, 130, 130
+Heart, 130, 130
 Enemies
-AquaGel, 500, 200
+RedGoriya, 500, 200

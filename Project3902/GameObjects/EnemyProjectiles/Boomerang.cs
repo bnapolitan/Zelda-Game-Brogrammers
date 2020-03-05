@@ -5,16 +5,16 @@ namespace Project3902.GameObjects.EnemyProjectiles
 {
     class Boomerang : IProjectile
     {
-        
+        private Vector2 _position;
         public Vector2 Position
         {
             get
             {
-                return Position;
+                return _position;
             }
             set
             {
-                Position = value;
+                _position = value;
                 Collider.AlignHitbox();
             }
         }

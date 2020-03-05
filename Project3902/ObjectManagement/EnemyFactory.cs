@@ -13,13 +13,19 @@ namespace Project3902.ObjectManagement
 		private SpriteAtlas dungeons2;
 		private SpriteAtlas NPCSpriteAtlas;
 		private SpriteAtlas BossSpriteAtlas;
-
-		private Vector2 enemyScale = new Vector2(6, 6);
+		private FinalGame game;
+		private Vector2 enemyScale = new Vector2(3, 3);
 
         public static EnemyFactory Instance { get; } = new EnemyFactory();
 
 		private EnemyFactory()
 		{
+		}
+
+
+		public void RegisterGame(FinalGame game)
+		{
+			this.game = game;
 		}
 
 		public void LoadAllTextures(ContentManager content)
@@ -285,6 +291,15 @@ namespace Project3902.ObjectManagement
 			var collider = new Collider(createdObject, new Rectangle(0, 0, 14 * (int)enemyScale.X, 16 * (int)enemyScale.Y));
 			createdObject.Collider = collider;
 
+			RegisterEnemyForCollision(createdObject);
+
+			return createdObject;
+		}
+
+		public IGameObject CreateAquamentus(Vector2 position)
+		{
+			var createdObject = new Aquamentus(position, 1, new Vector2(1, 0), this.game);
+			createdObject.Collider = new Collider(createdObject, new Rectangle(0, 0, 24 * (int)enemyScale.X, 32 * (int)enemyScale.Y));
 			RegisterEnemyForCollision(createdObject);
 
 			return createdObject;
