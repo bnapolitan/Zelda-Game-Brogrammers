@@ -32,7 +32,7 @@ namespace Project3902
         public Collider Collider { get; set; }
         public float Damage { get; set; } = 1f;
         private int collisionDelay=20;
-        private bool attackedRecent = false;
+        protected bool attackedRecent = false;
         public abstract void Attack();
 
         public virtual void Draw(SpriteBatch spriteBatch)
@@ -59,7 +59,7 @@ namespace Project3902
                         CollisionHandler.Instance.RemoveCollidable(this);
                     }
                     Vector2 move = (other.GameObject as IProjectile).Direction * 20;
-                    (other.GameObject as IProjectile).OnCollide(this.Collider);
+                    (other.GameObject as IProjectile).OnCollide(Collider);
                     Position = new Vector2(Position.X + move.X, Position.Y + move.Y);
                     Collider.AlignHitbox();
                 }
@@ -67,7 +67,7 @@ namespace Project3902
             if(other.GameObject is IInteractiveEnvironmentObject) 
             {
                 MoveOutOfWall(other);
-                //Direction=new Vector2(Direction.Y*, Direction.X*-1);
+                Direction=new Vector2(Direction.Y, Direction.X*-1);
             }
         }
 
@@ -83,6 +83,7 @@ namespace Project3902
                 {
                     attackedRecent = false;
                     collisionDelay = 20;
+                    tint = Color.White;
                 }
             }
         }
