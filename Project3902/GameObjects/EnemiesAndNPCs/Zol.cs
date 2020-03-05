@@ -7,7 +7,6 @@ namespace Project3902
     class Zol : BaseEnemy
     {
         private float steps = 100;
-        private readonly EnemyFactory enemyFactory = EnemyFactory.Instance;
         public Zol(Vector2 pos, float moveSpeed, Vector2 initDirection)
         {
             Position = pos;

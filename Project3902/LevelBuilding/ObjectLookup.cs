@@ -7,7 +7,7 @@ namespace Project3902.LevelBuilding
 {
     class ObjectLookup
     {
-        public static IDictionary<string, string> ObjectMappings;
+ 
         private readonly EnvironmentFactory envFactory = EnvironmentFactory.Instance;
         private readonly EnemyFactory enemyFactory = EnemyFactory.Instance;
         private readonly ItemFactory itemFactory = ItemFactory.Instance;

@@ -30,9 +30,6 @@ namespace Project3902.GameObjects.EnemyProjectiles
         public Collider Collider { get; set; }
 
         private readonly float maxSpeed = 1000f;
-        private readonly float minSpeed = 500f;
-        private readonly float distance = 500;
-        private Vector2 relPos = new Vector2(0, 0);
         private Vector2 startingPos;
         private bool turned = false;
 
