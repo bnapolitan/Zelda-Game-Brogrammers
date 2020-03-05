@@ -10,7 +10,7 @@ Player controls:
  - 2 to use the blue candle
 
 ## Known Bugs
-1. Currently there are issues with wall collisions. If an enemy is shoved into a wall, it will become stuck, constantly changing direction every frame and not moving. Can also happen with projectiles if they happen to enter too far into a wall in a single frame.
+1. Currently there are issues with wall collisions. If an enemy is shoved into a wall, it will become stuck, constantly changing direction every frame and not moving. Can also happen with projectiles if they happen to enter too far into a wall in a single frame. BaseLinkState.cs's MoveOutOfWall() is an example of how to fix this.
 2. Door colliders are not scaled correctly, they only take up the top left quadrant.
 
 ## Explanation of MouseActions and InputState
