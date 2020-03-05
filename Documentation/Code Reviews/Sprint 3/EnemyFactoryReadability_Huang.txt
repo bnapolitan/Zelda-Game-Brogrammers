@@ -1,0 +1,13 @@
+Author of the code review: Huang Huang
+Date of the code review: 2020/3/5
+Sprint number: Sprint 3
+Name of the .cs file being reviewed: EnemyFactory.cs
+Author of the .cs file being reviewed: Suraj Suresh 
+Number of minutes taken to complete the review: 20min
+Specific comments on what is readable: 
+As for the readability of this file, this file contains many functions. 
+However, every function is very easy to understand its meaning and function by their names. 
+Therefore, each of enemy item which was created in this file is easy to identify. 
+Moreover, each function follows the same construction method. 
+As for the collision function ‘RegisterEnemyForCollision’, it just uses one-line code to implement function. 
+In general, the code is highly readable. 
