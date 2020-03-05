@@ -18,9 +18,12 @@ namespace Project3902
         public override void OnCollide(Collider other) {
             if(other.GameObject is IEnemy )
             {
-                Direction *= -1;
-                turned = true;
-                Position += (Direction * ((Speed/30) + 3));
+                if (!turned)
+                {
+                    Direction *= -1;
+                    turned = true;
+                    Position += (Direction * ((Speed / 30) + 3));
+                }
             }
 
         }

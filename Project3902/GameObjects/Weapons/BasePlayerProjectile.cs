@@ -19,7 +19,8 @@ namespace Project3902
             if (!Active)
                 return;
             Collider.Draw(spriteBatch);
-            Sprite.Draw(spriteBatch);
+            if (Sprite != null)
+                Sprite.Draw(spriteBatch);
         }
 
         public virtual void Launch(Vector2 position, Vector2 direction)
@@ -32,7 +33,6 @@ namespace Project3902
 
         public virtual void OnCollide(Collider other)
         {
-            throw new NotImplementedException();
         }
 
         public virtual void Update(GameTime gameTime)
@@ -40,7 +40,8 @@ namespace Project3902
             if (!Active)
                 return;
 
-            Sprite.Update(gameTime);
+            if (Sprite != null)
+                Sprite.Update(gameTime);
         }
     }
 }

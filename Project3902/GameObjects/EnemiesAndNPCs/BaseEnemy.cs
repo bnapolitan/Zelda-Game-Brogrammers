@@ -50,8 +50,10 @@ namespace Project3902
                     Active = false;
                     CollisionHandler.Instance.RemoveCollidable(this);
                 }
-                Vector2 Move = (other.GameObject as IProjectile).Direction * 40*-1;
-                Position = new Vector2(Position.X +Move.X, Position.Y+Move.Y);
+                Vector2 move = (other.GameObject as IProjectile).Direction * 40;
+                (other.GameObject as IProjectile).OnCollide(this.Collider);
+                Position = new Vector2(Position.X + move.X, Position.Y+move.Y);
+                Collider.AlignHitbox();
             }
             else if(other.GameObject is IInteractiveEnvironmentObject) 
             {

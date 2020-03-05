@@ -65,6 +65,7 @@
     <Compile Include="GameObjects\Item\Arrow.cs" />
     <Compile Include="GameObjects\Item\Interface\IItem.cs" />
     <Compile Include="GameObjects\Weapons\BasePlayerProjectile.cs" />
+    <Compile Include="GameObjects\Weapons\SwordAttack.cs" />
     <Compile Include="GlobalSuppressions2.cs" />
     <Compile Include="LevelBuilding\LevelBuilder.cs" />
     <Compile Include="LevelBuilding\ObjectLookup.cs" />

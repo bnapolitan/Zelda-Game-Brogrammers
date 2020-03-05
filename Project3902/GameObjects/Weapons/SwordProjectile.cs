@@ -23,13 +23,14 @@ namespace Project3902
             Collider = collider;
             Speed = speed;
             flightTime = 0;
+            CollisionHandler.Instance.RegisterCollidable(this, Layer.Projectile);
         }
 
         public override void OnCollide(Collider other)
         {
             if(other.GameObject is IEnemy)
             {
-                Active = false;
+                Deactivate();
             }
         }
 
@@ -42,9 +43,15 @@ namespace Project3902
 
             flightTime += elapsed;
             if (flightTime > maxFlightTime)
-                Active = false;
+                Deactivate();
 
             Position += Speed * Direction * elapsed;
+        }
+
+        private void Deactivate()
+        {
+            Active = false;
+            CollisionHandler.Instance.RemoveCollidable(this);
         }
     }
 }

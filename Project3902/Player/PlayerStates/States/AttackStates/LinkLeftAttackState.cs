@@ -18,6 +18,7 @@ namespace Project3902
         }
         protected override void EndAttack()
         {
+            base.EndAttack();
             machine.SwitchState(LinkStates.LeftWalk);
         }
     }

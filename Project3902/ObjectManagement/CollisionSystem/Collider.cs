@@ -39,7 +39,7 @@ namespace Project3902
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (debug)
+            if (debug && GameObject.Active)
                 spriteBatch.Draw(ShapeSpriteFactory.Instance.WhiteRect, Hitbox, new Rectangle(0, 0, 1, 1), tint);
         }
     }

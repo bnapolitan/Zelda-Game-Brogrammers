@@ -94,8 +94,12 @@ namespace Project3902
             var rect = new Rectangle(0, 0, (int)sword.Sprite.Scale.X * (int)sword.Sprite.Size.X, (int)sword.Sprite.Scale.Y * (int)sword.Sprite.Size.Y);
             var collider = new Collider(sword, rect);
             sword.Collider = collider;
-            CollisionHandler.Instance.RegisterCollidable(sword, Layer.Projectile, Layer.Enemy, Layer.Wall);
             return sword;
+        }
+
+        public IProjectile CreateSword()
+        {
+            return new SwordAttack();
         }
         
         public IProjectile CreateFireballProjectile(Vector2 pos, Vector2 direction)

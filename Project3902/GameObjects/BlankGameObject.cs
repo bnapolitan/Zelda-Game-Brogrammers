@@ -20,7 +20,7 @@ namespace Project3902.GameObjects
         }
         public void Update(GameTime gameTime)
         {
-
+            Collider.AlignHitbox();
         }
 
         public void Draw(SpriteBatch spriteBatch)
