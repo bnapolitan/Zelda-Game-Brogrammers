@@ -104,12 +104,12 @@ namespace Project3902
         
         public IProjectile CreateFireballProjectile(Vector2 pos, Vector2 direction)
         {
-            var createdObject = new Fireball(pos, 4f, direction);
-            var sprite = CreateFireballSprite(createdObject);
-            createdObject.Sprite = sprite;
-            var collider = new Collider(createdObject, new Rectangle(0, 0, 8 * (int)sprite.Scale.X, 9 * (int)sprite.Scale.Y));
+            var createdObject = new Fireball();
+            createdObject.Position = pos;
+            createdObject.Direction = direction;
+            var collider = new Collider(createdObject, new Rectangle(0, 0, 8 * (int)createdObject.Sprite.Scale.X, 9 * (int)createdObject.Sprite.Scale.Y));
             createdObject.Collider = collider;
-            CollisionHandler.Instance.RegisterCollidable(createdObject,Layer.Projectile, Layer.Player, Layer.Enemy, Layer.Wall);
+            //CollisionHandler.Instance.RegisterCollidable(createdObject,Layer.Projectile, Layer.Player, Layer.Wall);
             return createdObject;
         }
 
@@ -130,7 +130,7 @@ namespace Project3902
             createdObject.Sprite = sprite;
             var collider = new Collider(createdObject, new Rectangle(0, 0, 8 * (int)sprite.Scale.X, 8 * (int)sprite.Scale.Y));
             createdObject.Collider = collider;
-            CollisionHandler.Instance.RegisterCollidable(createdObject, Layer.Projectile, Layer.Enemy);
+            CollisionHandler.Instance.RegisterCollidable(createdObject, Layer.Projectile, Layer.Wall, Layer.Player);
             return createdObject;
         }
     }
