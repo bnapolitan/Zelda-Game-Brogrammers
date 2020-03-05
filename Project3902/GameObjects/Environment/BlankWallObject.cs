@@ -3,29 +3,27 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Project3902.GameObjects
 {
-    class BlankGameObject: IGameObject, ICollidable
+    class BlankWallObject: IInteractiveEnvironmentObject
     {
         public Vector2 Position { get; set; }
 
         public ISprite Sprite { get; set; }
 
-        public bool Active { get; set; }
+        public bool Active { get; set; } = true;
 
         public Collider Collider { get; set; }
 
-        public BlankGameObject(Vector2 pos)
+        public BlankWallObject(Vector2 pos)
         {
             Position = pos;
 
         }
         public void Update(GameTime gameTime)
         {
-
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            Collider.Draw(spriteBatch);
         }
 
         public void OnCollide(Collider other)

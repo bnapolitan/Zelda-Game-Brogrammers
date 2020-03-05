@@ -13,7 +13,7 @@ namespace Project3902
             Active = true;
             MoveSpeed = moveSpeed;
             Direction = initDirection;
-            Health = 1;
+            Health = 10;
         }
         public override void TakeDamage()
         {

@@ -1,0 +1,15 @@
+Author: Austin Rogers.1274
+Date: 3/5/2020
+Sprint #: 3
+File being reviewed: LevelBuilder.cs
+Author of file under review: Ben Napolitan, Suraj Suresh (BuildWalls())
+
+Time to complete review: 15min
+
+Comments:
+
+Overall, readability is high with clearly named variables and functions. Creating a private reference to the EnvironmentFactory Instance is useful in shortening the code and making it quicker to read.
+
+Inside the environment creation function, a logical series of events takes place in creating each part of the level, beginning with the foundation of the level, then adding specific pieces. It is clear from the while loop that this function only reads in environment objects until another type of object is listed. Both the item creation function and the enemy creation function follow the same pattern, making them easy to follow as well.
+
+Finally, the BuildWalls() function is large, but every step of it follows the same structure, so it is readable as well. Perhaps a slightly more descriptive name like "BuildOuterWalls" would help differentiate it from the other types of walls that can occur in the play field.

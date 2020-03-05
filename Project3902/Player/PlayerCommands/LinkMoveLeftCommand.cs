@@ -2,12 +2,13 @@
 {
     class LinkMoveLeftCommand : BaseLinkCommand
     {
-        public LinkMoveLeftCommand(ILink link)
-            : base(link) { }
+        public LinkMoveLeftCommand(FinalGame game)
+            : base(game) {
+        }
 
         public override void Execute()
         {
-            link.MoveLeft();
+            game.Link.MoveLeft();
         }
     }
 }

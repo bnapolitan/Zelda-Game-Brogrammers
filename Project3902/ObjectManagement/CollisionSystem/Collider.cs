@@ -12,12 +12,16 @@ namespace Project3902
 
         public Rectangle Hitbox { get; set; }
 
+        public Vector2 Offset { get; set; }
+
         public IGameObject GameObject { get; set; }
 
         public Collider(IGameObject gameObject, Rectangle localHitbox)
         {
             GameObject = gameObject;
             localRect = localHitbox;
+            Offset = localRect.Location.ToVector2();
+
             AlignHitbox();
         }
 
@@ -39,7 +43,7 @@ namespace Project3902
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (debug)
+            if (debug && GameObject.Active)
                 spriteBatch.Draw(ShapeSpriteFactory.Instance.WhiteRect, Hitbox, new Rectangle(0, 0, 1, 1), tint);
         }
     }

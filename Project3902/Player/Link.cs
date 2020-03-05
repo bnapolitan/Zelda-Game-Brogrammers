@@ -26,11 +26,12 @@ namespace Project3902
         }
 
         public ISprite Sprite { get => machine.Sprite; set { } }
-        public bool Active { get; set; }
+        public bool Active { get; set; } = true;
         public float MovementSpeed { get; set; } = 200f;
 
         public IProjectile CurrentWeapon { get; set; }
         public IProjectile SwordProjectile { get; set; }
+        public IProjectile Sword { get; set; }
 
         public Collider Collider { get; set; }
         public Vector2 FacingDirection { get; set; } = new Vector2(1, 0);
@@ -44,10 +45,11 @@ namespace Project3902
 
             machine = new LinkStateMachine(this);
 
-            Collider = new Collider(this, new Rectangle(new Point(0, 0), new Point(16, 16) * Sprite.Scale.ToPoint()));
+            Collider = new Collider(this, new Rectangle(new Point(4, 4), new Point(16, 16) * Sprite.Scale.ToPoint()));
 
             CurrentWeapon = WeaponFactory.Instance.CreateBlueCandleProjectile();
             SwordProjectile = WeaponFactory.Instance.CreateSwordProjectile();
+            Sword = WeaponFactory.Instance.CreateSword();
 
             Position = position;
         }
@@ -56,6 +58,7 @@ namespace Project3902
         {
             CurrentWeapon.Update(gameTime);
             SwordProjectile.Update(gameTime);
+            Sword.Update(gameTime);
             machine.Update(gameTime);
         }
 
@@ -67,6 +70,7 @@ namespace Project3902
 
             CurrentWeapon.Draw(spriteBatch);
             SwordProjectile.Draw(spriteBatch);
+            Sword.Draw(spriteBatch);
         }
 
         public void TakeDamage(float damage)

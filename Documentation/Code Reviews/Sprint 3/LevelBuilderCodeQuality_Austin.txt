@@ -1,0 +1,17 @@
+Author: Austin Rogers.1274
+Date: 3/5/2020
+Sprint #: 3
+File being reviewed: LevelBuilder.cs
+Author of file under review: Ben Napolitan, Suraj Suresh (BuildWalls())
+
+Comments on code quality:
+Overall, cohesion is very high in this class. It does exactly one thing: build the level, and each of its methods is simply a means to that goal.
+
+Functions are quite long in this class, but I believe that is fine for this situation as the cohesion remains high within each of them. CreateInteractiveEnvironmentObjects() only creates the environment, CreateItemObjects() only creates items, and so on. The only improvement I might see is to take creating the room border, floor tile creation, and BuildWalls() call somewhere outside of the CreateInteractiveEnvironmentObjects() function and put them somewhere where they are always ran, since they always stay the same.
+
+Coupling is loose for the most part, the only types the class needs to know about are EnvironmentFactory, ObjectLookup, and StreamReader from System.IO, as all functionality can be completed with those. The BuildWalls() function has much higher coupling, knowing about BlankGameObject, Collider, and the CollisionHandler. I believe that code should be moved into the EnvironmentFactory, where high coupling is tolerable.
+
+Another possible issue is the magic numbers used when creating the floor tiles, if the scale of our game changes, those will need to manually be recalculated. However, I do not expect that to change for us, and so the magic numbers are fine for now.
+
+Hypothetical change:
+A likely change would be to add another type of object into our game, ie. in addition to environment, enemies, and items. Making the LevelBuilder create those as well would be easy: simply add a new function like CreateNewTypeObjects() which follows the same structure as the already existing ones. A potential problem is that the new type of object would need to be added into the while loop checks for other types, in each of the already existing creation functions. Possibly a universal section break indicator should be used to separate object types in the csv file. The current format of the csv files used to create the levels would allow for the addition of a new type easily though.

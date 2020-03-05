@@ -2,14 +2,14 @@
 {
     class LinkUseBoomerangCommand : BaseLinkCommand
     {
-        public LinkUseBoomerangCommand(ILink link)
-            : base(link) { }
+        public LinkUseBoomerangCommand(FinalGame game)
+            : base(game) { }
 
         public override void Execute()
         {
-            if (!link.CurrentWeapon.Active)
-                link.CurrentWeapon = WeaponFactory.Instance.CreateBoomerangProjectile();
-            link.UseItem();
+            if (!game.Link.CurrentWeapon.Active)
+                game.Link.CurrentWeapon = WeaponFactory.Instance.CreateBoomerangProjectile();
+            game.Link.UseItem();
         }
     }
 }
