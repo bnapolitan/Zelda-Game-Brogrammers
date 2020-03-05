@@ -10,7 +10,7 @@ Player controls:
  - 2 to use the blue candle
 
 ## Known Bugs
-1. Currently there is an issue with wall collisions. If an enemy is shoved into a wall, it will become stuck, constantly changing direction every frame and not moving. A similar issue can occur with the player, though the exact cause is unknown, and will become unstuck after "phase shifting" for a moment.
+1. Currently there are issues with wall collisions. If an enemy is shoved into a wall, it will become stuck, constantly changing direction every frame and not moving. Can also happen with projectiles if they happen to enter too far into a wall in a single frame.
 2. Door colliders are not scaled correctly, they only take up the top left quadrant.
 
 ## Explanation of MouseActions and InputState
