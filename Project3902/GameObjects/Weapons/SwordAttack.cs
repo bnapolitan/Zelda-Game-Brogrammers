@@ -6,7 +6,7 @@ namespace Project3902
     {
         public SwordAttack()
         {
-            var rect = new Rectangle(0, 0, 64, 64);
+            var rect = new Rectangle(4, 4, 48, 48);
             Collider = new Collider(this, rect);
         }
 
