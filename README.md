@@ -15,7 +15,7 @@ Player controls:
 ## Explanation of MouseActions and InputState
 We use MouseActions to map a specific mouse button to a command. Monogame does not have a representation of mouse buttons that can be used in such a way, there is only LeftButton (and similar) properties of a MouseState instance, but as that is an instance variable of type ButtonState, it can't be used as a key in a dictionary. That said, MouseState.LeftButton is in fact used inside the MouseController to determine if the command associated with MouseActions.Left should be executed. Similarly, InputState is used instead of ButtonState for the simple reason that ButtonState does not include a "Held" option. InputState allows us to take a certain key or button with a certain command, and specify what type of input should cause the command to be executed (key just pressed, key held, or key just released).
 
-##Code analysis (FxCop)
+## Code analysis (FxCop)
 
 19 Warnings:
 Work-in-progress:
@@ -54,7 +54,4 @@ Surpressed:
 
   - MouseActions.cs - Only FlagsAttribute enums should have plural names
     Also more clear for plural.
-
-
-
-##Code analysis (Codacy)
+    
