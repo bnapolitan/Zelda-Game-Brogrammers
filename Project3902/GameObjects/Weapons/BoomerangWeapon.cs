@@ -25,7 +25,6 @@ namespace Project3902
                     Position += (Direction * ((Speed / 30) + 3));
                 }
 
-                CollisionHandler.Instance.RemoveCollidable(this);
             }
 
         }
