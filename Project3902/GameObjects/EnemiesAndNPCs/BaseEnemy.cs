@@ -51,7 +51,8 @@ namespace Project3902
                     CollisionHandler.Instance.RemoveCollidable(this);
                 }
                 Vector2 move = (other.GameObject as IProjectile).Direction * 40;
-                (other.GameObject as IProjectile).OnCollide(this.Collider);
+                (other.GameObject as IProjectile).OnCollide(Collider);
+
                 Position = new Vector2(Position.X + move.X, Position.Y+move.Y);
                 Collider.AlignHitbox();
             }
