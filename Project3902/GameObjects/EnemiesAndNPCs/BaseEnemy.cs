@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Project3902.GameObjects;
+using Project3902.GameObjects.EnemyProjectiles;
 using System;
 
 namespace Project3902
@@ -46,9 +47,9 @@ namespace Project3902
         {
             if (!attackedRecent)
             {
-                if (other.GameObject is IProjectile)
+                if ((other.GameObject is IProjectile) && !(other.GameObject is Boomerang))
                 {
-
+                    
                     attackedRecent = true;
                     Health--;
                     tint = Color.Red;
