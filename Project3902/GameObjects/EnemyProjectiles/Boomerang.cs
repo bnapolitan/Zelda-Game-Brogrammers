@@ -15,7 +15,11 @@ namespace Project3902.GameObjects.EnemyProjectiles
             set
             {
                 _position = value;
-                Collider.AlignHitbox();
+                if(Collider != null)
+                {
+                    Collider.AlignHitbox();
+                }
+                
             }
         }
         public ISprite Sprite { get; set; }
