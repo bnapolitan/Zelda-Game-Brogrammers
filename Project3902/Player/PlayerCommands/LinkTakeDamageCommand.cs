@@ -11,8 +11,11 @@
 
         public void Execute()
         {
-            game.Link.Health -= 1;
-            game.Link = new DamagedLink(game.Link, game);
+            if (!(game.Link is DamagedLink))
+            {
+                game.Link.Health -= 1;
+                game.Link = new DamagedLink(game.Link, game);
+            }
         }
     }
 }

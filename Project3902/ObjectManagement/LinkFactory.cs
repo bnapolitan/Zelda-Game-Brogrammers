@@ -30,25 +30,25 @@ namespace Project3902
             return new Link(position);
         }
 
-        public KeyboardController CreateLinkController(ILink link)
+        public KeyboardController CreateLinkController(FinalGame game)
         {
             var controller = new KeyboardController();
 
         
-            controller.RegisterCommand(Keys.Up, new LinkMoveUpCommand(link));
-            controller.RegisterCommand(Keys.Down, new LinkMoveDownCommand(link));
-            controller.RegisterCommand(Keys.Left, new LinkMoveLeftCommand(link));
-            controller.RegisterCommand(Keys.Right, new LinkMoveRightCommand(link));
-            controller.RegisterCommand(Keys.W, new LinkMoveUpCommand(link));
-            controller.RegisterCommand(Keys.S, new LinkMoveDownCommand(link));
-            controller.RegisterCommand(Keys.A, new LinkMoveLeftCommand(link));
-            controller.RegisterCommand(Keys.D, new LinkMoveRightCommand(link));
+            controller.RegisterCommand(Keys.Up, new LinkMoveUpCommand(game));
+            controller.RegisterCommand(Keys.Down, new LinkMoveDownCommand(game));
+            controller.RegisterCommand(Keys.Left, new LinkMoveLeftCommand(game));
+            controller.RegisterCommand(Keys.Right, new LinkMoveRightCommand(game));
+            controller.RegisterCommand(Keys.W, new LinkMoveUpCommand(game));
+            controller.RegisterCommand(Keys.S, new LinkMoveDownCommand(game));
+            controller.RegisterCommand(Keys.A, new LinkMoveLeftCommand(game));
+            controller.RegisterCommand(Keys.D, new LinkMoveRightCommand(game));
 
-            controller.RegisterCommand(Keys.Z, new LinkAttackCommand(link), InputState.Pressed);
-            controller.RegisterCommand(Keys.N, new LinkAttackCommand(link), InputState.Pressed);
+            controller.RegisterCommand(Keys.Z, new LinkAttackCommand(game), InputState.Pressed);
+            controller.RegisterCommand(Keys.N, new LinkAttackCommand(game), InputState.Pressed);
 
-            controller.RegisterCommand(Keys.D1, new LinkUseBoomerangCommand(link), InputState.Pressed);
-            controller.RegisterCommand(Keys.D2, new LinkUseBlueCandleCommand(link), InputState.Pressed);
+            controller.RegisterCommand(Keys.D1, new LinkUseBoomerangCommand(game), InputState.Pressed);
+            controller.RegisterCommand(Keys.D2, new LinkUseBlueCandleCommand(game), InputState.Pressed);
 
             controller.RegisterCommand(Keys.E, takeDamageCommand, InputState.Pressed);
 

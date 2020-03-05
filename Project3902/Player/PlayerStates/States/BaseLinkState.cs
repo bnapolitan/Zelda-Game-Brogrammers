@@ -75,8 +75,9 @@ namespace Project3902
             unitDirection.Normalize();
 
             var hitboxSize = link.Collider.Hitbox.Size;
+            var offset = link.Collider.Offset;
 
-            var testRect = new Rectangle(link.PreviousPosition.ToPoint(), hitboxSize);
+            var testRect = new Rectangle((link.PreviousPosition + offset).ToPoint(), hitboxSize);
 
             while (!other.Intersects(testRect))
             {
@@ -85,7 +86,7 @@ namespace Project3902
 
             testRect.Location -= unitDirection.ToPoint();
 
-            link.Position = testRect.Location.ToVector2();
+            link.Position = testRect.Location.ToVector2() - offset;
         }
     }
 }

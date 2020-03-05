@@ -2,11 +2,11 @@
 {
     abstract class BaseLinkCommand : ICommand
     {
-        protected readonly ILink link;
+        protected readonly FinalGame game;
 
-        public BaseLinkCommand(ILink link)
+        public BaseLinkCommand(FinalGame game)
         {
-            this.link = link;
+            this.game = game;
         }
 
         public abstract void Execute();

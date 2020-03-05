@@ -3,12 +3,12 @@
     class LinkMoveUpCommand : BaseLinkCommand
     {
 
-        public LinkMoveUpCommand(ILink link)
-            : base(link) { }
+        public LinkMoveUpCommand(FinalGame game)
+            : base(game) { }
 
         public override void Execute()
         {
-            link.MoveUp();
+            game.Link.MoveUp();
         }
     }
 }

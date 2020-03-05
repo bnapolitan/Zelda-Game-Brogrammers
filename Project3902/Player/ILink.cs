@@ -10,5 +10,6 @@ namespace Project3902
 
         IProjectile CurrentWeapon { get; set; }
         IProjectile SwordProjectile { get; set; }
+        IProjectile Sword { get; set; }
     }
 }

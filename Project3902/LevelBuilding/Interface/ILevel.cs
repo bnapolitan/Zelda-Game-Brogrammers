@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Project3902.LevelBuilding.Interface
+namespace Project3902.LevelBuilding
 {
     public interface ILevel
     {

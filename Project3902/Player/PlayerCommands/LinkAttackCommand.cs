@@ -2,12 +2,12 @@
 {
     class LinkAttackCommand : BaseLinkCommand
     {
-        public LinkAttackCommand(ILink link)
-            : base(link) { }
+        public LinkAttackCommand(FinalGame game)
+            : base(game) { }
 
         public override void Execute()
         {
-            link.Attack();
+            game.Link.Attack();
         }
     }
 }

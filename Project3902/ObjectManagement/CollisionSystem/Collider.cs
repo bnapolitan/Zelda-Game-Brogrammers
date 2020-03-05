@@ -12,12 +12,16 @@ namespace Project3902
 
         public Rectangle Hitbox { get; set; }
 
+        public Vector2 Offset { get; set; }
+
         public IGameObject GameObject { get; set; }
 
         public Collider(IGameObject gameObject, Rectangle localHitbox)
         {
             GameObject = gameObject;
             localRect = localHitbox;
+            Offset = localRect.Location.ToVector2();
+
             AlignHitbox();
         }
 

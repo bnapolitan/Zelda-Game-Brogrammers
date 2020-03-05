@@ -2,12 +2,12 @@
 {
     class LinkUseItemCommand : BaseLinkCommand
     {
-        public LinkUseItemCommand(ILink link)
-            : base(link) { }
+        public LinkUseItemCommand(FinalGame game)
+            : base(game) { }
 
         public override void Execute()
         {
-            link.UseItem();
+            game.Link.UseItem();
         }
     }
 }

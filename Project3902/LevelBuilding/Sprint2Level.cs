@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Project3902.GameObjects.EnemiesAndNPCs;
-using Project3902.LevelBuilding.Interface;
+using Project3902.LevelBuilding;
 using Project3902.ObjectManagement;
 using System.Collections.Generic;
 

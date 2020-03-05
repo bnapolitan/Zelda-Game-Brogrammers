@@ -57,10 +57,10 @@ namespace Project3902
             var level = new LevelBuilder(this, "DungeonRoom1");
 
             LinkFactory.Instance.LoadAllTextures(Content);
-            Link = LinkFactory.Instance.CreateLink(new Vector2(100, 100), this);
+            Link = LinkFactory.Instance.CreateLink(new Vector2(256, 256), this);
             CollisionHandler.Instance.RegisterCollidable(Link, Layer.Player, Layer.Enemy, Layer.Wall, Layer.Pickup, Layer.Projectile);
 
-            keyboardController = LinkFactory.Instance.CreateLinkController(Link);
+            keyboardController = LinkFactory.Instance.CreateLinkController(this);
 
             ShapeSpriteFactory.Instance.CreateShapeTextures(GraphicsDevice);
 
