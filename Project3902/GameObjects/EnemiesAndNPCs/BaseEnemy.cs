@@ -29,7 +29,8 @@ namespace Project3902
         public bool Active { get; set; }
         public Collider Collider { get; set; }
         public float Damage { get; set; } = 1f;
-
+        private int collisionDelay=20;
+        private bool attackedRecent = false;
         public abstract void Attack();
 
         public virtual void Draw(SpriteBatch spriteBatch)
@@ -41,22 +42,27 @@ namespace Project3902
 
         public virtual void OnCollide(Collider other)
         {
-            if (other.GameObject is IProjectile) 
+            if (!attackedRecent)
             {
-                Health--;
-                tint = Color.Red;
-                Console.WriteLine(Health);
-                if (Health == 0)
+                if (other.GameObject is IProjectile)
                 {
-                    Active = false;
-                    CollisionHandler.Instance.RemoveCollidable(this);
+
+                    attackedRecent = true;
+                    Health--;
+                    tint = Color.Red;
+                    Console.WriteLine(Health);
+                    if (Health == 0)
+                    {
+                        Active = false;
+                        CollisionHandler.Instance.RemoveCollidable(this);
+                    }
+                    Vector2 move = (other.GameObject as IProjectile).Direction * 20;
+                    (other.GameObject as IProjectile).OnCollide(this.Collider);
+                    Position = new Vector2(Position.X + move.X, Position.Y + move.Y);
+                    Collider.AlignHitbox();
                 }
-                Vector2 move = (other.GameObject as IProjectile).Direction * 40;
-                (other.GameObject as IProjectile).OnCollide(this.Collider);
-                Position = new Vector2(Position.X + move.X, Position.Y+move.Y);
-                Collider.AlignHitbox();
             }
-            else if(other.GameObject is IInteractiveEnvironmentObject) 
+            if(other.GameObject is IInteractiveEnvironmentObject) 
             {
                 Direction=new Vector2(Direction.Y, Direction.X*-1);
             }
@@ -67,6 +73,15 @@ namespace Project3902
         public virtual void Update(GameTime gameTime)
         {
             Sprite.Update(gameTime);
+            if (attackedRecent)
+            {
+                collisionDelay--;
+                if (collisionDelay == 0)
+                {
+                    attackedRecent = false;
+                    collisionDelay = 20;
+                }
+            }
         }
     }
 }
