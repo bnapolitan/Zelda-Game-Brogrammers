@@ -11,6 +11,7 @@ Player controls:
 
 ## Known Bugs
 1. Currently there is an issue with wall collisions. If an enemy is shoved into a wall, it will become stuck, constantly changing direction every frame and not moving. A similar issue can occur with the player, though the exact cause is unknown, and will become unstuck after "phase shifting" for a moment.
+2. Door colliders are not scaled correctly, they only take up the top left quadrant.
 
 ## Explanation of MouseActions and InputState
 We use MouseActions to map a specific mouse button to a command. Monogame does not have a representation of mouse buttons that can be used in such a way, there is only LeftButton (and similar) properties of a MouseState instance, but as that is an instance variable of type ButtonState, it can't be used as a key in a dictionary. That said, MouseState.LeftButton is in fact used inside the MouseController to determine if the command associated with MouseActions.Left should be executed. Similarly, InputState is used instead of ButtonState for the simple reason that ButtonState does not include a "Held" option. InputState allows us to take a certain key or button with a certain command, and specify what type of input should cause the command to be executed (key just pressed, key held, or key just released).
