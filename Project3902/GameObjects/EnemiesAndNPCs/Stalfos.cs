@@ -1,47 +1,52 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project3902.GameObjects.EnemiesAndNPCs
 {
     class Stalfos : BaseEnemy
     {
-        private float speed;
-        private float distance = 100;
-        private Vector2 relPos = new Vector2(0, 0);
-        private Vector2 originalPos;
-        private Vector2 direction;
+        private int steps = 100;
 
         public Stalfos(Vector2 pos, float moveSpeed, Vector2 initDirection)
         {
             Position = pos;
             Active = true;
-            speed = moveSpeed;
-            direction = initDirection;
-            originalPos = pos;
+            MoveSpeed = moveSpeed;
+            Direction = initDirection;
+            Health = 2;
         }
 
         public override void Update(GameTime gameTime)
         {
-         
-            Position += direction * speed;
-            relPos += direction * speed;
-            if (relPos.Y > distance)
-            {
-                direction *= -1;
-                relPos = new Vector2(0, 0);
-            }
-            else if (relPos.Y < -distance)
-            {
-                direction *= -1;
-                relPos = new Vector2(0, 0);
-            }
 
             base.Update(gameTime);
+
+            if (!attackedRecent)
+            {
+                if (steps == 0)
+                {
+                    Random random = new Random();
+                    int dvalue = random.Next(4);
+                    switch (dvalue)
+                    {
+                        case 0:
+                            Direction = new Vector2(1, 0);
+                            break;
+                        case 1:
+                            Direction = new Vector2(-1, 0);
+                            break;
+                        case 2:
+                            Direction = new Vector2(0, 1);
+                            break;
+                        case 3:
+                            Direction = new Vector2(0, -1);
+                            break;
+                    }
+                    steps = random.Next(40, 300);
+                }
+                Position += Direction * MoveSpeed;
+                steps--;
+            }
         }
 
         public override void Attack()
@@ -49,10 +54,7 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
             throw new NotImplementedException();
         }
 
-        public override void OnCollide(Collider other)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public override void TakeDamage()
         {

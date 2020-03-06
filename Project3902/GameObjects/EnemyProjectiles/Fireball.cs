@@ -1,74 +1,57 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Project3902.GameObjects.EnemyProjectiles
+namespace Project3902
 {
-    class Fireball : IProjectile
+    class Fireball : BasePlayerProjectile
     {
-        public Vector2 Position { get; set; }
-        public ISprite Sprite { get; set; }
-        public bool Active { get; set; }
-        public Vector2 Direction { get; set; }
-        public float Speed { get; set; }
-        public Collider Collider { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-        private float distance = 500;
+        private readonly float distance = 500f; 
         private Vector2 relPos = new Vector2(0, 0);
-
-        public Fireball(Vector2 pos, float moveSpeed, Vector2 initDirection)
+        public Fireball()
         {
-            Position = pos;
-            Direction = initDirection;
-            Speed = moveSpeed;
-            Active = true;
+            Sprite = WeaponFactory.Instance.CreateFireballSprite(this);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Launch(Vector2 position, Vector2 direction)
         {
+            base.Launch(position, direction);
+
+            Sprite = WeaponFactory.Instance.CreateFireballSprite(this);
+            var rect = new Rectangle(0, 0, (int)Sprite.Scale.X * (int)Sprite.Size.X, (int)Sprite.Scale.Y * (int)Sprite.Size.Y);
+            var collider = new Collider(this, rect);
+            Collider = collider;
+            CollisionHandler.Instance.RegisterCollidable(this, Layer.Projectile);
+        }
+
+        public override void OnCollide(Collider other)
+        {
+            if (other.GameObject is IEnemy)
+            {
+                Deactivate();
+            }
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+
             if (!Active)
             {
                 return;
             }
-
-            Sprite.Draw(spriteBatch);
-        }
-
-        public void OnCollide()
-        {
-
-        }
-
-        public void Update(GameTime gameTime)
-        {
-            if (!Active)
-            {
-                return;
-            }
-
+            base.Update(gameTime);
+            Collider.AlignHitbox();
             Position += Direction * Speed;
             relPos += Direction * Speed;
             if (relPos.Length() >= distance)
             {
                 Active = false;
             }
-            Sprite.Update(gameTime);
+
         }
 
-        public void Launch(Vector2 position, Vector2 direction)
+        private void Deactivate()
         {
-            Position = position;
-            Direction = direction;
-            Active = true;
-        }
-
-        public void OnCollide(Collider other)
-        {
-            throw new NotImplementedException();
+            Active = false;
+            CollisionHandler.Instance.RemoveCollidable(this);
         }
     }
 }

@@ -13,6 +13,14 @@ namespace Project3902
             Sprite = WeaponFactory.Instance.CreateBlueCandleFireSprite(this);
         }
 
+        public override void OnCollide(Collider other)
+        {
+            if(other.GameObject is IEnemy)
+            {
+            }
+
+        
+        }
 
         public override void Launch(Vector2 position, Vector2 direction)
         {
@@ -25,7 +33,7 @@ namespace Project3902
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-
+            Collider.AlignHitbox();
             float elapsed = (float) gameTime.ElapsedGameTime.TotalSeconds;
 
             Speed *= .9f;

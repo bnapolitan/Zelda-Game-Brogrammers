@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using Project3902.GameObjects;
+using System.Collections.Generic;
 
 namespace Project3902
 {
     class CollisionHandler
     {
-
+        
         public static CollisionHandler Instance { get; } = new CollisionHandler();
-
+        private FinalGame game;
         private Dictionary<ICollidable, LayerMasksHolder> dict;
 
         private Dictionary<ICollidable, LayerMasksHolder> toAdd;
@@ -18,6 +19,10 @@ namespace Project3902
             Flush();
         }
 
+        public void RegisterGame(FinalGame game)
+        {
+            this.game = game;
+        }
         public void RegisterCollidable(ICollidable collidable, Layer mainLayer, params Layer[] masks)
         {
             var holder = new LayerMasksHolder(mainLayer, masks);
@@ -27,6 +32,18 @@ namespace Project3902
         public void RemoveCollidable(ICollidable collidable)
         {
             toDelete.Add(collidable);
+            if (collidable is IEnemy)
+            {
+                game.enemyObjects.Remove(collidable as IGameObject);
+            }
+            if (collidable is IInteractiveEnvironmentObject)
+            {
+                game.interactiveEnvironmentObjects.Remove(collidable as IGameObject);
+            }
+            if (collidable is IItem)
+            {
+                game.itemObjects.Remove(collidable as IGameObject);
+            }
         }
 
         public void CheckCollisions()

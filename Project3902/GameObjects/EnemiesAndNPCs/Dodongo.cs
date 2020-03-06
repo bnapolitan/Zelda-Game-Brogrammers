@@ -1,21 +1,19 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace Project3902.GameObjects.EnemiesAndNPCs
 {
     class Dodongo : BaseEnemy
     {
-        private float speed;
-        private float distance = 100;
+        private readonly float distance = 100;
         private Vector2 relPos = new Vector2(0, 0);
-        private Vector2 direction;
 
         public Dodongo(Vector2 pos, float moveSpeed, Vector2 initDirection)
         {
             Position = pos;
             Active = true;
-            speed = moveSpeed;
-            direction = initDirection;
+            MoveSpeed = moveSpeed;
+            Direction = initDirection;
+            Health = 5;
         }
         public override void TakeDamage()
         {
@@ -30,18 +28,20 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-
-            Position += direction * speed;
-            relPos += direction * speed;
-            if (relPos.X > distance)
+            if (!attackedRecent)
             {
-                direction *= -1;
-                relPos = new Vector2(0, 0);
-            }
-            else if (relPos.X < -distance)
-            {
-                direction *= -1;
-                relPos = new Vector2(0, 0);
+                Position += Direction * MoveSpeed;
+                relPos += Direction * MoveSpeed;
+                if (relPos.X > distance)
+                {
+                    Direction *= -1;
+                    relPos = new Vector2(0, 0);
+                }
+                else if (relPos.X < -distance)
+                {
+                    Direction *= -1;
+                    relPos = new Vector2(0, 0);
+                }
             }
         }
 

@@ -1,0 +1,28 @@
+Readability Review 
+
+ 
+
+Author of Code Review: Suraj Suresh 
+
+Date of Code Review: 03/02/19 
+
+Sprint Number: 3
+
+File Being Reviewed: CollisionHandler.cs 
+
+Author of File: Austin Rogers 
+
+Minutes Taken for Review: 10 
+
+Comments on Readability:
+
+	- variables in class are clearly named, it is easy to tell their purpose
+
+	- clear use for a Singleton
+	
+	- method names all clearly named according to purpose with short number of arguments
+
+	- clear when methods from other classes being called, making it easy to trace path of logic
+
+	- nested for each with nested if might be only section slightly difficult to read
+		-is still probably the easiest way to deal with collisions and variable names make 

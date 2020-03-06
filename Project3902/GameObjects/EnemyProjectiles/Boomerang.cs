@@ -1,31 +1,42 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project3902.GameObjects.EnemyProjectiles
 {
     class Boomerang : IProjectile
     {
-        public Vector2 Position { get; set; }
+        private readonly float maxDistance = 300f;
+        private Vector2 _position;
+        public Vector2 Position
+        {
+            get
+            {
+                return _position;
+            }
+            set
+            {
+                _position = value;
+                if(Collider != null)
+                {
+                    Collider.AlignHitbox();
+                }
+                
+            }
+        }
         public ISprite Sprite { get; set; }
         public bool Active { get; set; }
         public Vector2 Direction { get; set; }
         public float Speed { get; set; }
-        public Collider Collider { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-        private float maxSpeed = 1000f;
-        private float minSpeed = 500f;
-        private float distance = 500;
-        private Vector2 relPos = new Vector2(0, 0);
+        public Collider Collider { get; set; }
+        public float Damage { get; set; } = 1f;
+        private readonly float maxSpeed = 1000f;
+        private Vector2 startingPos;
         private bool turned = false;
 
         public Boomerang(Vector2 pos, float moveSpeed, Vector2 initDirection)
         {
             Position = pos;
+            startingPos = pos;
             Direction = initDirection;
             Speed = moveSpeed;
             Active = true;
@@ -37,30 +48,34 @@ namespace Project3902.GameObjects.EnemyProjectiles
             {
                 return;
             }
-
+            Collider.Draw(spriteBatch);
             Sprite.Draw(spriteBatch);
+            
         }
 
-        public void OnCollide()
-        {
-
-        }
 
         public void Update(GameTime gameTime)
         {
-            if (!Active)
-                return;
-
+            
             Sprite.Update(gameTime);
+            Collider.AlignHitbox();
 
-            float distTraveled = relPos.Length();
-
-            Speed = (distance - distTraveled) / distance * maxSpeed;
-            if (Speed < minSpeed)
-                Speed = minSpeed;
-
-            if (distTraveled > distance)
+            if (!Active)
             {
+                return;
+            }
+
+            float distTraveled = (Position - startingPos).Length();
+
+
+            Speed = (maxDistance - distTraveled) / maxDistance * maxSpeed;
+
+            if ((Speed < maxSpeed * .5f))
+                Speed = maxSpeed * .5f;
+
+            if ((distTraveled > maxDistance))
+            {
+                Position = startingPos + maxDistance * Direction;
                 Direction *= -1;
                 turned = true;
             }
@@ -68,8 +83,15 @@ namespace Project3902.GameObjects.EnemyProjectiles
             if (turned && distTraveled <= 20f)
                 Active = false;
 
+            if (Position == startingPos && (distTraveled > 0))
+            {
+                Active = false;
+            }
+            if (Active == false)
+            {
+                CollisionHandler.Instance.RemoveCollidable(this);
+            }
             Position += Direction * Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            relPos += Direction * Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
         }
 
         public void Launch(Vector2 position, Vector2 direction)
@@ -81,7 +103,15 @@ namespace Project3902.GameObjects.EnemyProjectiles
 
         public void OnCollide(Collider other)
         {
-            throw new NotImplementedException();
+            if (other.GameObject is Link || other.GameObject is IInteractiveEnvironmentObject || other.GameObject is IBackgroundEnvironmentObject)
+            {
+                if (!turned)
+                {
+                    Direction *= -1;
+                    turned = true;
+                    Position += (Direction * ((Speed / 30) + 3));
+                }
+            }
         }
     }
 }

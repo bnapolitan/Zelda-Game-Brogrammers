@@ -1,0 +1,27 @@
+Code Quality Review 
+
+ 
+
+Author of Code Review: Suraj Suresh 
+
+Date of Code Review: 03/02/19 
+
+Sprint Number: 3 
+
+File Being Reviewed: CollisionHandler.cs 
+
+Author of File: Austin Rogers 
+
+Code Quality Comments: 
+
+	- good separation of mask/layer enum and logic
+	
+	- clear way to add and remove items from appropriate lists and dictionaries
+
+	- clear defined way to track all items and check relevant collisions
+
+	- good use of making class static and making variables/contructor private, not allowing client to change it unnecessarily
+
+	- only slightly unclean part is checking types of collidable to determine which list to delete from in game
+		- game class could possibly have a single list with alll types of items
+		- could clean up code across multiple classes and have less calls to update/draw, less lists

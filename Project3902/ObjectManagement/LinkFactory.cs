@@ -9,7 +9,7 @@ namespace Project3902
     class LinkFactory : ISpriteFactory
     {
         private SpriteAtlas linkAtlas;
-        private Vector2 linkScale = new Vector2(4, 4);
+        private Vector2 linkScale = new Vector2(3.5f, 3.5f);
         private readonly float attackFrameTime = .15f;
         private LinkTakeDamageCommand takeDamageCommand;
 
@@ -30,32 +30,32 @@ namespace Project3902
             return new Link(position);
         }
 
-        public KeyboardController CreateLinkController(ILink link)
+        public KeyboardController CreateLinkController(FinalGame game)
         {
             var controller = new KeyboardController();
 
-            // Movement
-            controller.RegisterCommand(Keys.Up, new LinkMoveUpCommand(link));
-            controller.RegisterCommand(Keys.Down, new LinkMoveDownCommand(link));
-            controller.RegisterCommand(Keys.Left, new LinkMoveLeftCommand(link));
-            controller.RegisterCommand(Keys.Right, new LinkMoveRightCommand(link));
-            controller.RegisterCommand(Keys.W, new LinkMoveUpCommand(link));
-            controller.RegisterCommand(Keys.S, new LinkMoveDownCommand(link));
-            controller.RegisterCommand(Keys.A, new LinkMoveLeftCommand(link));
-            controller.RegisterCommand(Keys.D, new LinkMoveRightCommand(link));
+        
+            controller.RegisterCommand(Keys.Up, new LinkMoveUpCommand(game));
+            controller.RegisterCommand(Keys.Down, new LinkMoveDownCommand(game));
+            controller.RegisterCommand(Keys.Left, new LinkMoveLeftCommand(game));
+            controller.RegisterCommand(Keys.Right, new LinkMoveRightCommand(game));
+            controller.RegisterCommand(Keys.W, new LinkMoveUpCommand(game));
+            controller.RegisterCommand(Keys.S, new LinkMoveDownCommand(game));
+            controller.RegisterCommand(Keys.A, new LinkMoveLeftCommand(game));
+            controller.RegisterCommand(Keys.D, new LinkMoveRightCommand(game));
 
-            controller.RegisterCommand(Keys.Z, new LinkAttackCommand(link), InputState.Pressed);
-            controller.RegisterCommand(Keys.N, new LinkAttackCommand(link), InputState.Pressed);
+            controller.RegisterCommand(Keys.Z, new LinkAttackCommand(game), InputState.Pressed);
+            controller.RegisterCommand(Keys.N, new LinkAttackCommand(game), InputState.Pressed);
 
-            controller.RegisterCommand(Keys.D1, new LinkUseBoomerangCommand(link), InputState.Pressed);
-            controller.RegisterCommand(Keys.D2, new LinkUseBlueCandleCommand(link), InputState.Pressed);
+            controller.RegisterCommand(Keys.D1, new LinkUseBoomerangCommand(game), InputState.Pressed);
+            controller.RegisterCommand(Keys.D2, new LinkUseBlueCandleCommand(game), InputState.Pressed);
 
             controller.RegisterCommand(Keys.E, takeDamageCommand, InputState.Pressed);
 
             return controller;
         }
 
-        /* Walk sprites. */
+      
         public ISprite CreateRightWalkSprite(IGameObject link)
         {
             List<Rectangle> sourceRects = new List<Rectangle> { new Rectangle(35, 11, 16, 16), new Rectangle(52, 11, 16, 16) };
@@ -65,8 +65,10 @@ namespace Project3902
         public ISprite CreateLeftWalkSprite(IGameObject link)
         {
             List<Rectangle> sourceRects = new List<Rectangle> { new Rectangle(35, 11, 16, 16), new Rectangle(52, 11, 16, 16) };
-            var sprite = new AnimatedSprite(link, linkAtlas, sourceRects, .2f, linkScale);
-            sprite.Flip = SpriteEffects.FlipHorizontally;
+            var sprite = new AnimatedSprite(link, linkAtlas, sourceRects, .2f, linkScale)
+            {
+                Flip = SpriteEffects.FlipHorizontally
+            };
 
             return sprite;
         }
@@ -83,10 +85,10 @@ namespace Project3902
             return new AnimatedSprite(link, linkAtlas, sourceRects, .2f, linkScale);
         }
 
-        /* Attack sprites. */
+  
         public ISprite CreateRightAttackSprite(IGameObject link)
         {
-            // Just an animated sprite because each frame's origin is always 0,0
+           
 
             List<Rectangle> sourceRects = new List<Rectangle> { new Rectangle(1, 77, 16, 16), new Rectangle(18, 77, 27, 16),
                                                                 new Rectangle(46, 77, 23, 16), new Rectangle(70, 77, 19, 16)};
@@ -98,8 +100,10 @@ namespace Project3902
             List<Rectangle> sourceRects = new List<Rectangle> { new Rectangle(1, 77, 16, 16), new Rectangle(18, 77, 27, 16), 
                                                                 new Rectangle(46, 77, 23, 16), new Rectangle(70, 77, 19, 16)};
             List<Vector2> origins = new List<Vector2> { new Vector2(0, 0), new Vector2(11, 0), new Vector2(7, 0), new Vector2(3, 0)};
-            var sprite = new VariedOriginsSprite(link, linkAtlas, sourceRects, origins, attackFrameTime, linkScale);
-            sprite.Flip = SpriteEffects.FlipHorizontally;
+            var sprite = new VariedOriginsSprite(link, linkAtlas, sourceRects, origins, attackFrameTime, linkScale)
+            {
+                Flip = SpriteEffects.FlipHorizontally
+            };
 
             return sprite;
         }
@@ -114,14 +118,14 @@ namespace Project3902
 
         public ISprite CreateDownAttackSprite(IGameObject link)
         {
-            // Just an animated sprite because each frame's origin is always 0,0
+            
 
             List<Rectangle> sourceRects = new List<Rectangle> { new Rectangle(1, 47, 16, 16), new Rectangle(18, 47, 16, 27), 
                                                                 new Rectangle(35, 47, 16, 23), new Rectangle(52, 47, 16, 19) };
             return new AnimatedSprite(link, linkAtlas, sourceRects, attackFrameTime, linkScale);
         }
 
-        /* Item sprites */
+ 
         public ISprite CreateRightItemSprite(IGameObject link)
         {
             return new FixedSprite(link, linkAtlas, new Rectangle(124, 11, 16, 16), linkScale);
@@ -129,8 +133,10 @@ namespace Project3902
 
         public ISprite CreateLeftItemSprite(IGameObject link)
         {
-            var sprite = new FixedSprite(link, linkAtlas, new Rectangle(124, 11, 16, 16), linkScale);
-            sprite.Flip = SpriteEffects.FlipHorizontally;
+            var sprite = new FixedSprite(link, linkAtlas, new Rectangle(124, 11, 16, 16), linkScale)
+            {
+                Flip = SpriteEffects.FlipHorizontally
+            };
 
             return sprite;
         }

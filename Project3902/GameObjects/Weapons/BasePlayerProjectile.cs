@@ -6,6 +6,7 @@ namespace Project3902
 {
     abstract class BasePlayerProjectile : IProjectile
     {
+
         public Vector2 Direction { get; set; }
         public float Speed { get; set; }
         public Vector2 Position { get; set; }
@@ -13,12 +14,13 @@ namespace Project3902
         public bool Active { get; set; }
         public Collider Collider { get; set; }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             if (!Active)
                 return;
-
-            Sprite.Draw(spriteBatch);
+            Collider.Draw(spriteBatch);
+            if (Sprite != null)
+                Sprite.Draw(spriteBatch);
         }
 
         public virtual void Launch(Vector2 position, Vector2 direction)
@@ -31,7 +33,6 @@ namespace Project3902
 
         public virtual void OnCollide(Collider other)
         {
-            throw new NotImplementedException();
         }
 
         public virtual void Update(GameTime gameTime)
@@ -39,7 +40,8 @@ namespace Project3902
             if (!Active)
                 return;
 
-            Sprite.Update(gameTime);
+            if (Sprite != null)
+                Sprite.Update(gameTime);
         }
     }
 }

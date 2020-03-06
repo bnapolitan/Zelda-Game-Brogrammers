@@ -15,18 +15,39 @@ namespace Project3902
             Sprite = WeaponFactory.Instance.CreateBoomerangSprite(this);
         }
 
+        public override void OnCollide(Collider other) {
+            if(other.GameObject is IEnemy )
+            {
+                if (!turned)
+                {
+                    Direction *= -1;
+                    turned = true;
+                    Position += (Direction * ((Speed / 30) + 3));
+                }
+                CollisionHandler.Instance.RemoveCollidable(this);
+            }
+
+        }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            Collider.AlignHitbox();
+           
+            if (!Active)
+            {
+                return;
+            }
 
             float distTraveled = (Position - startingPos).Length();
 
+
             Speed = (maxDistance - distTraveled) / maxDistance * maxSpeed;
-            if (Speed < maxSpeed * .5f)
+
+            if ((Speed < maxSpeed * .5f))
                 Speed = maxSpeed * .5f;
 
-            if (distTraveled > maxDistance)
+            if ((distTraveled > maxDistance))
             {
                 Position = startingPos + maxDistance * Direction;
                 Direction *= -1;
@@ -36,6 +57,10 @@ namespace Project3902
             if (turned && distTraveled <= 20f)
                 Active = false;
 
+            if (Position == startingPos && (distTraveled > 0))
+            {
+                Active = false;
+            }
             Position += Direction * Speed * (float) gameTime.ElapsedGameTime.TotalSeconds;
             
         }

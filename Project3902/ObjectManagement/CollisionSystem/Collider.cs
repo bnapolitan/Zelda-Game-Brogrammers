@@ -5,12 +5,14 @@ namespace Project3902
 {
     class Collider : IDrawable
     {
-        private readonly bool debug = true;
+        private readonly bool debug = false;
         private readonly Color tint = new Color(255, 0, 0, 100);
 
         private Rectangle localRect;
 
         public Rectangle Hitbox { get; set; }
+
+        public Vector2 Offset { get; set; }
 
         public IGameObject GameObject { get; set; }
 
@@ -18,6 +20,8 @@ namespace Project3902
         {
             GameObject = gameObject;
             localRect = localHitbox;
+            Offset = localRect.Location.ToVector2();
+
             AlignHitbox();
         }
 
@@ -34,13 +38,12 @@ namespace Project3902
         public void AlignHitbox()
         {
             var gameObjectPosition = GameObject.Position.ToPoint();
-
             Hitbox = new Rectangle(localRect.X + gameObjectPosition.X, localRect.Y + gameObjectPosition.Y, localRect.Width, localRect.Height);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (debug)
+            if (debug && GameObject.Active)
                 spriteBatch.Draw(ShapeSpriteFactory.Instance.WhiteRect, Hitbox, new Rectangle(0, 0, 1, 1), tint);
         }
     }

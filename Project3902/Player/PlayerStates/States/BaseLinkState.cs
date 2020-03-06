@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Project3902.GameObjects;
+using Project3902.GameObjects.EnemyProjectiles;
 
 namespace Project3902
 {
@@ -63,6 +64,14 @@ namespace Project3902
             {
                 TakeDamage((other.GameObject as IEnemy).Damage);
             }
+            else if(other.GameObject is Boomerang)
+            {
+                TakeDamage((other.GameObject as Boomerang).Damage);
+            }
+            else if(other.GameObject is IItem)
+            {
+                CollisionHandler.Instance.RemoveCollidable(other.GameObject as ICollidable);
+            }
         }
 
         private void MoveOutOfWall(Collider other)
@@ -71,8 +80,9 @@ namespace Project3902
             unitDirection.Normalize();
 
             var hitboxSize = link.Collider.Hitbox.Size;
+            var offset = link.Collider.Offset;
 
-            var testRect = new Rectangle(link.PreviousPosition.ToPoint(), hitboxSize);
+            var testRect = new Rectangle((link.PreviousPosition + offset).ToPoint(), hitboxSize);
 
             while (!other.Intersects(testRect))
             {
@@ -81,7 +91,7 @@ namespace Project3902
 
             testRect.Location -= unitDirection.ToPoint();
 
-            link.Position = testRect.Location.ToVector2();
+            link.Position = testRect.Location.ToVector2() - offset;
         }
     }
 }

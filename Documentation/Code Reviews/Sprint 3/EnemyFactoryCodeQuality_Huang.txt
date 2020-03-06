@@ -1,0 +1,14 @@
+Author of the code review: Huang Huang
+Date of the code review: 2020/3/5
+Sprint number: Sprint 3
+Name of the .cs file being reviewed: EnemyFactory.cs
+Author of the .cs file being reviewed: Suraj Suresh
+Specific comments on code quality:
+The functions in this file are very basic in the whole project. 
+In the levelbuilder, project need function in the EnemyFactory to build visualization and collision of enemy item. 
+Therefore, Changes in this file will affect the construction of the aspect of level in the entire project. 
+Because functions are separate, the addition and reduction of functions have no effect on the whole function. 
+As for the Collison function in this file, it is easy to change. 
+To sum up, these code functions are highly targeted. 
+They are mainly building enemies from sprit picture and build relationship of collision among enemies.  
+

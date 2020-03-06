@@ -29,9 +29,17 @@ namespace Project3902
             {
                 link.SwordProjectile.Launch(link.Position + link.Sprite.Scale * new Vector2(4, 4), direction);
             }
+
+            var swordOffset = direction * 48;
+            link.Sword.Launch(link.Position + swordOffset, direction);
+            CollisionHandler.Instance.RegisterCollidable(link.Sword, Layer.Projectile);
         }
 
-        protected abstract void EndAttack();
+        protected virtual void EndAttack()
+        {
+            link.Sword.Active = false;
+            CollisionHandler.Instance.RemoveCollidable(link.Sword);
+        }
 
         public override void MoveDown() { }
         public override void MoveLeft() { }

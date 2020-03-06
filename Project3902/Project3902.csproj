@@ -50,12 +50,26 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="GameObjects\Environment\BlankWallObject.cs" />
     <Compile Include="GameObjects\EnemiesAndNPCs\BaseEnemy.cs" />
     <Compile Include="GameObjects\Environment\BaseEnvironment.cs" />
-    <Compile Include="GameObjects\Weapons\BaseProjectile.cs" />
+    <Compile Include="GameObjects\Item\Sword.cs" />
+    <Compile Include="GameObjects\Item\Rupee.cs" />
+    <Compile Include="GameObjects\Item\Watch.cs" />
+    <Compile Include="GameObjects\Item\Ring.cs" />
+    <Compile Include="GameObjects\Item\Potion.cs" />
+    <Compile Include="GameObjects\Item\Key.cs" />
+    <Compile Include="GameObjects\Item\Fairy.cs" />
+    <Compile Include="GameObjects\Item\Heart.cs" />
+    <Compile Include="GameObjects\Item\Bow.cs" />
+    <Compile Include="GameObjects\Item\Arrow.cs" />
+    <Compile Include="GameObjects\Item\Interface\IItem.cs" />
+    <Compile Include="GameObjects\Weapons\BasePlayerProjectile.cs" />
+    <Compile Include="GameObjects\Weapons\SwordAttack.cs" />
     <Compile Include="GlobalSuppressions2.cs" />
     <Compile Include="LevelBuilding\LevelBuilder.cs" />
     <Compile Include="LevelBuilding\ObjectLookup.cs" />
+    <Compile Include="ObjectManagement\ItemFactory.cs" />
     <Compile Include="ObjectManagement\CollisionSystem\Collider.cs" />
     <Compile Include="ObjectManagement\CollisionSystem\CollisionHandler.cs" />
     <Compile Include="ObjectManagement\CollisionSystem\Layer.cs" />
@@ -76,7 +90,6 @@
     <Compile Include="GameObjects\EnemiesAndNPCs\Gel.cs" />
     <Compile Include="GameObjects\EnemiesAndNPCs\Goriya.cs" />
     <Compile Include="GameObjects\EnemiesAndNPCs\Interfaces\IEnemy.cs" />
-    <Compile Include="GameObjects\EnemiesAndNPCs\Interfaces\INPC.cs" />
     <Compile Include="GameObjects\EnemiesAndNPCs\Keese.cs" />
     <Compile Include="GameObjects\EnemiesAndNPCs\Merchant.cs" />
     <Compile Include="GameObjects\EnemiesAndNPCs\OldMan.cs" />
@@ -112,12 +125,9 @@
     <Compile Include="GameObjects\Weapons\BoomerangWeapon.cs" />
     <Compile Include="GameObjects\Extendables\IProjectile.cs" />
     <Compile Include="GameObjects\Weapons\SwordProjectile.cs" />
-    <Compile Include="LevelBuilding\DungeonRoom2.cs" />
-    <Compile Include="LevelBuilding\DungeonRoom1.cs" />
     <Compile Include="LevelBuilding\Interface\ILevel.cs" />
     <Compile Include="ObjectManagement\EnemyFactory.cs" />
     <Compile Include="ObjectManagement\WeaponFactory.cs" />
-    <Compile Include="LevelBuilding\Sprint2Level.cs" />
     <Compile Include="ObjectManagement\EnvironmentFactory.cs" />
     <Compile Include="ObjectManagement\ISpriteFactory.cs" />
     <Compile Include="ObjectManagement\LinkFactory.cs" />
@@ -155,10 +165,6 @@
     <Compile Include="Player\PlayerStates\States\WalkStates\LinkRightWalkState.cs" />
     <Compile Include="Player\PlayerStates\States\WalkStates\LinkUpWalkState.cs" />
     <Compile Include="FinalGame.cs" />
-    <Compile Include="Sprites\Item\ItemReg.cs" />
-    <Compile Include="Sprites\Item\FixedItem.cs" />
-    <Compile Include="Sprites\Item\IItemCtl.cs" />
-    <Compile Include="Sprites\Item\ItemSprite.cs" />
     <Compile Include="Sprites\FlippingSprite.cs" />
     <Compile Include="Sprites\VariedOriginsSprite.cs" />
     <Compile Include="StateMachine\IState.cs" />
@@ -191,6 +197,8 @@
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.manifest" />
+    <None Include="LevelBuilding\Levels\DungeonRoom1.csv" />
+    <None Include="LevelBuilding\Levels\DungeonRoom2.csv" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -204,9 +212,7 @@
     <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.2.9.8\analyzers\dotnet\cs\Microsoft.NetFramework.Analyzers.dll" />
     <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.2.9.8\analyzers\dotnet\cs\Microsoft.NetFramework.CSharp.Analyzers.dll" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="LevelBuilding\Levels\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

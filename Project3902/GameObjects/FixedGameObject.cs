@@ -16,7 +16,6 @@ namespace Project3902
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            // Look for a better solution than having the game object call sprite's draw method...
             Sprite.Draw(spriteBatch);
         }
 

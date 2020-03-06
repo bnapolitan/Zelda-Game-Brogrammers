@@ -30,6 +30,7 @@ namespace Project3902
         public Collider Collider { get => decoratedLink.Collider; set => decoratedLink.Collider = value; }
         public bool Damaged { get => decoratedLink.Damaged; set => decoratedLink.Damaged = value; }
         public Vector2 FacingDirection { get => decoratedLink.FacingDirection; set => decoratedLink.FacingDirection = value; }
+        public IProjectile Sword { get => decoratedLink.Sword; set => decoratedLink.Sword = value; }
 
         private readonly Vector2 knockbackDirection;
         private readonly float knockbackSpeed = 700;
@@ -60,6 +61,7 @@ namespace Project3902
             (Sprite as BaseSprite).DrawTinted(spriteBatch, tint);
             CurrentWeapon.Draw(spriteBatch);
             SwordProjectile.Draw(spriteBatch);
+            Sword.Draw(spriteBatch);
         }
 
         public void Update(GameTime gameTime)
@@ -92,22 +94,26 @@ namespace Project3902
 
         public void MoveDown()
         {
-            decoratedLink.MoveDown();
+            if (timeSinceKnockback >= knockbackTime)
+                decoratedLink.MoveDown();
         }
 
         public void MoveLeft()
         {
-            decoratedLink.MoveLeft();
+            if (timeSinceKnockback >= knockbackTime)
+                decoratedLink.MoveLeft();
         }
 
         public void MoveRight()
         {
-            decoratedLink.MoveRight();
+            if (timeSinceKnockback >= knockbackTime)
+                decoratedLink.MoveRight();
         }
 
         public void MoveUp()
         {
-            decoratedLink.MoveUp();
+            if (timeSinceKnockback >= knockbackTime)
+                decoratedLink.MoveUp();
         }
 
         public void TakeDamage(float damage)

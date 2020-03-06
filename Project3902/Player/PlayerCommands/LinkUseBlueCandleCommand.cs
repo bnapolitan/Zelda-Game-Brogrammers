@@ -2,14 +2,14 @@
 {
     class LinkUseBlueCandleCommand : BaseLinkCommand
     {
-        public LinkUseBlueCandleCommand(ILink link)
-            : base(link) { }
+        public LinkUseBlueCandleCommand(FinalGame game)
+            : base(game) { }
 
         public override void Execute()
         {
-            if (!link.CurrentWeapon.Active)
-                link.CurrentWeapon = WeaponFactory.Instance.CreateBlueCandleProjectile();
-            link.UseItem();
+            if (!game.Link.CurrentWeapon.Active)
+                game.Link.CurrentWeapon = WeaponFactory.Instance.CreateBlueCandleProjectile();
+            game.Link.UseItem();
         }
     }
 }

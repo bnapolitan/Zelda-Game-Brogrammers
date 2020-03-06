@@ -17,14 +17,15 @@ namespace Project3902
 {
     class FinalGame : Game
     {
-        GraphicsDeviceManager graphics;
+        readonly GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
         public ILink Link { get; set; }
 
         public List<IGameObject> interactiveEnvironmentObjects;
 
-        List<IGameObject> enemyObjects;
+        public List<IGameObject> enemyObjects;
+        public List<IGameObject> itemObjects;
 
         IController<MouseActions> mouseController;
         KeyboardController keyboardController;
@@ -34,18 +35,6 @@ namespace Project3902
             graphics = new GraphicsDeviceManager(this);
 
             Content.RootDirectory = "Content";
-        }
-
-        public static class currentFram
-        {
-            private static int cur = 0;
-
-            public static int Current
-            {
-                get { return cur; }
-                set { cur = value; }
-
-            }
         }
 
         protected override void Initialize()
@@ -65,13 +54,13 @@ namespace Project3902
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            var level = new LevelBuilder(this, "DungeonRoom2");
+            var level = new LevelBuilder(this, "DungeonRoom1");
 
             LinkFactory.Instance.LoadAllTextures(Content);
-            Link = LinkFactory.Instance.CreateLink(new Vector2(100, 100), this);
-            CollisionHandler.Instance.RegisterCollidable(Link, Layer.Player, Layer.Enemy, Layer.Wall, Layer.Pickup);
+            Link = LinkFactory.Instance.CreateLink(new Vector2(256, 256), this);
+            CollisionHandler.Instance.RegisterCollidable(Link, Layer.Player, Layer.Enemy, Layer.Wall, Layer.Pickup, Layer.Projectile);
 
-            keyboardController = LinkFactory.Instance.CreateLinkController(Link);
+            keyboardController = LinkFactory.Instance.CreateLinkController(this);
 
             ShapeSpriteFactory.Instance.CreateShapeTextures(GraphicsDevice);
 
@@ -80,8 +69,14 @@ namespace Project3902
             EnvironmentFactory.Instance.LoadAllTextures(Content);
             interactiveEnvironmentObjects = level.CreateInteractiveEnvironmentObjects();
 
+            ItemFactory.Instance.LoadAllTextures(Content);
+            itemObjects = level.CreateItemObjects();
+
+            EnemyFactory.Instance.RegisterGame(this);
             EnemyFactory.Instance.LoadAllTextures(Content);
             enemyObjects = level.CreateEnemyObjects();
+
+            CollisionHandler.Instance.RegisterGame(this);
         }
 
 
@@ -105,6 +100,11 @@ namespace Project3902
                 gameObject.Update(gameTime);
             }
 
+            foreach (IGameObject gameObject in itemObjects)
+            {
+                gameObject.Update(gameTime);
+            }
+
             base.Update(gameTime);
 
             Link.Update(gameTime);
@@ -124,10 +124,17 @@ namespace Project3902
                 gameObject.Draw(spriteBatch);
             }
 
+            foreach (IGameObject gameObject in itemObjects)
+            {
+                gameObject.Draw(spriteBatch);
+            }
+
             foreach (IGameObject gameObject in enemyObjects)
             {
                 gameObject.Draw(spriteBatch);
             }
+
+
 
             Link.Draw(spriteBatch);
 
@@ -140,7 +147,7 @@ namespace Project3902
         {
             mouseController = new MouseController();
 
-            //Fill with functionality later
+     
         }
 
     }

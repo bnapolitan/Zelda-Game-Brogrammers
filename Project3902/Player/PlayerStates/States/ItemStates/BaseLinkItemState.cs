@@ -4,7 +4,7 @@ namespace Project3902
 {
     abstract class BaseLinkItemState : BaseLinkState
     {
-        private readonly float itemUseTime = 1.0f;
+        private readonly float itemUseTime = .4f;
         private float timeSinceUse = 0;
 
         public BaseLinkItemState(Link link, LinkStateMachine machine)
