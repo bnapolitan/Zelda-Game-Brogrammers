@@ -40,7 +40,10 @@ namespace Project3902
 
             activeTime += elapsed;
             if (activeTime >= maxActiveTime)
+            {
                 Active = false;
+                CollisionHandler.Instance.RemoveCollidable(this);
+            }
 
             Position += Speed * Direction * elapsed;
         }
