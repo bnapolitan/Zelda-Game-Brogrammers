@@ -25,8 +25,6 @@ namespace Project3902
         public List<IGameObject> interactiveEnvironmentObjects;
         public List<IGameObject> enemyObjects;
         public List<IGameObject> itemObjects;
-        //public LevelFactory levelFactory = LevelFactory.Instance;
-        //public List<string> RoomList = levelFactory.CreateRooms();
         public int CurrentRoomNum = 0, TotalRoomNum=5;
         MouseController mouseController;
         KeyboardController keyboardController;
@@ -98,30 +96,35 @@ namespace Project3902
 
             if (NextR)
             {
+                CollisionHandler.Instance.Flush();
                 CurrentRoom = CurrentRoom.Substring(0, 11) + CurrentRoomNum;
                 var level = new LevelBuilder(this, CurrentRoom);
+                Link = LinkFactory.Instance.CreateLink(new Vector2(256, 256), this);
+                CollisionHandler.Instance.RegisterCollidable(Link, Layer.Player, Layer.Enemy, Layer.Wall, Layer.Pickup, Layer.Projectile);
+                
                 NextR = false;
                 interactiveEnvironmentObjects = level.CreateInteractiveEnvironmentObjects();
 
-                ItemFactory.Instance.LoadAllTextures(Content);
+                
                 itemObjects = level.CreateItemObjects();
 
                 EnemyFactory.Instance.RegisterGame(this);
-                EnemyFactory.Instance.LoadAllTextures(Content);
                 enemyObjects = level.CreateEnemyObjects();
             }
             else if (PreR)
             {
+                CollisionHandler.Instance.Flush();
                 CurrentRoom = CurrentRoom.Substring(0, 11) + CurrentRoomNum;
                 var level = new LevelBuilder(this, CurrentRoom);
+                Link = LinkFactory.Instance.CreateLink(new Vector2(256, 256), this);
+                CollisionHandler.Instance.RegisterCollidable(Link, Layer.Player, Layer.Enemy, Layer.Wall, Layer.Pickup, Layer.Projectile);
+                
                 PreR = false;
                 interactiveEnvironmentObjects = level.CreateInteractiveEnvironmentObjects();
 
-                ItemFactory.Instance.LoadAllTextures(Content);
                 itemObjects = level.CreateItemObjects();
 
                 EnemyFactory.Instance.RegisterGame(this);
-                EnemyFactory.Instance.LoadAllTextures(Content);
                 enemyObjects = level.CreateEnemyObjects();
             }
 
