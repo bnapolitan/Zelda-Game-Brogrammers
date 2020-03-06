@@ -23,12 +23,16 @@ namespace Project3902
         public ILink Link { get; set; }
 
         public List<IGameObject> interactiveEnvironmentObjects;
-
         public List<IGameObject> enemyObjects;
         public List<IGameObject> itemObjects;
-
-        IController<MouseActions> mouseController;
+        //public LevelFactory levelFactory = LevelFactory.Instance;
+        //public List<string> RoomList = levelFactory.CreateRooms();
+        public int CurrentRoomNum = 0, TotalRoomNum=5;
+        MouseController mouseController;
         KeyboardController keyboardController;
+        public string CurrentRoom = "DungeonRoom0";
+
+        bool NextR,PreR = false;
 
         public FinalGame()
         {
@@ -54,13 +58,15 @@ namespace Project3902
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            var level = new LevelBuilder(this, "DungeonRoom1");
+            CurrentRoom = CurrentRoom.Substring(0, 11) + CurrentRoomNum;
+            var level = new LevelBuilder(this,CurrentRoom );
 
             LinkFactory.Instance.LoadAllTextures(Content);
             Link = LinkFactory.Instance.CreateLink(new Vector2(256, 256), this);
             CollisionHandler.Instance.RegisterCollidable(Link, Layer.Player, Layer.Enemy, Layer.Wall, Layer.Pickup, Layer.Projectile);
 
             keyboardController = LinkFactory.Instance.CreateLinkController(this);
+            mouseController = LevelFactory.Instance.CreateLevelController(this);
 
             ShapeSpriteFactory.Instance.CreateShapeTextures(GraphicsDevice);
 
@@ -90,6 +96,35 @@ namespace Project3902
             mouseController.Update();
             keyboardController.Update();
 
+            if (NextR)
+            {
+                CurrentRoom = CurrentRoom.Substring(0, 11) + CurrentRoomNum;
+                var level = new LevelBuilder(this, CurrentRoom);
+                NextR = false;
+                interactiveEnvironmentObjects = level.CreateInteractiveEnvironmentObjects();
+
+                ItemFactory.Instance.LoadAllTextures(Content);
+                itemObjects = level.CreateItemObjects();
+
+                EnemyFactory.Instance.RegisterGame(this);
+                EnemyFactory.Instance.LoadAllTextures(Content);
+                enemyObjects = level.CreateEnemyObjects();
+            }
+            else if (PreR)
+            {
+                CurrentRoom = CurrentRoom.Substring(0, 11) + CurrentRoomNum;
+                var level = new LevelBuilder(this, CurrentRoom);
+                PreR = false;
+                interactiveEnvironmentObjects = level.CreateInteractiveEnvironmentObjects();
+
+                ItemFactory.Instance.LoadAllTextures(Content);
+                itemObjects = level.CreateItemObjects();
+
+                EnemyFactory.Instance.RegisterGame(this);
+                EnemyFactory.Instance.LoadAllTextures(Content);
+                enemyObjects = level.CreateEnemyObjects();
+            }
+
             foreach (IGameObject gameObject in interactiveEnvironmentObjects)
             {
                 gameObject.Update(gameTime);
@@ -105,6 +140,7 @@ namespace Project3902
                 gameObject.Update(gameTime);
             }
 
+
             base.Update(gameTime);
 
             Link.Update(gameTime);
@@ -119,7 +155,7 @@ namespace Project3902
 
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
-            foreach(IGameObject gameObject in interactiveEnvironmentObjects)
+            foreach (IGameObject gameObject in interactiveEnvironmentObjects)
             {
                 gameObject.Draw(spriteBatch);
             }
@@ -146,9 +182,28 @@ namespace Project3902
         private void SetUpMouseController()
         {
             mouseController = new MouseController();
-
-     
+            mouseController.RegisterCommand(MouseActions.Right, new CycleNextRoom(this), InputState.Pressed);
+            mouseController.RegisterCommand(MouseActions.Left, new CyclePrvRoom(this), InputState.Pressed);
+        }
+        public void CycleRoomNext()
+        {
+            CurrentRoomNum = (CurrentRoomNum + 1) % TotalRoomNum;
+            NextR = true;
         }
 
+
+        public void CycleRoomLast()
+        {
+            PreR = true;
+            if (CurrentRoomNum == 0)
+            {
+                CurrentRoomNum = TotalRoomNum - 1;
+            }
+            else
+            {
+                CurrentRoomNum--;
+                
+            }
+        }
     }
 }

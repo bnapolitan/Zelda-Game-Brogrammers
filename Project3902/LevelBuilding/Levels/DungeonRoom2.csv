@@ -1,9 +1,15 @@
 Environment
 WallTop, 448, 0
 WallLeft, 0, 288
-OpenDoorRight, 896, 288
 WallBottom, 448, 576
+OpenDoorTop, 448, 0
+OpenDoorLeft, 0, 288
+OpenDoorRight, 896, 288
+LockDoorBottom, 448, 576
+Items
+Fairy, 760, 300
+Sword, 500, 300
 Enemies
-BlueKeese, 192, 192
+BlueKeese, 192, 130
 BlueKeese, 320, 256
-BlueKeese, 192, 448
+BlueKeese, 192, 390

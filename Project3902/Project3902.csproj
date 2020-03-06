@@ -67,6 +67,9 @@
     <Compile Include="GameObjects\Weapons\BasePlayerProjectile.cs" />
     <Compile Include="GameObjects\Weapons\SwordAttack.cs" />
     <Compile Include="GlobalSuppressions2.cs" />
+    <Compile Include="LevelBuilding\CyclePrvRoom.cs" />
+    <Compile Include="LevelBuilding\LevelFactory.cs" />
+    <Compile Include="LevelBuilding\CycleNextRoom.cs" />
     <Compile Include="LevelBuilding\LevelBuilder.cs" />
     <Compile Include="LevelBuilding\ObjectLookup.cs" />
     <Compile Include="ObjectManagement\ItemFactory.cs" />
@@ -197,6 +200,9 @@
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.manifest" />
+    <None Include="LevelBuilding\Levels\DungeonRoom0.csv" />
+    <None Include="LevelBuilding\Levels\DungeonRoom4.csv" />
+    <None Include="LevelBuilding\Levels\DungeonRoom3.csv" />
     <None Include="LevelBuilding\Levels\DungeonRoom1.csv" />
     <None Include="LevelBuilding\Levels\DungeonRoom2.csv" />
     <None Include="packages.config" />

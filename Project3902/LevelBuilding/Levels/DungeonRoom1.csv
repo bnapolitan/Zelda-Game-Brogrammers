@@ -30,8 +30,12 @@ OpenDoorLeft, 0, 288
 OpenDoorRight, 896, 288
 OpenDoorBottom, 448, 576
 Items
-Rupee, 660, 130
+Fairy, 660, 130
+5Rupee, 200, 120
+Rupee, 200, 390
 Heart, 840, 530
+Bow, 400, 260
+Watch, 200, 260
 Enemies
 Stalfos, 500, 200
 BlueKeese, 135, 135

@@ -84,13 +84,46 @@ namespace Project3902.LevelBuilding
 
         public IGameObject CreateItemObject(string name, Vector2 position)
         {
-            if (name == "Rupee")
+            if (name == "5Rupee")
             {
                 return itemFactory.CreateRupee(position);
+            }
+            if (name == "Rupee")
+            {
+                return itemFactory.Create1Rupee(position);
             }
             if (name == "Heart")
             {
                 return itemFactory.CreateHeart(position);
+            }
+            if (name == "Fairy")
+            {
+                return itemFactory.CreateFairy(position);
+            }
+            if (name == "Watch")
+            {
+                return itemFactory.CreateWatch(position);
+            }
+            if (name == "Bow")
+            {
+                return itemFactory.CreateBow(position);
+            }
+            if (name == "Arrow")
+            {
+                return itemFactory.CreateArrow(position);
+            }
+            if (name == "Key")
+            {
+                return itemFactory.CreateKey(position);
+            }
+            if (name == "Sword")
+            {
+                return itemFactory.CreateSword(position);
+            }
+
+            if (name == "Ring")
+            {
+                return itemFactory.CreateRing(position);
             }
             throw new Exception($"The object {name} has not been mapped in ObjectLookup yet!");
         }

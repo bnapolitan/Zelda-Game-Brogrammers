@@ -33,6 +33,7 @@ namespace Project3902
 
         public void Update(GameTime gameTime)
         {
+            Sprite.Update(gameTime);
         }
 
         public void OnCollide(Collider other)
