@@ -28,11 +28,8 @@ namespace Project3902.GameObjects.EnemyProjectiles
         public Vector2 Direction { get; set; }
         public float Speed { get; set; }
         public Collider Collider { get; set; }
-
+        public float Damage { get; set; } = 1f;
         private readonly float maxSpeed = 1000f;
-        private readonly float minSpeed = 500f;
-        private readonly float distance = 500;
-        private Vector2 relPos = new Vector2(0, 0);
         private Vector2 startingPos;
         private bool turned = false;
 
@@ -59,7 +56,7 @@ namespace Project3902.GameObjects.EnemyProjectiles
 
         public void Update(GameTime gameTime)
         {
-            //base.Update(gameTime);
+            
             Sprite.Update(gameTime);
             Collider.AlignHitbox();
 
@@ -89,6 +86,10 @@ namespace Project3902.GameObjects.EnemyProjectiles
             if (Position == startingPos && (distTraveled > 0))
             {
                 Active = false;
+            }
+            if (Active == false)
+            {
+                CollisionHandler.Instance.RemoveCollidable(this);
             }
             Position += Direction * Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
         }

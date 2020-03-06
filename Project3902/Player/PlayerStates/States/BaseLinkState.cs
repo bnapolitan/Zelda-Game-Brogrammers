@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Project3902.GameObjects;
+using Project3902.GameObjects.EnemyProjectiles;
 
 namespace Project3902
 {
@@ -62,6 +63,10 @@ namespace Project3902
             else if (other.GameObject is IEnemy)
             {
                 TakeDamage((other.GameObject as IEnemy).Damage);
+            }
+            else if(other.GameObject is Boomerang)
+            {
+                TakeDamage((other.GameObject as Boomerang).Damage);
             }
             else if(other.GameObject is IItem)
             {

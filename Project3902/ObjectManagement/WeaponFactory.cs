@@ -104,12 +104,13 @@ namespace Project3902
         
         public IProjectile CreateFireballProjectile(Vector2 pos, Vector2 direction)
         {
-            var createdObject = new Fireball();
-            createdObject.Position = pos;
-            createdObject.Direction = direction;
+            var createdObject = new Fireball
+            {
+                Position = pos,
+                Direction = direction
+            };
             var collider = new Collider(createdObject, new Rectangle(0, 0, 8 * (int)createdObject.Sprite.Scale.X, 9 * (int)createdObject.Sprite.Scale.Y));
             createdObject.Collider = collider;
-            //CollisionHandler.Instance.RegisterCollidable(createdObject,Layer.Projectile, Layer.Player, Layer.Wall);
             return createdObject;
         }
 
