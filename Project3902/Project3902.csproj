@@ -125,12 +125,9 @@
     <Compile Include="GameObjects\Weapons\BoomerangWeapon.cs" />
     <Compile Include="GameObjects\Extendables\IProjectile.cs" />
     <Compile Include="GameObjects\Weapons\SwordProjectile.cs" />
-    <Compile Include="LevelBuilding\DungeonRoom2.cs" />
-    <Compile Include="LevelBuilding\DungeonRoom1.cs" />
     <Compile Include="LevelBuilding\Interface\ILevel.cs" />
     <Compile Include="ObjectManagement\EnemyFactory.cs" />
     <Compile Include="ObjectManagement\WeaponFactory.cs" />
-    <Compile Include="LevelBuilding\Sprint2Level.cs" />
     <Compile Include="ObjectManagement\EnvironmentFactory.cs" />
     <Compile Include="ObjectManagement\ISpriteFactory.cs" />
     <Compile Include="ObjectManagement\LinkFactory.cs" />
