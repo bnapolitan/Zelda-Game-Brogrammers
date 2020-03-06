@@ -1,0 +1,27 @@
+Author of the code review: Xueyang Li
+
+Date of the code review: 2020/3/6
+
+Sprint Number: 3
+
+Name of the .cs file being reviewed: EnvironmentFactory.cs
+
+Author of the .cs file being reviewed: Huang Huang
+
+Number of minutes taken to complete the review: 10min
+
+Specific comments on what is readable and what is not: 
+
+	The names of variables and methods are straightforward, which makes them easy to understand to others.
+	
+	All methods are very short so that easy to read and debug.
+
+	Many methods are similar, so it we can understand the whole file by simply reading some of them.
+
+	Variable initializations are clear and easy to follow.
+
+	Whitespace makes codes easy to read.
+
+	Structures of methods are clear and easy to follow.
+	
+	In general, there is no confusing part in this file, and the readability of this file is very good.
