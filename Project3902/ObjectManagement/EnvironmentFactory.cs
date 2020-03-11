@@ -11,6 +11,7 @@ namespace Project3902.ObjectManagement
         private SpriteAtlas dungeonSpriteAtlas;
         private SpriteAtlas linkSpriteAtlas;
         private Vector2 environmentScale = new Vector2(4, 4);
+        private FinalGame game;
         
         public static EnvironmentFactory Instance { get; } = new EnvironmentFactory();
 
@@ -18,6 +19,10 @@ namespace Project3902.ObjectManagement
         {
         }
 
+        public void RegisterGame(FinalGame game)
+        {
+            this.game = game;
+        }
 
         public void LoadAllTextures(ContentManager content)
         {
@@ -74,7 +79,7 @@ namespace Project3902.ObjectManagement
             return createdObject;
         }
 
-        public IGameObject CreateBrickTile(Vector2 position)
+        public IGameObject CreateBrickWallTile(Vector2 position)
         {
             var createdObject = new BrickTile(position);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(984, 45, 16, 16));
@@ -149,6 +154,15 @@ namespace Project3902.ObjectManagement
             return createdObject;
         }
 
+        public IGameObject CreateBlockingBrick(Vector2 position)
+        {
+            var createdObject = new BlockingBrick(position);
+            var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(1001, 11, 16, 16), environmentScale);
+            createdObject.Sprite = sprite;
+            RegisterEnvironmentForCollision(createdObject);
+            return createdObject;
+        }
+
         public IGameObject CreateLeftStatue(Vector2 position)
         {
             var createdObject = new Statues(position);
@@ -158,8 +172,6 @@ namespace Project3902.ObjectManagement
             return createdObject;
         }
 
-
-
         public IGameObject CreateRightStatue(Vector2 position)
         {
             var createdObject = new Statues(position);
@@ -168,8 +180,6 @@ namespace Project3902.ObjectManagement
             RegisterEnvironmentForCollision(createdObject);
             return createdObject;
         }
-
-
 
         public IGameObject CreateEnemyCloudAppearance(Vector2 position)
         {
@@ -197,8 +207,6 @@ namespace Project3902.ObjectManagement
             return createdObject;
         }
 
-
-
         public IGameObject CreateLockDoorLeft(Vector2 position)
         {
             var createdObject = new LockDoor(position);
@@ -219,7 +227,7 @@ namespace Project3902.ObjectManagement
 
         public IGameObject CreateOpenDoorTop(Vector2 position)
         {
-            var createdObject = new OpenDoor(position);
+            var createdObject = new OpenDoor(position, game);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(848, 11, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
             RegisterDoorForCollision(createdObject);
@@ -228,7 +236,7 @@ namespace Project3902.ObjectManagement
 
         public IGameObject CreateOpenDoorBottom(Vector2 position)
         {
-            var createdObject = new OpenDoor(position);
+            var createdObject = new OpenDoor(position, game);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(848, 110, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
             RegisterDoorForCollision(createdObject);
@@ -237,7 +245,7 @@ namespace Project3902.ObjectManagement
 
         public IGameObject CreateOpenDoorLeft(Vector2 position)
         {
-            var createdObject = new OpenDoor(position);
+            var createdObject = new OpenDoor(position, game);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(848, 44, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
             RegisterDoorForCollision(createdObject);
@@ -246,7 +254,7 @@ namespace Project3902.ObjectManagement
 
         public IGameObject CreateOpenDoorRight(Vector2 position)
         {
-            var createdObject = new OpenDoor(position);
+            var createdObject = new OpenDoor(position, game);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(848, 77, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
             RegisterDoorForCollision(createdObject);

@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework.Graphics;
 using Project3902.GameObjects;
 using Project3902.GameObjects.EnemyProjectiles;
+using Project3902.GameObjects.Environment;
+using Project3902.GameObjects.Environment.Interfaces;
 
 namespace Project3902
 {
@@ -56,7 +58,28 @@ namespace Project3902
 
         public virtual void OnCollide(Collider other)
         {
-            if (other.GameObject is IInteractiveEnvironmentObject)
+            if(other.GameObject is IDoorway)
+            {
+                var door = other.GameObject as OpenDoor;
+
+                if (link.Position.X < 200)
+                {
+                    door.ChangeLevel("Left");
+                }
+                else if (link.Position.X > 700)
+                {
+                    door.ChangeLevel("Right");
+                }
+                else if (link.Position.Y < 200)
+                {
+                    door.ChangeLevel("Top");
+                }
+                else if (link.Position.Y > 500)
+                {
+                    door.ChangeLevel("Bottom");
+                }
+            }
+            else if (other.GameObject is IInteractiveEnvironmentObject)
             {
                 MoveOutOfWall(other);
             }
