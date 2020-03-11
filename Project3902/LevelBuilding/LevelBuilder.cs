@@ -2,6 +2,7 @@
 using Project3902.GameObjects;
 using Project3902.LevelBuilding;
 using Project3902.ObjectManagement;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -122,6 +123,11 @@ namespace Project3902
                 var line = csvReader.ReadLine();
                 var values = line.Split(',');
 
+                if (values[0] == "Levels")
+                {
+                    break;
+                }
+
                 var position = new Vector2(float.Parse(values[1]), float.Parse(values[2]));
 
                 enemyObjects.Add(objectLookup.CreateEnemyObject(values[0], position));
@@ -130,6 +136,54 @@ namespace Project3902
             csvReader.Close();
 
             return enemyObjects;
+        }
+
+        public LevelMap CreateAdjacentLevels()
+        {
+            var level = new LevelMap("", "", "", "");
+
+            var csvReader = new StreamReader($"../../../../LevelBuilding/Levels/{levelName}.csv");
+
+            while (csvReader.ReadLine() != "Levels")
+            {
+                if (csvReader.EndOfStream)
+                {
+                    csvReader.Close();
+                    return level;
+                }
+            }
+
+            while (!csvReader.EndOfStream)
+            {
+                var line = csvReader.ReadLine();
+                var values = line.Split(',');
+                string levelName = values[1].Trim();
+
+                if (values[0] == "Top")
+                {
+                    level.Top = levelName;
+                } 
+                else if(values[0] == "Left")
+                {
+                    level.Left = levelName;
+                }
+                else if (values[0] == "Right")
+                {
+                    level.Right = levelName;
+                }
+                else if (values[0] == "Bottom")
+                {
+                    level.Bottom = levelName;
+                }
+                else
+                {
+                    throw new Exception($"The object {values[1]} has not been mapped in ObjectLookup yet!");
+                }
+            }
+
+            csvReader.Close();
+
+            return level;
         }
 
         private void BuildWalls(List<IGameObject> envList)

@@ -53,6 +53,8 @@
     <Compile Include="GameObjects\Environment\BlankWallObject.cs" />
     <Compile Include="GameObjects\EnemiesAndNPCs\BaseEnemy.cs" />
     <Compile Include="GameObjects\Environment\BaseEnvironment.cs" />
+    <Compile Include="GameObjects\Environment\Interfaces\IDoorway.cs" />
+    <Compile Include="GameObjects\Environment\BlockingBrick.cs" />
     <Compile Include="GameObjects\Item\Sword.cs" />
     <Compile Include="GameObjects\Item\Rupee.cs" />
     <Compile Include="GameObjects\Item\Watch.cs" />
@@ -68,6 +70,7 @@
     <Compile Include="GameObjects\Weapons\SwordAttack.cs" />
     <Compile Include="GlobalSuppressions2.cs" />
     <Compile Include="LevelBuilding\CyclePrvRoom.cs" />
+    <Compile Include="LevelBuilding\LevelMap.cs" />
     <Compile Include="LevelBuilding\LevelFactory.cs" />
     <Compile Include="LevelBuilding\CycleNextRoom.cs" />
     <Compile Include="LevelBuilding\LevelBuilder.cs" />

@@ -77,6 +77,10 @@ namespace Project3902.LevelBuilding
             {
                 return envFactory.CreateWallBottom(position);
             }
+            if (name == "Brick")
+            {
+                return envFactory.CreateBlockingBrick(position);
+            }
 
             throw new Exception($"The object {name} has not been mapped in ObjectLookup yet!");
         }

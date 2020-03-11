@@ -43,3 +43,7 @@ Rope, 135, 510
 AquaGel, 300, 200
 GrayZol, 660, 300
 RedGoriya, 280, 480
+Levels
+Top, DungeonRoom3
+Left, DungeonRoom2
+Right, DungeonRoom5
