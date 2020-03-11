@@ -157,23 +157,23 @@ namespace Project3902
             {
                 var line = csvReader.ReadLine();
                 var values = line.Split(',');
-                string levelName = values[1].Trim();
+                string adjacentLevelName = values[1].Trim();
 
                 if (values[0] == "Top")
                 {
-                    level.Top = levelName;
+                    level.Top = adjacentLevelName;
                 } 
                 else if(values[0] == "Left")
                 {
-                    level.Left = levelName;
+                    level.Left = adjacentLevelName;
                 }
                 else if (values[0] == "Right")
                 {
-                    level.Right = levelName;
+                    level.Right = adjacentLevelName;
                 }
                 else if (values[0] == "Bottom")
                 {
-                    level.Bottom = levelName;
+                    level.Bottom = adjacentLevelName;
                 }
                 else
                 {
