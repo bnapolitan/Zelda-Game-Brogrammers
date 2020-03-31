@@ -4,6 +4,7 @@ using Project3902.GameObjects;
 using Project3902.GameObjects.EnemyProjectiles;
 using Project3902.GameObjects.Environment;
 using Project3902.GameObjects.Environment.Interfaces;
+using Project3902.ObjectManagement;
 
 namespace Project3902
 {
@@ -47,6 +48,7 @@ namespace Project3902
             {
                 link.Health -= damage;
                 LinkFactory.Instance.CreateDamagedLink();
+                SoundHandler.Instance.PlaySoundEffect("Link Hurt");
             }
         }
 
@@ -93,6 +95,18 @@ namespace Project3902
             }
             else if(other.GameObject is IItem)
             {
+                if(other.GameObject is Heart || other.GameObject is Key)
+                {
+                    SoundHandler.Instance.PlaySoundEffect("Heart");
+                }
+                else if(other.GameObject is Rupee)
+                {
+                    SoundHandler.Instance.PlaySoundEffect("Rupee");
+                }
+                else
+                {
+                    SoundHandler.Instance.PlaySoundEffect("Item");
+                }
                 CollisionHandler.Instance.RemoveCollidable(other.GameObject as ICollidable);
             }
         }

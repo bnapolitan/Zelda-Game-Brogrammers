@@ -69,7 +69,8 @@ namespace Project3902
 			List<Rectangle> FairySource = new List<Rectangle> { new Rectangle(0, 0, 10, 18), new Rectangle(10, 0, 10, 18) };
 			var sprite = new AnimatedSprite(createdObject, FairySprite, FairySource, .4f, new Vector2(3, 3));
 			createdObject.Sprite = sprite;
-			RegisterItemForCollision(createdObject);
+			createdObject.Collider = new Collider(createdObject, new Rectangle(10, 0, 30, 30));
+			CollisionHandler.Instance.RegisterCollidable(createdObject, Layer.Pickup);
 			return createdObject;
 		}
 

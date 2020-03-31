@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using Project3902.LevelBuilding;
 using Project3902.ObjectManagement;
 using System.Collections.Generic;
@@ -87,6 +88,9 @@ namespace Project3902
             levelMap = level.CreateAdjacentLevels();
 
             CollisionHandler.Instance.RegisterGame(this);
+
+            SoundHandler.Instance.LoadAllSounds(Content);
+            SoundHandler.Instance.PlaySong("Dungeon");
         }
 
 
