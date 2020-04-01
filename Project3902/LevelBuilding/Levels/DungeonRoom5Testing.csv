@@ -7,6 +7,7 @@ Enemies
 BulletHell, -80, 300
 BulletHell, -80, 500
 BulletHell, -80, 700
+BulletHell, 200, -100
 BulletHell, 500, -100
 BulletHell, 800, -100
 BulletHell, 1100, 300

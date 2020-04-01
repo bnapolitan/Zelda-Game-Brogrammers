@@ -91,6 +91,10 @@ namespace Project3902
             {
                 TakeDamage((other.GameObject as Boomerang).Damage);
             }
+            else if (other.GameObject is Fireball)
+            {
+                TakeDamage((other.GameObject as Fireball).Damage);
+            }
             else if(other.GameObject is IItem)
             {
                 CollisionHandler.Instance.RemoveCollidable(other.GameObject as ICollidable);

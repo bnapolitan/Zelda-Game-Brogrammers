@@ -108,8 +108,9 @@ namespace Project3902
             List<Rectangle> fireballSource = new List<Rectangle> { new Rectangle(364, 33, 8, 16) };
             var sprite = new AnimatedSprite(createdObject, bossSpriteAtlas, fireballSource, 0.5f, new Vector2(3.4f, 3.4f));
             createdObject.Sprite = sprite;
-            var collider = new Collider(createdObject, new Rectangle(0, 0, 8 * (int)createdObject.Sprite.Scale.X, 9 * (int)createdObject.Sprite.Scale.Y));
+            var collider = new Collider(createdObject, new Rectangle(0, 0, 8 * (int)createdObject.Sprite.Scale.X, 8 * (int)createdObject.Sprite.Scale.Y));
             createdObject.Collider = collider;
+            CollisionHandler.Instance.RegisterCollidable(createdObject, Layer.Projectile, Layer.Wall, Layer.Player);
             return createdObject;
         }
 
