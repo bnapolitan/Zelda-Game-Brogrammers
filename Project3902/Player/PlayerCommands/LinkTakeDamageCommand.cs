@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 
 namespace Project3902
 {
@@ -16,7 +16,6 @@ namespace Project3902
             if (!(game.Link is DamagedLink))
             {
                 game.Link.Health -= 1;
-                Console.WriteLine(game.Link.Health);
                 if(game.Link.Health < 0)
                 {
                     game.ReloadOnDeath();
