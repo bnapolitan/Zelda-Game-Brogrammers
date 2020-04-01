@@ -4,7 +4,7 @@ using Project3902.LevelBuilding;
 using Project3902.ObjectManagement;
 using System.Collections.Generic;
 
-/* 
+/*
  * Team:
  * Dan Bellini
  * Huang Huang
@@ -29,7 +29,7 @@ namespace Project3902
         public int CurrentRoomNum = 1, TotalRoomNum=5;
         MouseController mouseController;
         KeyboardController keyboardController;
-        public string CurrentRoom = "DungeonRoom1";
+        public string CurrentRoom = "DungeonRoom5Testing";
         public LevelMap levelMap;
 
         bool NextR, PreR;
@@ -106,11 +106,11 @@ namespace Project3902
                 var level = new LevelBuilder(this, CurrentRoom);
                 Link = LinkFactory.Instance.CreateLink(linkPositionAfterRoomSwitch, this);
                 CollisionHandler.Instance.RegisterCollidable(Link, Layer.Player, Layer.Enemy, Layer.Wall, Layer.Pickup, Layer.Projectile);
-                
+
                 isSwitchingLevels = false;
                 EnvironmentFactory.Instance.RegisterGame(this);
                 interactiveEnvironmentObjects = level.CreateInteractiveEnvironmentObjects();
-                
+
                 itemObjects = level.CreateItemObjects();
 
                 EnemyFactory.Instance.RegisterGame(this);
@@ -224,7 +224,7 @@ namespace Project3902
             else
             {
                 CurrentRoomNum--;
-                
+
             }
         }
     }

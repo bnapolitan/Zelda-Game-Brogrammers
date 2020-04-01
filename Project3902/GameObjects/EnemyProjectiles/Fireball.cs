@@ -1,57 +1,73 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
-namespace Project3902
+namespace Project3902.GameObjects.EnemyProjectiles
 {
-    class Fireball : BasePlayerProjectile
+    class Fireball : IProjectile
     {
-        private readonly float distance = 500f; 
+        public Vector2 Position { get; set; }
+        public ISprite Sprite { get; set; }
+        public bool Active { get; set; }
+        public Vector2 Direction { get; set; }
+        public float Speed { get; set; }
+        public Collider Collider { get; set; }
+
+        public float distance = 500;
         private Vector2 relPos = new Vector2(0, 0);
-        public Fireball()
+
+        public Fireball(Vector2 pos, float moveSpeed, Vector2 initDirection)
         {
-            Sprite = WeaponFactory.Instance.CreateFireballSprite(this);
+            Position = pos;
+            Direction = initDirection;
+            Speed = moveSpeed;
+            Active = true;
         }
 
-        public override void Launch(Vector2 position, Vector2 direction)
+        public void Draw(SpriteBatch spriteBatch)
         {
-            base.Launch(position, direction);
-
-            Sprite = WeaponFactory.Instance.CreateFireballSprite(this);
-            var rect = new Rectangle(0, 0, (int)Sprite.Scale.X * (int)Sprite.Size.X, (int)Sprite.Scale.Y * (int)Sprite.Size.Y);
-            var collider = new Collider(this, rect);
-            Collider = collider;
-            CollisionHandler.Instance.RegisterCollidable(this, Layer.Projectile);
-        }
-
-        public override void OnCollide(Collider other)
-        {
-            if (other.GameObject is IEnemy)
-            {
-                Deactivate();
-            }
-        }
-
-        public override void Update(GameTime gameTime)
-        {
-
             if (!Active)
             {
                 return;
             }
-            base.Update(gameTime);
-            Collider.AlignHitbox();
+
+            Sprite.Draw(spriteBatch);
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            if (!Active)
+            {
+                return;
+            }
+
             Position += Direction * Speed;
             relPos += Direction * Speed;
             if (relPos.Length() >= distance)
             {
                 Active = false;
             }
+            Sprite.Update(gameTime);
+        }
 
+        public void Launch(Vector2 position, Vector2 direction)
+        {
+            Position = position;
+            Direction = direction;
+            Active = true;
         }
 
         private void Deactivate()
         {
             Active = false;
             CollisionHandler.Instance.RemoveCollidable(this);
+        }
+
+        public void OnCollide(Collider other)
+        {
+            if (other.GameObject is IEnemy)
+            {
+                Deactivate();
+            }
         }
     }
 }
