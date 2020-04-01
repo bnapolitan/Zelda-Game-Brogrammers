@@ -104,7 +104,8 @@ namespace Project3902
             {
                 CollisionHandler.Instance.Flush();
                 var level = new LevelBuilder(this, CurrentRoom);
-                Link = LinkFactory.Instance.CreateLink(linkPositionAfterRoomSwitch, this);
+                Link = LinkFactory.Instance.CreateLink(new Vector2(450,500), this);
+                System.Console.WriteLine("here");
                 CollisionHandler.Instance.RegisterCollidable(Link, Layer.Player, Layer.Enemy, Layer.Wall, Layer.Pickup, Layer.Projectile);
                 
                 isSwitchingLevels = false;
@@ -185,6 +186,13 @@ namespace Project3902
             CurrentRoom = levelMap.Top;
             isSwitchingLevels = true;
             linkPositionAfterRoomSwitch = new Vector2(400, 500);
+        }
+
+        public void ReloadOnDeath()
+        {
+            
+            isSwitchingLevels = true;
+            
         }
 
         public void EnterRoomLeft()
