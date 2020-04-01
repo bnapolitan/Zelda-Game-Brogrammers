@@ -29,7 +29,7 @@ namespace Project3902
         public int CurrentRoomNum = 1, TotalRoomNum=5;
         MouseController mouseController;
         KeyboardController keyboardController;
-        public string CurrentRoom = "DungeonRoom5Testing";
+        public string CurrentRoom = "DungeonRoom1";
         public LevelMap levelMap;
 
         bool NextR, PreR;
