@@ -27,8 +27,10 @@ namespace Project3902
         public List<IGameObject> enemyObjects;
         public List<IGameObject> itemObjects;
         public int CurrentRoomNum = 1, TotalRoomNum=5;
+
         MouseController mouseController;
         KeyboardController keyboardController;
+
         public string CurrentRoom = "DungeonRoom1";
         public LevelMap levelMap;
 
@@ -102,21 +104,9 @@ namespace Project3902
 
             if (isSwitchingLevels)
             {
-                CollisionHandler.Instance.Flush();
-                var level = new LevelBuilder(this, CurrentRoom);
-                Link = LinkFactory.Instance.CreateLink(linkPositionAfterRoomSwitch, this);
-                CollisionHandler.Instance.RegisterCollidable(Link, Layer.Player, Layer.Enemy, Layer.Wall, Layer.Pickup, Layer.Projectile);
-
                 isSwitchingLevels = false;
-                EnvironmentFactory.Instance.RegisterGame(this);
-                interactiveEnvironmentObjects = level.CreateInteractiveEnvironmentObjects();
 
-                itemObjects = level.CreateItemObjects();
-
-                EnemyFactory.Instance.RegisterGame(this);
-                enemyObjects = level.CreateEnemyObjects();
-
-                levelMap = level.CreateAdjacentLevels();
+                RestartLevel();
             }
 
             foreach (IGameObject gameObject in interactiveEnvironmentObjects)
@@ -173,11 +163,28 @@ namespace Project3902
             base.Draw(gameTime);
         }
 
+        protected void RestartLevel()
+        {
+            CollisionHandler.Instance.Flush();
+            var level = new LevelBuilder(this, CurrentRoom);
+            Link = LinkFactory.Instance.CreateLink(linkPositionAfterRoomSwitch, this);
+            CollisionHandler.Instance.RegisterCollidable(Link, Layer.Player, Layer.Enemy, Layer.Wall, Layer.Pickup, Layer.Projectile);
+
+            EnvironmentFactory.Instance.RegisterGame(this);
+            interactiveEnvironmentObjects = level.CreateInteractiveEnvironmentObjects();
+
+            itemObjects = level.CreateItemObjects();
+
+            EnemyFactory.Instance.RegisterGame(this);
+            enemyObjects = level.CreateEnemyObjects();
+
+            levelMap = level.CreateAdjacentLevels();
+        }
+
         private void SetUpMouseController()
         {
             mouseController = new MouseController();
-            mouseController.RegisterCommand(MouseActions.Right, new CycleNextRoom(this), InputState.Pressed);
-            mouseController.RegisterCommand(MouseActions.Left, new CyclePrvRoom(this), InputState.Pressed);
+            mouseController.RegisterCommand(MouseActions.Right, new CyclePrvRoom(this), InputState.Pressed);
         }
 
         public void EnterRoomTop()
@@ -206,6 +213,13 @@ namespace Project3902
             CurrentRoom = levelMap.Bottom;
             isSwitchingLevels = true;
             linkPositionAfterRoomSwitch = new Vector2(400, 150);
+        }
+
+        public void MouseSwitchRoom(string room)
+        {
+            CurrentRoom = room;
+
+            RestartLevel();
         }
 
         public void CycleRoomNext()

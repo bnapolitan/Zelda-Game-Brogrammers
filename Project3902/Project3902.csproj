@@ -50,6 +50,10 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Commands\ChangeRooms\ChangeToRoom4Command.cs" />
+    <Compile Include="Commands\ChangeRooms\ChangeToRoom3Command.cs" />
+    <Compile Include="Commands\ChangeRooms\ChangeToRoom2Command.cs" />
+    <Compile Include="Commands\ChangeRooms\ChangeToRoom1Command.cs" />
     <Compile Include="GameObjects\EnemiesAndNPCs\BulletHellAquamentus.cs" />
     <Compile Include="GameObjects\Environment\BlankWallObject.cs" />
     <Compile Include="GameObjects\EnemiesAndNPCs\BaseEnemy.cs" />
@@ -73,7 +77,6 @@
     <Compile Include="LevelBuilding\CyclePrvRoom.cs" />
     <Compile Include="LevelBuilding\LevelMap.cs" />
     <Compile Include="LevelBuilding\LevelFactory.cs" />
-    <Compile Include="LevelBuilding\CycleNextRoom.cs" />
     <Compile Include="LevelBuilding\LevelBuilder.cs" />
     <Compile Include="LevelBuilding\ObjectLookup.cs" />
     <Compile Include="ObjectManagement\ItemFactory.cs" />

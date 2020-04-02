@@ -20,8 +20,11 @@ namespace Project3902
         {
             var controller = new MouseController();
 
-            controller.RegisterCommand(MouseActions.Right, new CycleNextRoom(game), InputState.Pressed);
-            controller.RegisterCommand(MouseActions.Left, new CyclePrvRoom(game), InputState.Pressed);
+            controller.RegisterCommand(1, new ChangeToRoom1Command(game));
+            controller.RegisterCommand(2, new ChangeToRoom2Command(game));
+            controller.RegisterCommand(3, new ChangeToRoom3Command(game));
+            controller.RegisterCommand(4, new ChangeToRoom4Command(game));
+            controller.RegisterCommand(MouseActions.Right, new CyclePrvRoom(game), InputState.Pressed);
             return controller;
         }
         public List<string> CreateRooms()
