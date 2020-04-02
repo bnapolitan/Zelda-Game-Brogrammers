@@ -3,22 +3,24 @@ using Microsoft.Xna.Framework.Graphics;
 using Project3902.GameObjects.EnemyProjectiles;
 using Project3902.ObjectManagement;
 using System;
+using System.Collections.Generic;
 
 namespace Project3902.GameObjects.EnemiesAndNPCs
 {
-    class Aquamentus : ProjectileLaunchingEnemy
+    class BulletHellAquamentus : ProjectileLaunchingEnemy
     {
         public FinalGame Game { get; }
         private readonly float distance = 100;
         private Vector2 relPos = new Vector2(0, 0);
-        private readonly int framesBeforeAttack = 120;
+        private readonly int framesBeforeAttack = 230;
         private int currentFrame = 0;
-        private IProjectile fireball;
-        private IProjectile fireball2;
-        private IProjectile fireball3;
+        private Fireball fireball;
+        private Fireball fireball2;
+        private Fireball fireball3;
+        private int fireballDistance = 800;
         private bool isShooting = false;
 
-        public Aquamentus(Vector2 pos, float moveSpeed, Vector2 initDirection, FinalGame game) : base(pos, moveSpeed, initDirection)
+        public BulletHellAquamentus(Vector2 pos, float moveSpeed, Vector2 initDirection, FinalGame game) : base(pos, moveSpeed, initDirection)
         {
             this.Game = game;
             Sprite = EnemyFactory.Instance.CreateAquamentusSprite(this);
@@ -32,9 +34,20 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
 
             var angle = Math.Atan2(fireball1Movement.Y, fireball1Movement.X);
 
-            fireball = WeaponFactory.Instance.CreateFireballProjectile(Position, fireball1Movement);
-            fireball2 = WeaponFactory.Instance.CreateFireballProjectile(Position, new Vector2(fireball1Movement.X, (float)Math.Sin(angle + .524)));
-            fireball3 = WeaponFactory.Instance.CreateFireballProjectile(Position, new Vector2(fireball1Movement.X, (float)Math.Sin(angle - .524)));
+            if(isShooting)
+            {
+                fireball.Deactivate();
+                fireball.Deactivate();
+                fireball.Deactivate();
+            }
+
+            fireball = WeaponFactory.Instance.CreateFireballProjectile(Position, fireball1Movement) as Fireball;
+            fireball2 = WeaponFactory.Instance.CreateFireballProjectile(Position, new Vector2(fireball1Movement.X, (float)Math.Sin(angle + .524))) as Fireball;
+            fireball3 = WeaponFactory.Instance.CreateFireballProjectile(Position, new Vector2(fireball1Movement.X, (float)Math.Sin(angle - .524))) as Fireball;
+
+            fireball.distance = fireballDistance;
+            fireball2.distance = fireballDistance;
+            fireball3.distance = fireballDistance;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -58,21 +71,6 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
                 this.Attack();
                 isShooting = true;
                 currentFrame = 0;
-            }
-            if (!attackedRecent)
-            {
-                Position += Direction * MoveSpeed;
-                relPos += Direction * MoveSpeed;
-                if (relPos.X > distance)
-                {
-                    Direction *= -1;
-                    relPos = new Vector2(0, 0);
-                }
-                else if (relPos.X < -distance)
-                {
-                    Direction *= -1;
-                    relPos = new Vector2(0, 0);
-                }
             }
             currentFrame++;
 

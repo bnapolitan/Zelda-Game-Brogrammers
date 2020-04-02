@@ -40,7 +40,6 @@ namespace Project3902
         {
             Collider.Draw(spriteBatch);
             (Sprite as AnimatedSprite).DrawTinted(spriteBatch, tint);
-            
         }
 
         public virtual void OnCollide(Collider other)
@@ -49,7 +48,6 @@ namespace Project3902
             {
                 if ((other.GameObject is IProjectile) && !(other.GameObject is Boomerang) && !(other.GameObject is Fireball))
                 {
-                    
                     attackedRecent = true;
                     Health--;
                     tint = Color.Red;
@@ -65,7 +63,7 @@ namespace Project3902
                     Collider.AlignHitbox();
                 }
             }
-            if(other.GameObject is IInteractiveEnvironmentObject) 
+            if(other.GameObject is IInteractiveEnvironmentObject)
             {
                 MoveOutOfWall(other);
                 Direction=new Vector2(Direction.Y, Direction.X*-1);

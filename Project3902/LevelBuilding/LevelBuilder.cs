@@ -39,7 +39,7 @@ namespace Project3902
             BuildWalls(environmentObjects);
 
             var csvReader = new StreamReader($"../../../../LevelBuilding/Levels/{levelName}.csv");
-            
+
             if(csvReader.ReadLine() != "Environment")
             {
                 csvReader.Close();
@@ -101,7 +101,7 @@ namespace Project3902
             return itemObjects;
         }
 
-    
+
 
         public List<IGameObject> CreateEnemyObjects()
         {
@@ -162,7 +162,7 @@ namespace Project3902
                 if (values[0] == "Top")
                 {
                     level.Top = adjacentLevelName;
-                } 
+                }
                 else if(values[0] == "Left")
                 {
                     level.Left = adjacentLevelName;
@@ -223,7 +223,7 @@ namespace Project3902
             envList.AddRange(new IGameObject[] { TopLeft1, TopLeft2, TopRight1, TopRight2, BottomLeft1, BottomLeft2, BottomRight1, BottomRight2 });
         }
 
-       
+
 
     }
 }

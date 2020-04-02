@@ -178,7 +178,6 @@ namespace Project3902.ObjectManagement
 			List<Rectangle> redKeeseSource = new List<Rectangle> { new Rectangle(279, 268, 18, 18), new Rectangle(304, 268, 18, 18) };
 			var sprite = new AnimatedSprite(createdObject, dungeons2, redKeeseSource, 0.5f, enemyScale);
 			createdObject.Sprite = sprite;
-			
 
 			var collider = new Collider(createdObject, new Rectangle(0, 0, 18 * (int)enemyScale.X, 18 * (int)enemyScale.Y));
 			createdObject.Collider = collider;
@@ -193,7 +192,6 @@ namespace Project3902.ObjectManagement
 			List<Rectangle> stalfosSource = new List<Rectangle> { new Rectangle(418, 119, 18, 18), new Rectangle(418, 149, 18, 18) };
 			var sprite = new AnimatedSprite(createdObject, dungeons2, stalfosSource, 0.5f, enemyScale);
 			createdObject.Sprite = sprite;
-			
 
 			var collider = new Collider(createdObject, new Rectangle(0, 0, 18 * (int)enemyScale.X, 18 * (int)enemyScale.Y));
 			createdObject.Collider = collider;
@@ -299,6 +297,15 @@ namespace Project3902.ObjectManagement
 		public IGameObject CreateAquamentus(Vector2 position)
 		{
 			var createdObject = new Aquamentus(position, 1, new Vector2(1, 0), this.game);
+			createdObject.Collider = new Collider(createdObject, new Rectangle(0, 0, 24 * (int)enemyScale.X, 32 * (int)enemyScale.Y));
+			RegisterEnemyForCollision(createdObject);
+
+			return createdObject;
+		}
+
+		public IGameObject CreateBulletHellAquamentus(Vector2 position)
+		{
+			var createdObject = new BulletHellAquamentus(position, 1, new Vector2(1, 0), this.game);
 			createdObject.Collider = new Collider(createdObject, new Rectangle(0, 0, 24 * (int)enemyScale.X, 32 * (int)enemyScale.Y));
 			RegisterEnemyForCollision(createdObject);
 

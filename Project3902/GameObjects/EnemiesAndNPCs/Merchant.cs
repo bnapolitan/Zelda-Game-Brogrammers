@@ -28,6 +28,5 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
 
         }
 
-        
     }
 }
