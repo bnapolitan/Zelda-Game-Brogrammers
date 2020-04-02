@@ -34,7 +34,6 @@ namespace Project3902
         public string CurrentRoom = "DungeonRoom1";
         public LevelMap levelMap;
 
-        bool NextR, PreR;
         Vector2 linkPositionAfterRoomSwitch;
         bool isSwitchingLevels = false;
 
@@ -52,8 +51,6 @@ namespace Project3902
             graphics.PreferredBackBufferWidth = 1024;
             graphics.PreferredBackBufferHeight = 672;
             graphics.ApplyChanges();
-
-            SetUpMouseController();
 
             base.Initialize();
         }
@@ -167,7 +164,15 @@ namespace Project3902
         {
             CollisionHandler.Instance.Flush();
             var level = new LevelBuilder(this, CurrentRoom);
-            Link = LinkFactory.Instance.CreateLink(linkPositionAfterRoomSwitch, this);
+
+            if (isSwitchingLevels)
+            {
+                Link = LinkFactory.Instance.CreateLink(linkPositionAfterRoomSwitch, this);
+            }
+            else
+            {
+                Link = LinkFactory.Instance.CreateLink(new Vector2(450, 500), this);
+            }
             CollisionHandler.Instance.RegisterCollidable(Link, Layer.Player, Layer.Enemy, Layer.Wall, Layer.Pickup, Layer.Projectile);
 
             EnvironmentFactory.Instance.RegisterGame(this);
@@ -179,12 +184,6 @@ namespace Project3902
             enemyObjects = level.CreateEnemyObjects();
 
             levelMap = level.CreateAdjacentLevels();
-        }
-
-        private void SetUpMouseController()
-        {
-            mouseController = new MouseController();
-            mouseController.RegisterCommand(MouseActions.Right, new CyclePrvRoom(this), InputState.Pressed);
         }
 
         public void EnterRoomTop()
@@ -220,26 +219,6 @@ namespace Project3902
             CurrentRoom = room;
 
             RestartLevel();
-        }
-
-        public void CycleRoomNext()
-        {
-            CurrentRoomNum = (CurrentRoomNum + 1) % TotalRoomNum;
-            NextR = true;
-        }
-
-        public void CycleRoomLast()
-        {
-            PreR = true;
-            if (CurrentRoomNum == 0)
-            {
-                CurrentRoomNum = TotalRoomNum - 1;
-            }
-            else
-            {
-                CurrentRoomNum--;
-
-            }
         }
     }
 }

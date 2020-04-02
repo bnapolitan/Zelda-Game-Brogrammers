@@ -74,7 +74,6 @@
     <Compile Include="GameObjects\Weapons\BasePlayerProjectile.cs" />
     <Compile Include="GameObjects\Weapons\SwordAttack.cs" />
     <Compile Include="GlobalSuppressions2.cs" />
-    <Compile Include="LevelBuilding\CyclePrvRoom.cs" />
     <Compile Include="LevelBuilding\LevelMap.cs" />
     <Compile Include="LevelBuilding\LevelFactory.cs" />
     <Compile Include="LevelBuilding\LevelBuilder.cs" />
