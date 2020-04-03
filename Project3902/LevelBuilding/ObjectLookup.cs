@@ -97,6 +97,18 @@ namespace Project3902.LevelBuilding
             {
                 return envFactory.CreateBlockingBrick(position);
             }
+            if (name == "MoveableBlock")
+            {
+                return envFactory.CreateMoveableBlock(position);
+            }
+            if (name == "BlackBackground")
+            {
+                return envFactory.CreateBlackBackground(position);
+            }
+            if (name == "Water")
+            {
+                return envFactory.CreateWater(position);
+            }
 
             throw new Exception($"The object {name} has not been mapped in ObjectLookup yet!");
         }

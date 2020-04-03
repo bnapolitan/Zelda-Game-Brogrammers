@@ -314,7 +314,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new Wall(position);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(815, 11, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
-            RegisterEnvironmentForCollision(createdObject);
+            RegisterDoorForCollision(createdObject);
             return createdObject;
         }
 
@@ -323,7 +323,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new Wall(position);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(815, 110, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
-            RegisterEnvironmentForCollision(createdObject);
+            RegisterDoorForCollision(createdObject);
             return createdObject;
         }
 
@@ -332,7 +332,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new Wall(position);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(815, 44, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
-            RegisterEnvironmentForCollision(createdObject);
+            RegisterDoorForCollision(createdObject);
             return createdObject;
         }
 
@@ -340,6 +340,23 @@ namespace Project3902.ObjectManagement
         {
             var createdObject = new Wall(position);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(815, 77, 32, 32), environmentScale);
+            createdObject.Sprite = sprite;
+            RegisterDoorForCollision(createdObject);
+            return createdObject;
+        }
+
+        public IGameObject CreateBlackBackground(Vector2 position)
+        {
+            var createdObject = new FloorTile(position);
+            var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(1000, 900, 64, 64), new Vector2(12,7));
+            createdObject.Sprite = sprite;
+            return createdObject;
+        }
+
+        public IGameObject CreateWater(Vector2 position)
+        {
+            var createdObject = new BrickTile(position);
+            var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(785,80, 16, 16), environmentScale);
             createdObject.Sprite = sprite;
             RegisterEnvironmentForCollision(createdObject);
             return createdObject;

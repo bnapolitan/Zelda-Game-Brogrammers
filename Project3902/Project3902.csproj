@@ -208,13 +208,17 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.manifest" />
     <None Include="LevelBuilding\Levels\DungeonRoom0.csv" />
+    <None Include="LevelBuilding\Levels\DungeonRoom11.csv" />
     <None Include="LevelBuilding\Levels\DungeonRoom4.csv" />
     <None Include="LevelBuilding\Levels\DungeonRoom3.csv" />
     <None Include="LevelBuilding\Levels\DungeonRoom1.csv" />
     <None Include="LevelBuilding\Levels\DungeonRoom2.csv" />
     <None Include="LevelBuilding\Levels\BulletHellRoom.csv" />
     <None Include="LevelBuilding\Levels\DungeonRoom5.csv" />
-    <None Include="LevelBuilding\Levels\DungeonRoom6 - Copy.csv" />
+    <None Include="LevelBuilding\Levels\DungeonRoom10.csv" />
+    <None Include="LevelBuilding\Levels\DungeonRoom9.csv" />
+    <None Include="LevelBuilding\Levels\DungeonRoom8.csv" />
+    <None Include="LevelBuilding\Levels\DungeonRoom7.csv" />
     <None Include="LevelBuilding\Levels\DungeonRoom6.csv" />
     <None Include="packages.config" />
   </ItemGroup>

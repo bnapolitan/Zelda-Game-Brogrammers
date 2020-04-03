@@ -9,6 +9,8 @@ LockDoorTop, 448, 0
 WallLeft, 0, 288
 ShutDoorRight, 896, 288
 WallBottom, 448, 576
+Items
+Key, 512, 192
 Enemies
 BlueKeese, 640, 128
 BlueKeese, 640, 512

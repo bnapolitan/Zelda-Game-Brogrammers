@@ -29,7 +29,6 @@ namespace Project3902
 
 		public static void RegisterItemForCollision(IItem ItemObject)
 		{
-
 			ItemObject.Collider = new Collider(ItemObject, new Rectangle(0, 0, 30, 30));
 			CollisionHandler.Instance.RegisterCollidable(ItemObject, Layer.Pickup);
 		}

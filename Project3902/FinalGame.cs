@@ -31,7 +31,7 @@ namespace Project3902
         MouseController mouseController;
         KeyboardController keyboardController;
 
-        public string CurrentRoom = "DungeonRoom1";
+        public string CurrentRoom = "DungeonRoom10";
         public LevelMap levelMap;
 
         Vector2 linkPositionAfterRoomSwitch;
@@ -104,7 +104,7 @@ namespace Project3902
 
             if (isSwitchingLevels)
             {
-                isSwitchingLevels = false;
+                
 
                 RestartLevel();
             }
@@ -171,6 +171,7 @@ namespace Project3902
             if (isSwitchingLevels)
             {
                 Link = LinkFactory.Instance.CreateLink(linkPositionAfterRoomSwitch, this);
+                isSwitchingLevels = false;
             }
             else
             {
@@ -193,7 +194,7 @@ namespace Project3902
         {
             CurrentRoom = levelMap.Top;
             isSwitchingLevels = true;
-            linkPositionAfterRoomSwitch = new Vector2(400, 500);
+            linkPositionAfterRoomSwitch = new Vector2(480, 512);
         }
 
         public void ReloadOnDeath()
@@ -210,21 +211,21 @@ namespace Project3902
         {
             CurrentRoom = levelMap.Left;
             isSwitchingLevels = true;
-            linkPositionAfterRoomSwitch = new Vector2(840, 300);
+            linkPositionAfterRoomSwitch = new Vector2(832, 320);
         }
 
         public void EnterRoomRight()
         {
             CurrentRoom = levelMap.Right;
             isSwitchingLevels = true;
-            linkPositionAfterRoomSwitch = new Vector2(125, 300);
+            linkPositionAfterRoomSwitch = new Vector2(128, 320);
         }
 
         public void EnterRoomBottom()
         {
             CurrentRoom = levelMap.Bottom;
             isSwitchingLevels = true;
-            linkPositionAfterRoomSwitch = new Vector2(400, 150);
+            linkPositionAfterRoomSwitch = new Vector2(480, 128);
         }
 
         public void MouseSwitchRoom(string room)

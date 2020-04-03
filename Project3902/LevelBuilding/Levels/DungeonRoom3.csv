@@ -5,12 +5,12 @@ Brick, 256, 384
 Brick, 320, 256
 Brick, 320, 320
 Brick, 320, 384
-Brick, 576, 256
-Brick, 576, 320
-Brick, 576, 384
 Brick, 640, 256
 Brick, 640, 320
 Brick, 640, 384
+Brick, 704, 256
+Brick, 704, 320
+Brick, 704, 384
 WallTop, 448, 0
 OpenDoorLeft, 0, 288
 WallRight, 896, 288

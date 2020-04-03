@@ -57,6 +57,21 @@ namespace Project3902
                     {
                         Active = false;
                         SoundHandler.Instance.PlaySoundEffect("Enemy Die");
+                        Random rnum = new Random();
+                        int coinChance = rnum.Next(5);
+                        if (coinChance == 0)
+                        {
+                            SoundHandler.Instance.PlaySoundEffect("Rupee");
+                            int bonusChance = rnum.Next(3);
+                            if (bonusChance == 0)
+                            {
+                                ItemFactory.Instance.CreateRupee(Position);
+                            }
+                            else
+                            {
+                                ItemFactory.Instance.Create1Rupee(Position);
+                            }
+                        }
                         CollisionHandler.Instance.RemoveCollidable(this);
                     }
                     else
