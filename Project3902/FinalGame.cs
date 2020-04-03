@@ -193,6 +193,7 @@ namespace Project3902
 
         public void ReloadOnDeath()
         {
+            SoundHandler.Instance.PlaySoundEffect("Link Die", true);
             linkPositionAfterRoomSwitch = new Vector2(450, 500);
             isSwitchingLevels = true;
             

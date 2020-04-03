@@ -26,6 +26,7 @@ namespace Project3902.ObjectManagement
         private SoundEffect itemSound;
         private SoundEffectInstance instance;
 
+        private Boolean musicPause = false;
         public static SoundHandler Instance { get; } = new SoundHandler();
 
         private SoundHandler()
@@ -80,11 +81,19 @@ namespace Project3902.ObjectManagement
 
         private void MediaPlayer_MediaStateChanged(object sender, System.EventArgs e)
         {
-            MediaPlayer.Play(currentSong);
+            if (!musicPause)
+            {
+                MediaPlayer.Play(currentSong);
+            }
         }
 
-        public void PlaySoundEffect(String effectType)
+        public void PlaySoundEffect(String effectType, Boolean stopMusic=false)
         {
+            if (stopMusic)
+            {
+                musicPause = true;
+                MediaPlayer.Stop();
+            }
             if(effectType.Equals("Sword Slash"))
             {
                 effect = swordSlashSound;
@@ -128,8 +137,18 @@ namespace Project3902.ObjectManagement
             {
                 effect = itemSound;
             }
-            effect.Play();
-            
+            if (stopMusic)
+            {
+                var tempInstance = effect.CreateInstance();
+                tempInstance.Play();
+                while (tempInstance.State == SoundState.Playing);
+                MediaPlayer.Play(currentSong);
+                musicPause = false;
+            }
+            else
+            {
+                effect.Play();
+            }
         }
 
         public void StopMusic()
