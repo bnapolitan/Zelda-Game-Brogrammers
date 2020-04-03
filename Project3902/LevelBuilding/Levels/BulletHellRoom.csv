@@ -1,0 +1,17 @@
+Environment
+WallTop, 448, 0
+OpenDoorLeft, 0, 288
+WallRight, 896, 288
+WallBottom, 448, 576
+Enemies
+BulletHell, -80, 300
+BulletHell, -80, 500
+BulletHell, -80, 700
+BulletHell, 200, -100
+BulletHell, 500, -100
+BulletHell, 800, -100
+BulletHell, 1100, 300
+BulletHell, 1100, 100
+BulletHell, 1100, 500
+Levels
+Left, DungeonRoom1

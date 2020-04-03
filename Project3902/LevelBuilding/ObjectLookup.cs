@@ -6,7 +6,7 @@ namespace Project3902.LevelBuilding
 {
     class ObjectLookup
     {
- 
+
         private readonly EnvironmentFactory envFactory = EnvironmentFactory.Instance;
         private readonly EnemyFactory enemyFactory = EnemyFactory.Instance;
         private readonly ItemFactory itemFactory = ItemFactory.Instance;
@@ -133,7 +133,6 @@ namespace Project3902.LevelBuilding
 
         public IGameObject CreateEnemyObject(string name, Vector2 position)
         {
-            
             if(name=="AquaGel")
             {
                 return enemyFactory.CreateAquaGel(position);
@@ -185,6 +184,10 @@ namespace Project3902.LevelBuilding
             if (name == "Aquamentus")
             {
                 return enemyFactory.CreateAquamentus(position);
+            }
+            if (name == "BulletHell")
+            {
+                return enemyFactory.CreateBulletHellAquamentus(position);
             }
             if (name == "Flame")
             {

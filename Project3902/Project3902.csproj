@@ -50,6 +50,11 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Commands\ChangeRooms\ChangeToRoom4Command.cs" />
+    <Compile Include="Commands\ChangeRooms\ChangeToRoom3Command.cs" />
+    <Compile Include="Commands\ChangeRooms\ChangeToRoom2Command.cs" />
+    <Compile Include="Commands\ChangeRooms\ChangeToRoom1Command.cs" />
+    <Compile Include="GameObjects\EnemiesAndNPCs\BulletHellAquamentus.cs" />
     <Compile Include="GameObjects\Environment\BlankWallObject.cs" />
     <Compile Include="GameObjects\EnemiesAndNPCs\BaseEnemy.cs" />
     <Compile Include="GameObjects\Environment\BaseEnvironment.cs" />
@@ -69,10 +74,8 @@
     <Compile Include="GameObjects\Weapons\BasePlayerProjectile.cs" />
     <Compile Include="GameObjects\Weapons\SwordAttack.cs" />
     <Compile Include="GlobalSuppressions2.cs" />
-    <Compile Include="LevelBuilding\CyclePrvRoom.cs" />
     <Compile Include="LevelBuilding\LevelMap.cs" />
     <Compile Include="LevelBuilding\LevelFactory.cs" />
-    <Compile Include="LevelBuilding\CycleNextRoom.cs" />
     <Compile Include="LevelBuilding\LevelBuilder.cs" />
     <Compile Include="LevelBuilding\ObjectLookup.cs" />
     <Compile Include="ObjectManagement\ItemFactory.cs" />
@@ -209,6 +212,8 @@
     <None Include="LevelBuilding\Levels\DungeonRoom3.csv" />
     <None Include="LevelBuilding\Levels\DungeonRoom1.csv" />
     <None Include="LevelBuilding\Levels\DungeonRoom2.csv" />
+    <None Include="LevelBuilding\Levels\BulletHellRoom.csv" />
+    <None Include="LevelBuilding\Levels\DungeonRoom5.csv" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

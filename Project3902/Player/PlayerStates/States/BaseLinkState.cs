@@ -93,6 +93,10 @@ namespace Project3902
             {
                 TakeDamage((other.GameObject as Boomerang).Damage);
             }
+            else if (other.GameObject is Fireball)
+            {
+                TakeDamage((other.GameObject as Fireball).Damage);
+            }
             else if(other.GameObject is IItem)
             {
                 if(other.GameObject is Heart || other.GameObject is Key)

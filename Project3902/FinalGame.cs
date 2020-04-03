@@ -5,7 +5,7 @@ using Project3902.LevelBuilding;
 using Project3902.ObjectManagement;
 using System.Collections.Generic;
 
-/* 
+/*
  * Team:
  * Dan Bellini
  * Huang Huang
@@ -28,12 +28,13 @@ namespace Project3902
         public List<IGameObject> enemyObjects;
         public List<IGameObject> itemObjects;
         public int CurrentRoomNum = 1, TotalRoomNum=5;
+
         MouseController mouseController;
         KeyboardController keyboardController;
+
         public string CurrentRoom = "DungeonRoom1";
         public LevelMap levelMap;
 
-        bool NextR, PreR;
         Vector2 linkPositionAfterRoomSwitch;
         bool isSwitchingLevels = false;
 
@@ -51,8 +52,6 @@ namespace Project3902
             graphics.PreferredBackBufferWidth = 1024;
             graphics.PreferredBackBufferHeight = 672;
             graphics.ApplyChanges();
-
-            SetUpMouseController();
 
             base.Initialize();
         }
@@ -106,21 +105,9 @@ namespace Project3902
 
             if (isSwitchingLevels)
             {
-                CollisionHandler.Instance.Flush();
-                var level = new LevelBuilder(this, CurrentRoom);
-                Link = LinkFactory.Instance.CreateLink(linkPositionAfterRoomSwitch, this);
-                CollisionHandler.Instance.RegisterCollidable(Link, Layer.Player, Layer.Enemy, Layer.Wall, Layer.Pickup, Layer.Projectile);
-                
                 isSwitchingLevels = false;
-                EnvironmentFactory.Instance.RegisterGame(this);
-                interactiveEnvironmentObjects = level.CreateInteractiveEnvironmentObjects();
-                
-                itemObjects = level.CreateItemObjects();
 
-                EnemyFactory.Instance.RegisterGame(this);
-                enemyObjects = level.CreateEnemyObjects();
-
-                levelMap = level.CreateAdjacentLevels();
+                RestartLevel();
             }
 
             foreach (IGameObject gameObject in interactiveEnvironmentObjects)
@@ -177,11 +164,30 @@ namespace Project3902
             base.Draw(gameTime);
         }
 
-        private void SetUpMouseController()
+        protected void RestartLevel()
         {
-            mouseController = new MouseController();
-            mouseController.RegisterCommand(MouseActions.Right, new CycleNextRoom(this), InputState.Pressed);
-            mouseController.RegisterCommand(MouseActions.Left, new CyclePrvRoom(this), InputState.Pressed);
+            CollisionHandler.Instance.Flush();
+            var level = new LevelBuilder(this, CurrentRoom);
+
+            if (isSwitchingLevels)
+            {
+                Link = LinkFactory.Instance.CreateLink(linkPositionAfterRoomSwitch, this);
+            }
+            else
+            {
+                Link = LinkFactory.Instance.CreateLink(new Vector2(450, 500), this);
+            }
+            CollisionHandler.Instance.RegisterCollidable(Link, Layer.Player, Layer.Enemy, Layer.Wall, Layer.Pickup, Layer.Projectile);
+
+            EnvironmentFactory.Instance.RegisterGame(this);
+            interactiveEnvironmentObjects = level.CreateInteractiveEnvironmentObjects();
+
+            itemObjects = level.CreateItemObjects();
+
+            EnemyFactory.Instance.RegisterGame(this);
+            enemyObjects = level.CreateEnemyObjects();
+
+            levelMap = level.CreateAdjacentLevels();
         }
 
         public void EnterRoomTop()
@@ -221,24 +227,11 @@ namespace Project3902
             linkPositionAfterRoomSwitch = new Vector2(400, 150);
         }
 
-        public void CycleRoomNext()
+        public void MouseSwitchRoom(string room)
         {
-            CurrentRoomNum = (CurrentRoomNum + 1) % TotalRoomNum;
-            NextR = true;
-        }
+            CurrentRoom = room;
 
-        public void CycleRoomLast()
-        {
-            PreR = true;
-            if (CurrentRoomNum == 0)
-            {
-                CurrentRoomNum = TotalRoomNum - 1;
-            }
-            else
-            {
-                CurrentRoomNum--;
-                
-            }
+            RestartLevel();
         }
     }
 }
