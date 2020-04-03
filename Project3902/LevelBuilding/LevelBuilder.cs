@@ -51,7 +51,7 @@ namespace Project3902
                 var line = csvReader.ReadLine();
                 var values = line.Split(',');
 
-                if(values[0] == "Items"|| values[0] == "Enemies")
+                if(values[0] == "Items"|| values[0] == "Enemies"||values[0] == "Levels")
                 {
                     break;
                 }
@@ -86,7 +86,7 @@ namespace Project3902
                 var line = csvReader.ReadLine();
                 var values = line.Split(',');
 
-                if (values[0] == "Enemies")
+                if (values[0] == "Enemies"||values[0]=="Levels")
                 {
                     break;
                 }

@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Media;
 using Project3902.LevelBuilding;
 using Project3902.ObjectManagement;
 using System.Collections.Generic;
@@ -168,7 +167,7 @@ namespace Project3902
         {
             CollisionHandler.Instance.Flush();
             var level = new LevelBuilder(this, CurrentRoom);
-
+            SoundHandler.Instance.StopEffectInstance();
             if (isSwitchingLevels)
             {
                 Link = LinkFactory.Instance.CreateLink(linkPositionAfterRoomSwitch, this);
@@ -199,6 +198,7 @@ namespace Project3902
 
         public void ReloadOnDeath()
         {
+            SoundHandler.Instance.StopEffectInstance();
             SoundHandler.Instance.PlaySoundEffect("Link Die", true);
             linkPositionAfterRoomSwitch = new Vector2(450, 500);
             isSwitchingLevels = true;

@@ -24,6 +24,7 @@ namespace Project3902.ObjectManagement
         private SoundEffect heartSound;
         private SoundEffect rupeeSound;
         private SoundEffect itemSound;
+        private SoundEffect doorSound;
         private SoundEffectInstance instance;
 
         private Boolean musicPause = false;
@@ -50,7 +51,7 @@ namespace Project3902.ObjectManagement
             heartSound = content.Load<SoundEffect>("SoundEffects/LOZ_Get_Heart");
             rupeeSound = content.Load<SoundEffect>("SoundEffects/LOZ_Get_Rupee");
             itemSound = content.Load<SoundEffect>("SoundEffects/LOZ_Get_Item");
-
+            doorSound = content.Load<SoundEffect>("SoundEffects/LOZ_Door_Unlock");
         }
         public void PlaySong(String songType)
         {
@@ -136,6 +137,10 @@ namespace Project3902.ObjectManagement
             else if (effectType.Equals("Item"))
             {
                 effect = itemSound;
+            }
+            else if (effectType.Equals("Door Unlock"))
+            {
+                effect = doorSound;
             }
             if (stopMusic)
             {

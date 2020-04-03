@@ -1,24 +1,18 @@
 Environment
 Brick, 256, 256
-Brick, 256, 320
 Brick, 256, 384
-Brick, 320, 256
-Brick, 320, 320
-Brick, 320, 384
-Brick, 576, 256
-Brick, 576, 320
-Brick, 576, 384
 Brick, 640, 256
-Brick, 640, 320
 Brick, 640, 384
 WallTop, 448, 0
 OpenDoorLeft, 0, 288
-WallRight, 896, 288
-WallBottom, 448, 576
+OpenDoorRight, 896, 288
+OpenDoorBottom, 448, 576
 Enemies
-Stalfos, 500, 200
-Stalfos, 500, 400
-Stalfos, 420, 300
-Stalfos, 820, 500
+Stalfos, 576, 128
+Stalfos, 576, 384
+Stalfos, 512, 256
+Stalfos, 448, 320
+Stalfos, 704, 192
 Levels
-Left, DungeonRoom1
+Left, DungeonRoom6
+Right, DungeonRoom7

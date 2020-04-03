@@ -214,6 +214,8 @@
     <None Include="LevelBuilding\Levels\DungeonRoom2.csv" />
     <None Include="LevelBuilding\Levels\BulletHellRoom.csv" />
     <None Include="LevelBuilding\Levels\DungeonRoom5.csv" />
+    <None Include="LevelBuilding\Levels\DungeonRoom6 - Copy.csv" />
+    <None Include="LevelBuilding\Levels\DungeonRoom6.csv" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

@@ -1,42 +1,18 @@
 Environment
-Dirt, 448, 384
-Dirt, 512, 384
-Dirt, 320, 448
-Dirt, 384, 448
-Dirt, 448, 448
-Dirt, 512, 448
-Dirt, 576, 448
-Dirt, 640, 448
-Dirt, 320, 512
-Dirt, 384, 512
-Dirt, 448, 512
-Dirt, 512, 512
-Dirt, 576, 512
-Dirt, 640, 512
-LeftStatue, 192, 448
-LeftStatue, 256, 384
-LeftStatue, 320, 320
-LeftStatue, 384, 256
-LeftStatue, 448, 192
-LeftStatue, 512, 192
-LeftStatue, 576, 256
-LeftStatue, 640, 320
-LeftStatue, 704, 384
-LeftStatue, 768, 448
-LockDoorTop, 448, 0
-OpenDoorLeft, 0, 288
-LockDoorBottom, 448, 576
+Brick, 448, 256
+Brick, 448, 320
+Brick, 448, 384
+Brick, 512, 256
+Brick, 512, 320
+Brick, 512, 384
+OpenDoorTop, 448, 0
+WallLeft, 0, 288
 WallRight, 896, 288
-Items
-Ring, 660, 130
-5Rupee, 200, 120
-Heart, 840, 530
-Key, 464, 260
-Sword, 530, 260
-Watch, 128, 500
+OpenDoorBottom, 448, 576
 Enemies
-Wallmaster, 500, 264
-Stalfos, 788, 130
-Rope, 135, 510
-AquaGel, 840, 530
-GrayZol, 720, 512
+Stalfos, 384, 256
+Stalfos, 576, 256
+Stalfos, 640, 128
+Levels
+Top, DungeonRoom5
+Bottom, DungeonRoom1

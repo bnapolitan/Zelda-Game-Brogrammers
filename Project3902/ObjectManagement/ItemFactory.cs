@@ -48,7 +48,7 @@ namespace Project3902
 		{
 			var createdObject = new Rupee(position);
 			List<Rectangle> RupeeSource = new List<Rectangle> { new Rectangle(0, 0, 30, 30), new Rectangle(30, 0, 30, 30) };
-			var sprite = new AnimatedSprite(createdObject, RupeeSprite, RupeeSource, .4f, new Vector2(2,2));
+			var sprite = new AnimatedSprite(createdObject, RupeeSprite, RupeeSource, .4f, new Vector2(3,3));
 			createdObject.Sprite = sprite;
 			RegisterItemForCollision(createdObject);
 			return createdObject;
@@ -57,7 +57,7 @@ namespace Project3902
 		{
 			var createdObject = new Rupee(position);
 			List<Rectangle> RupeeSource = new List<Rectangle> { new Rectangle(0, 0, 30, 30) };
-			var sprite = new AnimatedSprite(createdObject, RupeeSprite, RupeeSource, .4f, new Vector2(2,2));
+			var sprite = new AnimatedSprite(createdObject, RupeeSprite, RupeeSource, .4f, new Vector2(3,3));
 			createdObject.Sprite = sprite;
 			RegisterItemForCollision(createdObject);
 			return createdObject;

@@ -61,6 +61,22 @@ namespace Project3902.LevelBuilding
             {
                 return envFactory.CreateOpenDoorBottom(position);
             }
+            if (name == "ShutDoorTop")
+            {
+                return envFactory.CreateShutDoorTop(position);
+            }
+            if (name == "ShutDoorLeft")
+            {
+                return envFactory.CreateShutDoorLeft(position);
+            }
+            if (name == "ShutDoorRight")
+            {
+                return envFactory.CreateShutDoorRight(position);
+            }
+            if (name == "ShutDoorBottom")
+            {
+                return envFactory.CreateShutDoorBottom(position);
+            }
             if (name == "WallTop")
             {
                 return envFactory.CreateWallTop(position);

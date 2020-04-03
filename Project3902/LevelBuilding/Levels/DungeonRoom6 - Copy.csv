@@ -1,0 +1,32 @@
+Environment
+LeftStatue, 192, 192
+LeftStatue, 256, 192
+LeftStatue, 320, 192
+LeftStatue, 384, 192
+LeftStatue, 448, 192
+LeftStatue, 192, 256
+LeftStatue, 192, 320
+LeftStatue, 192, 384
+RightStatue, 712, 448
+RightStatue, 708, 448
+RightStatue, 644, 448
+RightStatue, 580, 448
+RightStatue, 516, 448
+RightStatue, 712, 384
+RightStatue, 712, 320
+RightStatue, 712, 256
+WallTop, 448, 0
+WallLeft, 0, 288
+WallBottom, 448, 576
+OpenDoorTop, 448, 0
+LockDoorLeft, 0, 288
+LockDoorRight, 896, 288
+OpenDoorBottom, 448, 576
+Items
+Watch, 452, 320
+Heart, 776, 512
+Enemies
+BlueKeese, 135, 135
+Rope, 135, 510
+GrayZol, 660, 300
+RedGoriya, 280, 480

@@ -42,6 +42,7 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
                             Direction = new Vector2(0, -1);
                             break;
                     }
+                    random = new Random();
                     steps = random.Next(40, 300);
                 }
                 Position += Direction * MoveSpeed;
