@@ -191,6 +191,14 @@ namespace Project3902
             linkPositionAfterRoomSwitch = new Vector2(400, 500);
         }
 
+        public void ReloadOnDeath()
+        {
+            linkPositionAfterRoomSwitch = new Vector2(450, 500);
+            isSwitchingLevels = true;
+            
+            
+        }
+
         public void EnterRoomLeft()
         {
             CurrentRoom = levelMap.Left;

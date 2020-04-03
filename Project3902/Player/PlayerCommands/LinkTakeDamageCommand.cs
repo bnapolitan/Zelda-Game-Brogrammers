@@ -1,4 +1,6 @@
-﻿namespace Project3902
+﻿
+
+namespace Project3902
 {
     class LinkTakeDamageCommand : ICommand
     {
@@ -14,7 +16,17 @@
             if (!(game.Link is DamagedLink))
             {
                 game.Link.Health -= 1;
-                game.Link = new DamagedLink(game.Link, game);
+                if(game.Link.Health < 0)
+                {
+                    game.ReloadOnDeath();
+                    game.Link.Health = game.Link.MaxHealth;
+                }
+                else
+                {
+                    game.Link = new DamagedLink(game.Link, game);
+                }
+                
+
             }
         }
     }
