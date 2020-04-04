@@ -31,7 +31,7 @@ namespace Project3902
         MouseController mouseController;
         KeyboardController keyboardController;
 
-        public string CurrentRoom = "DungeonRoom10";
+        public string CurrentRoom = "DungeonRoom0";
         public LevelMap levelMap;
 
         Vector2 linkPositionAfterRoomSwitch;

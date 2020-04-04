@@ -26,7 +26,7 @@ Water, 768, 448
 WallTop, 448, 0
 LockDoorLeft, 0, 288
 WallRight, 896, 288
-LockDoorBottom, 448, 576
+OpenDoorBottom, 448, 576
 Items
 Key, 512, 192
 Enemies
@@ -35,3 +35,4 @@ RedGoriya, 576, 256
 RedGoriya, 640, 128
 Levels
 Left, DungeonRoom13
+Bottom, DungeonRoom11

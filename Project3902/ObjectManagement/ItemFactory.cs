@@ -12,6 +12,7 @@ namespace Project3902
 		private SpriteAtlas RupeeSprite;
 		private SpriteAtlas FairySprite;
 		private SpriteAtlas FixSprite;
+		private SpriteAtlas ItemSprite;
 
         public static ItemFactory Instance { get; } = new ItemFactory();
 
@@ -25,6 +26,7 @@ namespace Project3902
 			RupeeSprite = new SpriteAtlas(content.Load<Texture2D>("item/Rupees"));
 			FairySprite = new SpriteAtlas(content.Load<Texture2D>("item/Fairy"));
 			FixSprite = new SpriteAtlas(content.Load<Texture2D>("Items"));
+			ItemSprite=new SpriteAtlas(content.Load<Texture2D>("ZeldaItems"));
 		}
 
 		public static void RegisterItemForCollision(IItem ItemObject)
@@ -98,6 +100,26 @@ namespace Project3902
 			var createdObject = new Key(position);
 			List<Rectangle> KeySource = new List<Rectangle> { new Rectangle(647, 0, 23, 61) };
 			var sprite = new AnimatedSprite(createdObject, FixSprite, KeySource, .4f, new Vector2(1, 1));
+			createdObject.Sprite = sprite;
+			RegisterItemForCollision(createdObject);
+			return createdObject;
+		}
+
+		public IGameObject CreateMap(Vector2 position)
+		{
+			var createdObject = new Map(position);
+			List<Rectangle> MapSource = new List<Rectangle> { new Rectangle(88, 0, 8, 16) };
+			var sprite = new AnimatedSprite(createdObject, ItemSprite, MapSource, .4f, new Vector2(4, 4));
+			createdObject.Sprite = sprite;
+			RegisterItemForCollision(createdObject);
+			return createdObject;
+		}
+
+		public IGameObject CreateTriforce(Vector2 position)
+		{
+			var createdObject = new Triforce(position);
+			List<Rectangle> TriforceSource = new List<Rectangle> { new Rectangle(274, 2, 11, 11) };
+			var sprite = new AnimatedSprite(createdObject, ItemSprite, TriforceSource, .4f, new Vector2(4, 4));
 			createdObject.Sprite = sprite;
 			RegisterItemForCollision(createdObject);
 			return createdObject;

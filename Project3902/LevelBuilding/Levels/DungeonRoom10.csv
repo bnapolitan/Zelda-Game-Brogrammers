@@ -13,6 +13,9 @@ OpenDoorTop, 448, 0
 OpenDoorLeft, 0, 288
 LockDoorRight, 896, 288
 WallBottom, 448, 576
+Items
+Map, 256, 320
+Key, 768, 320
 Enemies
 AquaGel, 384, 128
 AquaGel, 320, 448

@@ -143,6 +143,10 @@ namespace Project3902
                 {
                     SoundHandler.Instance.PlaySoundEffect("Rupee");
                 }
+                else if (other.GameObject is Triforce)
+                {
+                    SoundHandler.Instance.PlaySong("Triforce");
+                }
                 else
                 {
                     SoundHandler.Instance.PlaySoundEffect("Item");

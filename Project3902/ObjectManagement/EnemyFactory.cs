@@ -296,7 +296,7 @@ namespace Project3902.ObjectManagement
 
 		public IGameObject CreateAquamentus(Vector2 position)
 		{
-			var createdObject = new Aquamentus(position, 1, new Vector2(1, 0), this.game);
+			var createdObject = new Aquamentus(position, 1, new Vector2(-1, 0), this.game);
 			createdObject.Collider = new Collider(createdObject, new Rectangle(0, 0, 24 * (int)enemyScale.X, 32 * (int)enemyScale.Y));
 			RegisterEnemyForCollision(createdObject);
 

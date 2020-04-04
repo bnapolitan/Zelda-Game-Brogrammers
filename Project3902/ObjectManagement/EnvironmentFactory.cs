@@ -46,7 +46,7 @@ namespace Project3902.ObjectManagement
         public IGameObject CreateStairs(Vector2 position)
         {
             var createdObject = new Stairs(position);
-            var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(1035, 28, 16, 16));
+            var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(1035, 28, 16, 16), environmentScale);
             createdObject.Sprite = sprite;
             RegisterEnvironmentForCollision(createdObject);
             return createdObject;
@@ -191,8 +191,10 @@ namespace Project3902.ObjectManagement
 
         public IGameObject CreateLockDoorTop(Vector2 position)
         {
-            var createdObject = new LockDoor(position);
-            createdObject.DirectionType = 0;
+            var createdObject = new LockDoor(position)
+            {
+                DirectionType = 0
+            };
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(881, 11, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
             RegisterDoorForCollision(createdObject);
@@ -201,8 +203,10 @@ namespace Project3902.ObjectManagement
 
         public IGameObject CreateLockDoorBottom(Vector2 position)
         {
-            var createdObject = new LockDoor(position);
-            createdObject.DirectionType = 2;
+            var createdObject = new LockDoor(position)
+            {
+                DirectionType = 2
+            };
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(881, 110, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
             RegisterDoorForCollision(createdObject);
@@ -211,8 +215,10 @@ namespace Project3902.ObjectManagement
 
         public IGameObject CreateLockDoorLeft(Vector2 position)
         {
-            var createdObject = new LockDoor(position);
-            createdObject.DirectionType = 3;
+            var createdObject = new LockDoor(position)
+            {
+                DirectionType = 3
+            };
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(881, 44, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
             RegisterDoorForCollision(createdObject);
@@ -221,8 +227,10 @@ namespace Project3902.ObjectManagement
 
         public IGameObject CreateLockDoorRight(Vector2 position)
         {
-            var createdObject = new LockDoor(position);
-            createdObject.DirectionType = 1;
+            var createdObject = new LockDoor(position)
+            {
+                DirectionType = 1
+            };
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(881, 77, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
             RegisterDoorForCollision(createdObject);

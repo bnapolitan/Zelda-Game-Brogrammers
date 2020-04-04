@@ -60,8 +60,10 @@
     <Compile Include="GameObjects\Environment\BaseEnvironment.cs" />
     <Compile Include="GameObjects\Environment\Interfaces\IDoorway.cs" />
     <Compile Include="GameObjects\Environment\BlockingBrick.cs" />
+    <Compile Include="GameObjects\Item\Map.cs" />
     <Compile Include="GameObjects\Item\Sword.cs" />
     <Compile Include="GameObjects\Item\Rupee.cs" />
+    <Compile Include="GameObjects\Item\Triforce.cs" />
     <Compile Include="GameObjects\Item\Watch.cs" />
     <Compile Include="GameObjects\Item\Ring.cs" />
     <Compile Include="GameObjects\Item\Potion.cs" />
@@ -208,6 +210,11 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.manifest" />
     <None Include="LevelBuilding\Levels\DungeonRoom0.csv" />
+    <None Include="LevelBuilding\Levels\DungeonRoom17.csv" />
+    <None Include="LevelBuilding\Levels\DungeonRoom16.csv" />
+    <None Include="LevelBuilding\Levels\DungeonRoom15.csv" />
+    <None Include="LevelBuilding\Levels\DungeonRoom14.csv" />
+    <None Include="LevelBuilding\Levels\DungeonRoom13.csv" />
     <None Include="LevelBuilding\Levels\DungeonRoom12.csv" />
     <None Include="LevelBuilding\Levels\DungeonRoom11.csv" />
     <None Include="LevelBuilding\Levels\DungeonRoom4.csv" />

@@ -380,6 +380,18 @@
 /processorParam:TextureFormat=Color
 /build:ZeldaCharacter.png
 
+#begin ZeldaItems.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:ZeldaItems.png
+
 #begin ZeldaNPCSpriteSheet.png
 /importer:TextureImporter
 /processor:TextureProcessor

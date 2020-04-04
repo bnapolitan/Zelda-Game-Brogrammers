@@ -109,6 +109,10 @@ namespace Project3902.LevelBuilding
             {
                 return envFactory.CreateWater(position);
             }
+            if (name == "Stairs")
+            {
+                return envFactory.CreateStairs(position);
+            }
 
             throw new Exception($"The object {name} has not been mapped in ObjectLookup yet!");
         }
@@ -151,7 +155,14 @@ namespace Project3902.LevelBuilding
             {
                 return itemFactory.CreateSword(position);
             }
-
+            if (name == "Map")
+            {
+                return itemFactory.CreateMap(position);
+            }
+            if (name == "Triforce")
+            {
+                return itemFactory.CreateTriforce(position);
+            }
             if (name == "Ring")
             {
                 return itemFactory.CreateRing(position);
