@@ -40,7 +40,7 @@ namespace Project3902
 
         public Link(Vector2 position)
         {
-            Health = 5;
+            Health = 6;
             MaxHealth = Health;
 
             machine = new LinkStateMachine(this);

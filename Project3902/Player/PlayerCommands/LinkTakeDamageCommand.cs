@@ -15,8 +15,8 @@ namespace Project3902
         {
             if (!(game.Link is DamagedLink))
             {
-                game.Link.Health -= 1;
-                if(game.Link.Health < 0)
+                game.Link.Health -= .5f;
+                if(game.Link.Health <= 0)
                 {
                     game.ReloadOnDeath();
                     game.Link.Health = game.Link.MaxHealth;

@@ -55,6 +55,9 @@
     <Compile Include="GameObjects\Environment\BaseEnvironment.cs" />
     <Compile Include="GameObjects\Environment\Interfaces\IDoorway.cs" />
     <Compile Include="GameObjects\Environment\BlockingBrick.cs" />
+    <Compile Include="GameObjects\HUD\HUDManager.cs" />
+    <Compile Include="GameObjects\HUD\HUDObject.cs" />
+    <Compile Include="GameObjects\HUD\Interface\IHUDObject.cs" />
     <Compile Include="GameObjects\Item\Sword.cs" />
     <Compile Include="GameObjects\Item\Rupee.cs" />
     <Compile Include="GameObjects\Item\Watch.cs" />
@@ -75,6 +78,7 @@
     <Compile Include="LevelBuilding\CycleNextRoom.cs" />
     <Compile Include="LevelBuilding\LevelBuilder.cs" />
     <Compile Include="LevelBuilding\ObjectLookup.cs" />
+    <Compile Include="ObjectManagement\HUDFactory.cs" />
     <Compile Include="ObjectManagement\ItemFactory.cs" />
     <Compile Include="ObjectManagement\CollisionSystem\Collider.cs" />
     <Compile Include="ObjectManagement\CollisionSystem\CollisionHandler.cs" />
