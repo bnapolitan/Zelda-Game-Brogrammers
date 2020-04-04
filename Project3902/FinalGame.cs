@@ -18,7 +18,7 @@ namespace Project3902
 {
     class FinalGame : Game
     {
-        readonly GraphicsDeviceManager graphics;
+        public readonly GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
         public ILink Link { get; set; }
@@ -26,6 +26,7 @@ namespace Project3902
         public List<IGameObject> interactiveEnvironmentObjects;
         public List<IGameObject> enemyObjects;
         public List<IGameObject> itemObjects;
+        public List<IGameObject> HUDObjects;
         public int CurrentRoomNum = 1, TotalRoomNum=5;
 
         MouseController mouseController;
@@ -49,7 +50,7 @@ namespace Project3902
             IsMouseVisible = true;
 
             graphics.PreferredBackBufferWidth = 1024;
-            graphics.PreferredBackBufferHeight = 672;
+            graphics.PreferredBackBufferHeight = 768;
             graphics.ApplyChanges();
 
             base.Initialize();
@@ -59,10 +60,14 @@ namespace Project3902
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            HUDFactory.Instance.LoadAllTextures(Content);
+            HUDFactory.Instance.registerGame(this);
+            HUDManager.Instance.registerGame(this);
+            HUDObjects = HUDManager.Instance.HUDElements;
             var level = new LevelBuilder(this, CurrentRoom);
 
             LinkFactory.Instance.LoadAllTextures(Content);
-            Link = LinkFactory.Instance.CreateLink(new Vector2(450, 500), this);
+            Link = LinkFactory.Instance.CreateLink(new Vector2(450, 500 + HUDFactory.Instance.HUDHeight), this);
             CollisionHandler.Instance.RegisterCollidable(Link, Layer.Player, Layer.Enemy, Layer.Wall, Layer.Pickup, Layer.Projectile);
 
             keyboardController = LinkFactory.Instance.CreateLinkController(this);
@@ -82,6 +87,8 @@ namespace Project3902
             EnemyFactory.Instance.RegisterGame(this);
             EnemyFactory.Instance.LoadAllTextures(Content);
             enemyObjects = level.CreateEnemyObjects();
+
+            
 
             levelMap = level.CreateAdjacentLevels();
 
@@ -123,7 +130,7 @@ namespace Project3902
             {
                 gameObject.Update(gameTime);
             }
-
+            HUDManager.Instance.Update(gameTime);
 
             base.Update(gameTime);
 
@@ -136,9 +143,9 @@ namespace Project3902
         {
 
             GraphicsDevice.Clear(Color.Black);
-
+            
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-
+            //HUDFactory.Instance.createEmptyHeart().Sprite.Draw(spriteBatch);
             foreach (IGameObject gameObject in interactiveEnvironmentObjects)
             {
                 gameObject.Draw(spriteBatch);
@@ -153,6 +160,8 @@ namespace Project3902
             {
                 gameObject.Draw(spriteBatch);
             }
+
+            HUDManager.Instance.Draw(spriteBatch);
 
 
 
