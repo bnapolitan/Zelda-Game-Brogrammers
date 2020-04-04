@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
+using System.Collections.Generic;
 
 namespace Project3902.ObjectManagement
 {
@@ -25,7 +26,7 @@ namespace Project3902.ObjectManagement
         private SoundEffect rupeeSound;
         private SoundEffect itemSound;
         private SoundEffect doorSound;
-        private SoundEffectInstance instance;
+        private List<SoundEffectInstance> instanceList=new List<SoundEffectInstance>();
 
         private Boolean musicPause = false;
         public static SoundHandler Instance { get; } = new SoundHandler();
@@ -106,8 +107,9 @@ namespace Project3902.ObjectManagement
             else if (effectType.Equals("Boomerang"))
             {
                 effect = boomerangSound;
-                instance = effect.CreateInstance();
+                var instance = effect.CreateInstance();
                 instance.IsLooped = true;
+                instanceList.Add(instance);
                 instance.Play();
             }
             else if (effectType.Equals("Enemy Hit"))
@@ -161,10 +163,29 @@ namespace Project3902.ObjectManagement
             MediaPlayer.Stop();
         }
 
-        public void StopEffectInstance()
+        public void StopEffectInstance(Boolean all=false)
         {
-            if(instance!=null)
-                instance.Stop();
+            if (instanceList.Count > 0)
+            {
+                if (all)
+                {
+                    foreach (SoundEffectInstance current in instanceList)
+                    {
+                        current.Stop();
+                    }
+                    instanceList.Clear();
+                }
+                else
+                {
+                    if (instanceList[0] != null)
+                    {
+                        instanceList[0].Stop();
+                        instanceList.Remove(instanceList[0]);
+                    }
+
+                }
+            }
+            
         }
         
 
