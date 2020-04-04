@@ -7,60 +7,56 @@ namespace Project3902
     {
         
         public static CollisionHandler Instance { get; } = new CollisionHandler();
-        private FinalGame game;
-        private Dictionary<ICollidable, LayerMasksHolder> dict;
 
-        private Dictionary<ICollidable, LayerMasksHolder> toAdd;
+        private Dictionary<ICollidable, LayerMasksHolder> colliders;
 
-        private List<ICollidable> toDelete;
+        private Dictionary<ICollidable, LayerMasksHolder> collidersToAdd;
+
+        private List<ICollidable> collidersToDelete;
+
+        private bool flushRequested = false;
 
         private CollisionHandler() 
         {
-            Flush();
+            colliders = new Dictionary<ICollidable, LayerMasksHolder>();
+            collidersToAdd = new Dictionary<ICollidable, LayerMasksHolder>();
+            collidersToDelete = new List<ICollidable>();
         }
 
-        public void RegisterGame(FinalGame game)
-        {
-            this.game = game;
-        }
         public void RegisterCollidable(ICollidable collidable, Layer mainLayer, params Layer[] masks)
         {
             var holder = new LayerMasksHolder(mainLayer, masks);
-            toAdd.Add(collidable, holder);
+            collidersToAdd.Add(collidable, holder);
         }
 
         public void RemoveCollidable(ICollidable collidable)
         {
-            toDelete.Add(collidable);
-            if (collidable is IEnemy)
-            {
-                game.enemyObjects.Remove(collidable as IGameObject);
-            }
-            if (collidable is IInteractiveEnvironmentObject)
-            {
-                game.interactiveEnvironmentObjects.Remove(collidable as IGameObject);
-            }
-            if (collidable is IItem)
-            {
-                game.itemObjects.Remove(collidable as IGameObject);
-            }
+            collidersToDelete.Add(collidable);
         }
 
         public void CheckCollisions()
         {
-            foreach (var collidable in toDelete)
-                dict.Remove(collidable);
-            toDelete = new List<ICollidable>();
-
-            foreach (var collidable in toAdd)
-                dict.Add(collidable.Key, collidable.Value);
-            toAdd = new Dictionary<ICollidable, LayerMasksHolder>();
-
-            foreach (ICollidable collider in dict.Keys)
+            if (flushRequested)
             {
-                foreach (ICollidable collidee in dict.Keys)
+                flushRequested = false;
+                colliders = new Dictionary<ICollidable, LayerMasksHolder>();
+                collidersToDelete = new List<ICollidable>();
+                return;
+            }
+
+            foreach (var collidable in collidersToDelete)
+                colliders.Remove(collidable);
+            collidersToDelete = new List<ICollidable>();
+
+            foreach (var collidable in collidersToAdd)
+                colliders.Add(collidable.Key, collidable.Value);
+            collidersToAdd = new Dictionary<ICollidable, LayerMasksHolder>();
+
+            foreach (ICollidable collider in colliders.Keys)
+            {
+                foreach (ICollidable collidee in colliders.Keys)
                 {
-                    if (dict[collider].Masks.Contains(dict[collidee].MainLayer))
+                    if (colliders[collider].Masks.Contains(colliders[collidee].MainLayer))
                     {
                         if (collider.Collider.Intersects(collidee.Collider))
                         {
@@ -73,9 +69,7 @@ namespace Project3902
 
         public void Flush()
         {
-            dict = new Dictionary<ICollidable, LayerMasksHolder>();
-            toAdd = new Dictionary<ICollidable, LayerMasksHolder>();
-            toDelete = new List<ICollidable>();
+            flushRequested = true;
         }
     }
 }

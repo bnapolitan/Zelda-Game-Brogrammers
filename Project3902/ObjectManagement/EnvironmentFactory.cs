@@ -41,7 +41,11 @@ namespace Project3902.ObjectManagement
             door.Collider = new Collider(door, new Rectangle(0, 0, 128, 128));
             CollisionHandler.Instance.RegisterCollidable(door, Layer.Wall);
         }
-
+        public static void RegisterDoorForCollision(IInteractiveEnvironmentObject door, Vector2 offset)
+        {
+            door.Collider = new Collider(door, new Rectangle(offset.ToPoint(), new Vector2(128, 128).ToPoint()));
+            CollisionHandler.Instance.RegisterCollidable(door, Layer.Wall);
+        }
 
         public IGameObject CreateStairs(Vector2 position)
         {
@@ -230,7 +234,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new OpenDoor(position, game);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(848, 11, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
-            RegisterDoorForCollision(createdObject);
+            RegisterDoorForCollision(createdObject, new Vector2(0, -64));
             return createdObject;
         }
 
@@ -239,7 +243,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new OpenDoor(position, game);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(848, 110, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
-            RegisterDoorForCollision(createdObject);
+            RegisterDoorForCollision(createdObject, new Vector2(0, 64));
             return createdObject;
         }
 
@@ -248,7 +252,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new OpenDoor(position, game);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(848, 44, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
-            RegisterDoorForCollision(createdObject);
+            RegisterDoorForCollision(createdObject, new Vector2(-64, 0));
             return createdObject;
         }
 
@@ -257,7 +261,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new OpenDoor(position, game);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(848, 77, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
-            RegisterDoorForCollision(createdObject);
+            RegisterDoorForCollision(createdObject, new Vector2(64, 0));
             return createdObject;
         }
 
@@ -310,7 +314,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new Wall(position);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(815, 11, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
-            RegisterEnvironmentForCollision(createdObject);
+            RegisterDoorForCollision(createdObject);
             return createdObject;
         }
 
@@ -319,7 +323,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new Wall(position);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(815, 110, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
-            RegisterEnvironmentForCollision(createdObject);
+            RegisterDoorForCollision(createdObject);
             return createdObject;
         }
 
@@ -328,7 +332,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new Wall(position);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(815, 44, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
-            RegisterEnvironmentForCollision(createdObject);
+            RegisterDoorForCollision(createdObject);
             return createdObject;
         }
 
@@ -337,7 +341,7 @@ namespace Project3902.ObjectManagement
             var createdObject = new Wall(position);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(815, 77, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
-            RegisterEnvironmentForCollision(createdObject);
+            RegisterDoorForCollision(createdObject);
             return createdObject;
         }
 

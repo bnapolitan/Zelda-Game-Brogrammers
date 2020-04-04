@@ -8,12 +8,17 @@ using System.IO;
 
 namespace Project3902
 {
-    class LevelBuilder : ILevel
+    class LevelBuilder : ILevelBuilder
     {
         public FinalGame Game { get; }
         private readonly string levelName;
         private readonly EnvironmentFactory envFactory = EnvironmentFactory.Instance;
         private readonly ObjectLookup objectLookup = new ObjectLookup();
+
+        public LevelBuilder(string levelName)
+        {
+            this.levelName = levelName;
+        }
 
         public LevelBuilder(FinalGame game, string levelName)
         {

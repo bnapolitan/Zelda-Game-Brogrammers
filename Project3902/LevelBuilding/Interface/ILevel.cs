@@ -1,11 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.Xna.Framework;
 
 namespace Project3902.LevelBuilding
 {
-    public interface ILevel
+    interface ILevel : IUpdatable, IDrawable
     {
-        List<IGameObject> CreateInteractiveEnvironmentObjects();
+        string LevelName { get; set; }
+        LevelMap Map { get; set; }
+        Vector2 ScrollDirection { get; set; }
+        float ScrollSpeed { get; set; }
+        bool Scrolling { get; set; }
 
-        List<IGameObject> CreateEnemyObjects();
+        void LoadLevel();
+        void PositionGameObjects(Vector2 offset);
     }
 }

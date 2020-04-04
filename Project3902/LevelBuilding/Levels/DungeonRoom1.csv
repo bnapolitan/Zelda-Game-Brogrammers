@@ -28,7 +28,7 @@ RightStatue, 768, 448
 LockDoorTop, 448, 0
 OpenDoorLeft, 0, 288
 OpenDoorRight, 896, 288
-OpenDoorBottom, 448, 576
+WallBottom, 448, 576
 Items
 Fairy, 660, 130
 5Rupee, 200, 120

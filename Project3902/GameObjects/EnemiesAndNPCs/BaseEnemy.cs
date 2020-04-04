@@ -38,8 +38,11 @@ namespace Project3902
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            Collider.Draw(spriteBatch);
-            (Sprite as AnimatedSprite).DrawTinted(spriteBatch, tint);
+            if (Active)
+            {
+                Collider.Draw(spriteBatch);
+                (Sprite as AnimatedSprite).DrawTinted(spriteBatch, tint);
+            }
         }
 
         public virtual void OnCollide(Collider other)
@@ -74,15 +77,18 @@ namespace Project3902
 
         public virtual void Update(GameTime gameTime)
         {
-            Sprite.Update(gameTime);
-            if (attackedRecent)
+            if (Active)
             {
-                collisionDelay--;
-                if (collisionDelay == 0)
+                Sprite.Update(gameTime);
+                if (attackedRecent)
                 {
-                    attackedRecent = false;
-                    collisionDelay = 20;
-                    tint = Color.White;
+                    collisionDelay--;
+                    if (collisionDelay == 0)
+                    {
+                        attackedRecent = false;
+                        collisionDelay = 20;
+                        tint = Color.White;
+                    }
                 }
             }
         }
