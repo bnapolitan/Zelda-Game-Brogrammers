@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Project3902.ObjectManagement;
 
 namespace Project3902
 {
@@ -13,6 +14,8 @@ namespace Project3902
         public BoomerangWeapon()
         {
             Sprite = WeaponFactory.Instance.CreateBoomerangSprite(this);
+            SoundHandler.Instance.StopEffectInstance();
+            SoundHandler.Instance.PlaySoundEffect("Boomerang");
         }
 
         public override void OnCollide(Collider other) {
@@ -55,11 +58,17 @@ namespace Project3902
             }
 
             if (turned && distTraveled <= 20f)
+            {
                 Active = false;
+                SoundHandler.Instance.StopEffectInstance();
+                CollisionHandler.Instance.RemoveCollidable(this);
+            }
 
             if (Position == startingPos && (distTraveled > 0))
             {
                 Active = false;
+                SoundHandler.Instance.StopEffectInstance();
+                CollisionHandler.Instance.RemoveCollidable(this);
             }
             Position += Direction * Speed * (float) gameTime.ElapsedGameTime.TotalSeconds;
             

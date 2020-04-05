@@ -1,0 +1,17 @@
+Environment
+Brick, 256, 256
+Brick, 256, 384
+Brick, 704, 256
+Brick, 704, 384
+WallTop, 448, 0
+OpenDoorLeft, 0, 288
+OpenDoorRight, 896, 288
+WallBottom, 448, 576
+Enemies
+RedGoriya, 320, 128
+RedGoriya, 320, 512
+RedGoriya, 832, 320
+Levels
+Left, DungeonRoom10
+Right, DungeonRoom15
+Bottom, DungeonRoom7

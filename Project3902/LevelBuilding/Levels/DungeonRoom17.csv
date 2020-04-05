@@ -1,0 +1,37 @@
+Environment
+Brick, 192, 192
+Brick, 256, 192
+Brick, 320, 192
+Brick, 384, 192
+Brick, 448, 192
+Brick, 512, 192
+Brick, 576, 192
+Brick, 640, 192
+Brick, 704, 192
+Brick, 768, 192
+Brick, 192, 256
+Brick, 768, 256
+Brick, 192, 320
+Brick, 768, 320
+Brick, 192, 384
+Brick, 768, 384
+Brick, 192, 448
+Brick, 256, 448
+Brick, 320, 448
+Brick, 384, 448
+Brick, 576, 448
+Brick, 640, 448
+Brick, 704, 448
+Brick, 768, 448
+LeftStatue, 320, 320
+LeftStatue, 384, 256
+RightStatue, 576, 256
+RightStatue, 640, 320
+WallTop, 448, 0
+OpenDoorLeft, 0, 288
+WallRight, 896, 288
+WallBottom, 448, 576
+Items
+Triforce, 490, 340
+Levels
+Left, DungeonRoom16

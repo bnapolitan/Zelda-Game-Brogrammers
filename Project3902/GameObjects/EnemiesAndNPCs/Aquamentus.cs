@@ -11,7 +11,7 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
         public FinalGame Game { get; }
         private readonly float distance = 100;
         private Vector2 relPos = new Vector2(0, 0);
-        private readonly int framesBeforeAttack = 120;
+        private readonly int framesBeforeAttack = 200;
         private int currentFrame = 0;
         private IProjectile fireball;
         private IProjectile fireball2;
@@ -55,6 +55,7 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
 
             if (currentFrame >= framesBeforeAttack)
             {
+                SoundHandler.Instance.PlaySoundEffect("Aquamentus");
                 this.Attack();
                 isShooting = true;
                 currentFrame = 0;

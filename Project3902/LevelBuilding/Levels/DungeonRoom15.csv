@@ -1,0 +1,33 @@
+Environment
+Brick, 192, 192
+Brick, 320, 192
+Brick, 448, 192
+Brick, 512, 192
+Brick, 640, 192
+Brick, 768, 192
+Brick, 192, 320
+Brick, 320, 320
+Brick, 448, 320
+Brick, 512, 320
+Brick, 640, 320
+Brick, 768, 320
+Brick, 192, 448
+Brick, 320, 448
+Brick, 448, 448
+Brick, 512, 448
+Brick, 640, 448
+Brick, 768, 448
+LockDoorTop, 448, 0
+OpenDoorLeft, 0, 288
+WallRight, 896, 288
+WallBottom, 448, 576
+Items
+Key, 640, 512
+Enemies
+Wallmaster, 448, 128
+Wallmaster, 640, 128
+Wallmaster, 512, 512
+Wallmaster, 832, 320
+Levels
+Left, DungeonRoom14
+Top, DungeonRoom16

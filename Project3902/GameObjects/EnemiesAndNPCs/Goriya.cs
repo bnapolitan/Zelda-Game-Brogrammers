@@ -15,6 +15,7 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
         private int currentFrame = 0;
         private IProjectile boomerang;
         private bool isShooting = false;
+        private static readonly Random random = new Random();
 
         public Goriya(Vector2 pos, float moveSpeed, Vector2 initDirection) : base(pos, moveSpeed, initDirection) {
             Health = 2;
@@ -73,7 +74,6 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
                 {
                     if (steps == 0)
                     {
-                        Random random = new Random();
                         int dvalue = random.Next(4);
                         switch (dvalue)
                         {

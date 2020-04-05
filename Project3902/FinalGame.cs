@@ -18,22 +18,25 @@ namespace Project3902
 {
     class FinalGame : Game
     {
-        readonly GraphicsDeviceManager graphics;
+        public readonly GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
         public ILink Link { get; set; }
 
-        public string CurrentRoom = "DungeonRoom1";
-        private ILevel currentLevel;
-        private ILevel nextLevel;
-
-        private float scrollTimer;
-        private Vector2 linkPositionAfterRoomSwitch;
-
-        private Vector2 roomSize = new Vector2(1024, 672);
+        public List<IGameObject> interactiveEnvironmentObjects;
+        public List<IGameObject> enemyObjects;
+        public List<IGameObject> itemObjects;
+        public List<IGameObject> HUDObjects;
+        public int CurrentRoomNum = 1, TotalRoomNum=5;
 
         MouseController mouseController;
         KeyboardController keyboardController;
+
+        public string CurrentRoom = "DungeonRoom0";
+        public LevelMap levelMap;
+
+        Vector2 linkPositionAfterRoomSwitch;
+        bool isSwitchingLevels = false;
 
         public FinalGame()
         {
@@ -46,8 +49,8 @@ namespace Project3902
         {
             IsMouseVisible = true;
 
-            graphics.PreferredBackBufferWidth = (int) roomSize.X;
-            graphics.PreferredBackBufferHeight = (int) roomSize.Y;
+            graphics.PreferredBackBufferWidth = 1024;
+            graphics.PreferredBackBufferHeight = 768;
             graphics.ApplyChanges();
 
             base.Initialize();
@@ -57,9 +60,15 @@ namespace Project3902
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            HUDFactory.Instance.LoadAllTextures(Content);
+            HUDFactory.Instance.registerGame(this);
+            HUDManager.Instance.registerGame(this);
+            HUDObjects = HUDManager.Instance.HUDElements;
+            var level = new LevelBuilder(this, CurrentRoom);
+
             LinkFactory.Instance.LoadAllTextures(Content);
-            Link = LinkFactory.Instance.CreateLink(new Vector2(450, 500), this);
-            RegisterLinkCollision();
+            Link = LinkFactory.Instance.CreateLink(new Vector2(450, 500 + HUDFactory.Instance.HUDHeight), this);
+            CollisionHandler.Instance.RegisterCollidable(Link, Layer.Player, Layer.Enemy, Layer.Wall, Layer.Pickup, Layer.Projectile);
 
             keyboardController = LinkFactory.Instance.CreateLinkController(this);
             mouseController = LevelFactory.Instance.CreateLevelController(this);
@@ -70,13 +79,23 @@ namespace Project3902
 
             EnvironmentFactory.Instance.RegisterGame(this);
             EnvironmentFactory.Instance.LoadAllTextures(Content);
+            interactiveEnvironmentObjects = level.CreateInteractiveEnvironmentObjects();
 
             ItemFactory.Instance.LoadAllTextures(Content);
+            itemObjects = level.CreateItemObjects();
 
             EnemyFactory.Instance.RegisterGame(this);
             EnemyFactory.Instance.LoadAllTextures(Content);
+            enemyObjects = level.CreateEnemyObjects();
 
-            currentLevel = new Level(CurrentRoom);
+            
+
+            levelMap = level.CreateAdjacentLevels();
+
+            CollisionHandler.Instance.RegisterGame(this);
+
+            SoundHandler.Instance.LoadAllSounds(Content);
+            SoundHandler.Instance.PlaySong("Dungeon");
         }
 
 
@@ -87,26 +106,35 @@ namespace Project3902
 
         protected override void Update(GameTime gameTime)
         {
+            mouseController.Update();
+            keyboardController.Update();
+
+            if (isSwitchingLevels)
+            {
+                
+
+                RestartLevel();
+            }
+
+            foreach (IGameObject gameObject in interactiveEnvironmentObjects)
+            {
+                gameObject.Update(gameTime);
+            }
+
+            foreach (IGameObject gameObject in enemyObjects)
+            {
+                gameObject.Update(gameTime);
+            }
+
+            foreach (IGameObject gameObject in itemObjects)
+            {
+                gameObject.Update(gameTime);
+            }
+            HUDManager.Instance.Update(gameTime);
+
             base.Update(gameTime);
 
-            currentLevel.Update(gameTime);
-            if (nextLevel != null)
-                nextLevel.Update(gameTime);
-
-            if (!currentLevel.Scrolling)
-            {
-                Link.Update(gameTime);
-                mouseController.Update();
-                keyboardController.Update();
-            }
-            else
-            {
-                scrollTimer -= (float) gameTime.ElapsedGameTime.TotalSeconds;
-                if (scrollTimer <= 0)
-                {
-                    EndRoomSwitch();
-                }
-            }
+            Link.Update(gameTime);
 
             CollisionHandler.Instance.CheckCollisions();
         }
@@ -115,84 +143,97 @@ namespace Project3902
         {
 
             GraphicsDevice.Clear(Color.Black);
-
+            
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+            //HUDFactory.Instance.createEmptyHeart().Sprite.Draw(spriteBatch);
+            foreach (IGameObject gameObject in interactiveEnvironmentObjects)
+            {
+                gameObject.Draw(spriteBatch);
+            }
 
-            currentLevel.Draw(spriteBatch);
-            if (nextLevel != null)
-                nextLevel.Draw(spriteBatch);
+            foreach (IGameObject gameObject in itemObjects)
+            {
+                gameObject.Draw(spriteBatch);
+            }
 
-            if (!currentLevel.Scrolling)
-                Link.Draw(spriteBatch);
+            foreach (IGameObject gameObject in enemyObjects)
+            {
+                gameObject.Draw(spriteBatch);
+            }
+
+            HUDManager.Instance.Draw(spriteBatch);
+
+
+
+            Link.Draw(spriteBatch);
 
             spriteBatch.End();
 
             base.Draw(gameTime);
         }
 
-        private void RegisterLinkCollision()
-        {
-            CollisionHandler.Instance.RegisterCollidable(Link, Layer.Player, Layer.Enemy, Layer.Wall, Layer.Pickup, Layer.Projectile);
-        }
-
         protected void RestartLevel()
         {
             CollisionHandler.Instance.Flush();
-
-            currentLevel = new Level(CurrentRoom);
-
-            RegisterLinkCollision();
-        }
-
-        private void StartRoomSwitch(Vector2 direction)
-        {
-            currentLevel.Scrolling = true;
-            currentLevel.ScrollDirection = direction;
-            CollisionHandler.Instance.Flush();
-
-            nextLevel = new Level(CurrentRoom, roomSize * -direction)
+            var level = new LevelBuilder(this, CurrentRoom);
+            SoundHandler.Instance.StopEffectInstance(true);
+            if (isSwitchingLevels)
             {
-                Scrolling = true,
-                ScrollDirection = direction
-            };
+                Link = LinkFactory.Instance.CreateLink(linkPositionAfterRoomSwitch, this);
+                isSwitchingLevels = false;
+            }
+            else
+            {
+                Link = LinkFactory.Instance.CreateLink(new Vector2(450, 500), this);
+            }
+            CollisionHandler.Instance.RegisterCollidable(Link, Layer.Player, Layer.Enemy, Layer.Wall, Layer.Pickup, Layer.Projectile);
 
-            scrollTimer = (roomSize * direction).Length() / currentLevel.ScrollSpeed;
-        }
+            EnvironmentFactory.Instance.RegisterGame(this);
+            interactiveEnvironmentObjects = level.CreateInteractiveEnvironmentObjects();
 
-        private void EndRoomSwitch()
-        {
-            Link.Position = linkPositionAfterRoomSwitch;
-            RegisterLinkCollision();
+            itemObjects = level.CreateItemObjects();
 
-            currentLevel = new Level(CurrentRoom);
-            nextLevel = null;
+            EnemyFactory.Instance.RegisterGame(this);
+            enemyObjects = level.CreateEnemyObjects();
+
+            levelMap = level.CreateAdjacentLevels();
         }
 
         public void EnterRoomTop()
         {
-            CurrentRoom = currentLevel.Map.Top;
-            StartRoomSwitch(new Vector2(0, 1));
+            CurrentRoom = levelMap.Top;
+            isSwitchingLevels = true;
             linkPositionAfterRoomSwitch = new Vector2(480, 512);
+        }
+
+        public void ReloadOnDeath()
+        {
+            SoundHandler.Instance.StopEffectInstance(true);
+            SoundHandler.Instance.PlaySoundEffect("Link Die", true);
+            linkPositionAfterRoomSwitch = new Vector2(450, 500);
+            isSwitchingLevels = true;
+            
+            
         }
 
         public void EnterRoomLeft()
         {
-            CurrentRoom = currentLevel.Map.Left;
-            StartRoomSwitch(new Vector2(1, 0));
+            CurrentRoom = levelMap.Left;
+            isSwitchingLevels = true;
             linkPositionAfterRoomSwitch = new Vector2(832, 320);
         }
 
         public void EnterRoomRight()
         {
-            CurrentRoom = currentLevel.Map.Right;
-            StartRoomSwitch(new Vector2(-1, 0));
+            CurrentRoom = levelMap.Right;
+            isSwitchingLevels = true;
             linkPositionAfterRoomSwitch = new Vector2(128, 320);
         }
 
         public void EnterRoomBottom()
         {
-            CurrentRoom = currentLevel.Map.Bottom;
-            StartRoomSwitch(new Vector2(0, -1));
+            CurrentRoom = levelMap.Bottom;
+            isSwitchingLevels = true;
             linkPositionAfterRoomSwitch = new Vector2(480, 128);
         }
 

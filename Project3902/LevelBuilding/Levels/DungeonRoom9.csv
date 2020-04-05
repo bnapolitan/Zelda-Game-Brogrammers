@@ -1,0 +1,12 @@
+Environment
+BlackBackground, 128, 128
+WallTop, 448, 0
+WallLeft, 0, 288
+OpenDoorRight, 896, 288
+WallBottom, 448, 576
+Enemies
+OldMan, 490, 265
+Flame, 645, 265
+Flame, 330, 265
+Levels
+Right, DungeonRoom8

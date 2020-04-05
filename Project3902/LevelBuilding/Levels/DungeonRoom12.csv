@@ -1,0 +1,38 @@
+Environment
+Water, 192, 192
+Water, 256, 192
+Water, 320, 192
+Water, 640, 192
+Water, 704, 192
+Water, 768, 192
+Water, 192, 256
+Water, 768, 256
+Water, 192, 320
+Water, 320, 320
+Water, 384, 320
+Water, 448, 320
+Water, 512, 320
+Water, 576, 320
+Water, 640, 320
+Water, 768, 320
+Water, 192, 384
+Water, 768, 384
+Water, 192, 448
+Water, 256, 448
+Water, 320, 448
+Water, 640, 448
+Water, 704, 448
+Water, 768, 448
+WallTop, 448, 0
+LockDoorLeft, 0, 288
+WallRight, 896, 288
+OpenDoorBottom, 448, 576
+Items
+Key, 512, 192
+Enemies
+RedGoriya, 384, 256
+RedGoriya, 576, 256
+RedGoriya, 640, 128
+Levels
+Left, DungeonRoom13
+Bottom, DungeonRoom11

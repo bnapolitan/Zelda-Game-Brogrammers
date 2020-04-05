@@ -8,7 +8,7 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
         private float steps = 100;
         public ISprite RightFacingRope { get; set; }
         public ISprite LeftFacingRope { get; set; }
-
+        private static readonly Random random = new Random();
         public Rope(Vector2 pos, float moveSpeed, Vector2 initDirection)
         {
             Position = pos;
@@ -38,7 +38,6 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
             {
                 if (steps == 0)
                 {
-                    Random random = new Random();
                     int dvalue = random.Next(4);
                     switch (dvalue)
                     {

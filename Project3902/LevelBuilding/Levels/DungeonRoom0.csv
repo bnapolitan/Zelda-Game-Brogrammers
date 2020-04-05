@@ -1,8 +1,8 @@
 Environment
 OpenDoorTop, 448, 0
-OpenDoorLeft, 0, 288
+WallLeft, 0, 288
 OpenDoorRight, 896, 288
-OpenDoorBottom, 448, 576
+WallBottom, 448, 576
 Items
 Rupee, 150, 150
 5Rupee, 300, 150
@@ -14,3 +14,6 @@ Key, 310, 400
 Sword, 460, 400
 Ring, 610, 400
 Fairy, 760, 400
+Levels
+Top, DungeonRoom1
+Right, BulletHellRoom

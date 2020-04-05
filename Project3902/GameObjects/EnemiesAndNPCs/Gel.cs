@@ -6,6 +6,7 @@ namespace Project3902
     class Gel : BaseEnemy
     {
         private float steps = 100;
+        private static readonly Random random = new Random();
 
         public Gel(Vector2 pos, float moveSpeed, Vector2 initDirection)
         {
@@ -32,7 +33,6 @@ namespace Project3902
             {
                 if (steps == 0)
                 {
-                    Random random = new Random();
                     int dvalue = random.Next(4);
                     switch (dvalue)
                     {

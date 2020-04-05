@@ -4,6 +4,7 @@ using Project3902.GameObjects;
 using Project3902.GameObjects.EnemyProjectiles;
 using Project3902.GameObjects.Environment;
 using Project3902.GameObjects.Environment.Interfaces;
+using Project3902.ObjectManagement;
 
 namespace Project3902
 {
@@ -46,7 +47,9 @@ namespace Project3902
             if (!link.Damaged)
             {
                 link.Health -= damage;
+                
                 LinkFactory.Instance.CreateDamagedLink();
+                SoundHandler.Instance.PlaySoundEffect("Link Hurt");
             }
         }
 
@@ -58,7 +61,7 @@ namespace Project3902
 
         public virtual void OnCollide(Collider other)
         {
-            if(other.GameObject is IDoorway)
+            if (other.GameObject is IDoorway)
             {
                 var door = other.GameObject as OpenDoor;
 
@@ -79,6 +82,29 @@ namespace Project3902
                     door.ChangeLevel("Bottom");
                 }
             }
+            else if (other.GameObject is LockDoor && link.KeyCount > 0)
+            {
+                link.KeyCount--;
+                switch((other.GameObject as LockDoor).DirectionType)
+                {
+                    case 0:
+                        EnvironmentFactory.Instance.CreateOpenDoorTop(other.GameObject.Position);
+                        break;
+                    case 1:
+                        EnvironmentFactory.Instance.CreateOpenDoorRight(other.GameObject.Position);
+                        break;
+                    case 2:
+                        EnvironmentFactory.Instance.CreateOpenDoorBottom(other.GameObject.Position);
+                        break;
+                    case 3:
+                        EnvironmentFactory.Instance.CreateOpenDoorLeft(other.GameObject.Position);
+                        break;
+                }
+                
+                CollisionHandler.Instance.RemoveCollidable(other.GameObject as ICollidable);
+                other.GameObject = null;
+                SoundHandler.Instance.PlaySoundEffect("Door Unlock");
+            }
             else if (other.GameObject is IInteractiveEnvironmentObject)
             {
                 MoveOutOfWall(other);
@@ -97,6 +123,34 @@ namespace Project3902
             }
             else if(other.GameObject is IItem)
             {
+                if(other.GameObject is Heart || other.GameObject is Key)
+                {
+                    SoundHandler.Instance.PlaySoundEffect("Heart");
+                    if(other.GameObject is Heart)
+                    {
+                        link.Health++;
+                        if (link.Health > link.MaxHealth)
+                        {
+                            link.Health = link.MaxHealth;
+                        }
+                    }
+                    else
+                    {
+                        link.KeyCount++;
+                    }
+                }
+                else if(other.GameObject is Rupee)
+                {
+                    SoundHandler.Instance.PlaySoundEffect("Rupee");
+                }
+                else if (other.GameObject is Triforce)
+                {
+                    SoundHandler.Instance.PlaySong("Triforce");
+                }
+                else
+                {
+                    SoundHandler.Instance.PlaySoundEffect("Item");
+                }
                 CollisionHandler.Instance.RemoveCollidable(other.GameObject as ICollidable);
             }
         }

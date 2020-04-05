@@ -296,7 +296,7 @@ namespace Project3902.ObjectManagement
 
 		public IGameObject CreateAquamentus(Vector2 position)
 		{
-			var createdObject = new Aquamentus(position, 1, new Vector2(1, 0), this.game);
+			var createdObject = new Aquamentus(position, 1, new Vector2(-1, 0), this.game);
 			createdObject.Collider = new Collider(createdObject, new Rectangle(0, 0, 24 * (int)enemyScale.X, 32 * (int)enemyScale.Y));
 			RegisterEnemyForCollision(createdObject);
 
@@ -330,7 +330,7 @@ namespace Project3902.ObjectManagement
 		public IGameObject CreateOldMan(Vector2 position)
 		{
 			var createdObject = new OldMan(position, 2, new Vector2(1, 0));
-			List<Rectangle> OldManSource = new List<Rectangle> { new Rectangle(0, 5, 15, 15), new Rectangle(30, 5, 15, 15), new Rectangle(61, 5, 15, 15) };
+			List<Rectangle> OldManSource = new List<Rectangle> { new Rectangle(30, 5, 15, 15) };//, new Rectangle(0, 5, 15, 15), new Rectangle(61, 5, 15, 15) };
 			var sprite = new AnimatedSprite(createdObject, NPCSpriteAtlas, OldManSource, .5f, enemyScale);
 			createdObject.Sprite = sprite;
 

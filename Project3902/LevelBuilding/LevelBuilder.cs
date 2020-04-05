@@ -14,6 +14,8 @@ namespace Project3902
         private readonly string levelName;
         private readonly EnvironmentFactory envFactory = EnvironmentFactory.Instance;
         private readonly ObjectLookup objectLookup = new ObjectLookup();
+        private int levelHeight;
+        private int HUDHeight;
 
         public LevelBuilder(string levelName)
         {
@@ -24,16 +26,18 @@ namespace Project3902
         {
             Game = game;
             this.levelName = levelName;
+            HUDHeight = HUDFactory.Instance.HUDHeight;
+            levelHeight = game.graphics.PreferredBackBufferHeight - HUDHeight;
         }
 
         public List<IGameObject> CreateInteractiveEnvironmentObjects()
         {
             var environmentObjects = new List<IGameObject>
             {
-                envFactory.CreateRoomBorder(new Vector2(0, 0))
+                envFactory.CreateRoomBorder(new Vector2(0, 96))
             };
 
-            for (int j = 128; j < 560; j += 64)
+            for (int j = 128 + HUDHeight; j < 560 + HUDHeight; j += 64)
             {
                 for (int i = 128; i < 839; i += 64)
                 {
@@ -56,12 +60,12 @@ namespace Project3902
                 var line = csvReader.ReadLine();
                 var values = line.Split(',');
 
-                if(values[0] == "Items"|| values[0] == "Enemies")
+                if(values[0] == "Items"|| values[0] == "Enemies"||values[0] == "Levels")
                 {
                     break;
                 }
 
-                var position = new Vector2(float.Parse(values[1]), float.Parse(values[2]));
+                var position = new Vector2(float.Parse(values[1]), (float.Parse(values[2]) + HUDHeight));
 
                 environmentObjects.Add(objectLookup.CreateEnvironmentObject(values[0], position));
             }
@@ -91,12 +95,12 @@ namespace Project3902
                 var line = csvReader.ReadLine();
                 var values = line.Split(',');
 
-                if (values[0] == "Enemies")
+                if (values[0] == "Enemies"||values[0]=="Levels")
                 {
                     break;
                 }
 
-                var position = new Vector2(float.Parse(values[1]), float.Parse(values[2]));
+                var position = new Vector2(float.Parse(values[1]), (float.Parse(values[2]) + HUDHeight));
 
                 itemObjects.Add(objectLookup.CreateItemObject(values[0], position));
             }
@@ -133,7 +137,7 @@ namespace Project3902
                     break;
                 }
 
-                var position = new Vector2(float.Parse(values[1]), float.Parse(values[2]));
+                var position = new Vector2(float.Parse(values[1]), (float.Parse(values[2]) + HUDHeight));
 
                 enemyObjects.Add(objectLookup.CreateEnemyObject(values[0], position));
             }
@@ -193,35 +197,35 @@ namespace Project3902
 
         private void BuildWalls(List<IGameObject> envList)
         {
-            var TopLeft1 = new BlankWallObject(new Vector2(0, 0));
+            var TopLeft1 = new BlankWallObject(new Vector2(0, HUDHeight));
             TopLeft1.Collider = new Collider(TopLeft1, new Rectangle(0, 0, 128, 288));
             CollisionHandler.Instance.RegisterCollidable(TopLeft1, Layer.Wall);
 
-            var TopLeft2 = new BlankWallObject(new Vector2(0, 0));
+            var TopLeft2 = new BlankWallObject(new Vector2(0, HUDHeight));
             TopLeft2.Collider = new Collider(TopLeft2, new Rectangle(0, 0, 448, 128));
             CollisionHandler.Instance.RegisterCollidable(TopLeft2, Layer.Wall);
 
-            var TopRight1 = new BlankWallObject(new Vector2(576, 0));
+            var TopRight1 = new BlankWallObject(new Vector2(576, HUDHeight));
             TopRight1.Collider = new Collider(TopRight1, new Rectangle(0, 0, 448, 128));
             CollisionHandler.Instance.RegisterCollidable(TopRight1, Layer.Wall);
 
-            var TopRight2 = new BlankWallObject(new Vector2(896, 0));
+            var TopRight2 = new BlankWallObject(new Vector2(896, HUDHeight));
             TopRight2.Collider = new Collider(TopRight2, new Rectangle(0, 0, 128, 288));
             CollisionHandler.Instance.RegisterCollidable(TopRight2, Layer.Wall);
 
-            var BottomLeft1 = new BlankWallObject(new Vector2(0, 416));
+            var BottomLeft1 = new BlankWallObject(new Vector2(0, 416 + HUDHeight));
             BottomLeft1.Collider = new Collider(BottomLeft1, new Rectangle(0, 0, 128, 288));
             CollisionHandler.Instance.RegisterCollidable(BottomLeft1, Layer.Wall);
 
-            var BottomLeft2 = new BlankWallObject(new Vector2(0, 576));
+            var BottomLeft2 = new BlankWallObject(new Vector2(0, 576 + HUDHeight));
             BottomLeft2.Collider = new Collider(BottomLeft2, new Rectangle(0, 0, 448, 128));
             CollisionHandler.Instance.RegisterCollidable(BottomLeft2, Layer.Wall);
 
-            var BottomRight1 = new BlankWallObject(new Vector2(576, 576));
+            var BottomRight1 = new BlankWallObject(new Vector2(576, 576 + HUDHeight));
             BottomRight1.Collider = new Collider(BottomRight1, new Rectangle(0, 0, 448, 128));
             CollisionHandler.Instance.RegisterCollidable(BottomRight1, Layer.Wall);
 
-            var BottomRight2 = new BlankWallObject(new Vector2(896, 416));
+            var BottomRight2 = new BlankWallObject(new Vector2(896, 416 + HUDHeight));
             BottomRight2.Collider = new Collider(BottomRight2, new Rectangle(0, 0, 128, 288));
             CollisionHandler.Instance.RegisterCollidable(BottomRight2, Layer.Wall);
 
