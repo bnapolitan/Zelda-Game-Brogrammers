@@ -63,8 +63,6 @@ namespace Project3902
         private void updateHearts()
         {
             var heartsCreated = 0;
-            Console.WriteLine("MAX:" + maxHearts + "\n");
-            Console.WriteLine("NUM: " + numHearts + "\n");
 
             HeartsList.Clear();
             while (heartsCreated + 2 <= numHearts)

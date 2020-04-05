@@ -11,6 +11,6 @@ namespace Project3902.LevelBuilding
         bool Scrolling { get; set; }
 
         void LoadLevel();
-        void PositionGameObjects(Vector2 offset);
+        void OffsetGameObjects(Vector2 offset);
     }
 }

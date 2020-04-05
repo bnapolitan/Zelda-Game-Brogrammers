@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 
 namespace Project3902.LevelBuilding
@@ -31,7 +32,7 @@ namespace Project3902.LevelBuilding
 
             LoadLevel();
 
-            PositionGameObjects(offset);
+            OffsetGameObjects(offset);
         }
 
         public void LoadLevel()
@@ -73,7 +74,7 @@ namespace Project3902.LevelBuilding
                 ScrollGameObjects(gameTime);
                 return;
             }
-            
+
             foreach (IGameObject gameObject in interactiveEnvironmentObjects)
             {
                 gameObject.Update(gameTime);
@@ -110,7 +111,7 @@ namespace Project3902.LevelBuilding
             }
         }
 
-        public void PositionGameObjects(Vector2 offset)
+        public void OffsetGameObjects(Vector2 offset)
         {
             foreach (IGameObject gameObject in interactiveEnvironmentObjects)
             {

@@ -14,20 +14,12 @@ namespace Project3902
         private readonly string levelName;
         private readonly EnvironmentFactory envFactory = EnvironmentFactory.Instance;
         private readonly ObjectLookup objectLookup = new ObjectLookup();
-        private int levelHeight;
         private int HUDHeight;
 
         public LevelBuilder(string levelName)
         {
             this.levelName = levelName;
-        }
-
-        public LevelBuilder(FinalGame game, string levelName)
-        {
-            Game = game;
-            this.levelName = levelName;
             HUDHeight = HUDFactory.Instance.HUDHeight;
-            levelHeight = game.graphics.PreferredBackBufferHeight - HUDHeight;
         }
 
         public List<IGameObject> CreateInteractiveEnvironmentObjects()

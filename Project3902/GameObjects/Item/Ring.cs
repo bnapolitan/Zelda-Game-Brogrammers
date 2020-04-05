@@ -27,6 +27,7 @@ namespace Project3902
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            if (Active)
             Sprite.Draw(spriteBatch);
         }
 

@@ -152,6 +152,7 @@ namespace Project3902
                     SoundHandler.Instance.PlaySoundEffect("Item");
                 }
                 CollisionHandler.Instance.RemoveCollidable(other.GameObject as ICollidable);
+                other.GameObject.Active = false;
             }
         }
 
