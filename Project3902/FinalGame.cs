@@ -27,7 +27,7 @@ namespace Project3902
         private ILevel nextLevel;
 
 
-        private Vector2 roomSize = new Vector2(1024, 672);
+        public Vector2 roomSize = new Vector2(1024, 672);
         private float scrollTimer;
 
         public List<IGameObject> HUDObjects;

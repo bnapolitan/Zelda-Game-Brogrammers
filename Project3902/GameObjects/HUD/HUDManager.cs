@@ -33,7 +33,9 @@ namespace Project3902
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            foreach(IGameObject gameObject in HUDElements){
+            spriteBatch.Draw(ShapeSpriteFactory.Instance.WhiteRect, new Rectangle(0, 0, (int) game.roomSize.X, HUDFactory.Instance.HUDHeight), Color.Black);
+
+            foreach (IGameObject gameObject in HUDElements){
                 gameObject.Draw(spriteBatch);
             }
 
