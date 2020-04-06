@@ -120,7 +120,7 @@ namespace Project3902
                 }
             }
 
-            HUDManager.Instance.Update(gameTime);
+            HUDManager.Instance.Update();
 
             CollisionHandler.Instance.CheckCollisions();
         }

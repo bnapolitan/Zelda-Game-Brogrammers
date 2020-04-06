@@ -160,10 +160,7 @@ namespace Project3902
                 other.GameObject.Active = false;
             }
 
-            if(other is Rupee)
-            {
-                HUDManager.Instance.numCoins++;
-            }
+       
 
 
             if(other is Potion)

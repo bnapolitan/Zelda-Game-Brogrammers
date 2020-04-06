@@ -28,7 +28,7 @@ namespace Project3902
         {
         }
 
-        public void Update(GameTime gameTime)
+        public void Update()
         {
             numHearts = (int) game.Link.Health;
             maxHearts = (int) game.Link.MaxHealth;
@@ -36,7 +36,6 @@ namespace Project3902
             numKeys = game.Link.KeyCount;
             numOrbs = game.Link.PotionCount;
             numCoins = game.Link.CoinCount;
-            Console.WriteLine("KeyCount: " + numKeys + "\n");
             updateCounters();
             
         }
