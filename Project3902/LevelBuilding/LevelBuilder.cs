@@ -8,21 +8,18 @@ using System.IO;
 
 namespace Project3902
 {
-    class LevelBuilder : ILevel
+    class LevelBuilder : ILevelBuilder
     {
         public FinalGame Game { get; }
         private readonly string levelName;
         private readonly EnvironmentFactory envFactory = EnvironmentFactory.Instance;
         private readonly ObjectLookup objectLookup = new ObjectLookup();
-        private int levelHeight;
         private int HUDHeight;
 
-        public LevelBuilder(FinalGame game, string levelName)
+        public LevelBuilder(string levelName)
         {
-            Game = game;
             this.levelName = levelName;
             HUDHeight = HUDFactory.Instance.HUDHeight;
-            levelHeight = game.graphics.PreferredBackBufferHeight - HUDHeight;
         }
 
         public List<IGameObject> CreateInteractiveEnvironmentObjects()
@@ -43,7 +40,7 @@ namespace Project3902
             BuildWalls(environmentObjects);
 
             var csvReader = new StreamReader($"../../../../LevelBuilding/Levels/{levelName}.csv");
-            
+
             if(csvReader.ReadLine() != "Environment")
             {
                 csvReader.Close();
@@ -55,7 +52,7 @@ namespace Project3902
                 var line = csvReader.ReadLine();
                 var values = line.Split(',');
 
-                if(values[0] == "Items"|| values[0] == "Enemies")
+                if(values[0] == "Items"|| values[0] == "Enemies"||values[0] == "Levels")
                 {
                     break;
                 }
@@ -90,7 +87,7 @@ namespace Project3902
                 var line = csvReader.ReadLine();
                 var values = line.Split(',');
 
-                if (values[0] == "Enemies")
+                if (values[0] == "Enemies"||values[0]=="Levels")
                 {
                     break;
                 }
@@ -105,7 +102,7 @@ namespace Project3902
             return itemObjects;
         }
 
-    
+
 
         public List<IGameObject> CreateEnemyObjects()
         {
@@ -166,7 +163,7 @@ namespace Project3902
                 if (values[0] == "Top")
                 {
                     level.Top = adjacentLevelName;
-                } 
+                }
                 else if(values[0] == "Left")
                 {
                     level.Left = adjacentLevelName;
@@ -227,7 +224,7 @@ namespace Project3902
             envList.AddRange(new IGameObject[] { TopLeft1, TopLeft2, TopRight1, TopRight2, BottomLeft1, BottomLeft2, BottomRight1, BottomRight2 });
         }
 
-       
+
 
     }
 }

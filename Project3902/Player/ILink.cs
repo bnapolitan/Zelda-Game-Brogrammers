@@ -11,5 +11,9 @@ namespace Project3902
         IProjectile CurrentWeapon { get; set; }
         IProjectile SwordProjectile { get; set; }
         IProjectile Sword { get; set; }
+
+        int CoinCount { get; set; }
+        int KeyCount { get; set; }
+        int PotionCount { get; set; }
     }
 }

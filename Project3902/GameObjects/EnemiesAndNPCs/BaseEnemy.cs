@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Project3902.GameObjects;
 using Project3902.GameObjects.EnemyProjectiles;
+using Project3902.ObjectManagement;
 using System;
 
 namespace Project3902
@@ -38,9 +39,11 @@ namespace Project3902
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            Collider.Draw(spriteBatch);
-            (Sprite as AnimatedSprite).DrawTinted(spriteBatch, tint);
-            
+            if (Active)
+            {
+                Collider.Draw(spriteBatch);
+                (Sprite as AnimatedSprite).DrawTinted(spriteBatch, tint);
+            }
         }
 
         public virtual void OnCollide(Collider other)
@@ -49,7 +52,6 @@ namespace Project3902
             {
                 if ((other.GameObject is IProjectile) && !(other.GameObject is Boomerang) && !(other.GameObject is Fireball))
                 {
-                    
                     attackedRecent = true;
                     Health--;
                     tint = Color.Red;
@@ -57,7 +59,27 @@ namespace Project3902
                     if (Health == 0)
                     {
                         Active = false;
+                        SoundHandler.Instance.PlaySoundEffect("Enemy Die");
+                        Random rnum = new Random();
+                        int coinChance = rnum.Next(5);
+                        if (coinChance == 0)
+                        {
+                            SoundHandler.Instance.PlaySoundEffect("Rupee");
+                            int bonusChance = rnum.Next(3);
+                            if (bonusChance == 0)
+                            {
+                                ItemFactory.Instance.CreateRupee(Position);
+                            }
+                            else
+                            {
+                                ItemFactory.Instance.Create1Rupee(Position);
+                            }
+                        }
                         CollisionHandler.Instance.RemoveCollidable(this);
+                    }
+                    else
+                    {
+                        SoundHandler.Instance.PlaySoundEffect("Enemy Hit");
                     }
                     Vector2 move = (other.GameObject as IProjectile).Direction * 20;
                     (other.GameObject as IProjectile).OnCollide(Collider);
@@ -65,7 +87,7 @@ namespace Project3902
                     Collider.AlignHitbox();
                 }
             }
-            if(other.GameObject is IInteractiveEnvironmentObject) 
+            if(other.GameObject is IInteractiveEnvironmentObject)
             {
                 MoveOutOfWall(other);
                 Direction=new Vector2(Direction.Y, Direction.X*-1);
@@ -76,15 +98,18 @@ namespace Project3902
 
         public virtual void Update(GameTime gameTime)
         {
-            Sprite.Update(gameTime);
-            if (attackedRecent)
+            if (Active)
             {
-                collisionDelay--;
-                if (collisionDelay == 0)
+                Sprite.Update(gameTime);
+                if (attackedRecent)
                 {
-                    attackedRecent = false;
-                    collisionDelay = 20;
-                    tint = Color.White;
+                    collisionDelay--;
+                    if (collisionDelay == 0)
+                    {
+                        attackedRecent = false;
+                        collisionDelay = 20;
+                        tint = Color.White;
+                    }
                 }
             }
         }

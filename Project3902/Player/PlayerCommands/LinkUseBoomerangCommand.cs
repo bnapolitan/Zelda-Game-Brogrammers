@@ -1,4 +1,5 @@
-﻿namespace Project3902
+﻿
+namespace Project3902
 {
     class LinkUseBoomerangCommand : BaseLinkCommand
     {

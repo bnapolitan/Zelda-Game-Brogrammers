@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Project3902.GameObjects.EnemyProjectiles;
 using Project3902.ObjectManagement;
 using System;
 
@@ -10,7 +11,7 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
         public FinalGame Game { get; }
         private readonly float distance = 100;
         private Vector2 relPos = new Vector2(0, 0);
-        private readonly int framesBeforeAttack = 120;
+        private readonly int framesBeforeAttack = 200;
         private int currentFrame = 0;
         private IProjectile fireball;
         private IProjectile fireball2;
@@ -32,11 +33,8 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
             var angle = Math.Atan2(fireball1Movement.Y, fireball1Movement.X);
 
             fireball = WeaponFactory.Instance.CreateFireballProjectile(Position, fireball1Movement);
-            fireball2 = WeaponFactory.Instance.CreateFireballProjectile(Position, new Vector2((float)Math.Cos(angle + .524), (float)Math.Sin(angle + .524)));
-            fireball3 = WeaponFactory.Instance.CreateFireballProjectile(Position, new Vector2((float)Math.Cos(angle - .524), (float)Math.Sin(angle - .524)));
-            fireball.Launch(Position, Direction);
-            fireball2.Launch(Position, Direction);
-            fireball3.Launch(Position, Direction);
+            fireball2 = WeaponFactory.Instance.CreateFireballProjectile(Position, new Vector2(fireball1Movement.X, (float)Math.Sin(angle + .524)));
+            fireball3 = WeaponFactory.Instance.CreateFireballProjectile(Position, new Vector2(fireball1Movement.X, (float)Math.Sin(angle - .524)));
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -57,6 +55,7 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
 
             if (currentFrame >= framesBeforeAttack)
             {
+                SoundHandler.Instance.PlaySoundEffect("Aquamentus");
                 this.Attack();
                 isShooting = true;
                 currentFrame = 0;

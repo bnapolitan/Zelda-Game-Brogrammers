@@ -6,7 +6,7 @@ namespace Project3902.LevelBuilding
 {
     class ObjectLookup
     {
- 
+
         private readonly EnvironmentFactory envFactory = EnvironmentFactory.Instance;
         private readonly EnemyFactory enemyFactory = EnemyFactory.Instance;
         private readonly ItemFactory itemFactory = ItemFactory.Instance;
@@ -61,6 +61,22 @@ namespace Project3902.LevelBuilding
             {
                 return envFactory.CreateOpenDoorBottom(position);
             }
+            if (name == "ShutDoorTop")
+            {
+                return envFactory.CreateShutDoorTop(position);
+            }
+            if (name == "ShutDoorLeft")
+            {
+                return envFactory.CreateShutDoorLeft(position);
+            }
+            if (name == "ShutDoorRight")
+            {
+                return envFactory.CreateShutDoorRight(position);
+            }
+            if (name == "ShutDoorBottom")
+            {
+                return envFactory.CreateShutDoorBottom(position);
+            }
             if (name == "WallTop")
             {
                 return envFactory.CreateWallTop(position);
@@ -80,6 +96,22 @@ namespace Project3902.LevelBuilding
             if (name == "Brick")
             {
                 return envFactory.CreateBlockingBrick(position);
+            }
+            if (name == "MoveableBlock")
+            {
+                return envFactory.CreateMoveableBlock(position);
+            }
+            if (name == "BlackBackground")
+            {
+                return envFactory.CreateBlackBackground(position);
+            }
+            if (name == "Water")
+            {
+                return envFactory.CreateWater(position);
+            }
+            if (name == "Stairs")
+            {
+                return envFactory.CreateStairs(position);
             }
 
             throw new Exception($"The object {name} has not been mapped in ObjectLookup yet!");
@@ -123,7 +155,14 @@ namespace Project3902.LevelBuilding
             {
                 return itemFactory.CreateSword(position);
             }
-
+            if (name == "Map")
+            {
+                return itemFactory.CreateMap(position);
+            }
+            if (name == "Triforce")
+            {
+                return itemFactory.CreateTriforce(position);
+            }
             if (name == "Ring")
             {
                 return itemFactory.CreateRing(position);
@@ -133,7 +172,6 @@ namespace Project3902.LevelBuilding
 
         public IGameObject CreateEnemyObject(string name, Vector2 position)
         {
-            
             if(name=="AquaGel")
             {
                 return enemyFactory.CreateAquaGel(position);
@@ -185,6 +223,10 @@ namespace Project3902.LevelBuilding
             if (name == "Aquamentus")
             {
                 return enemyFactory.CreateAquamentus(position);
+            }
+            if (name == "BulletHell")
+            {
+                return enemyFactory.CreateBulletHellAquamentus(position);
             }
             if (name == "Flame")
             {

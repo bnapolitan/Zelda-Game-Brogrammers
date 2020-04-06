@@ -14,13 +14,18 @@ namespace Project3902
         private FinalGame game;
         public List<IGameObject> HUDElements = new List<IGameObject>();
         public List<IGameObject> HeartsList = new List<IGameObject>();
+        public List<IGameObject> counterList = new List<IGameObject>();
+        private List<List<IGameObject>> numsLists = new List<List<IGameObject>>();
         private HUDFactory Factory = HUDFactory.Instance;
         public static HUDManager Instance { get; } = new HUDManager();
         private int numHearts;
         private int maxHearts;
+        public int numKeys = 0;
+        public int numCoins = 0;
+        public int numOrbs = 0;
         
         private HUDManager()
-        {   
+        {
         }
 
         public void Update(GameTime gameTime)
@@ -28,16 +33,28 @@ namespace Project3902
             numHearts = (int) game.Link.Health;
             maxHearts = (int) game.Link.MaxHealth;
             updateHearts();
+            numKeys = game.Link.KeyCount;
+            numOrbs = game.Link.PotionCount;
+            numCoins = game.Link.CoinCount;
+            Console.WriteLine("KeyCount: " + numKeys + "\n");
+            updateCounters();
             
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            foreach(IGameObject gameObject in HUDElements){
+            spriteBatch.Draw(ShapeSpriteFactory.Instance.WhiteRect, new Rectangle(0, 0, (int) game.roomSize.X, HUDFactory.Instance.HUDHeight), Color.Black);
+
+            foreach (IGameObject gameObject in HUDElements){
                 gameObject.Draw(spriteBatch);
             }
 
             foreach(IGameObject gameObject in HeartsList)
+            {
+                gameObject.Draw(spriteBatch);
+            }
+
+            foreach(IGameObject gameObject in counterList)
             {
                 gameObject.Draw(spriteBatch);
             }
@@ -47,6 +64,7 @@ namespace Project3902
         {
             this.game = game;
             addBaseElements();
+            createNumsLists();
         }
 
         private void addBaseElements()
@@ -58,13 +76,15 @@ namespace Project3902
             HUDElements.Add(Factory.createLevelWord());
             HUDElements.Add(Factory.createABox());
             HUDElements.Add(Factory.createBBox());
+            HUDElements.Add(Factory.createOneCharacter());
+            HUDElements.Add(Factory.createXCharacter());
+            HUDElements.Add(Factory.createXCharacter());
+            HUDElements.Add(Factory.createXCharacter());
         }
 
         private void updateHearts()
         {
             var heartsCreated = 0;
-            Console.WriteLine("MAX:" + maxHearts + "\n");
-            Console.WriteLine("NUM: " + numHearts + "\n");
 
             HeartsList.Clear();
             while (heartsCreated + 2 <= numHearts)
@@ -96,6 +116,42 @@ namespace Project3902
             }
 
             
+        }
+
+        private void createNumsLists()
+        {
+            numsLists.Add(Factory.createNumberList());
+            numsLists.Add(Factory.createNumberList());
+            numsLists.Add(Factory.createNumberList());
+            numsLists.Add(Factory.createNumberList());
+            numsLists.Add(Factory.createNumberList());
+            numsLists.Add(Factory.createNumberList());
+        }
+
+        private void updateCounters()
+        {
+            
+            var coinTen = numsLists[0][(numCoins % 100) / 10];
+            var coinOne = numsLists[1][numCoins % 10];
+            var keyTen = numsLists[2][(numKeys % 100) / 10];
+            var keyOne = numsLists[3][numKeys % 10];
+            var orbTen = numsLists[4][(numOrbs % 100) / 10];
+            var orbOne = numsLists[5][numOrbs % 10];
+            coinTen.Position = new Vector2(551,8);
+            coinOne.Position = new Vector2(575,8);
+            keyTen.Position = new Vector2(551,37);
+            keyOne.Position = new Vector2(575,37);
+            orbTen.Position = new Vector2(551,66);
+            orbOne.Position = new Vector2(575,66);
+            counterList.Add(coinTen);
+            counterList.Add(coinOne);
+            counterList.Add(keyTen);
+            counterList.Add(keyOne);
+            counterList.Add(orbTen);
+            counterList.Add(orbOne);
+             
+
+
         }
 
 

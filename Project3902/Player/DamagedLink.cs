@@ -31,6 +31,9 @@ namespace Project3902
         public bool Damaged { get => decoratedLink.Damaged; set => decoratedLink.Damaged = value; }
         public Vector2 FacingDirection { get => decoratedLink.FacingDirection; set => decoratedLink.FacingDirection = value; }
         public IProjectile Sword { get => decoratedLink.Sword; set => decoratedLink.Sword = value; }
+        public int CoinCount { get => decoratedLink.CoinCount; set => decoratedLink.CoinCount = value; }
+        public int KeyCount { get => decoratedLink.KeyCount; set => decoratedLink.KeyCount = value; }
+        public int PotionCount { get => decoratedLink.PotionCount; set => decoratedLink.PotionCount = value; }
 
         private readonly Vector2 knockbackDirection;
         private readonly float knockbackSpeed = 700;

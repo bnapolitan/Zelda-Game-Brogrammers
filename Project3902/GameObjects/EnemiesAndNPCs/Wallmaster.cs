@@ -8,7 +8,7 @@ namespace Project3902.GameObjects.EnemiesAndNPCs.Interfaces
         private float steps = 100;
         public ISprite RightFacingWallmaster { get; set; }
         public ISprite LeftFacingWallmaster { get; set; }
-
+        private static readonly Random random = new Random();
         public Wallmaster(Vector2 pos, float moveSpeed, Vector2 initDirection)
         {
             Position = pos;
@@ -39,7 +39,6 @@ namespace Project3902.GameObjects.EnemiesAndNPCs.Interfaces
             {
                 if (steps == 0)
                 {
-                    Random random = new Random();
                     int dvalue = random.Next(4);
                     switch (dvalue)
                     {

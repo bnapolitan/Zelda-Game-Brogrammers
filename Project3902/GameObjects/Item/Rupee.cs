@@ -27,8 +27,11 @@ namespace Project3902
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            Sprite.Draw(spriteBatch);
-            Collider.Draw(spriteBatch);
+            if (Active)
+            {
+                Sprite.Draw(spriteBatch);
+                Collider.Draw(spriteBatch);
+            }
         }
 
         public void Update(GameTime gameTime)

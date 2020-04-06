@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Project3902.ObjectManagement;
 
 namespace Project3902
 {
@@ -28,6 +29,11 @@ namespace Project3902
             if (link.Health == link.MaxHealth)
             {
                 link.SwordProjectile.Launch(link.Position + link.Sprite.Scale * new Vector2(4, 4), direction);
+                SoundHandler.Instance.PlaySoundEffect("Sword Shoot");
+            }
+            else
+            {
+                SoundHandler.Instance.PlaySoundEffect("Sword Slash");
             }
 
             var swordOffset = direction * 48;

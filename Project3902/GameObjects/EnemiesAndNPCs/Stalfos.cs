@@ -6,7 +6,7 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
     class Stalfos : BaseEnemy
     {
         private int steps = 100;
-
+        private static readonly Random random = new Random();
         public Stalfos(Vector2 pos, float moveSpeed, Vector2 initDirection)
         {
             Position = pos;
@@ -25,7 +25,7 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
             {
                 if (steps == 0)
                 {
-                    Random random = new Random();
+                    
                     int dvalue = random.Next(4);
                     switch (dvalue)
                     {
@@ -42,6 +42,7 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
                             Direction = new Vector2(0, -1);
                             break;
                     }
+                    //random = new Random();
                     steps = random.Next(40, 300);
                 }
                 Position += Direction * MoveSpeed;
