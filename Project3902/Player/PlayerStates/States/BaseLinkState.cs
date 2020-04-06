@@ -142,6 +142,7 @@ namespace Project3902
                 else if(other.GameObject is Rupee)
                 {
                     SoundHandler.Instance.PlaySoundEffect("Rupee");
+                    link.CoinCount++;
                 }
                 else if (other.GameObject is Triforce)
                 {
@@ -150,9 +151,24 @@ namespace Project3902
                 else
                 {
                     SoundHandler.Instance.PlaySoundEffect("Item");
+                    if(other.GameObject is Potion)
+                    {
+                        link.PotionCount++;
+                    }
                 }
                 CollisionHandler.Instance.RemoveCollidable(other.GameObject as ICollidable);
                 other.GameObject.Active = false;
+            }
+
+            if(other is Rupee)
+            {
+                HUDManager.Instance.numCoins++;
+            }
+
+
+            if(other is Potion)
+            {
+
             }
         }
 
