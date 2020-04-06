@@ -144,6 +144,11 @@ namespace Project3902
                     SoundHandler.Instance.PlaySoundEffect("Rupee");
                     link.CoinCount++;
                 }
+                else if(other.GameObject is RupeeBonus)
+                {
+                    SoundHandler.Instance.PlaySoundEffect("Rupee");
+                    link.CoinCount+=5;
+                }
                 else if (other.GameObject is Triforce)
                 {
                     SoundHandler.Instance.PlaySong("Triforce");

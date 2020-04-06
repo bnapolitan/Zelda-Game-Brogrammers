@@ -129,7 +129,6 @@ namespace Project3902
 
         private void updateCounters()
         {
-            
             var coinTen = numsLists[0][(numCoins % 100) / 10];
             var coinOne = numsLists[1][numCoins % 10];
             var keyTen = numsLists[2][(numKeys % 100) / 10];
