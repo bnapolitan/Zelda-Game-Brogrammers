@@ -155,6 +155,7 @@ namespace Project3902
         protected void RestartLevel()
         {
             CollisionHandler.Instance.Flush();
+            CollisionHandler.Instance.CheckCollisions();
             SoundHandler.Instance.StopEffectInstance(true);
 
             currentLevel = new Level(CurrentRoom);
@@ -224,6 +225,7 @@ namespace Project3902
         public void MouseSwitchRoom(string room)
         {
             CurrentRoom = room;
+            Link.Position = new Vector2(480, 512 + HUDFactory.Instance.HUDHeight);
 
             RestartLevel();
         }
