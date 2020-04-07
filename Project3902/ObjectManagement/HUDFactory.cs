@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace Project3902
 {
@@ -33,6 +34,30 @@ namespace Project3902
             var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(441, 26, 44, 9),HUDScale);
             gameObject.Sprite = sprite;
             return gameObject;
+        }
+
+        public List<IGameObject> createLevelMap()
+        {
+            Vector2[] positions = { new Vector2(28, 80), new Vector2(46, 80), new Vector2(64, 80),
+                new Vector2(46, 68),
+                new Vector2(28, 56), new Vector2(46, 56), new Vector2(64, 56),
+                new Vector2(46, 44), new Vector2(28, 44), new Vector2(10, 44), new Vector2(64, 44), new Vector2(82, 44),
+                new Vector2(46, 32), new Vector2(82, 32), new Vector2(100, 32),
+                new Vector2(46, 20), new Vector2(28, 20) };
+            var levelList = new List<IGameObject>();
+            for (int i = 0; i < positions.Length; i++)
+            {
+                levelList.Add(new HUDObject(positions[i]));
+                levelList[i].Sprite = new FixedSprite(levelList[i], HUDSprites, new Rectangle(129, 35, 16, 10), new Vector2(1, 1));
+            }
+
+
+            //var gameObject = new HUDObject(new Vector2(10, 80));
+
+            //var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(129, 35, 20, 10), new Vector2(1, 1));
+            //gameObject.Sprite = sprite;
+
+            return levelList;
         }
 
         public IGameObject createABox()

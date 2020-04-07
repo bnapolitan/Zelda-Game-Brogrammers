@@ -18,9 +18,9 @@ namespace Project3902
         public static HUDManager Instance { get; } = new HUDManager();
         private int numHearts;
         private int maxHearts;
-        
+
         private HUDManager()
-        {   
+        {
         }
 
         public void Update(GameTime gameTime)
@@ -28,7 +28,7 @@ namespace Project3902
             numHearts = (int) game.Link.Health;
             maxHearts = (int) game.Link.MaxHealth;
             updateHearts();
-            
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -60,6 +60,12 @@ namespace Project3902
             HUDElements.Add(Factory.createLevelWord());
             HUDElements.Add(Factory.createABox());
             HUDElements.Add(Factory.createBBox());
+
+            var levelMap = Factory.createLevelMap();
+            foreach(IGameObject hudElement in levelMap)
+            {
+                HUDElements.Add(hudElement);
+            }
         }
 
         private void updateHearts()
@@ -95,7 +101,7 @@ namespace Project3902
                 heartsCreated += 2;
             }
 
-            
+
         }
 
 
