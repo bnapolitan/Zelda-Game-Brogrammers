@@ -13,11 +13,17 @@ namespace Project3902
 		private SpriteAtlas FairySprite;
 		private SpriteAtlas FixSprite;
 		private SpriteAtlas ItemSprite;
+		private FinalGame game;
 
         public static ItemFactory Instance { get; } = new ItemFactory();
 
 		private ItemFactory()
 		{
+		}
+
+		public void RegisterGame(FinalGame game)
+		{
+			this.game = game;
 		}
 
 		public void LoadAllTextures(ContentManager content)
@@ -77,7 +83,7 @@ namespace Project3902
 
 		public IGameObject CreateWatch(Vector2 position)
 		{
-			var createdObject = new Watch(position);
+			var createdObject = new Watch(position, game);
 			List<Rectangle> WatchSource = new List<Rectangle> { new Rectangle(137, 0, 48, 61) };
 			var sprite = new AnimatedSprite(createdObject, FixSprite, WatchSource, .4f, new Vector2(1,1));
 			createdObject.Sprite = sprite;

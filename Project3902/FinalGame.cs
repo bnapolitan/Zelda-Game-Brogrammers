@@ -26,7 +26,6 @@ namespace Project3902
         private ILevel currentLevel;
         private ILevel nextLevel;
 
-
         public Vector2 roomSize = new Vector2(1024, 672);
         private float scrollTimer;
 
@@ -38,6 +37,7 @@ namespace Project3902
         public string CurrentRoom = "DungeonRoom0";
 
         Vector2 linkPositionAfterRoomSwitch;
+        int freezeEnemiesTime = 0;
 
         public FinalGame()
         {
@@ -80,6 +80,7 @@ namespace Project3902
             EnvironmentFactory.Instance.RegisterGame(this);
             EnvironmentFactory.Instance.LoadAllTextures(Content);
 
+            ItemFactory.Instance.RegisterGame(this);
             ItemFactory.Instance.LoadAllTextures(Content);
 
             EnemyFactory.Instance.RegisterGame(this);
@@ -129,7 +130,7 @@ namespace Project3902
         {
 
             GraphicsDevice.Clear(Color.Black);
-            
+
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
             currentLevel.Draw(spriteBatch);
@@ -154,6 +155,7 @@ namespace Project3902
         protected void RestartLevel()
         {
             CollisionHandler.Instance.Flush();
+            CollisionHandler.Instance.CheckCollisions();
             SoundHandler.Instance.StopEffectInstance(true);
 
             currentLevel = new Level(CurrentRoom);
@@ -220,12 +222,17 @@ namespace Project3902
             linkPositionAfterRoomSwitch = new Vector2(480, 128 + HUDFactory.Instance.HUDHeight);
         }
 
-
         public void MouseSwitchRoom(string room)
         {
             CurrentRoom = room;
+            Link.Position = new Vector2(480, 512 + HUDFactory.Instance.HUDHeight);
 
             RestartLevel();
+        }
+
+        public void FreezeEnemies()
+        {
+            currentLevel.FreezeEnemies();
         }
     }
 }

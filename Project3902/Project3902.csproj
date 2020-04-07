@@ -50,6 +50,19 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Commands\ChangeRooms\ChangeToRoom14Command.cs" />
+    <Compile Include="Commands\ChangeRooms\ChangeToRoom15Command.cs" />
+    <Compile Include="Commands\ChangeRooms\ChangeToRoom16Command.cs" />
+    <Compile Include="Commands\ChangeRooms\ChangeToRoom17Command.cs" />
+    <Compile Include="Commands\ChangeRooms\ChangeToRoom6Command.cs" />
+    <Compile Include="Commands\ChangeRooms\ChangeToRoom7Command.cs" />
+    <Compile Include="Commands\ChangeRooms\ChangeToRoom8Command.cs" />
+    <Compile Include="Commands\ChangeRooms\ChangeToRoom9Command.cs" />
+    <Compile Include="Commands\ChangeRooms\ChangeToRoom10Command.cs" />
+    <Compile Include="Commands\ChangeRooms\ChangeToRoom11Command.cs" />
+    <Compile Include="Commands\ChangeRooms\ChangeToRoom12Command.cs" />
+    <Compile Include="Commands\ChangeRooms\ChangeToRoom13Command.cs" />
+    <Compile Include="Commands\ChangeRooms\ChangeToRoom5Command.cs" />
     <Compile Include="Commands\ChangeRooms\ChangeToRoom4Command.cs" />
     <Compile Include="Commands\ChangeRooms\ChangeToRoom3Command.cs" />
     <Compile Include="Commands\ChangeRooms\ChangeToRoom2Command.cs" />
