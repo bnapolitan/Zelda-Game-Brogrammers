@@ -13,12 +13,14 @@ namespace Project3902.LevelBuilding
         public bool Scrolling { get; set; } = false;
         public float ScrollSpeed { get; set; } = 400;
 
+        private int freezeTime = 0;
+
         private List<IGameObject> interactiveEnvironmentObjects;
         private List<IGameObject> enemyObjects;
         private List<IGameObject> itemObjects;
 
         private readonly LevelBuilder builder;
-        
+
         public Level(string name)
         {
             builder = new LevelBuilder(name);
@@ -88,6 +90,32 @@ namespace Project3902.LevelBuilding
             foreach (IGameObject gameObject in itemObjects)
             {
                 gameObject.Update(gameTime);
+            }
+
+            if(this.freezeTime > 0)
+            {
+                if(this.freezeTime == 1)
+                {
+                    this.UnFreezeEnemies();
+                }
+                this.freezeTime--;
+            }
+        }
+
+        public void FreezeEnemies()
+        {
+            freezeTime = 300;
+            foreach (BaseEnemy gameObject in enemyObjects)
+            {
+                gameObject.Freeze();
+            }
+        }
+
+        public void UnFreezeEnemies()
+        {
+            foreach (BaseEnemy gameObject in enemyObjects)
+            {
+                gameObject.UnFreeze();
             }
         }
 

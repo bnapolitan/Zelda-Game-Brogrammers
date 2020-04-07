@@ -15,6 +15,8 @@ WallTop, 448, 0
 OpenDoorLeft, 0, 288
 WallRight, 896, 288
 WallBottom, 448, 576
+Items
+Watch, 200, 200
 Enemies
 Stalfos, 500, 200
 Stalfos, 500, 400

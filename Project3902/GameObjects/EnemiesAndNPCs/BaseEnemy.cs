@@ -12,6 +12,7 @@ namespace Project3902
         public float Health { get; set; }
         public Vector2 Direction { get; set; }
         public float MoveSpeed { get; set; }
+        public float MoveSpeedBackup { get; set; }
         private Color tint = Color.White;
         public Vector2 PreviousPosition { get; set; }
         private Vector2 position;
@@ -112,6 +113,20 @@ namespace Project3902
                     }
                 }
             }
+        }
+
+        public void Freeze()
+        {
+            if (this.MoveSpeed != 0)
+            {
+                this.MoveSpeedBackup = this.MoveSpeed;
+            }
+            this.MoveSpeed = 0;
+        }
+
+        public void UnFreeze()
+        {
+            this.MoveSpeed = this.MoveSpeedBackup;
         }
 
         private void MoveOutOfWall(Collider other)
