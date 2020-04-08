@@ -24,6 +24,7 @@ namespace Project3902.LevelBuilding
         public Level(string name)
         {
             builder = new LevelBuilder(name);
+            this.LevelName = name;
 
             LoadLevel();
         }

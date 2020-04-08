@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Project3902.LevelBuilding;
 using Project3902.ObjectManagement;
 using System.Collections.Generic;
+using System.Threading;
 
 /*
  * Team:
@@ -36,8 +37,10 @@ namespace Project3902
 
         public string CurrentRoom = "DungeonRoom0";
 
+        private SpriteFont font;
         Vector2 linkPositionAfterRoomSwitch;
         int freezeEnemiesTime = 0;
+        int temp = 0;
 
         public FinalGame()
         {
@@ -60,6 +63,8 @@ namespace Project3902
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            font = Content.Load<SpriteFont>("Credits");
 
             HUDFactory.Instance.LoadAllTextures(Content);
             HUDFactory.Instance.registerGame(this);
@@ -136,6 +141,11 @@ namespace Project3902
             currentLevel.Draw(spriteBatch);
             if (nextLevel != null)
                 nextLevel.Draw(spriteBatch);
+
+            if (currentLevel.LevelName == "DungeonRoom9" && !currentLevel.Scrolling)
+            {
+                this.DrawText(gameTime);
+            }
 
             if (!currentLevel.Scrolling)
                 Link.Draw(spriteBatch);
@@ -233,6 +243,38 @@ namespace Project3902
         public void FreezeEnemies()
         {
             currentLevel.FreezeEnemies();
+        }
+
+        public void DrawText(GameTime gameTime)
+        {
+            string words = "EASTMOST PENNINSULA IS THE SECRET.";
+            int characterPosition;
+            int xPos;
+            int yPos = 250;
+
+            if (temp < 680)
+            {
+                characterPosition = temp / 20;
+            }
+            else
+            {
+                characterPosition = 34;
+            }
+            temp++;
+
+            for (int i = 0; i < characterPosition; i++)
+            {
+                if(i < 19)
+                {
+                    xPos = i;
+                }
+                else
+                {
+                    xPos = i - 16;
+                    yPos = 300;
+                }
+                spriteBatch.DrawString(font, words[i].ToString(), new Vector2(310 + (xPos * 22), yPos), Color.White, 0f, new Vector2(0, 0), new Vector2(2, 2), SpriteEffects.None, 0f);
+            }
         }
     }
 }
