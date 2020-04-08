@@ -68,18 +68,22 @@ namespace Project3902
                 if (link.Position.X < 200)
                 {
                     door.ChangeLevel("Left");
+                    
                 }
                 else if (link.Position.X > 700)
                 {
                     door.ChangeLevel("Right");
+                    
                 }
                 else if (link.Position.Y < 200)
                 {
                     door.ChangeLevel("Top");
+                    
                 }
                 else if (link.Position.Y > 500)
                 {
                     door.ChangeLevel("Bottom");
+                    
                 }
             }
             else if (other.GameObject is LockDoor && link.KeyCount > 0)
@@ -168,10 +172,7 @@ namespace Project3902
        
 
 
-            if(other is Potion)
-            {
-
-            }
+     
         }
 
         private void MoveOutOfWall(Collider other)

@@ -10,7 +10,7 @@ namespace Project3902
         private SpriteAtlas HUDSprites;
         public static HUDFactory Instance { get; } = new HUDFactory();
         private FinalGame game;
-        public int HUDHeight = 96;
+        public int HUDHeight = 130;
         private int HUDWidth;
         private int numX;
         private Vector2 HUDScale = new Vector2(3, 3);
@@ -129,7 +129,7 @@ namespace Project3902
 
         public IGameObject createOneCharacter()
         {
-            var gameObject = new HUDObject(new Vector2(244, 10));
+            var gameObject = new HUDObject(new Vector2(244, 0));
             var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(537, 117, 8, 8), HUDScale);
             gameObject.Sprite = sprite;
             return gameObject;
@@ -201,10 +201,31 @@ namespace Project3902
 
         public IGameObject createLevelWord()
         {
-            var gameObject = new HUDObject(new Vector2(100, 10));
+            var gameObject = new HUDObject(new Vector2(100, 0));
             var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(584, 1, 55, 7), HUDScale);
             gameObject.Sprite = sprite;
             return gameObject;
+        }
+
+        public IGameObject createMapBlock()
+        {
+            var gameObject = new HUDObject(new Vector2(0, 0));
+            var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(672, 112, 7, 4), HUDScale);
+            gameObject.Sprite = sprite;
+            return gameObject;
+        }
+
+        public IGameObject createMapBlip()
+        {
+            var gameObject = new HUDObject(new Vector2(175, HUDHeight - 14));
+            var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(519, 126, 3, 3), HUDScale);
+            gameObject.Sprite = sprite;
+            return gameObject;
+        }
+
+        public List<IGameObject> createDungeonMap()
+        {
+            return null;
         }
 
         public List<IGameObject> createNumberList()

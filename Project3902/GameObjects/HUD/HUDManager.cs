@@ -37,6 +37,10 @@ namespace Project3902
             numOrbs = game.Link.PotionCount;
             numCoins = game.Link.CoinCount;
             updateCounters();
+            if(blipCool != 0)
+            {
+                blipCool--;
+            }
             
         }
 
@@ -57,6 +61,7 @@ namespace Project3902
             {
                 gameObject.Draw(spriteBatch);
             }
+            Factory.createMapBlock().Draw(spriteBatch);
         }
 
         public void registerGame(FinalGame game)
@@ -68,6 +73,7 @@ namespace Project3902
 
         private void addBaseElements()
         {
+            HUDElements.Add(Factory.createMapBlip());
             HUDElements.Add(Factory.createLifeWord());
             HUDElements.Add(Factory.createCoinCountIcon());
             HUDElements.Add(Factory.createOrbCountIcon());
@@ -147,9 +153,58 @@ namespace Project3902
             counterList.Add(keyOne);
             counterList.Add(orbTen);
             counterList.Add(orbOne);
-             
+        }
+
+        public void moveMapBlipUp()
+        {
+            if (blipCool == 0)
+            { 
+                var tempPos = HUDElements[0].Position;
+                tempPos.Y -= 12;
+                HUDElements[0].Position = tempPos;
+               
+                blipCool = 10;
+            }
+            
+            
+
+        }
+        private int blipCool = 0;
+        public void moveMapBlipLeft()
+        {
+            if (blipCool == 0)
+            {
+                var tempPos = HUDElements[0].Position;
+                tempPos.X -= 21;
+                HUDElements[0].Position = tempPos;
+                blipCool = 10;
+            }
 
 
+        }
+
+        public void moveMapBlipRight()
+        {
+            if (blipCool == 0)
+            {
+
+
+                var tempPos = HUDElements[0].Position;
+                tempPos.X += 21;
+                HUDElements[0].Position = tempPos;
+                blipCool = 10;
+            }
+        }
+
+        public void moveMapBlipDown()
+        {
+            if (blipCool == 0)
+            {
+                var tempPos = HUDElements[0].Position;
+                tempPos.Y += 12;
+                HUDElements[0].Position = tempPos;
+                blipCool = 10;
+            }
         }
 
 

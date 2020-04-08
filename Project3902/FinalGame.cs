@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Project3902.LevelBuilding;
 using Project3902.ObjectManagement;
+using System;
 using System.Collections.Generic;
 
 /*
@@ -27,7 +28,7 @@ namespace Project3902
         private ILevel nextLevel;
 
 
-        public Vector2 roomSize = new Vector2(1024, 672);
+        public Vector2 roomSize = new Vector2(1024, 706);
         private float scrollTimer;
 
         public List<IGameObject> HUDObjects;
@@ -167,13 +168,12 @@ namespace Project3902
             SoundHandler.Instance.PlaySoundEffect("Link Die", true);
             RestartLevel();
         }
-
+        
         private void StartRoomSwitch(Vector2 direction)
         {
             currentLevel.Scrolling = true;
             currentLevel.ScrollDirection = direction;
             CollisionHandler.Instance.Flush();
-
             nextLevel = new Level(CurrentRoom, roomSize * -direction)
             {
                 Scrolling = true,
@@ -191,19 +191,21 @@ namespace Project3902
             currentLevel = new Level(CurrentRoom);
             nextLevel = null;
         }
-
+        
         public void EnterRoomTop()
         {
             CurrentRoom = currentLevel.Map.Top;
             StartRoomSwitch(new Vector2(0, 1));
             linkPositionAfterRoomSwitch = new Vector2(480, 512 + HUDFactory.Instance.HUDHeight);
+            HUDManager.Instance.moveMapBlipUp();
         }
-
+        
         public void EnterRoomLeft()
         {
             CurrentRoom = currentLevel.Map.Left;
             StartRoomSwitch(new Vector2(1, 0));
             linkPositionAfterRoomSwitch = new Vector2(832, 320 + HUDFactory.Instance.HUDHeight);
+            HUDManager.Instance.moveMapBlipLeft();
         }
 
         public void EnterRoomRight()
@@ -211,6 +213,7 @@ namespace Project3902
             CurrentRoom = currentLevel.Map.Right;
             StartRoomSwitch(new Vector2(-1, 0));
             linkPositionAfterRoomSwitch = new Vector2(128, 320 + HUDFactory.Instance.HUDHeight);
+            HUDManager.Instance.moveMapBlipRight();
         }
 
         public void EnterRoomBottom()
@@ -218,6 +221,7 @@ namespace Project3902
             CurrentRoom = currentLevel.Map.Bottom;
             StartRoomSwitch(new Vector2(0, -1));
             linkPositionAfterRoomSwitch = new Vector2(480, 128 + HUDFactory.Instance.HUDHeight);
+            HUDManager.Instance.moveMapBlipDown();
         }
 
 
