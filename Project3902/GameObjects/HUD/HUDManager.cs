@@ -85,6 +85,12 @@ namespace Project3902
             HUDElements.Add(Factory.createXCharacter());
             HUDElements.Add(Factory.createXCharacter());
             HUDElements.Add(Factory.createXCharacter());
+
+            var levelMap = Factory.createLevelMap();
+            foreach(IGameObject hudElement in levelMap)
+            {
+                HUDElements.Add(hudElement);
+            }
         }
 
         private void updateHearts()
@@ -120,7 +126,7 @@ namespace Project3902
                 heartsCreated += 2;
             }
 
-            
+
         }
 
         private void createNumsLists()

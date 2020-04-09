@@ -47,7 +47,7 @@ namespace Project3902
             if (!link.Damaged)
             {
                 link.Health -= damage;
-                
+
                 LinkFactory.Instance.CreateDamagedLink();
                 SoundHandler.Instance.PlaySoundEffect("Link Hurt");
             }
@@ -104,7 +104,7 @@ namespace Project3902
                         EnvironmentFactory.Instance.CreateOpenDoorLeft(other.GameObject.Position);
                         break;
                 }
-                
+
                 CollisionHandler.Instance.RemoveCollidable(other.GameObject as ICollidable);
                 other.GameObject = null;
                 SoundHandler.Instance.PlaySoundEffect("Door Unlock");
@@ -142,6 +142,12 @@ namespace Project3902
                     {
                         link.KeyCount++;
                     }
+                }
+                else if(other.GameObject is Watch)
+                {
+                    var watch = other.GameObject as Watch;
+                    watch.FreezeEnemies();
+                    SoundHandler.Instance.PlaySoundEffect("Item");
                 }
                 else if(other.GameObject is Rupee)
                 {

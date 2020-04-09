@@ -69,21 +69,91 @@ namespace Project3902
 
             int roomNumber = 0;
 
-            if (xPos >= 50 && xPos < 100 && yPos >= 50 && yPos < 100)
+            if (xPos < 120 && yPos >= 80 && yPos <= 90)
             {
-                roomNumber = 1;
+                if(xPos >= 64)
+                {
+                    roomNumber = 3;
+                }
+                else if(xPos >= 46)
+                {
+                    roomNumber = 1;
+                }
+                else if (xPos >= 28)
+                {
+                    roomNumber = 2;
+                }
             }
-            else if (xPos >= 100 && xPos < 150 && yPos >= 50 && yPos < 100)
+            else if (xPos < 120 && yPos >= 68 && yPos <= 78)
             {
-                roomNumber = 2;
+                if (xPos >= 46 && xPos <= 64)
+                {
+                    roomNumber = 4;
+                }
             }
-            else if (xPos >= 150 && xPos < 200 && yPos >= 50 && yPos < 100)
+            else if (xPos < 120 && yPos >= 56 && yPos <= 66)
             {
-                roomNumber = 3;
+                if (xPos >= 64 && xPos <= 82)
+                {
+                    roomNumber = 7;
+                }
+                else if (xPos >= 46)
+                {
+                    roomNumber = 5;
+                }
+                else if (xPos >= 28)
+                {
+                    roomNumber = 6;
+                }
             }
-            else if (xPos >= 200 && xPos < 250 && yPos >= 50 && yPos < 100)
+            else if (xPos < 120 && yPos >= 44 && yPos <= 54)
             {
-                roomNumber = 4;
+                if (xPos >= 82 && xPos <= 100)
+                {
+                    roomNumber = 15;
+                }
+                else if (xPos >= 64)
+                {
+                    roomNumber = 14;
+                }
+                else if (xPos >= 46)
+                {
+                    roomNumber = 10;
+                }
+                else if (xPos >= 28)
+                {
+                    roomNumber = 8;
+                }
+                else if (xPos >= 10)
+                {
+                    roomNumber = 9;
+                }
+            }
+            else if (xPos < 120 && yPos >= 32 && yPos <= 42)
+            {
+                if (xPos >= 100 && xPos <= 118)
+                {
+                    roomNumber = 17;
+                }
+                else if (xPos >= 82)
+                {
+                    roomNumber = 16;
+                }
+                else if (xPos >= 46)
+                {
+                    roomNumber = 11;
+                }
+            }
+            else if (xPos < 120 && yPos >= 20 && yPos <= 30)
+            {
+                if (xPos >= 46 && xPos <= 64)
+                {
+                    roomNumber = 12;
+                }
+                else if (xPos >= 28)
+                {
+                    roomNumber = 13;
+                }
             }
 
             if (Mouse.GetState().LeftButton == ButtonState.Pressed && roomNumber != 0)

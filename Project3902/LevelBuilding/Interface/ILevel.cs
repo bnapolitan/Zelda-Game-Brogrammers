@@ -12,5 +12,6 @@ namespace Project3902.LevelBuilding
 
         void LoadLevel();
         void OffsetGameObjects(Vector2 offset);
+        void FreezeEnemies();
     }
 }
