@@ -166,7 +166,7 @@ namespace Project3902
         protected void RestartLevel()
         {
             CollisionHandler.Instance.Flush();
-            CollisionHandler.Instance.CheckCollisions();
+            //CollisionHandler.Instance.CheckCollisions();
             SoundHandler.Instance.StopEffectInstance(true);
 
             currentLevel = new Level(CurrentRoom);
