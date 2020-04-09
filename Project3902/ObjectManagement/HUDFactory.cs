@@ -10,7 +10,7 @@ namespace Project3902
         private SpriteAtlas HUDSprites;
         public static HUDFactory Instance { get; } = new HUDFactory();
         private FinalGame game;
-        public int HUDHeight = 130;
+        public int HUDHeight = 96;
         private int HUDWidth;
         private int numX;
         private Vector2 HUDScale = new Vector2(3, 3);
