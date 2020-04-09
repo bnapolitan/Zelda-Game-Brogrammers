@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Project3902.LevelBuilding;
 using Project3902.ObjectManagement;
+using System;
 using System.Collections.Generic;
 
 /*
@@ -37,7 +38,6 @@ namespace Project3902
         public string CurrentRoom = "DungeonRoom0";
 
         Vector2 linkPositionAfterRoomSwitch;
-        int freezeEnemiesTime = 0;
 
         public FinalGame()
         {
@@ -89,7 +89,10 @@ namespace Project3902
             SoundHandler.Instance.LoadAllSounds(Content);
             SoundHandler.Instance.PlaySong("Dungeon");
 
-            currentLevel = new Level(CurrentRoom);
+            LevelManager.Instance.ResetLevels();
+            Console.WriteLine("a");
+            currentLevel = LevelManager.Instance.GetLevel(CurrentRoom);
+            Console.WriteLine("b");
         }
 
 
@@ -158,7 +161,7 @@ namespace Project3902
             CollisionHandler.Instance.CheckCollisions();
             SoundHandler.Instance.StopEffectInstance(true);
 
-            currentLevel = new Level(CurrentRoom);
+            currentLevel = LevelManager.Instance.GetLevel(CurrentRoom);
 
             RegisterLinkCollision();
         }
@@ -167,6 +170,8 @@ namespace Project3902
         {
             SoundHandler.Instance.StopEffectInstance(true);
             SoundHandler.Instance.PlaySoundEffect("Link Die", true);
+            LevelManager.Instance.ResetLevels();
+            CurrentRoom = "DungeonRoom0";
             RestartLevel();
         }
 
@@ -176,11 +181,9 @@ namespace Project3902
             currentLevel.ScrollDirection = direction;
             CollisionHandler.Instance.Flush();
 
-            nextLevel = new Level(CurrentRoom, roomSize * -direction)
-            {
-                Scrolling = true,
-                ScrollDirection = direction
-            };
+            nextLevel = LevelManager.Instance.GetLevelWithOffset(CurrentRoom, roomSize * -direction);
+            nextLevel.Scrolling = true;
+            nextLevel.ScrollDirection = direction;
 
             scrollTimer = (roomSize * direction).Length() / currentLevel.ScrollSpeed;
         }
@@ -190,7 +193,7 @@ namespace Project3902
             Link.Position = linkPositionAfterRoomSwitch;
             RegisterLinkCollision();
 
-            currentLevel = new Level(CurrentRoom);
+            currentLevel = LevelManager.Instance.GetLevel(CurrentRoom);
             nextLevel = null;
         }
 
