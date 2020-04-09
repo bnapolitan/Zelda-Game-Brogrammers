@@ -66,9 +66,7 @@ namespace Project3902
             HUDManager.Instance.registerGame(this);
             HUDObjects = HUDManager.Instance.HUDElements;
 
-            LinkFactory.Instance.LoadAllTextures(Content);
-            Link = LinkFactory.Instance.CreateLink(new Vector2(450, 500 + HUDFactory.Instance.HUDHeight), this);
-            RegisterLinkCollision();
+            
 
             keyboardController = LinkFactory.Instance.CreateLinkController(this);
             mouseController = LevelFactory.Instance.CreateLevelController(this);
@@ -93,6 +91,9 @@ namespace Project3902
             Console.WriteLine("a");
             currentLevel = LevelManager.Instance.GetLevel(CurrentRoom);
             Console.WriteLine("b");
+            LinkFactory.Instance.LoadAllTextures(Content);
+            Link = LinkFactory.Instance.CreateLink(new Vector2(450, 500 + HUDFactory.Instance.HUDHeight), this);
+            RegisterLinkCollision();
         }
 
 
@@ -191,9 +192,9 @@ namespace Project3902
         private void EndRoomSwitch()
         {
             Link.Position = linkPositionAfterRoomSwitch;
-            RegisterLinkCollision();
 
             currentLevel = LevelManager.Instance.GetLevel(CurrentRoom);
+            RegisterLinkCollision();
             nextLevel = null;
         }
 

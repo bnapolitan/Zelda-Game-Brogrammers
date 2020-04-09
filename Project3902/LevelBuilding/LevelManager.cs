@@ -34,7 +34,10 @@ namespace Project3902.LevelBuilding
             Console.WriteLine("After Items");
             foreach (IGameObject environment in currentLevel.interactiveEnvironmentObjects)
             {
-                CollisionHandler.Instance.RegisterCollidable((environment as ICollidable), Layer.Wall);
+                if(environment is ICollidable)
+                {
+                    CollisionHandler.Instance.RegisterCollidable((environment as ICollidable), Layer.Wall);
+                }
             }
             Console.WriteLine("After Environment");
             return currentLevel;
@@ -56,10 +59,13 @@ namespace Project3902.LevelBuilding
                 item.Position += offset;
                 CollisionHandler.Instance.RegisterCollidable(item, Layer.Pickup);
             }
-            foreach (IInteractiveEnvironmentObject environment in currentLevel.interactiveEnvironmentObjects)
+            foreach (IGameObject environment in currentLevel.interactiveEnvironmentObjects)
             {
                 environment.Position += offset;
-                CollisionHandler.Instance.RegisterCollidable(environment, Layer.Wall);
+                if (environment is ICollidable)
+                {
+                    CollisionHandler.Instance.RegisterCollidable((environment as ICollidable), Layer.Wall);
+                }
             }
             return currentLevel;
         }
