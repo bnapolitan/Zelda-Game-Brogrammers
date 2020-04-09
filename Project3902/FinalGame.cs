@@ -40,7 +40,7 @@ namespace Project3902
         private SpriteFont font;
         Vector2 linkPositionAfterRoomSwitch;
         int freezeEnemiesTime = 0;
-        int temp = 0;
+        int drawingCounter = 0;
 
         public FinalGame()
         {
@@ -143,9 +143,7 @@ namespace Project3902
                 nextLevel.Draw(spriteBatch);
 
             if (currentLevel.LevelName == "DungeonRoom9" && !currentLevel.Scrolling)
-            {
                 this.DrawText(gameTime);
-            }
 
             if (!currentLevel.Scrolling)
                 Link.Draw(spriteBatch);
@@ -252,15 +250,19 @@ namespace Project3902
             int xPos;
             int yPos = 250;
 
-            if (temp < 680)
+            if (drawingCounter < 238)
             {
-                characterPosition = temp / 20;
+                characterPosition = drawingCounter / 7;
+                if (drawingCounter % 7 == 0)
+                {
+                    SoundHandler.Instance.PlaySoundEffect("Heart");
+                }
             }
             else
             {
                 characterPosition = 34;
             }
-            temp++;
+            drawingCounter++;
 
             for (int i = 0; i < characterPosition; i++)
             {
@@ -270,7 +272,7 @@ namespace Project3902
                 }
                 else
                 {
-                    xPos = i - 16;
+                    xPos = i - 17;
                     yPos = 300;
                 }
                 spriteBatch.DrawString(font, words[i].ToString(), new Vector2(310 + (xPos * 22), yPos), Color.White, 0f, new Vector2(0, 0), new Vector2(2, 2), SpriteEffects.None, 0f);
