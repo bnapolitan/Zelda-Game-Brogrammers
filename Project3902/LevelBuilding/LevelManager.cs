@@ -48,7 +48,7 @@ namespace Project3902.LevelBuilding
 
             Level currentLevel = levelDict[levelName];
             CollisionHandler.Instance.Flush();
-            CollisionHandler.Instance.CheckCollisions();
+            //CollisionHandler.Instance.CheckCollisions();
             foreach (IEnemy enemy in currentLevel.enemyObjects)
             {
                 enemy.Position += offset;

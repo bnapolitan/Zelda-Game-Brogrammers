@@ -107,7 +107,7 @@ namespace Project3902
             base.Update(gameTime);
 
             currentLevel.Update(gameTime);
-            if (nextLevel != null)
+            if (nextLevel!=null&&nextLevel.Scrolling)
                 nextLevel.Update(gameTime);
 
             if (!currentLevel.Scrolling)
@@ -138,7 +138,7 @@ namespace Project3902
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
             currentLevel.Draw(spriteBatch);
-            if (nextLevel != null)
+            if (nextLevel != null&&nextLevel.Scrolling)
                 nextLevel.Draw(spriteBatch);
 
             if (!currentLevel.Scrolling)
@@ -192,10 +192,11 @@ namespace Project3902
         private void EndRoomSwitch()
         {
             Link.Position = linkPositionAfterRoomSwitch;
-
+            currentLevel.Scrolling = false;
+            nextLevel.Scrolling = false;
             currentLevel = LevelManager.Instance.GetLevel(CurrentRoom);
             RegisterLinkCollision();
-            nextLevel = null;
+            //nextLevel = null;
         }
 
         public void EnterRoomTop()
