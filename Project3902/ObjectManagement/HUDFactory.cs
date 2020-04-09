@@ -40,12 +40,12 @@ namespace Project3902
 
         public List<IGameObject> createLevelMap()
         {
-            Vector2[] positions = { new Vector2(28, 80), new Vector2(46, 80), new Vector2(64, 80),
-                new Vector2(46, 68),
-                new Vector2(28, 56), new Vector2(46, 56), new Vector2(64, 56),
-                new Vector2(46, 44), new Vector2(28, 44), new Vector2(10, 44), new Vector2(64, 44), new Vector2(82, 44),
-                new Vector2(46, 32), new Vector2(82, 32), new Vector2(100, 32),
-                new Vector2(46, 20), new Vector2(28, 20) };
+            Vector2[] positions = { new Vector2(139, 82), new Vector2(157, 82), new Vector2(175, 82),
+                new Vector2(157, 70),
+                new Vector2(139, 58), new Vector2(157, 58), new Vector2(175, 58),
+                new Vector2(157, 46), new Vector2(139, 46), new Vector2(121, 46), new Vector2(175, 46), new Vector2(193, 46),
+                new Vector2(157, 34), new Vector2(193, 34), new Vector2(211, 34),
+                new Vector2(157, 22), new Vector2(139, 22) };
             var levelList = new List<IGameObject>();
             for (int i = 0; i < positions.Length; i++)
             {
@@ -241,7 +241,7 @@ namespace Project3902
 
         public IGameObject createMapBlip()
         {
-            var gameObject = new HUDObject(new Vector2(175, HUDHeight - 14));
+            var gameObject = new HUDObject(new Vector2(160, HUDHeight - 14));
             var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(519, 126, 3, 3), HUDScale);
             gameObject.Sprite = sprite;
             return gameObject;

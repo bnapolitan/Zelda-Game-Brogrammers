@@ -17,6 +17,7 @@ namespace Project3902
         public List<IGameObject> counterList = new List<IGameObject>();
         private List<List<IGameObject>> numsLists = new List<List<IGameObject>>();
         private HUDFactory Factory = HUDFactory.Instance;
+        private IGameObject mapBlip;
         public static HUDManager Instance { get; } = new HUDManager();
         private int numHearts;
         private int maxHearts;
@@ -61,7 +62,7 @@ namespace Project3902
             {
                 gameObject.Draw(spriteBatch);
             }
-            Factory.createMapBlock().Draw(spriteBatch);
+            mapBlip.Draw(spriteBatch);
         }
 
         public void registerGame(FinalGame game)
@@ -73,7 +74,7 @@ namespace Project3902
 
         private void addBaseElements()
         {
-            HUDElements.Add(Factory.createMapBlip());
+            mapBlip = Factory.createMapBlip();
             HUDElements.Add(Factory.createLifeWord());
             HUDElements.Add(Factory.createCoinCountIcon());
             HUDElements.Add(Factory.createOrbCountIcon());
@@ -165,9 +166,9 @@ namespace Project3902
         {
             if (blipCool == 0)
             { 
-                var tempPos = HUDElements[0].Position;
+                var tempPos = mapBlip.Position;
                 tempPos.Y -= 12;
-                HUDElements[0].Position = tempPos;
+                mapBlip.Position = tempPos;
                
                 blipCool = 10;
             }
@@ -180,9 +181,9 @@ namespace Project3902
         {
             if (blipCool == 0)
             {
-                var tempPos = HUDElements[0].Position;
+                var tempPos = mapBlip.Position;
                 tempPos.X -= 21;
-                HUDElements[0].Position = tempPos;
+                mapBlip.Position = tempPos;
                 blipCool = 10;
             }
 
@@ -195,9 +196,9 @@ namespace Project3902
             {
 
 
-                var tempPos = HUDElements[0].Position;
+                var tempPos = mapBlip.Position;
                 tempPos.X += 21;
-                HUDElements[0].Position = tempPos;
+                mapBlip.Position = tempPos;
                 blipCool = 10;
             }
         }
@@ -206,9 +207,9 @@ namespace Project3902
         {
             if (blipCool == 0)
             {
-                var tempPos = HUDElements[0].Position;
+                var tempPos = mapBlip.Position;
                 tempPos.Y += 12;
-                HUDElements[0].Position = tempPos;
+                mapBlip.Position = tempPos;
                 blipCool = 10;
             }
         }
