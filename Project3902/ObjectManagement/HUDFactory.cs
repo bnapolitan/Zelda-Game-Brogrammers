@@ -241,7 +241,7 @@ namespace Project3902
 
         public IGameObject createMapBlip()
         {
-            var gameObject = new HUDObject(new Vector2(160, HUDHeight - 14));
+            var gameObject = new HUDObject(new Vector2(160, HUDHeight - 2));
             var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(519, 126, 3, 3), HUDScale);
             gameObject.Sprite = sprite;
             return gameObject;

@@ -182,7 +182,7 @@ namespace Project3902
             if (blipCool == 0)
             {
                 var tempPos = mapBlip.Position;
-                tempPos.X -= 21;
+                tempPos.X -= 18;
                 mapBlip.Position = tempPos;
                 blipCool = 10;
             }
@@ -197,7 +197,7 @@ namespace Project3902
 
 
                 var tempPos = mapBlip.Position;
-                tempPos.X += 21;
+                tempPos.X += 18;
                 mapBlip.Position = tempPos;
                 blipCool = 10;
             }
