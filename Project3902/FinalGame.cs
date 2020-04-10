@@ -2,7 +2,9 @@
 using Microsoft.Xna.Framework.Graphics;
 using Project3902.LevelBuilding;
 using Project3902.ObjectManagement;
+using System;
 using System.Collections.Generic;
+using System.Threading;
 
 /*
  * Team:
@@ -36,8 +38,10 @@ namespace Project3902
 
         public string CurrentRoom = "DungeonRoom0";
 
+        private SpriteFont font;
         Vector2 linkPositionAfterRoomSwitch;
         int freezeEnemiesTime = 0;
+        int temp = 0;
 
         public FinalGame()
         {
@@ -60,6 +64,8 @@ namespace Project3902
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            font = Content.Load<SpriteFont>("Credits");
 
             HUDFactory.Instance.LoadAllTextures(Content);
             HUDFactory.Instance.registerGame(this);
@@ -121,7 +127,7 @@ namespace Project3902
                 }
             }
 
-            HUDManager.Instance.Update(gameTime);
+            HUDManager.Instance.Update();
 
             CollisionHandler.Instance.CheckCollisions();
         }
@@ -136,6 +142,11 @@ namespace Project3902
             currentLevel.Draw(spriteBatch);
             if (nextLevel != null)
                 nextLevel.Draw(spriteBatch);
+
+            if (currentLevel.LevelName == "DungeonRoom9" && !currentLevel.Scrolling)
+            {
+                this.DrawText(gameTime);
+            }
 
             if (!currentLevel.Scrolling)
                 Link.Draw(spriteBatch);
@@ -155,7 +166,7 @@ namespace Project3902
         protected void RestartLevel()
         {
             CollisionHandler.Instance.Flush();
-            CollisionHandler.Instance.CheckCollisions();
+            //CollisionHandler.Instance.CheckCollisions();
             SoundHandler.Instance.StopEffectInstance(true);
 
             currentLevel = new Level(CurrentRoom);
@@ -169,13 +180,12 @@ namespace Project3902
             SoundHandler.Instance.PlaySoundEffect("Link Die", true);
             RestartLevel();
         }
-
+        
         private void StartRoomSwitch(Vector2 direction)
         {
             currentLevel.Scrolling = true;
             currentLevel.ScrollDirection = direction;
             CollisionHandler.Instance.Flush();
-
             nextLevel = new Level(CurrentRoom, roomSize * -direction)
             {
                 Scrolling = true,
@@ -193,19 +203,21 @@ namespace Project3902
             currentLevel = new Level(CurrentRoom);
             nextLevel = null;
         }
-
+        
         public void EnterRoomTop()
         {
             CurrentRoom = currentLevel.Map.Top;
             StartRoomSwitch(new Vector2(0, 1));
             linkPositionAfterRoomSwitch = new Vector2(480, 512 + HUDFactory.Instance.HUDHeight);
+            HUDManager.Instance.moveMapBlipUp();
         }
-
+        
         public void EnterRoomLeft()
         {
             CurrentRoom = currentLevel.Map.Left;
             StartRoomSwitch(new Vector2(1, 0));
             linkPositionAfterRoomSwitch = new Vector2(832, 320 + HUDFactory.Instance.HUDHeight);
+            HUDManager.Instance.moveMapBlipLeft();
         }
 
         public void EnterRoomRight()
@@ -213,6 +225,7 @@ namespace Project3902
             CurrentRoom = currentLevel.Map.Right;
             StartRoomSwitch(new Vector2(-1, 0));
             linkPositionAfterRoomSwitch = new Vector2(128, 320 + HUDFactory.Instance.HUDHeight);
+            HUDManager.Instance.moveMapBlipRight();
         }
 
         public void EnterRoomBottom()
@@ -220,6 +233,7 @@ namespace Project3902
             CurrentRoom = currentLevel.Map.Bottom;
             StartRoomSwitch(new Vector2(0, -1));
             linkPositionAfterRoomSwitch = new Vector2(480, 128 + HUDFactory.Instance.HUDHeight);
+            HUDManager.Instance.moveMapBlipDown();
         }
 
         public void MouseSwitchRoom(string room)
@@ -233,6 +247,38 @@ namespace Project3902
         public void FreezeEnemies()
         {
             currentLevel.FreezeEnemies();
+        }
+
+        public void DrawText(GameTime gameTime)
+        {
+            string words = "EASTMOST PENNINSULA IS THE SECRET.";
+            int characterPosition;
+            int xPos;
+            int yPos = 250;
+
+            if (temp < 680)
+            {
+                characterPosition = temp / 20;
+            }
+            else
+            {
+                characterPosition = 34;
+            }
+            temp++;
+
+            for (int i = 0; i < characterPosition; i++)
+            {
+                if(i < 19)
+                {
+                    xPos = i;
+                }
+                else
+                {
+                    xPos = i - 16;
+                    yPos = 300;
+                }
+                spriteBatch.DrawString(font, words[i].ToString(), new Vector2(310 + (xPos * 22), yPos), Color.White, 0f, new Vector2(0, 0), new Vector2(2, 2), SpriteEffects.None, 0f);
+            }
         }
     }
 }
