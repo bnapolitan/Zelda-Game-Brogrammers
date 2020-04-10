@@ -31,6 +31,7 @@ namespace Project3902
         public Vector2 roomSize = new Vector2(1024, 672);
         private float scrollTimer;
         private Vector2 lastScrollDirection;
+        private Boolean isPaused = false;
 
         public List<IGameObject> HUDObjects;
 
@@ -134,6 +135,7 @@ namespace Project3902
             }
 
             HUDManager.Instance.Update();
+            PauseScreen.Instance.Update();
 
             CollisionHandler.Instance.CheckCollisions();
 
@@ -166,6 +168,11 @@ namespace Project3902
 
             HUDManager.Instance.Draw(spriteBatch);
 
+            if (isPaused)
+            {
+                PauseScreen.Instance.Draw(spriteBatch);
+            }
+
             spriteBatch.End();
 
             base.Draw(gameTime);
@@ -174,6 +181,11 @@ namespace Project3902
         private void RegisterLinkCollision()
         {
             CollisionHandler.Instance.RegisterCollidable(Link, Layer.Player, Layer.Enemy, Layer.Wall, Layer.Pickup, Layer.Projectile);
+        }
+        
+        public void PauseGame()
+        {
+            isPaused = !isPaused;
         }
 
         protected void RestartLevel()
@@ -187,6 +199,7 @@ namespace Project3902
             RegisterLinkCollision();
         }
 
+        
         public void ReloadOnDeath()
         {
             if (linkDeath)

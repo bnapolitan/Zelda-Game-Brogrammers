@@ -11,6 +11,7 @@ namespace Project3902
         public static HUDFactory Instance { get; } = new HUDFactory();
         private FinalGame game;
         public int HUDHeight = 96;
+        private Vector2 PauseScale = new Vector2(4, 4);
         private int HUDWidth;
         private int numX;
         private Vector2 HUDScale = new Vector2(3, 3);
@@ -28,6 +29,7 @@ namespace Project3902
         {
             this.game = game;
             HUDWidth = game.graphics.PreferredBackBufferWidth;
+
         }
 
         public IGameObject createLifeWord()
@@ -249,16 +251,16 @@ namespace Project3902
 
         public IGameObject createPauseMapSection()
         {
-            var gameObject = new HUDObject(new Vector2());
-            var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(258,112,255,87), HUDScale);
+            var gameObject = new HUDObject(new Vector2(0,(69*PauseScale.Y)+HUDHeight));
+            var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(258,112,255,87), PauseScale);
             gameObject.Sprite = sprite;
             return gameObject;
         }
 
         public IGameObject createPauseInventorySection()
         {
-            var gameObject = new HUDObject(new Vector2(160, HUDHeight - 2));
-            var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(1,29,255,69), HUDScale);
+            var gameObject = new HUDObject(new Vector2(0, HUDHeight));
+            var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(1,29,255,69), PauseScale);
             gameObject.Sprite = sprite;
             return gameObject;
         }

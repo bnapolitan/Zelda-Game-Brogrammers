@@ -7,5 +7,8 @@ namespace Project3902.GameObjects.Environment
 
         public MoveableBlock(Vector2 position)
             : base(position) { }
+
+        public int MaxFrames { get; internal set; }
+        public Vector2 Direction { get; internal set; }
     }
 }
