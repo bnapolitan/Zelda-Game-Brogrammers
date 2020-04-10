@@ -96,6 +96,7 @@
     <Compile Include="GlobalSuppressions2.cs" />
     <Compile Include="LevelBuilding\Interface\ILevel.cs" />
     <Compile Include="LevelBuilding\Level.cs" />
+    <Compile Include="LevelBuilding\LevelManager.cs" />
     <Compile Include="LevelBuilding\LevelMap.cs" />
     <Compile Include="LevelBuilding\LevelFactory.cs" />
     <Compile Include="LevelBuilding\LevelBuilder.cs" />
