@@ -177,6 +177,11 @@ namespace Project3902
                 else if (other.GameObject is Triforce)
                 {
                     SoundHandler.Instance.PlaySong("Triforce");
+                }else if(other.GameObject is Map)
+                {
+                    PauseScreen.Instance.addMapToPauseScreen();
+                    HUDManager.Instance.addMapToHUD();
+                    SoundHandler.Instance.PlaySoundEffect("Item");
                 }
                 else
                 {

@@ -87,11 +87,7 @@ namespace Project3902
             HUDElements.Add(Factory.createXCharacter());
             HUDElements.Add(Factory.createXCharacter());
 
-            var levelMap = Factory.createLevelMap();
-            foreach(IGameObject hudElement in levelMap)
-            {
-                HUDElements.Add(hudElement);
-            }
+            
         }
 
         private void updateHearts()
@@ -211,6 +207,15 @@ namespace Project3902
                 tempPos.Y += 12;
                 mapBlip.Position = tempPos;
                 blipCool = 10;
+            }
+        }
+
+        public void addMapToHUD()
+        {
+            var levelMap = Factory.createLevelMap();
+            foreach (IGameObject hudElement in levelMap)
+            {
+                HUDElements.Add(hudElement);
             }
         }
 
