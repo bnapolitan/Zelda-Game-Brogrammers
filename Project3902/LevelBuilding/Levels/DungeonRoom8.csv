@@ -1,5 +1,5 @@
 Environment
-MoveableBlock, 448, 320
+MoveableBlockRight, 448, 320
 WallTop, 448, 0
 ShutDoorLeft, 0, 288
 OpenDoorRight, 896, 288
