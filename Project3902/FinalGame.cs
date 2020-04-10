@@ -29,6 +29,7 @@ namespace Project3902
 
         public Vector2 roomSize = new Vector2(1024, 672);
         private float scrollTimer;
+        private Vector2 lastScrollDirection;
 
         public List<IGameObject> HUDObjects;
 
@@ -91,6 +92,7 @@ namespace Project3902
             Console.WriteLine("a");
             currentLevel = LevelManager.Instance.GetLevel(CurrentRoom);
             Console.WriteLine("b");
+
             LinkFactory.Instance.LoadAllTextures(Content);
             Link = LinkFactory.Instance.CreateLink(new Vector2(450, 500 + HUDFactory.Instance.HUDHeight), this);
             RegisterLinkCollision();
@@ -107,7 +109,7 @@ namespace Project3902
             base.Update(gameTime);
 
             currentLevel.Update(gameTime);
-            if (nextLevel!=null&&nextLevel.Scrolling)
+            if (nextLevel != null && nextLevel.Scrolling)
                 nextLevel.Update(gameTime);
 
             if (!currentLevel.Scrolling)
@@ -138,7 +140,7 @@ namespace Project3902
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
             currentLevel.Draw(spriteBatch);
-            if (nextLevel != null&&nextLevel.Scrolling)
+            if (nextLevel != null && nextLevel.Scrolling)
                 nextLevel.Draw(spriteBatch);
 
             if (!currentLevel.Scrolling)
@@ -182,6 +184,8 @@ namespace Project3902
             currentLevel.ScrollDirection = direction;
             CollisionHandler.Instance.Flush();
 
+            lastScrollDirection = direction;
+
             nextLevel = LevelManager.Instance.GetLevelWithOffset(CurrentRoom, roomSize * -direction);
             nextLevel.Scrolling = true;
             nextLevel.ScrollDirection = direction;
@@ -193,10 +197,14 @@ namespace Project3902
         {
             Link.Position = linkPositionAfterRoomSwitch;
             currentLevel.Scrolling = false;
+
+            currentLevel.OffsetGameObjects(roomSize * -lastScrollDirection); // FIXES BLANK ROOMS AFTER SCROLL
+
             nextLevel.Scrolling = false;
-            currentLevel = LevelManager.Instance.GetLevel(CurrentRoom);
+            currentLevel = nextLevel;
+            LevelManager.Instance.GetLevel(CurrentRoom);
             RegisterLinkCollision();
-            //nextLevel = null;
+            nextLevel = null;
         }
 
         public void EnterRoomTop()
