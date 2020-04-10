@@ -39,7 +39,7 @@ namespace Project3902
         public string CurrentRoom = "DungeonRoom0";
 
         Vector2 linkPositionAfterRoomSwitch;
-
+        Boolean linkDeath = false;
         public FinalGame()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -89,9 +89,7 @@ namespace Project3902
             SoundHandler.Instance.PlaySong("Dungeon");
 
             LevelManager.Instance.ResetLevels();
-            Console.WriteLine("a");
             currentLevel = LevelManager.Instance.GetLevel(CurrentRoom);
-            Console.WriteLine("b");
 
             LinkFactory.Instance.LoadAllTextures(Content);
             Link = LinkFactory.Instance.CreateLink(new Vector2(450, 500 + HUDFactory.Instance.HUDHeight), this);
@@ -130,6 +128,13 @@ namespace Project3902
             HUDManager.Instance.Update(gameTime);
 
             CollisionHandler.Instance.CheckCollisions();
+
+            LevelManager.Instance.CheckSpecials();
+            if (linkDeath)
+            {
+                ReloadOnDeath();
+                linkDeath = false;
+            }
         }
 
         protected override void Draw(GameTime gameTime)
@@ -171,11 +176,18 @@ namespace Project3902
 
         public void ReloadOnDeath()
         {
-            SoundHandler.Instance.StopEffectInstance(true);
-            SoundHandler.Instance.PlaySoundEffect("Link Die", true);
-            LevelManager.Instance.ResetLevels();
-            CurrentRoom = "DungeonRoom0";
-            RestartLevel();
+            if (linkDeath)
+            {
+                SoundHandler.Instance.StopEffectInstance(true);
+                SoundHandler.Instance.PlaySoundEffect("Link Die", true);
+                LevelManager.Instance.ResetLevels();
+                CurrentRoom = "DungeonRoom0";
+                RestartLevel();
+                linkDeath = false;
+                Link.Health = Link.MaxHealth;
+                return;
+            }
+            linkDeath = true;
         }
 
         private void StartRoomSwitch(Vector2 direction)

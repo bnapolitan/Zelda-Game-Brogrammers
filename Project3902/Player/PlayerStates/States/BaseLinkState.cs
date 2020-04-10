@@ -4,6 +4,7 @@ using Project3902.GameObjects;
 using Project3902.GameObjects.EnemyProjectiles;
 using Project3902.GameObjects.Environment;
 using Project3902.GameObjects.Environment.Interfaces;
+using Project3902.LevelBuilding;
 using Project3902.ObjectManagement;
 
 namespace Project3902
@@ -85,29 +86,41 @@ namespace Project3902
             else if (other.GameObject is LockDoor && link.KeyCount > 0)
             {
                 link.KeyCount--;
-                switch((other.GameObject as LockDoor).DirectionType)
+                switch ((other.GameObject as LockDoor).DirectionType)
                 {
                     case 0:
-                        EnvironmentFactory.Instance.CreateOpenDoorTop(other.GameObject.Position);
+                        LevelManager.Instance.AddObjectToCurrentLevel(EnvironmentFactory.Instance.CreateOpenDoorTop(other.GameObject.Position));
                         break;
                     case 1:
-                        EnvironmentFactory.Instance.CreateOpenDoorRight(other.GameObject.Position);
+                        LevelManager.Instance.AddObjectToCurrentLevel(EnvironmentFactory.Instance.CreateOpenDoorRight(other.GameObject.Position));
                         break;
                     case 2:
-                        EnvironmentFactory.Instance.CreateOpenDoorBottom(other.GameObject.Position);
+                        LevelManager.Instance.AddObjectToCurrentLevel(EnvironmentFactory.Instance.CreateOpenDoorBottom(other.GameObject.Position));
                         break;
                     case 3:
-                        EnvironmentFactory.Instance.CreateOpenDoorLeft(other.GameObject.Position);
+                        LevelManager.Instance.AddObjectToCurrentLevel(EnvironmentFactory.Instance.CreateOpenDoorLeft(other.GameObject.Position));
                         break;
                 }
 
                 CollisionHandler.Instance.RemoveCollidable(other.GameObject as ICollidable);
+                LevelManager.Instance.RemoveObjectFromCurrentLevel(other.GameObject);
                 other.GameObject = null;
                 SoundHandler.Instance.PlaySoundEffect("Door Unlock");
             }
             else if (other.GameObject is IInteractiveEnvironmentObject)
             {
-                MoveOutOfWall(other);
+                if(other.GameObject is MoveableBlock&&(other.GameObject as MoveableBlock).MaxFrames>0&& link.FacingDirection == (other.GameObject as MoveableBlock).Direction)
+                {
+                    other.GameObject.Position += link.FacingDirection * 4;
+                    (other.GameObject as ICollidable).Collider.AlignHitbox();
+                    (other.GameObject as MoveableBlock).MaxFrames-= 4;
+                }
+                else
+                {
+                    MoveOutOfWall(other);
+                }
+                
+                
             }
             else if (other.GameObject is IEnemy)
             {
@@ -121,9 +134,11 @@ namespace Project3902
             {
                 TakeDamage((other.GameObject as Fireball).Damage);
             }
+            
             else if(other.GameObject is IItem)
             {
-                if(other.GameObject is Heart || other.GameObject is Key)
+                LevelManager.Instance.RemoveObjectFromCurrentLevel(other.GameObject);
+                if (other.GameObject is Heart || other.GameObject is Key)
                 {
                     SoundHandler.Instance.PlaySoundEffect("Heart");
                     if(other.GameObject is Heart)

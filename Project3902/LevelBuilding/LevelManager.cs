@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Project3902.GameObjects;
+using Project3902.GameObjects.Environment;
+using Project3902.ObjectManagement;
 using System;
 using System.Collections.Generic;
 
@@ -9,7 +11,13 @@ namespace Project3902.LevelBuilding
     {
         readonly Dictionary<String, Level> levelDict=new Dictionary<string, Level>();
         public static LevelManager Instance { get; } = new LevelManager();
-
+        private Level current;
+        private String currentString;
+        private Boolean Room2KeyAdded = false;
+        private Boolean Room3KeyAdded = false;
+        private Boolean Room6DoorReleased = false;
+        private Boolean Room8DoorReleased = false;
+        private Boolean Room16DoorReleased = false;
         private LevelManager()
         {
             
@@ -20,18 +28,15 @@ namespace Project3902.LevelBuilding
 
             Level currentLevel= levelDict[levelName];
             CollisionHandler.Instance.Flush();
-            Console.WriteLine("After Flush");
             CollisionHandler.Instance.CheckCollisions();
             foreach (IEnemy enemy in currentLevel.enemyObjects)
             {
                 CollisionHandler.Instance.RegisterCollidable(enemy, Layer.Enemy, Layer.Wall, Layer.Projectile);
             }
-            Console.WriteLine("After Enemies");
             foreach (IItem item in currentLevel.itemObjects)
             {
                 CollisionHandler.Instance.RegisterCollidable(item, Layer.Pickup);
             }
-            Console.WriteLine("After Items");
             foreach (IGameObject environment in currentLevel.interactiveEnvironmentObjects)
             {
                 if(environment is ICollidable)
@@ -39,7 +44,8 @@ namespace Project3902.LevelBuilding
                     CollisionHandler.Instance.RegisterCollidable((environment as ICollidable), Layer.Wall);
                 }
             }
-            Console.WriteLine("After Environment");
+            current = currentLevel;
+            currentString = levelName;
             return currentLevel;
         }
 
@@ -48,7 +54,6 @@ namespace Project3902.LevelBuilding
 
             Level currentLevel = levelDict[levelName];
             CollisionHandler.Instance.Flush();
-            //CollisionHandler.Instance.CheckCollisions();
             foreach (IEnemy enemy in currentLevel.enemyObjects)
             {
                 enemy.Position += offset;
@@ -67,16 +72,47 @@ namespace Project3902.LevelBuilding
                     CollisionHandler.Instance.RegisterCollidable((environment as ICollidable), Layer.Wall);
                 }
             }
+            current = currentLevel;
+            currentString = levelName;
             return currentLevel;
         }
 
+        public void AddObjectToCurrentLevel(IGameObject gameObject)
+        {
+            if (gameObject is IEnemy)
+            {
+                current.enemyObjects.Add(gameObject);
+            }
+            else if (gameObject is IItem)
+            {
+                current.itemObjects.Add(gameObject);
+            }
+            else if (gameObject is IInteractiveEnvironmentObject)
+            {
+                current.interactiveEnvironmentObjects.Add(gameObject);
+            }
+        }
+
+        public void RemoveObjectFromCurrentLevel(IGameObject gameObject)
+        {
+            if(gameObject is IEnemy)
+            {
+                current.enemyObjects.Remove(gameObject);
+            }
+            else if(gameObject is IItem)
+            {
+                current.itemObjects.Remove(gameObject);
+            }
+            else if(gameObject is IInteractiveEnvironmentObject)
+            {
+                current.itemObjects.Remove(gameObject);
+            }
+        }
         public void ResetLevels()
         {
             if (levelDict != null)
                 levelDict.Clear();
-            Console.WriteLine("Before Generate");
             GenerateLevels();
-            Console.WriteLine("After Generate");
         }
 
         private void GenerateLevels()
@@ -100,6 +136,93 @@ namespace Project3902.LevelBuilding
             levelDict.Add("DungeonRoom16", new Level("DungeonRoom16"));
             levelDict.Add("DungeonRoom17", new Level("DungeonRoom17"));
             levelDict.Add("BulletHellRoom", new Level("BulletHellRoom"));
+            Room2KeyAdded = false;
+            Room3KeyAdded = false;
+            Room6DoorReleased = false;
+            Room8DoorReleased = false;
+            Room16DoorReleased = false;
+        }
+
+        public void CheckSpecials()
+        {
+            switch (currentString)
+            {
+                case "DungeonRoom2":
+                    if (!Room2KeyAdded && current.enemyObjects.Count == 0)
+                    {
+                        AddObjectToCurrentLevel(ItemFactory.Instance.CreateKey(new Vector2(750, 400 + HUDFactory.Instance.HUDHeight)));
+                        Room2KeyAdded = true;
+                    }
+                    break;
+                case "DungeonRoom3":
+                    if (!Room3KeyAdded && current.enemyObjects.Count == 0)
+                    {
+                        AddObjectToCurrentLevel(ItemFactory.Instance.CreateKey(new Vector2(832, 512 + HUDFactory.Instance.HUDHeight)));
+                        Room3KeyAdded = true;
+                    }
+                    break;
+                case "DungeonRoom6":
+                    if (!Room6DoorReleased && current.enemyObjects.Count == 0)
+                    {
+
+                        foreach (var environment in current.interactiveEnvironmentObjects)
+                        {
+                            if (environment is ShutDoor)
+                            {
+                                CollisionHandler.Instance.RemoveCollidable(environment as ICollidable);
+                            }
+                        }
+                        current.interactiveEnvironmentObjects.RemoveAll(i => i is ShutDoor);
+                        SoundHandler.Instance.PlaySoundEffect("Door Unlock");
+                        AddObjectToCurrentLevel(EnvironmentFactory.Instance.CreateOpenDoorRight(new Vector2(896, 288 + HUDFactory.Instance.HUDHeight)));
+                        Room6DoorReleased = true;
+                    }
+                    break;
+                case "DungeonRoom8":
+                    if (!Room8DoorReleased)
+                    {
+                        Boolean moved = false;
+                        foreach (var environment in current.interactiveEnvironmentObjects)
+                        {
+                            if (environment is MoveableBlock)
+                            {
+                                Console.WriteLine(environment.Position);
+                                if (environment.Position == new Vector2(512, 320 + HUDFactory.Instance.HUDHeight))
+                                {
+                                    
+                                    CollisionHandler.Instance.RemoveCollidable(environment as ICollidable);
+                                    moved = true;
+                                }
+                                
+                            }
+                        }
+                        if (moved)
+                        {
+                            current.interactiveEnvironmentObjects.RemoveAll(i => i is ShutDoor);
+                            SoundHandler.Instance.PlaySoundEffect("Door Unlock");
+                            AddObjectToCurrentLevel(EnvironmentFactory.Instance.CreateOpenDoorLeft(new Vector2(0, 288 + HUDFactory.Instance.HUDHeight)));
+                            Room8DoorReleased = true;
+                        }
+                    }
+                    break;
+                case "DungeonRoom16":
+                    if (!Room16DoorReleased && current.enemyObjects.Count == 0)
+                    {
+
+                        foreach (var environment in current.interactiveEnvironmentObjects)
+                        {
+                            if (environment is ShutDoor)
+                            {
+                                CollisionHandler.Instance.RemoveCollidable(environment as ICollidable);
+                            }
+                        }
+                        current.interactiveEnvironmentObjects.RemoveAll(i => i is ShutDoor);
+                        SoundHandler.Instance.PlaySoundEffect("Door Unlock");
+                        AddObjectToCurrentLevel(EnvironmentFactory.Instance.CreateOpenDoorRight(new Vector2(896, 288 + HUDFactory.Instance.HUDHeight)));
+                        Room16DoorReleased = true;
+                    }
+                    break;
+            }
         }
     }
 }
