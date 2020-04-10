@@ -73,6 +73,7 @@
     <Compile Include="GameObjects\Environment\BaseEnvironment.cs" />
     <Compile Include="GameObjects\Environment\Interfaces\IDoorway.cs" />
     <Compile Include="GameObjects\Environment\BlockingBrick.cs" />
+    <Compile Include="GameObjects\HUD\PauseScreen.cs" />
     <Compile Include="GameObjects\Item\Map.cs" />
     <Compile Include="GameObjects\HUD\HUDManager.cs" />
     <Compile Include="GameObjects\HUD\HUDObject.cs" />

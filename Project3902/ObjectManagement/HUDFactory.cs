@@ -247,6 +247,22 @@ namespace Project3902
             return gameObject;
         }
 
+        public IGameObject createPauseMapSection()
+        {
+            var gameObject = new HUDObject(new Vector2());
+            var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(258,112,255,87), HUDScale);
+            gameObject.Sprite = sprite;
+            return gameObject;
+        }
+
+        public IGameObject createPauseInventorySection()
+        {
+            var gameObject = new HUDObject(new Vector2(160, HUDHeight - 2));
+            var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(1,29,255,69), HUDScale);
+            gameObject.Sprite = sprite;
+            return gameObject;
+        }
+
         public List<IGameObject> createDungeonMap()
         {
             return null;

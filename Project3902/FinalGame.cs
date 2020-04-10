@@ -70,6 +70,7 @@ namespace Project3902
             HUDFactory.Instance.LoadAllTextures(Content);
             HUDFactory.Instance.registerGame(this);
             HUDManager.Instance.registerGame(this);
+            PauseScreen.Instance.registerGame(this);
             HUDObjects = HUDManager.Instance.HUDElements;
 
             LinkFactory.Instance.LoadAllTextures(Content);
