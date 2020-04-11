@@ -15,9 +15,9 @@ namespace Project3902.LevelBuilding
 
         private int freezeTime = 0;
 
-        private List<IGameObject> interactiveEnvironmentObjects;
-        private List<IGameObject> enemyObjects;
-        private List<IGameObject> itemObjects;
+        public List<IGameObject> interactiveEnvironmentObjects;
+        public List<IGameObject> enemyObjects;
+        public List<IGameObject> itemObjects;
 
         private readonly LevelBuilder builder;
 

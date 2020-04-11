@@ -40,6 +40,7 @@ namespace Project3902
             {
                 flushRequested = false;
                 colliders = new Dictionary<ICollidable, LayerMasksHolder>();
+                collidersToAdd = new Dictionary<ICollidable, LayerMasksHolder>(); //test
                 collidersToDelete = new List<ICollidable>();
                 return;
             }
