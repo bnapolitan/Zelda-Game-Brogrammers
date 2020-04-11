@@ -77,7 +77,7 @@ namespace Project3902
             PauseScreen.Instance.registerGame(this);
             HUDObjects = HUDManager.Instance.HUDElements;
 
-            
+
 
             keyboardController = LinkFactory.Instance.CreateLinkController(this);
             mouseController = LevelFactory.Instance.CreateLevelController(this);
@@ -181,7 +181,7 @@ namespace Project3902
         {
             CollisionHandler.Instance.RegisterCollidable(Link, Layer.Player, Layer.Enemy, Layer.Wall, Layer.Pickup, Layer.Projectile);
         }
-        
+
         public void PauseGame()
         {
             isPaused = !isPaused;
@@ -190,7 +190,6 @@ namespace Project3902
         protected void RestartLevel()
         {
             CollisionHandler.Instance.Flush();
-            //CollisionHandler.Instance.CheckCollisions();
             SoundHandler.Instance.StopEffectInstance(true);
 
             currentLevel = LevelManager.Instance.GetLevel(CurrentRoom);
@@ -198,7 +197,7 @@ namespace Project3902
             RegisterLinkCollision();
         }
 
-        
+
         public void ReloadOnDeath()
         {
             if (linkDeath)
@@ -214,7 +213,7 @@ namespace Project3902
             }
             linkDeath = true;
         }
-        
+
         private void StartRoomSwitch(Vector2 direction)
         {
             currentLevel.Scrolling = true;
@@ -243,7 +242,7 @@ namespace Project3902
             RegisterLinkCollision();
             nextLevel = null;
         }
-        
+
         public void EnterRoomTop()
         {
             CurrentRoom = currentLevel.Map.Top;
@@ -251,7 +250,7 @@ namespace Project3902
             linkPositionAfterRoomSwitch = new Vector2(LinkPositionConfiguration.LinkXPositionAfterRoomSwitchTop, LinkPositionConfiguration.LinkYPositionAfterRoomSwitchTop + HUDFactory.Instance.HUDHeight);
             HUDManager.Instance.moveMapBlipUp();
         }
-        
+
         public void EnterRoomLeft()
         {
             CurrentRoom = currentLevel.Map.Left;
