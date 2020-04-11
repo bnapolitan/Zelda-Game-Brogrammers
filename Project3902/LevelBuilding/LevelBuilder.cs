@@ -29,7 +29,7 @@ namespace Project3902
         {
             var environmentObjects = new List<IGameObject>
             {
-                envFactory.CreateRoomBorder(new Vector2(0, 96))
+                envFactory.CreateRoomBorder(new Vector2(0, HUDHeight))
             };
 
             for (int j = 128 + HUDHeight; j < 560 + HUDHeight; j += 64)

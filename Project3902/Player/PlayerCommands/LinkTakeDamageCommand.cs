@@ -19,7 +19,6 @@ namespace Project3902
                 if(game.Link.Health <= 0)
                 {
                     game.ReloadOnDeath();
-                    game.Link.Health = game.Link.MaxHealth;
                 }
                 else
                 {

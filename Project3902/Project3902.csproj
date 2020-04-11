@@ -72,16 +72,19 @@
     <Compile Include="Configuration\RoomSwitchingThresholdConfiguration.cs" />
     <Compile Include="Configuration\TextConfiguration.cs" />
     <Compile Include="Configuration\LinkPositionConfiguration.cs" />
+    <Compile Include="Commands\PauseGameCommand.cs" />
     <Compile Include="GameObjects\EnemiesAndNPCs\BulletHellAquamentus.cs" />
     <Compile Include="GameObjects\Environment\BlankWallObject.cs" />
     <Compile Include="GameObjects\EnemiesAndNPCs\BaseEnemy.cs" />
     <Compile Include="GameObjects\Environment\BaseEnvironment.cs" />
     <Compile Include="GameObjects\Environment\Interfaces\IDoorway.cs" />
     <Compile Include="GameObjects\Environment\BlockingBrick.cs" />
+    <Compile Include="GameObjects\HUD\PauseScreen.cs" />
     <Compile Include="GameObjects\Item\Map.cs" />
     <Compile Include="GameObjects\HUD\HUDManager.cs" />
     <Compile Include="GameObjects\HUD\HUDObject.cs" />
     <Compile Include="GameObjects\HUD\Interface\IHUDObject.cs" />
+    <Compile Include="GameObjects\Item\RupeeBonus.cs" />
     <Compile Include="GameObjects\Item\Sword.cs" />
     <Compile Include="GameObjects\Item\Rupee.cs" />
     <Compile Include="GameObjects\Item\Triforce.cs" />
@@ -99,6 +102,7 @@
     <Compile Include="GlobalSuppressions2.cs" />
     <Compile Include="LevelBuilding\Interface\ILevel.cs" />
     <Compile Include="LevelBuilding\Level.cs" />
+    <Compile Include="LevelBuilding\LevelManager.cs" />
     <Compile Include="LevelBuilding\LevelMap.cs" />
     <Compile Include="LevelBuilding\LevelFactory.cs" />
     <Compile Include="LevelBuilding\LevelBuilder.cs" />

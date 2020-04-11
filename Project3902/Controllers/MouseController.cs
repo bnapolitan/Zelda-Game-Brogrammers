@@ -69,88 +69,88 @@ namespace Project3902
 
             int roomNumber = 0;
 
-            if (xPos < 120 && yPos >= 80 && yPos <= 90)
+            if (xPos < 187 && yPos >= 82 && yPos <= 94)
             {
-                if(xPos >= 64)
+                if(xPos >= 175)
                 {
                     roomNumber = 3;
                 }
-                else if(xPos >= 46)
+                else if(xPos >= 157)
                 {
                     roomNumber = 1;
                 }
-                else if (xPos >= 28)
+                else if (xPos >= 139)
                 {
                     roomNumber = 2;
                 }
             }
-            else if (xPos < 120 && yPos >= 68 && yPos <= 78)
+            else if (xPos < 187 && yPos >= 70 && yPos <= 81)
             {
-                if (xPos >= 46 && xPos <= 64)
+                if (xPos >= 157 && xPos <= 174)
                 {
                     roomNumber = 4;
                 }
             }
-            else if (xPos < 120 && yPos >= 56 && yPos <= 66)
+            else if (xPos < 223 && yPos >= 58 && yPos <= 69)
             {
-                if (xPos >= 64 && xPos <= 82)
+                if (xPos >= 175 && xPos <= 193)
                 {
                     roomNumber = 7;
                 }
-                else if (xPos >= 46)
+                else if (xPos >= 157)
                 {
                     roomNumber = 5;
                 }
-                else if (xPos >= 28)
+                else if (xPos >= 139)
                 {
                     roomNumber = 6;
                 }
             }
-            else if (xPos < 120 && yPos >= 44 && yPos <= 54)
+            else if (xPos < 223 && yPos >= 46 && yPos <= 57)
             {
-                if (xPos >= 82 && xPos <= 100)
+                if (xPos >= 193 && xPos <= 211)
                 {
                     roomNumber = 15;
                 }
-                else if (xPos >= 64)
+                else if (xPos >= 175)
                 {
                     roomNumber = 14;
                 }
-                else if (xPos >= 46)
+                else if (xPos >= 157)
                 {
                     roomNumber = 10;
                 }
-                else if (xPos >= 28)
+                else if (xPos >= 139)
                 {
                     roomNumber = 8;
                 }
-                else if (xPos >= 10)
+                else if (xPos >= 121)
                 {
                     roomNumber = 9;
                 }
             }
-            else if (xPos < 120 && yPos >= 32 && yPos <= 42)
+            else if (xPos < 223 && yPos >= 34 && yPos <= 45)
             {
-                if (xPos >= 100 && xPos <= 118)
+                if (xPos >= 211 && xPos <= 223)
                 {
                     roomNumber = 17;
                 }
-                else if (xPos >= 82)
+                else if (xPos >= 193)
                 {
                     roomNumber = 16;
                 }
-                else if (xPos >= 46)
+                else if (xPos >= 157)
                 {
                     roomNumber = 11;
                 }
             }
-            else if (xPos < 120 && yPos >= 20 && yPos <= 30)
+            else if (xPos < 223 && yPos >= 22 && yPos <= 33)
             {
-                if (xPos >= 46 && xPos <= 64)
+                if (xPos >= 157 && xPos <= 175)
                 {
                     roomNumber = 12;
                 }
-                else if (xPos >= 28)
+                else if (xPos >= 139)
                 {
                     roomNumber = 13;
                 }

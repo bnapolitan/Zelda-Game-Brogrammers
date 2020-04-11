@@ -27,14 +27,17 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
 
         public override void Attack()
         {
-            Vector2 fireball1Movement = Game.Link.Position - Position;
-            fireball1Movement.Normalize();
+            if (Active)
+            {
+                Vector2 fireball1Movement = Game.Link.Position - Position;
+                fireball1Movement.Normalize();
 
-            var angle = Math.Atan2(fireball1Movement.Y, fireball1Movement.X);
+                var angle = Math.Atan2(fireball1Movement.Y, fireball1Movement.X);
 
-            fireball = WeaponFactory.Instance.CreateFireballProjectile(Position, fireball1Movement);
-            fireball2 = WeaponFactory.Instance.CreateFireballProjectile(Position, new Vector2(fireball1Movement.X, (float)Math.Sin(angle + .524)));
-            fireball3 = WeaponFactory.Instance.CreateFireballProjectile(Position, new Vector2(fireball1Movement.X, (float)Math.Sin(angle - .524)));
+                fireball = WeaponFactory.Instance.CreateFireballProjectile(Position, fireball1Movement);
+                fireball2 = WeaponFactory.Instance.CreateFireballProjectile(Position, new Vector2(fireball1Movement.X, (float)Math.Sin(angle + .524)));
+                fireball3 = WeaponFactory.Instance.CreateFireballProjectile(Position, new Vector2(fireball1Movement.X, (float)Math.Sin(angle - .524)));
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)

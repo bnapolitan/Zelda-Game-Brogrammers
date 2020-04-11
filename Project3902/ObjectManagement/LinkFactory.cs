@@ -51,6 +51,7 @@ namespace Project3902
             controller.RegisterCommand(Keys.D2, new LinkUseBlueCandleCommand(game), InputState.Pressed);
 
             controller.RegisterCommand(Keys.E, takeDamageCommand, InputState.Pressed);
+            controller.RegisterCommand(Keys.G, new PauseGameCommand(game), InputState.Pressed);
 
             return controller;
         }

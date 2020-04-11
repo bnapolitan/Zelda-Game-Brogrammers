@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Project3902.Configuration;
 using Project3902.LevelBuilding;
 using Project3902.ObjectManagement;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 
@@ -30,6 +31,8 @@ namespace Project3902
 
         public Vector2 roomSize = new Vector2(1024, 672);
         private float scrollTimer;
+        private Vector2 lastScrollDirection;
+        private Boolean isPaused = false;
 
         public List<IGameObject> HUDObjects;
 
@@ -40,6 +43,7 @@ namespace Project3902
 
         private SpriteFont font;
         Vector2 linkPositionAfterRoomSwitch;
+        Boolean linkDeath = false;
         int freezeEnemiesTime = 0;
         int drawingCounter = 0;
 
@@ -70,11 +74,10 @@ namespace Project3902
             HUDFactory.Instance.LoadAllTextures(Content);
             HUDFactory.Instance.registerGame(this);
             HUDManager.Instance.registerGame(this);
+            PauseScreen.Instance.registerGame(this);
             HUDObjects = HUDManager.Instance.HUDElements;
 
-            LinkFactory.Instance.LoadAllTextures(Content);
-            Link = LinkFactory.Instance.CreateLink(new Vector2(450, 500 + HUDFactory.Instance.HUDHeight), this);
-            RegisterLinkCollision();
+            
 
             keyboardController = LinkFactory.Instance.CreateLinkController(this);
             mouseController = LevelFactory.Instance.CreateLevelController(this);
@@ -95,7 +98,12 @@ namespace Project3902
             SoundHandler.Instance.LoadAllSounds(Content);
             SoundHandler.Instance.PlaySong("Dungeon");
 
-            currentLevel = new Level(CurrentRoom);
+            LevelManager.Instance.ResetLevels();
+            currentLevel = LevelManager.Instance.GetLevel(CurrentRoom);
+
+            LinkFactory.Instance.LoadAllTextures(Content);
+            Link = LinkFactory.Instance.CreateLink(new Vector2(450, 500 + HUDFactory.Instance.HUDHeight), this);
+            RegisterLinkCollision();
         }
 
 
@@ -109,7 +117,7 @@ namespace Project3902
             base.Update(gameTime);
 
             currentLevel.Update(gameTime);
-            if (nextLevel != null)
+            if (nextLevel != null && nextLevel.Scrolling)
                 nextLevel.Update(gameTime);
 
             if (!currentLevel.Scrolling)
@@ -127,9 +135,17 @@ namespace Project3902
                 }
             }
 
-            HUDManager.Instance.Update(gameTime);
+            HUDManager.Instance.Update();
+            PauseScreen.Instance.Update();
 
             CollisionHandler.Instance.CheckCollisions();
+
+            LevelManager.Instance.CheckSpecials();
+            if (linkDeath)
+            {
+                ReloadOnDeath();
+                linkDeath = false;
+            }
         }
 
         protected override void Draw(GameTime gameTime)
@@ -140,7 +156,7 @@ namespace Project3902
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
             currentLevel.Draw(spriteBatch);
-            if (nextLevel != null)
+            if (nextLevel != null && nextLevel.Scrolling)
                 nextLevel.Draw(spriteBatch);
 
             if (currentLevel.LevelName == "DungeonRoom9" && !currentLevel.Scrolling)
@@ -151,6 +167,11 @@ namespace Project3902
 
             HUDManager.Instance.Draw(spriteBatch);
 
+            if (isPaused)
+            {
+                PauseScreen.Instance.Draw(spriteBatch);
+            }
+
             spriteBatch.End();
 
             base.Draw(gameTime);
@@ -160,36 +181,51 @@ namespace Project3902
         {
             CollisionHandler.Instance.RegisterCollidable(Link, Layer.Player, Layer.Enemy, Layer.Wall, Layer.Pickup, Layer.Projectile);
         }
+        
+        public void PauseGame()
+        {
+            isPaused = !isPaused;
+        }
 
         protected void RestartLevel()
         {
             CollisionHandler.Instance.Flush();
-            CollisionHandler.Instance.CheckCollisions();
+            //CollisionHandler.Instance.CheckCollisions();
             SoundHandler.Instance.StopEffectInstance(true);
 
-            currentLevel = new Level(CurrentRoom);
+            currentLevel = LevelManager.Instance.GetLevel(CurrentRoom);
 
             RegisterLinkCollision();
         }
 
+        
         public void ReloadOnDeath()
         {
-            SoundHandler.Instance.StopEffectInstance(true);
-            SoundHandler.Instance.PlaySoundEffect("Link Die", true);
-            RestartLevel();
+            if (linkDeath)
+            {
+                SoundHandler.Instance.StopEffectInstance(true);
+                SoundHandler.Instance.PlaySoundEffect("Link Die", true);
+                LevelManager.Instance.ResetLevels();
+                CurrentRoom = "DungeonRoom0";
+                RestartLevel();
+                linkDeath = false;
+                Link.Health = Link.MaxHealth;
+                return;
+            }
+            linkDeath = true;
         }
-
+        
         private void StartRoomSwitch(Vector2 direction)
         {
             currentLevel.Scrolling = true;
             currentLevel.ScrollDirection = direction;
             CollisionHandler.Instance.Flush();
 
-            nextLevel = new Level(CurrentRoom, roomSize * -direction)
-            {
-                Scrolling = true,
-                ScrollDirection = direction
-            };
+            lastScrollDirection = direction;
+
+            nextLevel = LevelManager.Instance.GetLevelWithOffset(CurrentRoom, roomSize * -direction);
+            nextLevel.Scrolling = true;
+            nextLevel.ScrollDirection = direction;
 
             scrollTimer = (roomSize * direction).Length() / currentLevel.ScrollSpeed;
         }
@@ -197,30 +233,38 @@ namespace Project3902
         private void EndRoomSwitch()
         {
             Link.Position = linkPositionAfterRoomSwitch;
-            RegisterLinkCollision();
+            currentLevel.Scrolling = false;
 
-            currentLevel = new Level(CurrentRoom);
+            currentLevel.OffsetGameObjects(roomSize * -lastScrollDirection); // FIXES BLANK ROOMS AFTER SCROLL
+
+            nextLevel.Scrolling = false;
+            currentLevel = nextLevel;
+            LevelManager.Instance.GetLevel(CurrentRoom);
+            RegisterLinkCollision();
             nextLevel = null;
         }
-
+        
         public void EnterRoomTop()
         {
             CurrentRoom = currentLevel.Map.Top;
             StartRoomSwitch(new Vector2(0, 1));
             linkPositionAfterRoomSwitch = new Vector2(LinkPositionConfiguration.LinkXPositionAfterRoomSwitchTop, LinkPositionConfiguration.LinkYPositionAfterRoomSwitchTop + HUDFactory.Instance.HUDHeight);
+            HUDManager.Instance.moveMapBlipUp();
         }
-
+        
         public void EnterRoomLeft()
         {
             CurrentRoom = currentLevel.Map.Left;
             StartRoomSwitch(new Vector2(1, 0));
             linkPositionAfterRoomSwitch = new Vector2(LinkPositionConfiguration.LinkXPositionAfterRoomSwitchLeft, LinkPositionConfiguration.LinkYPositionAfterRoomSwitchLeft + HUDFactory.Instance.HUDHeight);
+            HUDManager.Instance.moveMapBlipLeft();
         }
 
         public void EnterRoomRight()
         {
             CurrentRoom = currentLevel.Map.Right;
             StartRoomSwitch(new Vector2(-1, 0));
+            HUDManager.Instance.moveMapBlipRight();
             linkPositionAfterRoomSwitch = new Vector2(LinkPositionConfiguration.LinkXPositionAfterRoomSwitchRight, LinkPositionConfiguration.LinkYPositionAfterRoomSwitchLeft + HUDFactory.Instance.HUDHeight);
         }
 
@@ -229,6 +273,7 @@ namespace Project3902
             CurrentRoom = currentLevel.Map.Bottom;
             StartRoomSwitch(new Vector2(0, -1));
             linkPositionAfterRoomSwitch = new Vector2(LinkPositionConfiguration.LinkXPositionAfterRoomSwitchTop, LinkPositionConfiguration.LinkYPositionAfterRoomSwitchBottom + HUDFactory.Instance.HUDHeight);
+            HUDManager.Instance.moveMapBlipDown();
         }
 
         public void MouseSwitchRoom(string room)

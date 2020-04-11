@@ -53,7 +53,7 @@ namespace Project3902
 
 		public IGameObject CreateRupee(Vector2 position)
 		{
-			var createdObject = new Rupee(position);
+			var createdObject = new RupeeBonus(position);
 			List<Rectangle> RupeeSource = new List<Rectangle> { new Rectangle(0, 0, 30, 30), new Rectangle(30, 0, 30, 30) };
 			var sprite = new AnimatedSprite(createdObject, RupeeSprite, RupeeSource, .4f, new Vector2(3,3));
 			createdObject.Sprite = sprite;

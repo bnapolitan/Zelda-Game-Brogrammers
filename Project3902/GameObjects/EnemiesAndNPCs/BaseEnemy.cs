@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Project3902.GameObjects;
 using Project3902.GameObjects.EnemyProjectiles;
+using Project3902.LevelBuilding;
 using Project3902.ObjectManagement;
 using System;
 
@@ -62,21 +63,27 @@ namespace Project3902
                         Active = false;
                         SoundHandler.Instance.PlaySoundEffect("Enemy Die");
                         Random rnum = new Random();
-                        int coinChance = rnum.Next(5);
-                        if (coinChance == 0)
+                        int chance = rnum.Next(5);
+                        if (chance == 0)
                         {
                             SoundHandler.Instance.PlaySoundEffect("Rupee");
                             int bonusChance = rnum.Next(3);
                             if (bonusChance == 0)
                             {
-                                ItemFactory.Instance.CreateRupee(Position);
+                                LevelManager.Instance.AddObjectToCurrentLevel(ItemFactory.Instance.CreateRupee(Position));
                             }
                             else
                             {
-                                ItemFactory.Instance.Create1Rupee(Position);
+                                LevelManager.Instance.AddObjectToCurrentLevel(ItemFactory.Instance.Create1Rupee(Position));
                             }
                         }
+                        if (chance == 1)
+                        {
+                            SoundHandler.Instance.PlaySoundEffect("Heart");
+                            LevelManager.Instance.AddObjectToCurrentLevel(ItemFactory.Instance.CreateHeart(Position));
+                        }
                         CollisionHandler.Instance.RemoveCollidable(this);
+                        LevelManager.Instance.RemoveObjectFromCurrentLevel(this);
                     }
                     else
                     {
