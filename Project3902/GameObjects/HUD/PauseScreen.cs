@@ -42,6 +42,13 @@ namespace Project3902
         {
             PauseScreenElements.Add(Factory.createPauseInventorySection());
             PauseScreenElements.Add(Factory.createPauseMapSection());
+            PauseScreenElements.Add(Factory.createBlackInventoryBox());
+            PauseScreenElements.Add(Factory.createTopInventoryBlackBar());
+            PauseScreenElements.Add(Factory.createItemBlackBox());
+            PauseScreenElements.Add(Factory.createCompassBlackBox());
+            var blackBox = Factory.createItemBlackBox();
+            blackBox.Position = new Vector2(270, 210);
+            PauseScreenElements.Add(blackBox);
         }
 
         public void addMapToPauseScreen()

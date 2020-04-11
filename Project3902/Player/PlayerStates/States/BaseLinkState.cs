@@ -6,6 +6,7 @@ using Project3902.GameObjects.Environment;
 using Project3902.GameObjects.Environment.Interfaces;
 using Project3902.LevelBuilding;
 using Project3902.ObjectManagement;
+using System;
 
 namespace Project3902
 {
@@ -179,9 +180,9 @@ namespace Project3902
                     SoundHandler.Instance.PlaySong("Triforce");
                 }else if(other.GameObject is Map)
                 {
+                    SoundHandler.Instance.PlaySoundEffect("Item");
                     PauseScreen.Instance.addMapToPauseScreen();
                     HUDManager.Instance.addMapToHUD();
-                    SoundHandler.Instance.PlaySoundEffect("Item");
                 }
                 else
                 {

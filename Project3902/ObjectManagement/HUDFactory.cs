@@ -265,11 +265,38 @@ namespace Project3902
             return gameObject;
         }
 
-        public List<IGameObject> createDungeonMap()
+        public IGameObject createBlackInventoryBox()
         {
-            return null;
+            var gameObject = new HUDObject(new Vector2(520, 210));
+            var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(168, 118, 83, 35), PauseScale);
+            gameObject.Sprite = sprite;
+            return gameObject;
         }
 
+        public IGameObject createTopInventoryBlackBar()
+        {
+            var gameObject = new HUDObject(new Vector2(510, 110));
+            var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(168, 118, 89, 20), PauseScale);
+            gameObject.Sprite = sprite;
+            return gameObject;
+        }
+
+        public IGameObject createItemBlackBox()
+        {
+            var gameObject = new HUDObject(new Vector2(190, 465));
+            var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(168, 118, 10 , 20), PauseScale);
+            gameObject.Sprite = sprite;
+            return gameObject;
+        }
+
+        public IGameObject createCompassBlackBox()
+        {
+            var gameObject = new HUDObject(new Vector2(170, 625));
+            var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(168, 118, 19, 19), PauseScale);
+            gameObject.Sprite = sprite;
+            return gameObject;
+        }
+        
         public List<IGameObject> createNumberList()
         {
             var list = new List<IGameObject>();
