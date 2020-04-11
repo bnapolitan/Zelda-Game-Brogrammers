@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Project3902.Configuration;
 using Project3902.LevelBuilding;
 using Project3902.ObjectManagement;
 using System.Collections.Generic;
@@ -206,34 +207,34 @@ namespace Project3902
         {
             CurrentRoom = currentLevel.Map.Top;
             StartRoomSwitch(new Vector2(0, 1));
-            linkPositionAfterRoomSwitch = new Vector2(480, 512 + HUDFactory.Instance.HUDHeight);
+            linkPositionAfterRoomSwitch = new Vector2(LinkPositionConfiguration.LinkXPositionAfterRoomSwitchTop, LinkPositionConfiguration.LinkYPositionAfterRoomSwitchTop + HUDFactory.Instance.HUDHeight);
         }
 
         public void EnterRoomLeft()
         {
             CurrentRoom = currentLevel.Map.Left;
             StartRoomSwitch(new Vector2(1, 0));
-            linkPositionAfterRoomSwitch = new Vector2(832, 320 + HUDFactory.Instance.HUDHeight);
+            linkPositionAfterRoomSwitch = new Vector2(LinkPositionConfiguration.LinkXPositionAfterRoomSwitchLeft, LinkPositionConfiguration.LinkYPositionAfterRoomSwitchLeft + HUDFactory.Instance.HUDHeight);
         }
 
         public void EnterRoomRight()
         {
             CurrentRoom = currentLevel.Map.Right;
             StartRoomSwitch(new Vector2(-1, 0));
-            linkPositionAfterRoomSwitch = new Vector2(128, 320 + HUDFactory.Instance.HUDHeight);
+            linkPositionAfterRoomSwitch = new Vector2(LinkPositionConfiguration.LinkXPositionAfterRoomSwitchRight, LinkPositionConfiguration.LinkYPositionAfterRoomSwitchLeft + HUDFactory.Instance.HUDHeight);
         }
 
         public void EnterRoomBottom()
         {
             CurrentRoom = currentLevel.Map.Bottom;
             StartRoomSwitch(new Vector2(0, -1));
-            linkPositionAfterRoomSwitch = new Vector2(480, 128 + HUDFactory.Instance.HUDHeight);
+            linkPositionAfterRoomSwitch = new Vector2(LinkPositionConfiguration.LinkXPositionAfterRoomSwitchTop, LinkPositionConfiguration.LinkYPositionAfterRoomSwitchBottom + HUDFactory.Instance.HUDHeight);
         }
 
         public void MouseSwitchRoom(string room)
         {
             CurrentRoom = room;
-            Link.Position = new Vector2(480, 512 + HUDFactory.Instance.HUDHeight);
+            Link.Position = new Vector2(LinkPositionConfiguration.LinkXPositionAfterRoomSwitchTop, LinkPositionConfiguration.LinkYPositionAfterRoomSwitchTop + HUDFactory.Instance.HUDHeight);
 
             RestartLevel();
         }
@@ -245,37 +246,38 @@ namespace Project3902
 
         public void DrawText(GameTime gameTime)
         {
-            string words = "EASTMOST PENNINSULA IS THE SECRET.";
+            string words = TextConfiguration.OldManText;
+            int textWritingDivisor = TextConfiguration.TextWritingDivisor;
             int characterPosition;
             int xPos;
-            int yPos = 250;
+            int yPos = TextConfiguration.TextYPosition;
 
-            if (drawingCounter < 238)
+            if (drawingCounter < words.Length * textWritingDivisor)
             {
-                characterPosition = drawingCounter / 7;
-                if (drawingCounter % 7 == 0)
+                characterPosition = drawingCounter / textWritingDivisor;
+                if (drawingCounter % textWritingDivisor == 0)
                 {
                     SoundHandler.Instance.PlaySoundEffect("Heart");
                 }
             }
             else
             {
-                characterPosition = 34;
+                characterPosition = words.Length;
             }
             drawingCounter++;
 
             for (int i = 0; i < characterPosition; i++)
             {
-                if(i < 19)
+                if(i < TextConfiguration.FirstLineLength)
                 {
                     xPos = i;
                 }
                 else
                 {
-                    xPos = i - 17;
-                    yPos = 300;
+                    xPos = i - TextConfiguration.SecondLineXOffset;
+                    yPos = TextConfiguration.SecondLineYPosition;
                 }
-                spriteBatch.DrawString(font, words[i].ToString(), new Vector2(310 + (xPos * 22), yPos), Color.White, 0f, new Vector2(0, 0), new Vector2(2, 2), SpriteEffects.None, 0f);
+                spriteBatch.DrawString(font, words[i].ToString(), new Vector2(TextConfiguration.TextInitialXPosition + (xPos * TextConfiguration.XOffsetPerLetter), yPos), Color.White, 0f, new Vector2(0, 0), new Vector2(2, 2), SpriteEffects.None, 0f);
             }
         }
     }

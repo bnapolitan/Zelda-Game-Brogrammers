@@ -67,6 +67,10 @@
     <Compile Include="Commands\ChangeRooms\ChangeToRoom3Command.cs" />
     <Compile Include="Commands\ChangeRooms\ChangeToRoom2Command.cs" />
     <Compile Include="Commands\ChangeRooms\ChangeToRoom1Command.cs" />
+    <Compile Include="Configuration\LevelBuildingConfiguration.cs" />
+    <Compile Include="Configuration\RoomSwitchingThresholdConfiguration.cs" />
+    <Compile Include="Configuration\TextConfiguration.cs" />
+    <Compile Include="Configuration\LinkPositionConfiguration.cs" />
     <Compile Include="GameObjects\EnemiesAndNPCs\BulletHellAquamentus.cs" />
     <Compile Include="GameObjects\Environment\BlankWallObject.cs" />
     <Compile Include="GameObjects\EnemiesAndNPCs\BaseEnemy.cs" />

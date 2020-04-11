@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Project3902.Configuration;
 using Project3902.GameObjects;
 using Project3902.LevelBuilding;
 using Project3902.ObjectManagement;
@@ -15,10 +16,12 @@ namespace Project3902
         private readonly EnvironmentFactory envFactory = EnvironmentFactory.Instance;
         private readonly ObjectLookup objectLookup = new ObjectLookup();
         private int HUDHeight;
+        private string levelPath;
 
         public LevelBuilder(string levelName)
         {
             this.levelName = levelName;
+            this.levelPath = LevelBuildingConfiguration.LevelPath + levelName + ".csv";
             HUDHeight = HUDFactory.Instance.HUDHeight;
         }
 
