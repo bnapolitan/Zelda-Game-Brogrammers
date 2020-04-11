@@ -5,7 +5,6 @@ namespace Project3902
 {
     class CollisionHandler
     {
-        
         public static CollisionHandler Instance { get; } = new CollisionHandler();
 
         private Dictionary<ICollidable, LayerMasksHolder> colliders;
@@ -16,7 +15,7 @@ namespace Project3902
 
         private bool flushRequested = false;
 
-        private CollisionHandler() 
+        private CollisionHandler()
         {
             colliders = new Dictionary<ICollidable, LayerMasksHolder>();
             collidersToAdd = new Dictionary<ICollidable, LayerMasksHolder>();

@@ -67,6 +67,7 @@
     <Compile Include="Commands\ChangeRooms\ChangeToRoom3Command.cs" />
     <Compile Include="Commands\ChangeRooms\ChangeToRoom2Command.cs" />
     <Compile Include="Commands\ChangeRooms\ChangeToRoom1Command.cs" />
+    <Compile Include="Configuration\GeneralGameConfiguration.cs" />
     <Compile Include="Configuration\LevelBuildingConfiguration.cs" />
     <Compile Include="Configuration\RoomSwitchingThresholdConfiguration.cs" />
     <Compile Include="Configuration\TextConfiguration.cs" />

@@ -42,7 +42,7 @@ namespace Project3902
 
             BuildWalls(environmentObjects);
 
-            var csvReader = new StreamReader($"../../../../LevelBuilding/Levels/{levelName}.csv");
+            var csvReader = new StreamReader(this.levelPath);
 
             if(csvReader.ReadLine() != "Environment")
             {
@@ -74,7 +74,7 @@ namespace Project3902
         {
             var itemObjects = new List<IGameObject>();
 
-            var csvReader = new StreamReader($"../../../../LevelBuilding/Levels/{levelName}.csv");
+            var csvReader = new StreamReader(this.levelPath);
 
             while (csvReader.ReadLine() != "Items")
             {
@@ -111,7 +111,7 @@ namespace Project3902
         {
             var enemyObjects = new List<IGameObject>();
 
-            var csvReader = new StreamReader($"../../../../LevelBuilding/Levels/{levelName}.csv");
+            var csvReader = new StreamReader(this.levelPath);
 
             while(csvReader.ReadLine() != "Enemies")
             {
@@ -146,7 +146,7 @@ namespace Project3902
         {
             var level = new LevelMap("", "", "", "");
 
-            var csvReader = new StreamReader($"../../../../LevelBuilding/Levels/{levelName}.csv");
+            var csvReader = new StreamReader(this.levelPath);
 
             while (csvReader.ReadLine() != "Levels")
             {
@@ -181,7 +181,7 @@ namespace Project3902
                 }
                 else
                 {
-                    throw new Exception($"The object {values[1]} has not been mapped in ObjectLookup yet!");
+                    throw new Exception(values[1] + LevelBuildingConfiguration.MappingError);
                 }
             }
 
