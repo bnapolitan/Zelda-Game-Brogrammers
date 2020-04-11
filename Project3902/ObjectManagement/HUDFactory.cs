@@ -55,12 +55,6 @@ namespace Project3902
                 levelList[i].Sprite = new FixedSprite(levelList[i], HUDSprites, new Rectangle(129, 35, 16, 10), new Vector2(1, 1));
             }
 
-
-            //var gameObject = new HUDObject(new Vector2(10, 80));
-
-            //var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(129, 35, 20, 10), new Vector2(1, 1));
-            //gameObject.Sprite = sprite;
-
             return levelList;
         }
 

@@ -39,21 +39,5 @@ namespace Project3902
             controller.RegisterCommand(17, new ChangeToRoom17Command(game));
             return controller;
         }
-        public List<string> CreateRooms()
-        {
-            var list = new List<string>();
-            list.Add("DungeonRoom1");
-            list.Add("DungeonRoom2");
-            list.Add("DungeonRoom3");
-            list.Add("DungeonRoom4");
-            list.Add("DungeonRoom5");
-            list.Add("DungeonRoom6");
-            list.Add("DungeonRoom7");
-            list.Add("DungeonRoom8");
-            list.Add("DungeonRoom9");
-            return list;
-        }
-
-
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Project3902.Configuration;
 using Project3902.GameObjects;
 using Project3902.GameObjects.EnemyProjectiles;
 using Project3902.GameObjects.Environment;
@@ -66,22 +67,22 @@ namespace Project3902
             {
                 var door = other.GameObject as OpenDoor;
 
-                if (link.Position.X < 200)
+                if (link.Position.X < RoomSwitchingThresholdConfiguration.LeftRoomThreshold)
                 {
                     door.ChangeLevel("Left");
                     
                 }
-                else if (link.Position.X > 700)
+                else if (link.Position.X > RoomSwitchingThresholdConfiguration.RightRoomThreshold)
                 {
                     door.ChangeLevel("Right");
                     
                 }
-                else if (link.Position.Y < 200)
+                else if (link.Position.Y < RoomSwitchingThresholdConfiguration.TopRoomThreshold)
                 {
                     door.ChangeLevel("Top");
                     
                 }
-                else if (link.Position.Y > 500)
+                else if (link.Position.Y > RoomSwitchingThresholdConfiguration.BottomRoomThreshold)
                 {
                     door.ChangeLevel("Bottom");
                     
