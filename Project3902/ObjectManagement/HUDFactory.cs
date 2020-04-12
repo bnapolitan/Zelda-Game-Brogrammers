@@ -25,14 +25,14 @@ namespace Project3902
             numX = 0;
         }
 
-        public void registerGame(FinalGame game)
+        public void RegisterGame(FinalGame game)
         {
             this.game = game;
             HUDWidth = game.graphics.PreferredBackBufferWidth;
 
         }
 
-        public IGameObject createLifeWord()
+        public IGameObject CreateLifeWord()
         {
             var gameObject = new HUDObject(new Vector2(700,10));
             var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(441, 26, 44, 9),HUDScale);
@@ -40,7 +40,7 @@ namespace Project3902
             return gameObject;
         }
 
-        public List<IGameObject> createLevelMap()
+        public List<IGameObject> CreateLevelMap()
         {
             Vector2[] positions = { new Vector2(139, 82), new Vector2(157, 82), new Vector2(175, 82),
                 new Vector2(157, 70),
@@ -61,7 +61,7 @@ namespace Project3902
             return levelList;
         }
 
-        public IGameObject createABox()
+        public IGameObject CreateABox()
         {
             var gameObject = new HUDObject(new Vector2(300, 0));
             var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(404, 26, 20, 32), HUDScale);
@@ -69,7 +69,7 @@ namespace Project3902
             return gameObject;
         }
 
-        public IGameObject createBBox()
+        public IGameObject CreateBBox()
         {
             var gameObject = new HUDObject(new Vector2(380, 0));
             var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(380, 26, 20, 32), HUDScale);
@@ -77,7 +77,7 @@ namespace Project3902
             return gameObject;
         }
 
-        public IGameObject createCoinCountIcon()
+        public IGameObject CreateCoinCountIcon()
         {
             var gameObject = new HUDObject(new Vector2(500, 5));
             var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(345, 26, 34, 9), HUDScale);
@@ -85,7 +85,7 @@ namespace Project3902
             return gameObject;
         }
 
-        public IGameObject createKeyCountIcon()
+        public IGameObject CreateKeyCountIcon()
         {
             var gameObject = new HUDObject(new Vector2(500, 34));
             var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(345, 42, 34, 9), HUDScale);
@@ -93,7 +93,7 @@ namespace Project3902
             return gameObject;
         }
 
-        public IGameObject createOrbCountIcon()
+        public IGameObject CreateOrbCountIcon()
         {
             var gameObject = new HUDObject(new Vector2(500, 66));
             var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(345, 51, 34, 9), HUDScale);
@@ -101,7 +101,7 @@ namespace Project3902
             return gameObject;
         }
 
-        public IGameObject createEmptyHeart()
+        public IGameObject CreateEmptyHeart()
         {
             var gameObject = new HUDObject(new Vector2(700, 50));
             var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(627, 117, 7, 8), HUDScale);
@@ -109,7 +109,7 @@ namespace Project3902
             return gameObject;
         }
 
-        public IGameObject createHalfHeart()
+        public IGameObject CreateHalfHeart()
         {
             var gameObject = new HUDObject(new Vector2(700, 50));
             var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(636, 117, 7, 8), HUDScale);
@@ -117,7 +117,7 @@ namespace Project3902
             return gameObject;
         }
 
-        public IGameObject createFullHeart()
+        public IGameObject CreateFullHeart()
         {
             var gameObject = new HUDObject(new Vector2(700, 50));
             var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(645, 117, 7, 8), HUDScale);
@@ -125,7 +125,7 @@ namespace Project3902
             return gameObject;
         }
 
-        public IGameObject createXCharacter()
+        public IGameObject CreateXCharacter()
         {
             var gameObject = new HUDObject(new Vector2(527, 8));
             var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(519, 117, 8, 8), HUDScale);
@@ -142,7 +142,7 @@ namespace Project3902
             return gameObject;
         }
 
-        public IGameObject createZeroCharacter()
+        public IGameObject CreateZeroCharacter()
         {
             var gameObject = new HUDObject(new Vector2(100, 10));
             var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(528, 117, 8, 8), HUDScale);
@@ -150,7 +150,7 @@ namespace Project3902
             return gameObject;
         }
 
-        public IGameObject createOneCharacter()
+        public IGameObject CreateOneCharacter()
         {
             var gameObject = new HUDObject(new Vector2(244, 0));
             var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(537, 117, 8, 8), HUDScale);
@@ -158,7 +158,7 @@ namespace Project3902
             return gameObject;
         }
 
-        public IGameObject createTwoCharacter()
+        public IGameObject CreateTwoCharacter()
         {
             var gameObject = new HUDObject(new Vector2(100, 10));
             var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(546, 117, 8, 8), HUDScale);
@@ -166,7 +166,7 @@ namespace Project3902
             return gameObject;
         }
 
-        public IGameObject createThreeCharacter()
+        public IGameObject CreateThreeCharacter()
         {
             var gameObject = new HUDObject(new Vector2(100, 10));
             var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(555, 117, 8, 8), HUDScale);
@@ -174,7 +174,7 @@ namespace Project3902
             return gameObject;
         }
 
-        public IGameObject createFourCharacter()
+        public IGameObject CreateFourCharacter()
         {
             var gameObject = new HUDObject(new Vector2(100, 10));
             var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(564, 117, 8, 8), HUDScale);
@@ -182,7 +182,7 @@ namespace Project3902
             return gameObject;
         }
 
-        public IGameObject createFiveCharacter()
+        public IGameObject CreateFiveCharacter()
         {
             var gameObject = new HUDObject(new Vector2(100, 10));
             var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(573, 117, 8, 8), HUDScale);
@@ -190,7 +190,7 @@ namespace Project3902
             return gameObject;
         }
 
-        public IGameObject createSixCharacter()
+        public IGameObject CreateSixCharacter()
         {
             var gameObject = new HUDObject(new Vector2(100, 10));
             var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(582, 117, 8, 8), HUDScale);
@@ -198,7 +198,7 @@ namespace Project3902
             return gameObject;
         }
 
-        public IGameObject createSevenCharacter()
+        public IGameObject CreateSevenCharacter()
         {
             var gameObject = new HUDObject(new Vector2(100, 10));
             var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(591, 117, 8, 8), HUDScale);
@@ -206,7 +206,7 @@ namespace Project3902
             return gameObject;
         }
 
-        public IGameObject createEightCharacter()
+        public IGameObject CreateEightCharacter()
         {
             var gameObject = new HUDObject(new Vector2(100, 10));
             var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(600, 117, 8, 8), HUDScale);
@@ -214,7 +214,7 @@ namespace Project3902
             return gameObject;
         }
 
-        public IGameObject createNineCharacter()
+        public IGameObject CreateNineCharacter()
         {
             var gameObject = new HUDObject(new Vector2(100, 10));
             var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(609, 117, 8, 8), HUDScale);
@@ -222,7 +222,7 @@ namespace Project3902
             return gameObject;
         }
 
-        public IGameObject createLevelWord()
+        public IGameObject CreateLevelWord()
         {
             var gameObject = new HUDObject(new Vector2(100, 0));
             var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(584, 1, 55, 7), HUDScale);
@@ -230,7 +230,7 @@ namespace Project3902
             return gameObject;
         }
 
-        public IGameObject createMapBlock()
+        public IGameObject CreateMapBlock()
         {
             var gameObject = new HUDObject(new Vector2(0, 0));
             var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(672, 112, 7, 4), HUDScale);
@@ -238,7 +238,7 @@ namespace Project3902
             return gameObject;
         }
 
-        public IGameObject createMapBlip()
+        public IGameObject CreateMapBlip()
         {
             var gameObject = new HUDObject(new Vector2(160, HUDHeight - 2));
             var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(519, 126, 3, 3), HUDScale);
@@ -246,7 +246,16 @@ namespace Project3902
             return gameObject;
         }
 
-        public IGameObject createPauseMapSection()
+        public IGameObject CreateTriforceMapBlip()
+        {
+            var gameObject = new HUDObject(new Vector2(216, 39));
+            List<Rectangle> BlipSource = new List<Rectangle> { new Rectangle(537, 126, 3, 3), new Rectangle(546, 126, 3, 3) };
+            var sprite = new AnimatedSprite(gameObject, HUDSprites, BlipSource, .3f, HUDScale);
+            gameObject.Sprite = sprite;
+            return gameObject;
+        }
+
+        public IGameObject CreatePauseMapSection()
         {
             var gameObject = new HUDObject(new Vector2(0,(69*PauseScale.Y)+HUDHeight));
             var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(258,112,255,87), PauseScale);
@@ -254,7 +263,7 @@ namespace Project3902
             return gameObject;
         }
 
-        public IGameObject createPauseInventorySection()
+        public IGameObject CreatePauseInventorySection()
         {
             var gameObject = new HUDObject(new Vector2(0, HUDHeight));
             var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(1,29,255,69), PauseScale);
@@ -262,7 +271,7 @@ namespace Project3902
             return gameObject;
         }
 
-        public IGameObject createBlackInventoryBox()
+        public IGameObject CreateBlackInventoryBox()
         {
             var gameObject = new HUDObject(new Vector2(520, 210));
             var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(168, 118, 83, 35), PauseScale);
@@ -270,7 +279,7 @@ namespace Project3902
             return gameObject;
         }
 
-        public IGameObject createTopInventoryBlackBar()
+        public IGameObject CreateTopInventoryBlackBar()
         {
             var gameObject = new HUDObject(new Vector2(510, 110));
             var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(168, 118, 89, 20), PauseScale);
@@ -278,7 +287,7 @@ namespace Project3902
             return gameObject;
         }
 
-        public IGameObject createItemBlackBox()
+        public IGameObject CreateItemBlackBox()
         {
             var gameObject = new HUDObject(new Vector2(190, 465));
             var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(168, 118, 10 , 20), PauseScale);
@@ -286,7 +295,7 @@ namespace Project3902
             return gameObject;
         }
 
-        public IGameObject createCompassBlackBox()
+        public IGameObject CreateCompassBlackBox()
         {
             var gameObject = new HUDObject(new Vector2(170, 625));
             var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(168, 118, 19, 19), PauseScale);
@@ -294,19 +303,21 @@ namespace Project3902
             return gameObject;
         }
         
-        public List<IGameObject> createNumberList()
+        public List<IGameObject> CreateNumberList()
         {
-            var list = new List<IGameObject>();
-            list.Add(createZeroCharacter());
-            list.Add(createOneCharacter());
-            list.Add(createTwoCharacter());
-            list.Add(createThreeCharacter());
-            list.Add(createFourCharacter());
-            list.Add(createFiveCharacter());
-            list.Add(createSixCharacter());
-            list.Add(createSevenCharacter());
-            list.Add(createEightCharacter());
-            list.Add(createNineCharacter());
+            var list = new List<IGameObject>
+            {
+                CreateZeroCharacter(),
+                CreateOneCharacter(),
+                CreateTwoCharacter(),
+                CreateThreeCharacter(),
+                CreateFourCharacter(),
+                CreateFiveCharacter(),
+                CreateSixCharacter(),
+                CreateSevenCharacter(),
+                CreateEightCharacter(),
+                CreateNineCharacter()
+            };
             return list;
         }
 

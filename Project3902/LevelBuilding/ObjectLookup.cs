@@ -97,9 +97,21 @@ namespace Project3902.LevelBuilding
             {
                 return envFactory.CreateBlockingBrick(position);
             }
-            if (name == "MoveableBlock")
+            if (name == "MoveableBlockUp")
             {
-                return envFactory.CreateMoveableBlock(position);
+                return envFactory.CreateMoveableBlock(position, new Vector2(0, -1));
+            }
+            if (name == "MoveableBlockDown")
+            {
+                return envFactory.CreateMoveableBlock(position, new Vector2(0, 1));
+            }
+            if (name == "MoveableBlockRight")
+            {
+                return envFactory.CreateMoveableBlock(position, new Vector2(1, 0));
+            }
+            if (name == "MoveableBlockLeft")
+            {
+                return envFactory.CreateMoveableBlock(position, new Vector2(-1, 0));
             }
             if (name == "BlackBackground")
             {
@@ -166,6 +178,10 @@ namespace Project3902.LevelBuilding
             if (name == "Ring")
             {
                 return itemFactory.CreateRing(position);
+            }
+            if (name == "Compass")
+            {
+                return itemFactory.CreateCompass(position);
             }
             throw new Exception($"The object {name} has not been mapped in ObjectLookup yet!");
         }

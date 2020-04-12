@@ -4,19 +4,17 @@ using Project3902.GameObjects;
 
 namespace Project3902
 {
-    class Watch : IItem
+    class HeartContainer : IItem
     {
         public Vector2 Position { get; set; }
         public ISprite Sprite { get; set; }
         public bool Active { get; set; }
         public Collider Collider { get; set; }
-        private readonly FinalGame game;
 
-        public Watch(Vector2 pos, FinalGame game)
+        public HeartContainer(Vector2 pos)
         {
             Position = pos;
             Active = true;
-            this.game = game;
         }
         public void TakeDamage()
         {
@@ -30,20 +28,19 @@ namespace Project3902
         public void Draw(SpriteBatch spriteBatch)
         {
             if (Active)
-            Sprite.Draw(spriteBatch);
+            {
+                Sprite.Draw(spriteBatch);
+                Collider.Draw(spriteBatch);
+            }
         }
 
         public void Update(GameTime gameTime)
         {
+            Sprite.Update(gameTime);
         }
 
         public void OnCollide(Collider other)
         {
-        }
-
-        public void FreezeEnemies()
-        {
-            game.FreezeEnemies();
         }
     }
 }

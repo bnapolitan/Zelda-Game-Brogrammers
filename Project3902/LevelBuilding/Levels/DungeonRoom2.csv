@@ -3,8 +3,6 @@ WallTop, 448, 0
 OpenDoorRight, 896, 288
 WallBottom, 448, 576
 WallLeft, 0, 288
-Items
-Key, 750, 400
 Enemies
 BlueKeese, 192, 130
 BlueKeese, 320, 256

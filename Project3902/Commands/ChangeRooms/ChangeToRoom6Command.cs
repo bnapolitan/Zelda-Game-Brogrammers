@@ -2,7 +2,7 @@
 {
     class ChangeToRoom6Command : ICommand
     {
-        private FinalGame game;
+        private readonly FinalGame game;
 
         public ChangeToRoom6Command(FinalGame game)
         {

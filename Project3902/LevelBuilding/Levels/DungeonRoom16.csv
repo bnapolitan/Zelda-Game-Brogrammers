@@ -21,10 +21,8 @@ Brick, 768, 512
 Brick, 832, 512
 WallTop, 448, 0
 WallLeft, 0, 288
-LockDoorRight, 896, 288
+ShutDoorRight, 896, 288
 OpenDoorBottom, 448, 576
-Items
-Key, 832, 320
 Enemies
 Aquamentus, 640, 256
 Levels
