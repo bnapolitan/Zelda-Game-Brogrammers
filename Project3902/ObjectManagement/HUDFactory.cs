@@ -14,7 +14,7 @@ namespace Project3902
         private Vector2 PauseScale = new Vector2(4, 4);
         private int HUDWidth;
         private int numX;
-        private Vector2 HUDScale = new Vector2(3, 3);
+        public Vector2 HUDScale = new Vector2(3, 3);
         public void LoadAllTextures(ContentManager content)
         {
             HUDSprites = new SpriteAtlas(content.Load<Texture2D>("ZeldaHUDSprites"));
@@ -56,10 +56,7 @@ namespace Project3902
             }
 
 
-            //var gameObject = new HUDObject(new Vector2(10, 80));
-
-            //var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(129, 35, 20, 10), new Vector2(1, 1));
-            //gameObject.Sprite = sprite;
+           
 
             return levelList;
         }

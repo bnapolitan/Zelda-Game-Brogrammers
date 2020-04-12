@@ -86,6 +86,15 @@ namespace Project3902
             HUDElements.Add(Factory.createXCharacter());
             HUDElements.Add(Factory.createXCharacter());
             HUDElements.Add(Factory.createXCharacter());
+            var blackBoxA = Factory.createItemBlackBox();
+            blackBoxA.Sprite.Scale = Factory.HUDScale;
+            blackBoxA.Position = new Vector2(315, 24);
+            HUDElements.Add(blackBoxA);
+            var blackBoxB = Factory.createItemBlackBox();
+            blackBoxB.Sprite.Scale = Factory.HUDScale;
+            blackBoxB.Position = new Vector2(395, 24);
+            HUDElements.Add(blackBoxB);
+
 
             
         }
