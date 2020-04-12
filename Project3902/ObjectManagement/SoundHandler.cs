@@ -27,7 +27,7 @@ namespace Project3902.ObjectManagement
         private SoundEffect itemSound;
         private SoundEffect doorSound;
         private SoundEffect aquamentusSound;
-        private List<SoundEffectInstance> instanceList=new List<SoundEffectInstance>();
+        private readonly List<SoundEffectInstance> instanceList=new List<SoundEffectInstance>();
 
         private Boolean musicPause = false;
         public static SoundHandler Instance { get; } = new SoundHandler();

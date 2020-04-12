@@ -187,7 +187,7 @@ namespace Project3902.LevelBuilding
                             if (environment is MoveableBlock)
                             {
                                 Console.WriteLine(environment.Position);
-                                if (environment.Position == new Vector2(512, 320 + HUDFactory.Instance.HUDHeight))
+                                if (environment.Position.X >=509 && environment.Position.Y>= 317 + HUDFactory.Instance.HUDHeight)
                                 {
                                     
                                     CollisionHandler.Instance.RemoveCollidable(environment as ICollidable);
@@ -219,6 +219,7 @@ namespace Project3902.LevelBuilding
                         current.interactiveEnvironmentObjects.RemoveAll(i => i is ShutDoor);
                         SoundHandler.Instance.PlaySoundEffect("Door Unlock");
                         AddObjectToCurrentLevel(EnvironmentFactory.Instance.CreateOpenDoorRight(new Vector2(896, 288 + HUDFactory.Instance.HUDHeight)));
+                        AddObjectToCurrentLevel(ItemFactory.Instance.CreateHeartContainer(new Vector2(832, 320+ HUDFactory.Instance.HUDHeight)));
                         Room16DoorReleased = true;
                     }
                     break;

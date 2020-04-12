@@ -7,7 +7,6 @@ using Project3902.GameObjects.Environment;
 using Project3902.GameObjects.Environment.Interfaces;
 using Project3902.LevelBuilding;
 using Project3902.ObjectManagement;
-using System;
 
 namespace Project3902
 {
@@ -179,11 +178,23 @@ namespace Project3902
                 else if (other.GameObject is Triforce)
                 {
                     SoundHandler.Instance.PlaySong("Triforce");
-                }else if(other.GameObject is Map)
+                }
+                else if(other.GameObject is Map)
                 {
                     SoundHandler.Instance.PlaySoundEffect("Item");
-                    PauseScreen.Instance.addMapToPauseScreen();
-                    HUDManager.Instance.addMapToHUD();
+                    PauseScreen.Instance.AddMapToPauseScreen();
+                    HUDManager.Instance.AddMapToHUD();
+                }
+                else if (other.GameObject is HeartContainer)
+                {
+                    link.MaxHealth += 2;
+                    link.Health += 2;
+                    SoundHandler.Instance.PlaySoundEffect("Heart");
+                }
+                else if (other.GameObject is Compass)
+                {
+                    HUDManager.Instance.HUDElements.Add(HUDFactory.Instance.CreateTriforceMapBlip());
+                    SoundHandler.Instance.PlaySoundEffect("Item");
                 }
                 else
                 {

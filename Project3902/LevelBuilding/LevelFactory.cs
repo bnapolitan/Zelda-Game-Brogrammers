@@ -1,13 +1,6 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
-using Project3902.GameObjects;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework.Input;
-
-namespace Project3902
+﻿namespace Project3902
 {
-	class LevelFactory
+    class LevelFactory
 	{
 
 		public static LevelFactory Instance { get; } = new LevelFactory();

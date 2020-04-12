@@ -1,10 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project3902
 {
@@ -13,7 +9,7 @@ namespace Project3902
         private FinalGame game;
         private Vector2 PauseScale = new Vector2(4, 4);
         public List<IGameObject> PauseScreenElements = new List<IGameObject>();
-        private HUDFactory Factory = HUDFactory.Instance;
+        private readonly HUDFactory Factory = HUDFactory.Instance;
         public static PauseScreen Instance { get; } = new PauseScreen();
         private PauseScreen()
         {
@@ -32,26 +28,26 @@ namespace Project3902
             }
         }
 
-        public void registerGame(FinalGame game)
+        public void RegisterGame(FinalGame game)
         {
             this.game = game;
-            createPauseElements();
+            CreatePauseElements();
         }
 
-        public void createPauseElements()
+        public void CreatePauseElements()
         {
-            PauseScreenElements.Add(Factory.createPauseInventorySection());
-            PauseScreenElements.Add(Factory.createPauseMapSection());
-            PauseScreenElements.Add(Factory.createBlackInventoryBox());
-            PauseScreenElements.Add(Factory.createTopInventoryBlackBar());
-            PauseScreenElements.Add(Factory.createItemBlackBox());
-            PauseScreenElements.Add(Factory.createCompassBlackBox());
-            var blackBox = Factory.createItemBlackBox();
+            PauseScreenElements.Add(Factory.CreatePauseInventorySection());
+            PauseScreenElements.Add(Factory.CreatePauseMapSection());
+            PauseScreenElements.Add(Factory.CreateBlackInventoryBox());
+            PauseScreenElements.Add(Factory.CreateTopInventoryBlackBar());
+            PauseScreenElements.Add(Factory.CreateItemBlackBox());
+            PauseScreenElements.Add(Factory.CreateCompassBlackBox());
+            var blackBox = Factory.CreateItemBlackBox();
             blackBox.Position = new Vector2(270, 210);
             PauseScreenElements.Add(blackBox);
         }
 
-        public void addMapToPauseScreen()
+        public void AddMapToPauseScreen()
         {
             var createdObject = ItemFactory.Instance.CreateMap(new Vector2(180,460));
             createdObject.Sprite.Scale = PauseScale;
