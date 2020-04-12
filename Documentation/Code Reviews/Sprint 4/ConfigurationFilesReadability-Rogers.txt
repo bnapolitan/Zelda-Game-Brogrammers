@@ -1,0 +1,11 @@
+Code Review Author: Austin Rogers
+Date: 4/12/20
+Sprint 4
+Name of File: Configuration/ folder
+Author of File: Ben Napolitan
+
+Minutes taken: 15 mins
+
+Comments on readability:
+
+Readability is very high overall as every variable name is very detailed and specific. One small problem is in LinkPositionConfiguration where the 'Right' switch position and the 'Bottom' switch position only have an X value and a Y value respectively, rather than the full Vector2 position. This is presumably because the missing coordinates are shared by the 'Left' and 'Top' positions, so they are reused which could be confusing. The file names as a whole also communicate what is within each well.

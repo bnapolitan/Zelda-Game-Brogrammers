@@ -1,0 +1,9 @@
+Author of review: Austin Rogers
+Date: 4/12/20
+Sprint 4
+Name of file: Configuration/ folder
+Author of file: Ben Napolitan
+
+Comments on code quality:
+
+A notable issue may be the completely public, static access to all values. This means any class in the game can access them; the problem there is if an implementer misunderstands the purpose of a certain value and uses it in a place it shouldn't be used, then later that value is changed for its intended use, it could cause very unexpected behavior in the system that mistakenly used it. A high quality part of the design is that the variables only have getters and no setters, so they cannot be changed incorrectly by the program. This limits the risk of the public, static nature of the variables.
