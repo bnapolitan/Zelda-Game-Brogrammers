@@ -14,7 +14,7 @@ namespace Project3902
         private Vector2 PauseScale = new Vector2(4, 4);
         private int HUDWidth;
         private int numX;
-        private Vector2 HUDScale = new Vector2(3, 3);
+        public Vector2 HUDScale = new Vector2(3, 3);
         public void LoadAllTextures(ContentManager content)
         {
             HUDSprites = new SpriteAtlas(content.Load<Texture2D>("ZeldaHUDSprites"));
@@ -54,6 +54,9 @@ namespace Project3902
                 levelList.Add(new HUDObject(positions[i]));
                 levelList[i].Sprite = new FixedSprite(levelList[i], HUDSprites, new Rectangle(129, 35, 16, 10), new Vector2(1, 1));
             }
+
+
+           
 
             return levelList;
         }
@@ -259,11 +262,38 @@ namespace Project3902
             return gameObject;
         }
 
-        public List<IGameObject> createDungeonMap()
+        public IGameObject createBlackInventoryBox()
         {
-            return null;
+            var gameObject = new HUDObject(new Vector2(520, 210));
+            var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(168, 118, 83, 35), PauseScale);
+            gameObject.Sprite = sprite;
+            return gameObject;
         }
 
+        public IGameObject createTopInventoryBlackBar()
+        {
+            var gameObject = new HUDObject(new Vector2(510, 110));
+            var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(168, 118, 89, 20), PauseScale);
+            gameObject.Sprite = sprite;
+            return gameObject;
+        }
+
+        public IGameObject createItemBlackBox()
+        {
+            var gameObject = new HUDObject(new Vector2(190, 465));
+            var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(168, 118, 10 , 20), PauseScale);
+            gameObject.Sprite = sprite;
+            return gameObject;
+        }
+
+        public IGameObject createCompassBlackBox()
+        {
+            var gameObject = new HUDObject(new Vector2(170, 625));
+            var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(168, 118, 19, 19), PauseScale);
+            gameObject.Sprite = sprite;
+            return gameObject;
+        }
+        
         public List<IGameObject> createNumberList()
         {
             var list = new List<IGameObject>();

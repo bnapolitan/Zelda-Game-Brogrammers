@@ -115,36 +115,43 @@ namespace Project3902
         protected override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            if (!isPaused)
+            {
 
-            currentLevel.Update(gameTime);
-            if (nextLevel != null && nextLevel.Scrolling)
-                nextLevel.Update(gameTime);
 
+
+                currentLevel.Update(gameTime);
+                if (nextLevel != null && nextLevel.Scrolling)
+                    nextLevel.Update(gameTime);
+            }
+            
             if (!currentLevel.Scrolling)
             {
-                Link.Update(gameTime);
-                mouseController.Update();
-                keyboardController.Update();
+                    Link.Update(gameTime);
+                    mouseController.Update();
+                    keyboardController.Update();
             }
             else
             {
-                scrollTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-                if (scrollTimer <= 0)
-                {
-                    EndRoomSwitch();
-                }
+                    scrollTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    if (scrollTimer <= 0)
+                    {
+                        EndRoomSwitch();
+                    }
             }
-
-            HUDManager.Instance.Update();
-            PauseScreen.Instance.Update();
-
-            CollisionHandler.Instance.CheckCollisions();
-
-            LevelManager.Instance.CheckSpecials();
-            if (linkDeath)
+            if (!isPaused)
             {
-                ReloadOnDeath();
-                linkDeath = false;
+                HUDManager.Instance.Update();
+                PauseScreen.Instance.Update();
+
+                CollisionHandler.Instance.CheckCollisions();
+
+                LevelManager.Instance.CheckSpecials();
+                if (linkDeath)
+                {
+                    ReloadOnDeath();
+                    linkDeath = false;
+                }
             }
         }
 

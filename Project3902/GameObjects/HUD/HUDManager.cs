@@ -86,12 +86,17 @@ namespace Project3902
             HUDElements.Add(Factory.createXCharacter());
             HUDElements.Add(Factory.createXCharacter());
             HUDElements.Add(Factory.createXCharacter());
+            var blackBoxA = Factory.createItemBlackBox();
+            blackBoxA.Sprite.Scale = Factory.HUDScale;
+            blackBoxA.Position = new Vector2(315, 24);
+            HUDElements.Add(blackBoxA);
+            var blackBoxB = Factory.createItemBlackBox();
+            blackBoxB.Sprite.Scale = Factory.HUDScale;
+            blackBoxB.Position = new Vector2(395, 24);
+            HUDElements.Add(blackBoxB);
 
-            var levelMap = Factory.createLevelMap();
-            foreach(IGameObject hudElement in levelMap)
-            {
-                HUDElements.Add(hudElement);
-            }
+
+            
         }
 
         private void updateHearts()
@@ -211,6 +216,15 @@ namespace Project3902
                 tempPos.Y += 12;
                 mapBlip.Position = tempPos;
                 blipCool = 10;
+            }
+        }
+
+        public void addMapToHUD()
+        {
+            var levelMap = Factory.createLevelMap();
+            foreach (IGameObject hudElement in levelMap)
+            {
+                HUDElements.Add(hudElement);
             }
         }
 
