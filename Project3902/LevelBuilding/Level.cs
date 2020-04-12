@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Project3902.Configuration;
 using System;
 using System.Collections.Generic;
 
@@ -11,7 +12,7 @@ namespace Project3902.LevelBuilding
         public LevelMap Map { get; set; }
         public Vector2 ScrollDirection { get; set; }
         public bool Scrolling { get; set; } = false;
-        public float ScrollSpeed { get; set; } = 400;
+        public float ScrollSpeed { get; set; } = GeneralGameConfiguration.ScreenScrollSpeed;
 
         private int freezeTime = 0;
 
@@ -24,6 +25,7 @@ namespace Project3902.LevelBuilding
         public Level(string name)
         {
             builder = new LevelBuilder(name);
+            this.LevelName = name;
 
             LoadLevel();
         }
@@ -104,7 +106,7 @@ namespace Project3902.LevelBuilding
 
         public void FreezeEnemies()
         {
-            freezeTime = 300;
+            freezeTime = GeneralGameConfiguration.EnemyFreezeTime;
             foreach (BaseEnemy gameObject in enemyObjects)
             {
                 gameObject.Freeze();

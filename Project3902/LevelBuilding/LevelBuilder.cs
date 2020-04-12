@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Project3902.Configuration;
 using Project3902.GameObjects;
 using Project3902.LevelBuilding;
 using Project3902.ObjectManagement;
@@ -15,10 +16,12 @@ namespace Project3902
         private readonly EnvironmentFactory envFactory = EnvironmentFactory.Instance;
         private readonly ObjectLookup objectLookup = new ObjectLookup();
         private int HUDHeight;
+        private string levelPath;
 
         public LevelBuilder(string levelName)
         {
             this.levelName = levelName;
+            this.levelPath = LevelBuildingConfiguration.LevelPath + levelName + ".csv";
             HUDHeight = HUDFactory.Instance.HUDHeight;
         }
 
@@ -26,7 +29,7 @@ namespace Project3902
         {
             var environmentObjects = new List<IGameObject>
             {
-                envFactory.CreateRoomBorder(new Vector2(0, 96))
+                envFactory.CreateRoomBorder(new Vector2(0, HUDHeight))
             };
 
             for (int j = 128 + HUDHeight; j < 560 + HUDHeight; j += 64)
@@ -39,7 +42,7 @@ namespace Project3902
 
             BuildWalls(environmentObjects);
 
-            var csvReader = new StreamReader($"../../../../LevelBuilding/Levels/{levelName}.csv");
+            var csvReader = new StreamReader(this.levelPath);
 
             if(csvReader.ReadLine() != "Environment")
             {
@@ -71,7 +74,7 @@ namespace Project3902
         {
             var itemObjects = new List<IGameObject>();
 
-            var csvReader = new StreamReader($"../../../../LevelBuilding/Levels/{levelName}.csv");
+            var csvReader = new StreamReader(this.levelPath);
 
             while (csvReader.ReadLine() != "Items")
             {
@@ -108,7 +111,7 @@ namespace Project3902
         {
             var enemyObjects = new List<IGameObject>();
 
-            var csvReader = new StreamReader($"../../../../LevelBuilding/Levels/{levelName}.csv");
+            var csvReader = new StreamReader(this.levelPath);
 
             while(csvReader.ReadLine() != "Enemies")
             {
@@ -143,7 +146,7 @@ namespace Project3902
         {
             var level = new LevelMap("", "", "", "");
 
-            var csvReader = new StreamReader($"../../../../LevelBuilding/Levels/{levelName}.csv");
+            var csvReader = new StreamReader(this.levelPath);
 
             while (csvReader.ReadLine() != "Levels")
             {
@@ -178,7 +181,7 @@ namespace Project3902
                 }
                 else
                 {
-                    throw new Exception($"The object {values[1]} has not been mapped in ObjectLookup yet!");
+                    throw new Exception(values[1] + LevelBuildingConfiguration.MappingError);
                 }
             }
 

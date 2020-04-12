@@ -7,7 +7,9 @@ namespace Project3902
     {
         public float Health { get; set; }
         public float MaxHealth { get; set; }
-
+        public int KeyCount { get; set; }
+        public int CoinCount { get; set; }
+        public int PotionCount { get; set; }
         public bool Damaged { get; set; } = false;
 
         private Vector2 position;
@@ -33,7 +35,7 @@ namespace Project3902
         public IProjectile SwordProjectile { get; set; }
         public IProjectile Sword { get; set; }
 
-        public int KeyCount { get; set; }
+
         public Collider Collider { get; set; }
         public Vector2 FacingDirection { get; set; } = new Vector2(1, 0);
 

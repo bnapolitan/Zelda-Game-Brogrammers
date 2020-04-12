@@ -1,11 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Project3902.Configuration;
 using Project3902.GameObjects;
 using Project3902.GameObjects.EnemyProjectiles;
 using Project3902.GameObjects.Environment;
 using Project3902.GameObjects.Environment.Interfaces;
 using Project3902.LevelBuilding;
 using Project3902.ObjectManagement;
+using System;
 
 namespace Project3902
 {
@@ -66,21 +68,25 @@ namespace Project3902
             {
                 var door = other.GameObject as OpenDoor;
 
-                if (link.Position.X < 200)
+                if (link.Position.X < RoomSwitchingThresholdConfiguration.LeftRoomThreshold)
                 {
                     door.ChangeLevel("Left");
+                    
                 }
-                else if (link.Position.X > 700)
+                else if (link.Position.X > RoomSwitchingThresholdConfiguration.RightRoomThreshold)
                 {
                     door.ChangeLevel("Right");
+                    
                 }
-                else if (link.Position.Y < 200)
+                else if (link.Position.Y < RoomSwitchingThresholdConfiguration.TopRoomThreshold)
                 {
                     door.ChangeLevel("Top");
+                    
                 }
-                else if (link.Position.Y > 500)
+                else if (link.Position.Y > RoomSwitchingThresholdConfiguration.BottomRoomThreshold)
                 {
                     door.ChangeLevel("Bottom");
+                    
                 }
             }
             else if (other.GameObject is LockDoor && link.KeyCount > 0)
@@ -163,18 +169,38 @@ namespace Project3902
                 else if(other.GameObject is Rupee)
                 {
                     SoundHandler.Instance.PlaySoundEffect("Rupee");
+                    link.CoinCount++;
+                }
+                else if(other.GameObject is RupeeBonus)
+                {
+                    SoundHandler.Instance.PlaySoundEffect("Rupee");
+                    link.CoinCount+=5;
                 }
                 else if (other.GameObject is Triforce)
                 {
                     SoundHandler.Instance.PlaySong("Triforce");
+                }else if(other.GameObject is Map)
+                {
+                    SoundHandler.Instance.PlaySoundEffect("Item");
+                    PauseScreen.Instance.addMapToPauseScreen();
+                    HUDManager.Instance.addMapToHUD();
                 }
                 else
                 {
                     SoundHandler.Instance.PlaySoundEffect("Item");
+                    if(other.GameObject is Potion)
+                    {
+                        link.PotionCount++;
+                    }
                 }
                 CollisionHandler.Instance.RemoveCollidable(other.GameObject as ICollidable);
                 other.GameObject.Active = false;
             }
+
+       
+
+
+     
         }
 
         private void MoveOutOfWall(Collider other)

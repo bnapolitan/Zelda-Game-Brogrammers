@@ -1,0 +1,15 @@
+Author: Dan Bellini
+Date: 4/11/20
+Sprint 4
+File being reviewed (Readability): LevelManager.cs
+File Author: Suraj Suresh
+
+The first thing that I see in the class is the instance data for the class. All of these variables are well named and descriptive. The only thing
+that was slightly confusing at first was the function of the levelDict dictionary, its purpose is not completely clear from just the name. The
+first methond, GetLevel, is very simple as it registers all the collidables for each level, and returns the level from the dictionary. 
+This could have probably been named to something more related to the collidables because that is what the method does most of. GetLevelWithOffset
+has the same functionality as GetLevel but adding an offset to all of the gameObjects loaded to the level. AddObject to level is also a very
+well written method, adding the object passed into it to the correct list based on its type. RemoveObjectFromCurrentLevel is also very well
+written as it does essentially the reverse of AddObject. ResetLevels is a very simple and readable method, as is GenerateLevels. CheckSpecials
+is the longest and most compicated method in the class but is well split up using a switch statement to increase readability. This splits the 
+special functionality for each level into its own block of code, greatly increasing readability. Overall this is a very readable class.
