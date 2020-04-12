@@ -29,12 +29,13 @@ namespace Project3902
 
         }
 
-        public IProjectile CreateBoomerangProjectile()
+        public IProjectile CreateBoomerangProjectile(ILink link)
         {
             var boomerang = new BoomerangWeapon();
             var collider = new Collider(boomerang, new Rectangle(0, 0, 8 * (int)boomerang.Sprite.Scale.X, 8 * (int)boomerang.Sprite.Scale.Y));
             boomerang.Collider = collider;
-            CollisionHandler.Instance.RegisterCollidable(boomerang, Layer.Projectile, Layer.Enemy, Layer.Wall);
+            boomerang.Link = link;
+            CollisionHandler.Instance.RegisterCollidable(boomerang, Layer.Projectile, Layer.Enemy, Layer.Wall, Layer.Player);
             return boomerang;
         }
 

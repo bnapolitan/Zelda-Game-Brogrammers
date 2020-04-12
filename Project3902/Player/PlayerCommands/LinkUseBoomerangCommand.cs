@@ -8,8 +8,7 @@ namespace Project3902
 
         public override void Execute()
         {
-            if (!game.Link.CurrentWeapon.Active)
-                game.Link.CurrentWeapon = WeaponFactory.Instance.CreateBoomerangProjectile();
+            game.Link.CurrentWeapon = WeaponFactory.Instance.CreateBoomerangProjectile(game.Link);
             game.Link.UseItem();
         }
     }
