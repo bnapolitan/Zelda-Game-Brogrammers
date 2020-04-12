@@ -3,7 +3,7 @@ Date: 4/11/20
 Sprint 4
 File being reviewed (Readability): LevelManager.cs
 File Author: Suraj Suresh
-
+Time to Complete: 20 min
 The first thing that I see in the class is the instance data for the class. All of these variables are well named and descriptive. The only thing
 that was slightly confusing at first was the function of the levelDict dictionary, its purpose is not completely clear from just the name. The
 first methond, GetLevel, is very simple as it registers all the collidables for each level, and returns the level from the dictionary. 

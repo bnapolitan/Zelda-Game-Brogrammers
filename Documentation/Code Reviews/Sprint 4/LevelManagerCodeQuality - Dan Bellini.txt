@@ -1,0 +1,18 @@
+Author: Dan Bellini
+Date: 4/11/20
+Sprint 4
+File being reviewed (Maintainability/Code Quality): LevelManager.cs
+File Author: Suraj Suresh
+Time to Complete: 25 min
+The first thing I looked at regarding code quality was the fields of the class. All of the fields have to do with managing levels and I would consider
+them all very cohesive. There are 5 fields that relate to very specific attributes of some rooms. This could be made a little cleaner instead of
+having a sort of "magic number" variable for these attributes. I also notice that the level manger is a singleton class which I think is a good idea
+because you will only ever want one room being used and therefore managed at a time. There are three different lists in the class that handle the 
+different types possible objects that can be drawn. This is very maintainble in my opinion because if another object type was added a new list could
+simply be added for the new type. Moving onto the GetLevel and GetLevelWithOffset methods, they mainly register the collidables of all the objects in
+the lists. They are essentially the same method, but the result of GetLevel could be achieved by just passing 0 into GetLevelWithOffset, so GetLevel
+is probably unnesessary. Regarding maintainability one would simply have to add another loop to account for a new type of gameObject. Add and
+RemoveObjectFromCurrentLevel are both very simple methods that add/remove gameObjects from their respective lists, and reset level resets the level.
+So far all of the methods have been very cohesive, but in my opinion the GenerateLevels method is not and could have been done somewhere else. Finally,
+the CheckSpecials method checks certain attributes of rooms to determine which doors should be open or closed. This is done with a switch statement
+making it easy to add or remove rooms with special values. Considering everything I think this is a very well written class.
