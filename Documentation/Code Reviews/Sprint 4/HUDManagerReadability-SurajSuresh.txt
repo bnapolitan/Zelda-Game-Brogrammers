@@ -1,0 +1,31 @@
+Readability Review 
+
+ 
+
+Author of Code Review: Suraj Suresh 
+
+Date of Code Review: 04/11/20 
+
+Sprint Number: 4
+
+File Being Reviewed: HUDManager.cs 
+
+Author of File: Dan Bellini
+
+Minutes Taken for Review: 10 
+
+Comments on Readability:
+
+	- Lists and variables in class are clearly named, making purpose cleaer
+
+	- Update method seems very simple, with all counters and health updated appropriately
+
+	- Draw method uses lists to draw appropriate elements, easy to understand
+
+	- RegisterGame calls other methods making it hard to understand what it fully does before more investigation
+
+	-AddBaseElements clearly adds appropriate icons and shapes for display
+
+	-Multiple Update methods for functions and MoveMapBlipDirection functions that are named so that purpose is clear
+
+	-Overall, this file is very readable. The only slightly confusing thing is the blipCool variable, whose purpose is unclear at first

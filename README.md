@@ -5,9 +5,9 @@
 Player Controls:
  - WASD or arrow keys to move around.
  - Z or N to attack with sword
- - E to damage Link
  - 1 to throw a boomerang 
  - 2 to use the blue candle
+ - G to pause
  (quickly spamming 1 or 2 will cut item usages short, but that won't be the case once item switching with the menu is implemented)
 
 Level Controls:
