@@ -1,0 +1,13 @@
+Author: Huang Huang
+Date: 2020/4/12
+Sprint number: sprint 4
+Name of the file being reviewed: LinkFactory
+Author of the file being reviewed: Dan Bellini  
+Number of minutes taken to complete: 15 mins
+Comments: 
+If programmers need to add sprite and create new link between keyboard and new action
+commend, it should be easy to add new functions. However, if programmers want to do 
+some change on controllers, they will search these keyboard allocations in the controllers' 
+file. As for this implement, it may not be suitable in this file. It will cause some difficulties 
+for programmers to change controller. Because this file contains some very simple and 
+basic files, it should not be hard to make new implementations. 
