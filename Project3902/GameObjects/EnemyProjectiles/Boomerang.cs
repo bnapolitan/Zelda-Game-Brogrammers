@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Project3902.ObjectManagement;
 
 namespace Project3902.GameObjects.EnemyProjectiles
 {
@@ -20,7 +21,6 @@ namespace Project3902.GameObjects.EnemyProjectiles
                 {
                     Collider.AlignHitbox();
                 }
-                
             }
         }
         public ISprite Sprite { get; set; }
@@ -50,13 +50,13 @@ namespace Project3902.GameObjects.EnemyProjectiles
             }
             Collider.Draw(spriteBatch);
             Sprite.Draw(spriteBatch);
-            
+
         }
 
 
         public void Update(GameTime gameTime)
         {
-            
+
             Sprite.Update(gameTime);
             Collider.AlignHitbox();
 

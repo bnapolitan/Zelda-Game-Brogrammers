@@ -26,21 +26,22 @@ namespace Project3902
         {
             weaponAtlas = new SpriteAtlas(content.Load<Texture2D>("linkspritesheet"));
             bossSpriteAtlas = new SpriteAtlas(content.Load<Texture2D>("Dungeon_Enemies_2"));
-           
+
         }
 
-        public IProjectile CreateBoomerangProjectile()
+        public IProjectile CreateBoomerangProjectile(ILink link)
         {
             var boomerang = new BoomerangWeapon();
             var collider = new Collider(boomerang, new Rectangle(0, 0, 8 * (int)boomerang.Sprite.Scale.X, 8 * (int)boomerang.Sprite.Scale.Y));
             boomerang.Collider = collider;
-            CollisionHandler.Instance.RegisterCollidable(boomerang, Layer.Projectile, Layer.Enemy, Layer.Wall);
+            boomerang.Link = link;
+            CollisionHandler.Instance.RegisterCollidable(boomerang, Layer.Projectile, Layer.Enemy, Layer.Wall, Layer.Player);
             return boomerang;
         }
 
         public ISprite CreateBoomerangSprite(IGameObject boomerang)
         {
-            List<Rectangle> sourceRects = new List<Rectangle> { new Rectangle(128, 204, 8, 8), new Rectangle(137, 204, 8, 8), 
+            List<Rectangle> sourceRects = new List<Rectangle> { new Rectangle(128, 204, 8, 8), new Rectangle(137, 204, 8, 8),
                                                                 new Rectangle(146, 204, 8, 8), new Rectangle(155, 204, 8, 8),
                                                                 new Rectangle(164, 204, 8, 8), new Rectangle(173, 204, 8, 8),
                                                                 new Rectangle(182, 204, 8, 8), new Rectangle(191, 204, 8, 8)};
@@ -86,7 +87,7 @@ namespace Project3902
 
             return sprite;
         }
-        
+
         public IProjectile CreateSwordProjectile()
         {
             var sword = new SwordProjectile();
@@ -101,16 +102,16 @@ namespace Project3902
         {
             return new SwordAttack();
         }
-        
+
         public IProjectile CreateFireballProjectile(Vector2 pos, Vector2 direction)
         {
-            var createdObject = new Fireball
-            {
-                Position = pos,
-                Direction = direction
-            };
-            var collider = new Collider(createdObject, new Rectangle(0, 0, 8 * (int)createdObject.Sprite.Scale.X, 9 * (int)createdObject.Sprite.Scale.Y));
+            var createdObject = new Fireball(pos, 4f, direction);
+            List<Rectangle> fireballSource = new List<Rectangle> { new Rectangle(364, 33, 8, 16) };
+            var sprite = new AnimatedSprite(createdObject, bossSpriteAtlas, fireballSource, 0.5f, new Vector2(3.4f, 3.4f));
+            createdObject.Sprite = sprite;
+            var collider = new Collider(createdObject, new Rectangle(0, 0, 8 * (int)createdObject.Sprite.Scale.X, 8 * (int)createdObject.Sprite.Scale.Y));
             createdObject.Collider = collider;
+            CollisionHandler.Instance.RegisterCollidable(createdObject, Layer.Projectile, Layer.Wall, Layer.Player);
             return createdObject;
         }
 
@@ -124,8 +125,8 @@ namespace Project3902
         public IProjectile CreateBoomerangProjectile(Vector2 pos, Vector2 direction)
         {
             var createdObject = new Boomerang(pos, 300f, direction);
-            List<Rectangle> boomerangSource = new List<Rectangle> { 
-                new Rectangle(128, 204, 8, 8), new Rectangle(128, 204, 8, 8), new Rectangle(137, 204, 8, 8), new Rectangle(146, 204, 8, 8), 
+            List<Rectangle> boomerangSource = new List<Rectangle> {
+                new Rectangle(128, 204, 8, 8), new Rectangle(128, 204, 8, 8), new Rectangle(137, 204, 8, 8), new Rectangle(146, 204, 8, 8),
                 new Rectangle(128, 204, 8, 8), new Rectangle(155, 204, 8, 8), new Rectangle(164, 204, 8, 8), new Rectangle(173, 204, 8, 8) };
             var sprite = new AnimatedSprite(createdObject, weaponAtlas, boomerangSource, 0.1f, new Vector2(4, 4));
             createdObject.Sprite = sprite;

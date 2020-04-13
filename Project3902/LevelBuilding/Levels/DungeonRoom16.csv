@@ -1,0 +1,30 @@
+Environment
+Brick, 576, 128
+Brick, 640, 128
+Brick, 704, 128
+Brick, 768, 128
+Brick, 832, 128
+Brick, 704, 192
+Brick, 768, 192
+Brick, 832, 192
+Brick, 768, 256
+Brick, 832, 256
+Brick, 768, 384
+Brick, 832, 384
+Brick, 704, 448
+Brick, 768, 448
+Brick, 832, 448
+Brick, 576, 512
+Brick, 640, 512
+Brick, 704, 512
+Brick, 768, 512
+Brick, 832, 512
+WallTop, 448, 0
+WallLeft, 0, 288
+ShutDoorRight, 896, 288
+OpenDoorBottom, 448, 576
+Enemies
+Aquamentus, 640, 256
+Levels
+Bottom, DungeonRoom15
+Right, DungeonRoom17

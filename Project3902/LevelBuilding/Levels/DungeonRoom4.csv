@@ -1,0 +1,18 @@
+Environment
+Brick, 448, 256
+Brick, 448, 320
+Brick, 448, 384
+Brick, 512, 256
+Brick, 512, 320
+Brick, 512, 384
+OpenDoorTop, 448, 0
+WallLeft, 0, 288
+WallRight, 896, 288
+OpenDoorBottom, 448, 576
+Enemies
+Stalfos, 384, 256
+Stalfos, 576, 256
+Stalfos, 640, 128
+Levels
+Top, DungeonRoom5
+Bottom, DungeonRoom1

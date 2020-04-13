@@ -1,13 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Project3902.ObjectManagement;
 using System;
-using System.Collections.Generic;
 
 namespace Project3902.LevelBuilding
 {
     class ObjectLookup
     {
- 
+
         private readonly EnvironmentFactory envFactory = EnvironmentFactory.Instance;
         private readonly EnemyFactory enemyFactory = EnemyFactory.Instance;
         private readonly ItemFactory itemFactory = ItemFactory.Instance;
@@ -62,6 +61,22 @@ namespace Project3902.LevelBuilding
             {
                 return envFactory.CreateOpenDoorBottom(position);
             }
+            if (name == "ShutDoorTop")
+            {
+                return envFactory.CreateShutDoorTop(position);
+            }
+            if (name == "ShutDoorLeft")
+            {
+                return envFactory.CreateShutDoorLeft(position);
+            }
+            if (name == "ShutDoorRight")
+            {
+                return envFactory.CreateShutDoorRight(position);
+            }
+            if (name == "ShutDoorBottom")
+            {
+                return envFactory.CreateShutDoorBottom(position);
+            }
             if (name == "WallTop")
             {
                 return envFactory.CreateWallTop(position);
@@ -78,26 +93,101 @@ namespace Project3902.LevelBuilding
             {
                 return envFactory.CreateWallBottom(position);
             }
+            if (name == "Brick")
+            {
+                return envFactory.CreateBlockingBrick(position);
+            }
+            if (name == "MoveableBlockUp")
+            {
+                return envFactory.CreateMoveableBlock(position, new Vector2(0, -1));
+            }
+            if (name == "MoveableBlockDown")
+            {
+                return envFactory.CreateMoveableBlock(position, new Vector2(0, 1));
+            }
+            if (name == "MoveableBlockRight")
+            {
+                return envFactory.CreateMoveableBlock(position, new Vector2(1, 0));
+            }
+            if (name == "MoveableBlockLeft")
+            {
+                return envFactory.CreateMoveableBlock(position, new Vector2(-1, 0));
+            }
+            if (name == "BlackBackground")
+            {
+                return envFactory.CreateBlackBackground(position);
+            }
+            if (name == "Water")
+            {
+                return envFactory.CreateWater(position);
+            }
+            if (name == "Stairs")
+            {
+                return envFactory.CreateStairs(position);
+            }
 
             throw new Exception($"The object {name} has not been mapped in ObjectLookup yet!");
         }
 
         public IGameObject CreateItemObject(string name, Vector2 position)
         {
-            if (name == "Rupee")
+            if (name == "5Rupee")
             {
                 return itemFactory.CreateRupee(position);
+            }
+            if (name == "Rupee")
+            {
+                return itemFactory.Create1Rupee(position);
             }
             if (name == "Heart")
             {
                 return itemFactory.CreateHeart(position);
+            }
+            if (name == "Fairy")
+            {
+                return itemFactory.CreateFairy(position);
+            }
+            if (name == "Watch")
+            {
+                return itemFactory.CreateWatch(position);
+            }
+            if (name == "Bow")
+            {
+                return itemFactory.CreateBow(position);
+            }
+            if (name == "Arrow")
+            {
+                return itemFactory.CreateArrow(position);
+            }
+            if (name == "Key")
+            {
+                return itemFactory.CreateKey(position);
+            }
+            if (name == "Sword")
+            {
+                return itemFactory.CreateSword(position);
+            }
+            if (name == "Map")
+            {
+                return itemFactory.CreateMap(position);
+            }
+            if (name == "Triforce")
+            {
+                return itemFactory.CreateTriforce(position);
+            }
+            if (name == "Ring")
+            {
+                return itemFactory.CreateRing(position);
+            }
+            if (name == "Compass")
+            {
+                return itemFactory.CreateCompass(position);
             }
             throw new Exception($"The object {name} has not been mapped in ObjectLookup yet!");
         }
 
         public IGameObject CreateEnemyObject(string name, Vector2 position)
         {
-            
             if(name=="AquaGel")
             {
                 return enemyFactory.CreateAquaGel(position);
@@ -149,6 +239,10 @@ namespace Project3902.LevelBuilding
             if (name == "Aquamentus")
             {
                 return enemyFactory.CreateAquamentus(position);
+            }
+            if (name == "BulletHell")
+            {
+                return enemyFactory.CreateBulletHellAquamentus(position);
             }
             if (name == "Flame")
             {

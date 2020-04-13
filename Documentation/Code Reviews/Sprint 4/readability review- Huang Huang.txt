@@ -1,0 +1,12 @@
+Author: Huang Huang
+Date: 2020/4/12
+Sprint number: sprint 4
+Name of the file being reviewed: LinkFactory
+Author of the file being reviewed: Dan Bellini  
+Number of minutes taken to complete: 15 mins
+Comment:
+In this file, functions are mainly focused on the allocation of key board’s controller and some
+animated sprites. All these functions’ names are easy to under. Other programmers can easily
+know what these functions can do. However, especially for the key board controllers, it may
+not be very suitable for this file. They may need to be implemented in the game specific
+controller’s file. To sum up, all these functions are easy to read. 

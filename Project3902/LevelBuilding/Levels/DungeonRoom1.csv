@@ -28,14 +28,10 @@ RightStatue, 768, 448
 LockDoorTop, 448, 0
 OpenDoorLeft, 0, 288
 OpenDoorRight, 896, 288
-OpenDoorBottom, 448, 576
+WallBottom, 448, 576
 Items
-Rupee, 660, 130
-Heart, 840, 530
-Enemies
-Stalfos, 500, 200
-BlueKeese, 135, 135
-Rope, 135, 510
-AquaGel, 300, 200
-GrayZol, 660, 300
-RedGoriya, 280, 480
+Levels
+Top, DungeonRoom4
+Left, DungeonRoom2
+Right, DungeonRoom3
+Bottom, DungeonRoom0

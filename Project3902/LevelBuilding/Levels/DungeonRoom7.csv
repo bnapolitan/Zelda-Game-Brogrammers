@@ -1,0 +1,22 @@
+Environment
+Brick, 256, 192
+Brick, 256, 448
+Brick, 704, 192
+Brick, 704, 448
+WallTop, 448, 0
+OpenDoorLeft, 0, 288
+WallRight, 896, 288
+WallBottom, 448, 576
+Items
+Compass, 768, 320
+Enemies
+BlueKeese, 320, 128
+BlueKeese, 512, 256
+BlueKeese, 512, 384
+BlueKeese, 640, 256
+BlueKeese, 640, 384
+BlueKeese, 768, 192
+BlueKeese, 768, 448
+BlueKeese, 832, 320
+Levels
+Left, DungeonRoom5

@@ -50,11 +50,46 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Commands\ChangeRooms\ChangeToRoom14Command.cs" />
+    <Compile Include="Commands\ChangeRooms\ChangeToRoom15Command.cs" />
+    <Compile Include="Commands\ChangeRooms\ChangeToRoom16Command.cs" />
+    <Compile Include="Commands\ChangeRooms\ChangeToRoom17Command.cs" />
+    <Compile Include="Commands\ChangeRooms\ChangeToRoom6Command.cs" />
+    <Compile Include="Commands\ChangeRooms\ChangeToRoom7Command.cs" />
+    <Compile Include="Commands\ChangeRooms\ChangeToRoom8Command.cs" />
+    <Compile Include="Commands\ChangeRooms\ChangeToRoom9Command.cs" />
+    <Compile Include="Commands\ChangeRooms\ChangeToRoom10Command.cs" />
+    <Compile Include="Commands\ChangeRooms\ChangeToRoom11Command.cs" />
+    <Compile Include="Commands\ChangeRooms\ChangeToRoom12Command.cs" />
+    <Compile Include="Commands\ChangeRooms\ChangeToRoom13Command.cs" />
+    <Compile Include="Commands\ChangeRooms\ChangeToRoom5Command.cs" />
+    <Compile Include="Commands\ChangeRooms\ChangeToRoom4Command.cs" />
+    <Compile Include="Commands\ChangeRooms\ChangeToRoom3Command.cs" />
+    <Compile Include="Commands\ChangeRooms\ChangeToRoom2Command.cs" />
+    <Compile Include="Commands\ChangeRooms\ChangeToRoom1Command.cs" />
+    <Compile Include="Configuration\GeneralGameConfiguration.cs" />
+    <Compile Include="Configuration\LevelBuildingConfiguration.cs" />
+    <Compile Include="Configuration\RoomSwitchingThresholdConfiguration.cs" />
+    <Compile Include="Configuration\TextConfiguration.cs" />
+    <Compile Include="Configuration\LinkPositionConfiguration.cs" />
+    <Compile Include="Commands\PauseGameCommand.cs" />
+    <Compile Include="GameObjects\EnemiesAndNPCs\BulletHellAquamentus.cs" />
     <Compile Include="GameObjects\Environment\BlankWallObject.cs" />
     <Compile Include="GameObjects\EnemiesAndNPCs\BaseEnemy.cs" />
     <Compile Include="GameObjects\Environment\BaseEnvironment.cs" />
+    <Compile Include="GameObjects\Environment\Interfaces\IDoorway.cs" />
+    <Compile Include="GameObjects\Environment\BlockingBrick.cs" />
+    <Compile Include="GameObjects\HUD\PauseScreen.cs" />
+    <Compile Include="GameObjects\Item\Compass.cs" />
+    <Compile Include="GameObjects\Item\HeartContainer.cs" />
+    <Compile Include="GameObjects\Item\Map.cs" />
+    <Compile Include="GameObjects\HUD\HUDManager.cs" />
+    <Compile Include="GameObjects\HUD\HUDObject.cs" />
+    <Compile Include="GameObjects\HUD\Interface\IHUDObject.cs" />
+    <Compile Include="GameObjects\Item\RupeeBonus.cs" />
     <Compile Include="GameObjects\Item\Sword.cs" />
     <Compile Include="GameObjects\Item\Rupee.cs" />
+    <Compile Include="GameObjects\Item\Triforce.cs" />
     <Compile Include="GameObjects\Item\Watch.cs" />
     <Compile Include="GameObjects\Item\Ring.cs" />
     <Compile Include="GameObjects\Item\Potion.cs" />
@@ -67,8 +102,14 @@
     <Compile Include="GameObjects\Weapons\BasePlayerProjectile.cs" />
     <Compile Include="GameObjects\Weapons\SwordAttack.cs" />
     <Compile Include="GlobalSuppressions2.cs" />
+    <Compile Include="LevelBuilding\Interface\ILevel.cs" />
+    <Compile Include="LevelBuilding\Level.cs" />
+    <Compile Include="LevelBuilding\LevelManager.cs" />
+    <Compile Include="LevelBuilding\LevelMap.cs" />
+    <Compile Include="LevelBuilding\LevelFactory.cs" />
     <Compile Include="LevelBuilding\LevelBuilder.cs" />
     <Compile Include="LevelBuilding\ObjectLookup.cs" />
+    <Compile Include="ObjectManagement\HUDFactory.cs" />
     <Compile Include="ObjectManagement\ItemFactory.cs" />
     <Compile Include="ObjectManagement\CollisionSystem\Collider.cs" />
     <Compile Include="ObjectManagement\CollisionSystem\CollisionHandler.cs" />
@@ -125,8 +166,9 @@
     <Compile Include="GameObjects\Weapons\BoomerangWeapon.cs" />
     <Compile Include="GameObjects\Extendables\IProjectile.cs" />
     <Compile Include="GameObjects\Weapons\SwordProjectile.cs" />
-    <Compile Include="LevelBuilding\Interface\ILevel.cs" />
+    <Compile Include="LevelBuilding\Interface\ILevelBuilder.cs" />
     <Compile Include="ObjectManagement\EnemyFactory.cs" />
+    <Compile Include="ObjectManagement\SoundHandler.cs" />
     <Compile Include="ObjectManagement\WeaponFactory.cs" />
     <Compile Include="ObjectManagement\EnvironmentFactory.cs" />
     <Compile Include="ObjectManagement\ISpriteFactory.cs" />
@@ -197,8 +239,25 @@
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.manifest" />
+    <None Include="LevelBuilding\Levels\DungeonRoom0.csv" />
+    <None Include="LevelBuilding\Levels\DungeonRoom17.csv" />
+    <None Include="LevelBuilding\Levels\DungeonRoom16.csv" />
+    <None Include="LevelBuilding\Levels\DungeonRoom15.csv" />
+    <None Include="LevelBuilding\Levels\DungeonRoom14.csv" />
+    <None Include="LevelBuilding\Levels\DungeonRoom13.csv" />
+    <None Include="LevelBuilding\Levels\DungeonRoom12.csv" />
+    <None Include="LevelBuilding\Levels\DungeonRoom11.csv" />
+    <None Include="LevelBuilding\Levels\DungeonRoom4.csv" />
+    <None Include="LevelBuilding\Levels\DungeonRoom3.csv" />
     <None Include="LevelBuilding\Levels\DungeonRoom1.csv" />
     <None Include="LevelBuilding\Levels\DungeonRoom2.csv" />
+    <None Include="LevelBuilding\Levels\BulletHellRoom.csv" />
+    <None Include="LevelBuilding\Levels\DungeonRoom5.csv" />
+    <None Include="LevelBuilding\Levels\DungeonRoom10.csv" />
+    <None Include="LevelBuilding\Levels\DungeonRoom9.csv" />
+    <None Include="LevelBuilding\Levels\DungeonRoom8.csv" />
+    <None Include="LevelBuilding\Levels\DungeonRoom7.csv" />
+    <None Include="LevelBuilding\Levels\DungeonRoom6.csv" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

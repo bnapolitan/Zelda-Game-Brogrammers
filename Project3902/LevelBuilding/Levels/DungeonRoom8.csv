@@ -1,0 +1,14 @@
+Environment
+MoveableBlockRight, 448, 320
+WallTop, 448, 0
+ShutDoorLeft, 0, 288
+OpenDoorRight, 896, 288
+OpenDoorBottom, 448, 576
+Enemies
+AquaGel, 512, 384
+AquaGel, 576, 256
+AquaGel, 640, 128
+Levels
+Left, DungeonRoom9
+Right, DungeonRoom10
+Bottom, DungeonRoom6

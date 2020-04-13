@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Project3902.ObjectManagement;
 using System;
 
 namespace Project3902
@@ -7,6 +6,7 @@ namespace Project3902
     class Zol : BaseEnemy
     {
         private float steps = 100;
+        private static readonly Random random = new Random();
         public Zol(Vector2 pos, float moveSpeed, Vector2 initDirection)
         {
             Position = pos;
@@ -33,7 +33,6 @@ namespace Project3902
             {
                 if (steps == 0)
                 {
-                    Random random = new Random();
                     int dvalue = random.Next(4);
                     switch (dvalue)
                     {

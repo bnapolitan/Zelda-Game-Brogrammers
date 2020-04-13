@@ -1,0 +1,19 @@
+Environment
+OpenDoorTop, 448, 0
+WallLeft, 0, 288
+OpenDoorRight, 896, 288
+WallBottom, 448, 576
+Items
+Rupee, 150, 150
+5Rupee, 300, 150
+Heart, 450, 150
+Bow, 600, 150
+Watch, 750, 150
+Arrow, 160, 400
+Key, 310, 400
+Sword, 460, 400
+Ring, 610, 400
+Fairy, 760, 400
+Levels
+Top, DungeonRoom1
+Right, BulletHellRoom

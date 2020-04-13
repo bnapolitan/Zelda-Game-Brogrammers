@@ -1,0 +1,60 @@
+Environment
+Water, 128, 128
+Water, 192, 128
+Water, 256, 128
+Water, 320, 128
+Water, 384, 128
+Water, 576, 128
+Water, 640, 128
+Water, 704, 128
+Water, 768, 128
+Water, 832, 128
+Water, 128, 192
+Water, 384, 192
+Water, 704, 192
+Water, 832, 192
+Water, 128, 256
+Water, 256, 256
+Water, 384, 256
+Water, 512, 256
+Water, 576, 256
+Water, 704, 256
+Water, 832, 256
+Water, 256, 320
+Water, 384, 320
+Water, 576, 320
+Water, 704, 320
+Water, 128, 384
+Water, 256, 384
+Water, 384, 384
+Water, 448, 384
+Water, 576, 384
+Water, 704, 384
+Water, 832, 384
+Water, 128, 448
+Water, 256, 448
+Water, 576, 448
+Water, 832, 448
+Water, 128, 512
+Water, 192, 512
+Water, 256, 512
+Water, 320, 512
+Water, 384, 512
+Water, 576, 512
+Water, 640, 512
+Water, 704, 512
+Water, 768, 512
+Water, 832, 512
+LockDoorTop, 448, 0
+WallLeft, 0, 288
+WallRight, 896, 288
+OpenDoorBottom, 448, 576
+Items
+Key, 768, 320
+Enemies
+Stalfos, 192, 192
+Stalfos, 768, 192
+Stalfos, 640, 384
+Levels
+Top, DungeonRoom12
+Bottom, DungeonRoom10

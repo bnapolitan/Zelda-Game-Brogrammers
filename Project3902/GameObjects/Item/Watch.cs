@@ -10,11 +10,13 @@ namespace Project3902
         public ISprite Sprite { get; set; }
         public bool Active { get; set; }
         public Collider Collider { get; set; }
+        private readonly FinalGame game;
 
-        public Watch(Vector2 pos)
+        public Watch(Vector2 pos, FinalGame game)
         {
             Position = pos;
             Active = true;
+            this.game = game;
         }
         public void TakeDamage()
         {
@@ -27,6 +29,7 @@ namespace Project3902
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            if (Active)
             Sprite.Draw(spriteBatch);
         }
 
@@ -36,6 +39,11 @@ namespace Project3902
 
         public void OnCollide(Collider other)
         {
+        }
+
+        public void FreezeEnemies()
+        {
+            game.FreezeEnemies();
         }
     }
 }

@@ -1,7 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Project3902.Configuration;
 using Project3902.GameObjects;
 using Project3902.GameObjects.EnemyProjectiles;
+using Project3902.GameObjects.Environment;
+using Project3902.GameObjects.Environment.Interfaces;
+using Project3902.LevelBuilding;
+using Project3902.ObjectManagement;
 
 namespace Project3902
 {
@@ -44,7 +49,9 @@ namespace Project3902
             if (!link.Damaged)
             {
                 link.Health -= damage;
+
                 LinkFactory.Instance.CreateDamagedLink();
+                SoundHandler.Instance.PlaySoundEffect("Link Hurt");
             }
         }
 
@@ -56,9 +63,69 @@ namespace Project3902
 
         public virtual void OnCollide(Collider other)
         {
-            if (other.GameObject is IInteractiveEnvironmentObject)
+            if (other.GameObject is IDoorway)
             {
-                MoveOutOfWall(other);
+                var door = other.GameObject as OpenDoor;
+
+                if (link.Position.X < RoomSwitchingThresholdConfiguration.LeftRoomThreshold)
+                {
+                    door.ChangeLevel("Left");
+                    
+                }
+                else if (link.Position.X > RoomSwitchingThresholdConfiguration.RightRoomThreshold)
+                {
+                    door.ChangeLevel("Right");
+                    
+                }
+                else if (link.Position.Y < RoomSwitchingThresholdConfiguration.TopRoomThreshold)
+                {
+                    door.ChangeLevel("Top");
+                    
+                }
+                else if (link.Position.Y > RoomSwitchingThresholdConfiguration.BottomRoomThreshold)
+                {
+                    door.ChangeLevel("Bottom");
+                    
+                }
+            }
+            else if (other.GameObject is LockDoor && link.KeyCount > 0)
+            {
+                link.KeyCount--;
+                switch ((other.GameObject as LockDoor).DirectionType)
+                {
+                    case 0:
+                        LevelManager.Instance.AddObjectToCurrentLevel(EnvironmentFactory.Instance.CreateOpenDoorTop(other.GameObject.Position));
+                        break;
+                    case 1:
+                        LevelManager.Instance.AddObjectToCurrentLevel(EnvironmentFactory.Instance.CreateOpenDoorRight(other.GameObject.Position));
+                        break;
+                    case 2:
+                        LevelManager.Instance.AddObjectToCurrentLevel(EnvironmentFactory.Instance.CreateOpenDoorBottom(other.GameObject.Position));
+                        break;
+                    case 3:
+                        LevelManager.Instance.AddObjectToCurrentLevel(EnvironmentFactory.Instance.CreateOpenDoorLeft(other.GameObject.Position));
+                        break;
+                }
+
+                CollisionHandler.Instance.RemoveCollidable(other.GameObject as ICollidable);
+                LevelManager.Instance.RemoveObjectFromCurrentLevel(other.GameObject);
+                other.GameObject = null;
+                SoundHandler.Instance.PlaySoundEffect("Door Unlock");
+            }
+            else if (other.GameObject is IInteractiveEnvironmentObject)
+            {
+                if(other.GameObject is MoveableBlock&&(other.GameObject as MoveableBlock).MaxFrames>0&& link.FacingDirection == (other.GameObject as MoveableBlock).Direction)
+                {
+                    other.GameObject.Position += link.FacingDirection * 4;
+                    (other.GameObject as ICollidable).Collider.AlignHitbox();
+                    (other.GameObject as MoveableBlock).MaxFrames-= 4;
+                }
+                else
+                {
+                    MoveOutOfWall(other);
+                }
+                
+                
             }
             else if (other.GameObject is IEnemy)
             {
@@ -68,10 +135,83 @@ namespace Project3902
             {
                 TakeDamage((other.GameObject as Boomerang).Damage);
             }
+            else if (other.GameObject is Fireball)
+            {
+                TakeDamage((other.GameObject as Fireball).Damage);
+            }
+            
             else if(other.GameObject is IItem)
             {
+                LevelManager.Instance.RemoveObjectFromCurrentLevel(other.GameObject);
+                if (other.GameObject is Heart || other.GameObject is Key)
+                {
+                    SoundHandler.Instance.PlaySoundEffect("Heart");
+                    if(other.GameObject is Heart)
+                    {
+                        link.Health++;
+                        if (link.Health > link.MaxHealth)
+                        {
+                            link.Health = link.MaxHealth;
+                        }
+                    }
+                    else
+                    {
+                        link.KeyCount++;
+                    }
+                }
+                else if(other.GameObject is Watch)
+                {
+                    var watch = other.GameObject as Watch;
+                    watch.FreezeEnemies();
+                    SoundHandler.Instance.PlaySoundEffect("Item");
+                }
+                else if(other.GameObject is Rupee)
+                {
+                    SoundHandler.Instance.PlaySoundEffect("Rupee");
+                    link.CoinCount++;
+                }
+                else if(other.GameObject is RupeeBonus)
+                {
+                    SoundHandler.Instance.PlaySoundEffect("Rupee");
+                    link.CoinCount+=5;
+                }
+                else if (other.GameObject is Triforce)
+                {
+                    SoundHandler.Instance.PlaySong("Triforce");
+                }
+                else if(other.GameObject is Map)
+                {
+                    SoundHandler.Instance.PlaySoundEffect("Item");
+                    PauseScreen.Instance.AddMapToPauseScreen();
+                    HUDManager.Instance.AddMapToHUD();
+                }
+                else if (other.GameObject is HeartContainer)
+                {
+                    link.MaxHealth += 2;
+                    link.Health += 2;
+                    SoundHandler.Instance.PlaySoundEffect("Heart");
+                }
+                else if (other.GameObject is Compass)
+                {
+                    HUDManager.Instance.HUDElements.Add(HUDFactory.Instance.CreateTriforceMapBlip());
+                    SoundHandler.Instance.PlaySoundEffect("Item");
+                }
+                else
+                {
+                    SoundHandler.Instance.PlaySoundEffect("Item");
+                    if(other.GameObject is Potion)
+                    {
+                        link.PotionCount++;
+                    }
+                }
                 CollisionHandler.Instance.RemoveCollidable(other.GameObject as ICollidable);
+                other.GameObject.Active = false;
             }
+
+       
+
+
+     
         }
 
         private void MoveOutOfWall(Collider other)

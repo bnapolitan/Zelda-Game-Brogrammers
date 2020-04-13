@@ -1,0 +1,25 @@
+Author of the code review: Xueyang Li
+
+Date of the code review: 2020/3/6
+
+Sprint Number: 3
+
+Name of the .cs file being reviewed: EnvironmentFactory.cs
+
+Author of the .cs file being reviewed: Huang Huang
+
+Number of minutes taken to complete the review: 10min
+
+Specific comments on code quality: 
+	
+	This file managed creation of different environment sprites. It implements the ISpriteFactory, which defines the function and structure of EnemyFactory, EnvironmentFactory, and ItemFactory.
+
+	It Loads Text first, and then handle collision with RegisterEnvironmentForCollision() function. Finally, it creates Environemnt sprites. There's no redundant code in this file, though many of them are very similar. This is because we are trying to create different sprite in same way.
+
+	Good and clear use of if-condition inside Update(), which makes the object able to move around. It's a easy and clean way to do so.
+
+
+A hypothetical change£º
+
+	If I have to make a change, I think it would be possible to implement a class which is CreateAllEnvironments, and implement all those similar functions by calling this class.
+	

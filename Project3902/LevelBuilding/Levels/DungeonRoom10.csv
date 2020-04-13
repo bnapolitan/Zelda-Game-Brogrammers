@@ -1,0 +1,28 @@
+Environment
+Brick, 192, 192
+Brick, 256, 192
+Brick, 192, 448
+Brick, 256, 448
+Brick, 704, 192
+Brick, 768, 192
+Brick, 704, 448
+Brick, 768, 448
+Brick, 448, 320
+Brick, 512, 320
+OpenDoorTop, 448, 0
+OpenDoorLeft, 0, 288
+LockDoorRight, 896, 288
+WallBottom, 448, 576
+Items
+Map, 768, 320
+Enemies
+AquaGel, 384, 128
+AquaGel, 320, 448
+AquaGel, 640, 448
+AquaGel, 640, 320
+AquaGel, 832, 256
+Levels
+Left, DungeonRoom8
+Top, DungeonRoom11
+Right, DungeonRoom14
+Bottom, DungeonRoom5

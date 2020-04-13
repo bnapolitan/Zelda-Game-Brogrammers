@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Project3902.ObjectManagement;
 
 namespace Project3902
 {
@@ -10,9 +11,13 @@ namespace Project3902
         private readonly float maxDistance = 300f;
         private bool turned = false;
 
+        public ILink Link;
+
         public BoomerangWeapon()
         {
             Sprite = WeaponFactory.Instance.CreateBoomerangSprite(this);
+            SoundHandler.Instance.StopEffectInstance();
+            SoundHandler.Instance.PlaySoundEffect("Boomerang");
         }
 
         public override void OnCollide(Collider other) {
@@ -24,6 +29,12 @@ namespace Project3902
                     turned = true;
                     Position += (Direction * ((Speed / 30) + 3));
                 }
+            }
+
+            if (turned && other.GameObject is ILink)
+            {
+                Active = false;
+                SoundHandler.Instance.StopEffectInstance();
                 CollisionHandler.Instance.RemoveCollidable(this);
             }
 
@@ -47,20 +58,19 @@ namespace Project3902
             if ((Speed < maxSpeed * .5f))
                 Speed = maxSpeed * .5f;
 
-            if ((distTraveled > maxDistance))
+            if (!turned && (distTraveled > maxDistance))
             {
                 Position = startingPos + maxDistance * Direction;
                 Direction *= -1;
                 turned = true;
             }
 
-            if (turned && distTraveled <= 20f)
-                Active = false;
-
-            if (Position == startingPos && (distTraveled > 0))
+            if (turned)
             {
-                Active = false;
+                Direction = Link.Position - Position;
+                Direction = Vector2.Normalize(Direction);
             }
+
             Position += Direction * Speed * (float) gameTime.ElapsedGameTime.TotalSeconds;
             
         }
