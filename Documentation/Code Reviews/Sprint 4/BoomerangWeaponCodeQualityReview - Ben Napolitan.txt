@@ -1,0 +1,22 @@
+﻿Author: Ben Napolitan.7
+Date: 4/13/2020
+Sprint #: 4
+File being reviewed: BoomerangWeapon.cs
+Author of file under review: Austin Rogers
+
+
+Comments on code maintainability/quality:
+This file is well-placed, extending the BasePlayerProjectile abstract class and only writing functionality that is needed.
+
+OnCollide and Launch are short and take care of the functionality needed for them.
+
+Update is a little longer but does what is attributed to it. There is a magic number on line 58/59 that could be organized elsewhere but besides that the flow is necessary and understandable.
+
+The constructor is the starting point for playing the sound effect which doesn't seem to be an action a constructor should perform (i.e. a boomerang object could be created but not thrown yet)
+
+Besides that I see no issues in quality for this file.
+
+
+Hypothetical change:
+move ".5f" to be a private readonly variable at the top of the class.
+Place "SoundHandler.Instance.PlaySoundEffect("Boomerang");" somewhere in a function.
