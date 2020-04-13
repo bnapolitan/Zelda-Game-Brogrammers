@@ -1,0 +1,19 @@
+﻿Author: Xueyang Li
+Date: 2020/4/13
+Sprint number: sprint 4
+Name of the file being reviewed: HUDManager
+Author of the file being reviewed: Austin Rogers
+Number of minutes taken to complete: 10 mins
+Comment:
+	This file is used to manage the HUD. 
+
+	All the variables and methods are well defined with straightforward name, which makes them easy to understand.
+
+	Whitespace makes codes easy to read.
+
+	Most methods are short and easy to debug, except for those functions with list assignment or calculation, which cannot be avoided.
+	The structure of methods is clear and easy to follow.
+
+	In the method "UpdateHearts", there are some calculations. I think it would be better if the author expians the meaning of them. 
+
+	In general, this file is of good readability. 

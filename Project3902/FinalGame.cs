@@ -21,6 +21,7 @@ namespace Project3902
 {
     class FinalGame : Game
     {
+        private const int WindowWidth = 1024, WindowHeight = 672;
         public readonly GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -29,7 +30,7 @@ namespace Project3902
         private ILevel currentLevel;
         private ILevel nextLevel;
 
-        public Vector2 roomSize = new Vector2(1024, 672);
+        public Vector2 roomSize = new Vector2(WindowWidth, WindowHeight);
         private float scrollTimer;
         private Vector2 lastScrollDirection;
         private Boolean isPaused = false;

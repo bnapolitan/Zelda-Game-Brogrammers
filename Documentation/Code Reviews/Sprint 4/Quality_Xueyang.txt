@@ -1,0 +1,22 @@
+Author: Xueyang Li
+Date: 2020/4/13
+Sprint number: sprint 4
+Name of the file being reviewed: HUDManager
+Author of the file being reviewed: Austin Rogers 
+Number of minutes taken to complete: 10 mins
+Comments: 
+	This file manages the creation of HUDs. It adds elements to the HUD list, updates those elements, and draws them to the screen. 
+
+	It sets some variables with list type to public, which makes other files can access those variables.
+
+	Some variables, such as numHearts and maxHearts, which should only be used in this file, are set to private. This makes this file have better code quality.
+
+	Those codes are brief enough, unless there are some registrations for lists, such as in the method UpdateCounters, which cannot be avoided.
+
+	Good and clear use of if-condition and while-loop inside UpdateHearts(), which calculates the number of hearts accurately and update it accordingly.	
+	
+	I think this file is of good quality and does not have anything to be changed.
+
+	
+
+	
