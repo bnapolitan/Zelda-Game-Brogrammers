@@ -45,7 +45,6 @@ namespace Project3902
         private SpriteFont font;
         Vector2 linkPositionAfterRoomSwitch;
         Boolean linkDeath = false;
-        int freezeEnemiesTime = 0;
         int drawingCounter = 0;
 
         public FinalGame()
@@ -125,7 +124,7 @@ namespace Project3902
                 if (nextLevel != null && nextLevel.Scrolling)
                     nextLevel.Update(gameTime);
             }
-            
+
             if (!currentLevel.Scrolling)
             {
                     Link.Update(gameTime);
@@ -168,7 +167,7 @@ namespace Project3902
                 nextLevel.Draw(spriteBatch);
 
             if (currentLevel.LevelName == "DungeonRoom9" && !currentLevel.Scrolling)
-                this.DrawText(gameTime);
+                this.DrawText();
 
             if (!currentLevel.Scrolling)
                 Link.Draw(spriteBatch);
@@ -242,7 +241,7 @@ namespace Project3902
             Link.Position = linkPositionAfterRoomSwitch;
             currentLevel.Scrolling = false;
 
-            currentLevel.OffsetGameObjects(roomSize * -lastScrollDirection); 
+            currentLevel.OffsetGameObjects(roomSize * -lastScrollDirection);
 
             nextLevel.Scrolling = false;
             currentLevel = nextLevel;
@@ -296,7 +295,7 @@ namespace Project3902
             currentLevel.FreezeEnemies();
         }
 
-        public void DrawText(GameTime gameTime)
+        public void DrawText()
         {
             string words = TextConfiguration.OldManText;
             int textWritingDivisor = TextConfiguration.TextWritingDivisor;

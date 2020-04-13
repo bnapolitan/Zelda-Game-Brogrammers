@@ -79,7 +79,7 @@ namespace Project3902.ObjectManagement
                 currentSong = dungeonMusic;
             }
             MediaPlayer.Play(currentSong);
-            
+
             MediaPlayer.MediaStateChanged += MediaPlayer_MediaStateChanged;
         }
 
@@ -191,9 +191,9 @@ namespace Project3902.ObjectManagement
 
                 }
             }
-            
+
         }
-        
+
 
     }
 }

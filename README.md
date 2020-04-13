@@ -21,4 +21,26 @@ We use MouseActions to map a specific mouse button to a command. Monogame does n
 There were 7 errors returned from the code analyzer. The first 6 were related to the String parser that we
 used for the level builder. We chose to suppress these warnings because the input files will be a consistent
 format so the parser will also be consistent. The final warning was unrelated to our code and was related to
-the FxCop Analyizer.
+the FxCop Analyzer.
+
+FxCop
+
+Work-in-progress:
+
+Fixed:
+    - The field 'FinalGame.freezeEnemiesTime' is assigned but its value is never used	FinalGame.cs	48
+    - Parameter gameTime of method DrawText is never used. Remove the parameter or use it in the method body.	Project3902	E:\Git\Zelda-Game-Brogrammers\Project3902\FinalGame.cs	299	Active
+
+
+Supressed:
+    - The behavior of 'float.Parse(string)' could vary based on the current user's locale settings. Replace this call in 'LevelBuilder.CreateInteractiveEnvironmentObjects()' with a call to 'float.Parse(string, IFormatProvider)'.	Project3902	E:\Git\Zelda-Game-Brogrammers\Project3902\LevelBuilding\LevelBuilder.cs	63	Active
+        Appeared many times, parsing is consistent enough for our uses
+    - The behavior of 'string.Equals(string)' could vary based on the current user's locale settings. Replace this call in 'Project3902.ObjectManagement.SoundHandler.PlaySong(string)' with a call to 'string.Equals(string, System.StringComparison)'.	Project3902	E:\Git\Zelda-Game-Brogrammers\Project3902\ObjectManagement\SoundHandler.cs	61	Active
+        Same reasons as above, string equals is accurate enough for our use
+    - The behavior of 'float.Parse(string)' could vary based on the current user's locale settings. Replace this call in 'LevelBuilder.CreateItemObjects()' with a call to 'float.Parse(string, IFormatProvider)'.	Project3902	E:\Git\Zelda-Game-Brogrammers\Project3902\LevelBuilding\LevelBuilder.cs	98	Active
+        Accurate enough for us (still using same settings)
+    - The behavior of 'char.ToString()' could vary based on the current user's locale settings. Replace this call in 'FinalGame.DrawText()' with a call to 'char.ToString(IFormatProvider)'.	Project3902	E:\Git\Zelda-Game-Brogrammers\Project3902\FinalGame.cs	331	Active
+        Still not worried about parsing methods
+
+
+

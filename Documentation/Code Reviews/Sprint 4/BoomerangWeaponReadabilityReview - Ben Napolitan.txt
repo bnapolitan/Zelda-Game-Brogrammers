@@ -1,0 +1,13 @@
+﻿Author: Austin Rogers.1274
+Date: 4/13/2020
+Sprint #: 4
+File being reviewed: BoomerangWeapon.cs
+Author of file under review: Austin Rogers
+
+Time to complete review: 15 minutes
+
+Comments:
+Variables are well-named and functions take care of functionality contained under their name which makes this file easily readable.
+
+The Update() function is the only function that is a little long and it takes a little time in order to understand what it does. Maybe the distance functionality can be moved into a private function called HandleBoomerangMovement().
+
