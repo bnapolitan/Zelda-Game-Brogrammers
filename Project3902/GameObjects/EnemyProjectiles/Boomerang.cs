@@ -40,7 +40,6 @@ namespace Project3902.GameObjects.EnemyProjectiles
             Direction = initDirection;
             Speed = moveSpeed;
             Active = true;
-            SoundHandler.Instance.PlaySoundEffect("Boomerang");
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -90,7 +89,6 @@ namespace Project3902.GameObjects.EnemyProjectiles
             }
             if (Active == false)
             {
-                SoundHandler.Instance.StopEffectInstance();
                 CollisionHandler.Instance.RemoveCollidable(this);
             }
             Position += Direction * Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;

@@ -241,7 +241,7 @@ namespace Project3902
             Link.Position = linkPositionAfterRoomSwitch;
             currentLevel.Scrolling = false;
 
-            currentLevel.OffsetGameObjects(roomSize * -lastScrollDirection); // FIXES BLANK ROOMS AFTER SCROLL
+            currentLevel.OffsetGameObjects(roomSize * -lastScrollDirection); 
 
             nextLevel.Scrolling = false;
             currentLevel = nextLevel;
