@@ -145,6 +145,7 @@ namespace Project3902.LevelBuilding
             Room8DoorReleased = false;
             Room16DoorReleased = false;
             SurvivalDoorReleased = false;
+            waves = 0;
         }
 
         public void CheckSpecials()
