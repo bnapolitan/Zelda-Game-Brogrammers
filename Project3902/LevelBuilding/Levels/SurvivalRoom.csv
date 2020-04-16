@@ -5,8 +5,8 @@ ShutDoorRight, 896, 288
 WallBottom, 448, 576
 Enemies
 Stalfos, 256, 192
-Stalfos, 320, 256
-Stalfos, 320, 384
+GrayZol, 320, 256
+GrayZol, 320, 384
 Stalfos, 256, 448
 Levels
 Right, DungeonRoom0
