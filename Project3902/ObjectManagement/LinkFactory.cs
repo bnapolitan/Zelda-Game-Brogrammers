@@ -52,6 +52,10 @@ namespace Project3902
 
             controller.RegisterCommand(Keys.E, takeDamageCommand, InputState.Pressed);
             controller.RegisterCommand(Keys.G, new PauseGameCommand(game), InputState.Pressed);
+            controller.RegisterCommand(Keys.LeftShift, new LinkSpeedUpCommand(game), InputState.Pressed);
+            controller.RegisterCommand(Keys.LeftShift, new LinkSlowDownCommand(game), InputState.Released);
+            controller.RegisterCommand(Keys.RightShift, new LinkSpeedUpCommand(game), InputState.Pressed);
+            controller.RegisterCommand(Keys.RightShift, new LinkSlowDownCommand(game), InputState.Released);
 
             return controller;
         }

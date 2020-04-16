@@ -178,6 +178,8 @@
     <Compile Include="Player\ILinkActions.cs" />
     <Compile Include="Player\Link.cs" />
     <Compile Include="Player\PlayerCommands\BaseLinkCommand.cs" />
+    <Compile Include="Player\PlayerCommands\LinkSlowDownCommand.cs" />
+    <Compile Include="Player\PlayerCommands\LinkSpeedUpCommand.cs" />
     <Compile Include="Player\PlayerCommands\LinkUseItemCommand.cs" />
     <Compile Include="Player\PlayerCommands\LinkAttackCommand.cs" />
     <Compile Include="Player\PlayerCommands\LinkMoveDownCommand.cs" />
