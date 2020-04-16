@@ -241,6 +241,7 @@
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.manifest" />
+    <None Include="LevelBuilding\Levels\SurvivalRoom.csv" />
     <None Include="LevelBuilding\Levels\DungeonRoom0.csv" />
     <None Include="LevelBuilding\Levels\DungeonRoom17.csv" />
     <None Include="LevelBuilding\Levels\DungeonRoom16.csv" />
