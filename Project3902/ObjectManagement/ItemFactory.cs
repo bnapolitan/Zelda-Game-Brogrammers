@@ -79,7 +79,8 @@ namespace Project3902
 			List<Rectangle> RupeeSource = new List<Rectangle> { new Rectangle(0, 0, 30, 30), new Rectangle(30, 0, 30, 30) };
 			var sprite = new AnimatedSprite(createdObject, RupeeSprite, RupeeSource, .4f, new Vector2(3,3));
 			createdObject.Sprite = sprite;
-			RegisterItemForCollision(createdObject);
+			createdObject.Collider = new Collider(createdObject, new Rectangle(0, 0, 65, 65));
+			CollisionHandler.Instance.RegisterCollidable(createdObject, Layer.Pickup);
 			return createdObject;
 		}
 		public IGameObject Create1Rupee(Vector2 position)
@@ -88,7 +89,8 @@ namespace Project3902
 			List<Rectangle> RupeeSource = new List<Rectangle> { new Rectangle(0, 0, 30, 30) };
 			var sprite = new AnimatedSprite(createdObject, RupeeSprite, RupeeSource, .4f, new Vector2(3,3));
 			createdObject.Sprite = sprite;
-			RegisterItemForCollision(createdObject);
+			createdObject.Collider = new Collider(createdObject, new Rectangle(0, 0, 65, 65));
+			CollisionHandler.Instance.RegisterCollidable(createdObject, Layer.Pickup);
 			return createdObject;
 		}
 
