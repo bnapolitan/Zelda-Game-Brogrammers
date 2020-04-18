@@ -222,6 +222,7 @@ namespace Project3902
 
         private void StartRoomSwitch(Vector2 direction)
         {
+            SoundHandler.Instance.StopEffectInstance(true);
             currentLevel.Scrolling = true;
             currentLevel.ScrollDirection = direction;
             CollisionHandler.Instance.Flush();
