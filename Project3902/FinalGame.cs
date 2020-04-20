@@ -38,6 +38,7 @@ namespace Project3902
 
         MouseController mouseController;
         KeyboardController keyboardController;
+        GamepadController gamepadController;
 
         public string CurrentRoom = "DungeonRoom0";
 
@@ -80,6 +81,7 @@ namespace Project3902
 
             keyboardController = LinkFactory.Instance.CreateLinkController(this);
             mouseController = LevelFactory.Instance.CreateLevelController(this);
+            gamepadController = LinkFactory.Instance.CreateLinkGamepadController(this);
 
             ShapeSpriteFactory.Instance.CreateShapeTextures(GraphicsDevice);
 
@@ -129,6 +131,7 @@ namespace Project3902
                     Link.Update(gameTime);
                     mouseController.Update();
                     keyboardController.Update();
+                    gamepadController.Update();
             }
             else
             {
