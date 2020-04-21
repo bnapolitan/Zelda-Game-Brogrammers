@@ -56,7 +56,9 @@ namespace Project3902
         {
             var createdObject = ItemFactory.Instance.CreateMap(new Vector2(180,460));
             createdObject.Sprite.Scale = PauseScale;
-            PauseScreenElements.Add(createdObject);
+            var createdPauseMap = new HUDObject(createdObject.Position);
+            createdPauseMap.Sprite = createdObject.Sprite;
+            PauseScreenElements.Add(createdPauseMap);
 
         }
 
