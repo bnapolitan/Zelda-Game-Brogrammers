@@ -118,9 +118,6 @@ namespace Project3902
             base.Update(gameTime);
             if (!isPaused)
             {
-
-
-
                 currentLevel.Update(gameTime);
                 if (nextLevel != null && nextLevel.Scrolling)
                     nextLevel.Update(gameTime);
