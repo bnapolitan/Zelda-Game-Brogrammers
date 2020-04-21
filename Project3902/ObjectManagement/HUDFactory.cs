@@ -321,6 +321,61 @@ namespace Project3902
             return list;
         }
 
+        public IGameObject CreateHUDBoomerang(Vector2 position)
+        {
+            var gameObject = new HUDObject(position);
+            var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(584, 137,8, 15), HUDScale);
+            gameObject.Sprite = sprite;
+            return gameObject;
+        }
 
+        public IGameObject CreateHUDSword(Vector2 position)
+        {
+            var gameObject = new HUDObject(position);
+            var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(555, 137, 8, 16), HUDScale);
+            gameObject.Sprite = sprite;
+            return gameObject;
+        }
+
+        public IGameObject CreateHUDCandle(Vector2 position)
+        {
+            var gameObject = new HUDObject(position);
+            var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(653, 137, 8, 16), HUDScale);
+            gameObject.Sprite = sprite;
+            return gameObject;
+
+        }
+
+        public IGameObject CreateHUDBomb(Vector2 position)
+        {
+            var gameObject = new HUDObject(position);
+            var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(604, 137, 8, 16), HUDScale);
+            gameObject.Sprite = sprite;
+            return gameObject;
+        }
+
+        public IGameObject CreateHUDArrow(Vector2 position)
+        {
+            var gameObject = new HUDObject(position);
+            var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(615, 137, 8, 16), HUDScale);
+            gameObject.Sprite = sprite;
+            return gameObject;
+        }
+
+        public IGameObject CreateHUDBow(Vector2 position)
+        {
+            var gameObject = new HUDObject(position);
+            var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(633, 137, 8, 16), HUDScale);
+            gameObject.Sprite = sprite;
+            return gameObject;
+        }
+
+        public IGameObject CreatePauseCompass(Vector2 position)
+        {
+            var gameObject = new HUDObject(position);
+            var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(612, 158, 15, 14), PauseScale);
+            gameObject.Sprite = sprite;
+            return gameObject;
+        }
     }
 }

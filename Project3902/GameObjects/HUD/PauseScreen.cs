@@ -10,6 +10,8 @@ namespace Project3902
         private Vector2 PauseScale = new Vector2(4, 4);
         public List<IGameObject> PauseScreenElements = new List<IGameObject>();
         private readonly HUDFactory Factory = HUDFactory.Instance;
+        private List<IGameObject> aquiredItems = new List<IGameObject>();
+        private int numItemsAquired = 0;
         public static PauseScreen Instance { get; } = new PauseScreen();
         private PauseScreen()
         {
@@ -45,6 +47,9 @@ namespace Project3902
             var blackBox = Factory.CreateItemBlackBox();
             blackBox.Position = new Vector2(270, 210);
             PauseScreenElements.Add(blackBox);
+            PauseScreenElements.Add(Factory.CreateHUDSword(CalculateNextInventoryPosition()));
+            numItemsAquired++;
+            AddCompassToPauseScreen();
         }
 
         public void AddMapToPauseScreen()
@@ -53,6 +58,72 @@ namespace Project3902
             createdObject.Sprite.Scale = PauseScale;
             PauseScreenElements.Add(createdObject);
 
+        }
+
+        public void AddCompassToPauseScreen()
+        {
+            PauseScreenElements.Add(Factory.CreatePauseCompass(new Vector2(180, 620)));
+        }
+
+        public void addToAquiredItems(IGameObject item)
+        {
+            bool aquired = false;
+            if(item is Bow)
+            {
+                foreach(IGameObject collected in aquiredItems)
+                {
+                    if(collected is Bow)
+                    {
+                        aquired = true;
+                    }
+                    if(aquired == false)
+                    {
+                        PauseScreenElements.Add(Factory.CreateHUDBow(CalculateNextInventoryPosition()));
+                        numItemsAquired++;
+                    }
+                }
+            }
+            if (item is Arrow)
+            {
+                foreach (IGameObject collected in aquiredItems)
+                {
+                    if (collected is Arrow)
+                    {
+                        aquired = true;
+                    }
+                    if (aquired == false)
+                    {
+                        PauseScreenElements.Add(Factory.CreateHUDBow(CalculateNextInventoryPosition()));
+                        numItemsAquired++;
+                    }
+                }
+            }
+            if (item is BlueCandleWeapon)
+            {
+                foreach (IGameObject collected in aquiredItems)
+                {
+                    if (collected is BlueCandleWeapon)
+                    {
+                        aquired = true;
+                    }
+                    if (aquired == false)
+                    {
+                        PauseScreenElements.Add(Factory.CreateHUDCandle(CalculateNextInventoryPosition()));
+                        numItemsAquired++;
+                    }
+                }
+            }
+            aquiredItems.Add(item);
+            
+        }
+
+        public Vector2 CalculateNextInventoryPosition()
+        {
+            Vector2 baseVector = new Vector2(525, 220);
+            baseVector.X += (numItemsAquired % 4) * 100;
+            baseVector.Y += (numItemsAquired / 4) * 75;
+            return baseVector;
+            
         }
     }
 }
