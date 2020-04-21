@@ -14,15 +14,17 @@ namespace Project3902
         private readonly List<List<IGameObject>> numsLists = new List<List<IGameObject>>();
         private readonly HUDFactory Factory = HUDFactory.Instance;
         private IGameObject mapBlip;
+        private IDictionary<string, Vector2> blipPosition;
         public static HUDManager Instance { get; } = new HUDManager();
         private int numHearts;
         private int maxHearts;
         public int numKeys = 0;
         public int numCoins = 0;
         public int numOrbs = 0;
-        
+
         private HUDManager()
         {
+            blipPosition = CreateBlipPositionDictionary();
         }
 
         public void Update()
@@ -34,11 +36,13 @@ namespace Project3902
             numOrbs = game.Link.PotionCount;
             numCoins = game.Link.CoinCount;
             UpdateCounters();
-            if(blipCool != 0)
+
+            Vector2 tempPosition;
+            var isValidKey = blipPosition.TryGetValue(game.CurrentRoom, out tempPosition);
+            if(isValidKey)
             {
-                blipCool--;
+                this.mapBlip.Position = tempPosition;
             }
-            
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -92,7 +96,7 @@ namespace Project3902
             HUDElements.Add(blackBoxB);
 
 
-            
+
         }
 
         private void UpdateHearts()
@@ -163,58 +167,6 @@ namespace Project3902
             counterList.Add(orbOne);
         }
 
-        public void MoveMapBlipUp()
-        {
-            if (blipCool == 0)
-            { 
-                var tempPos = mapBlip.Position;
-                tempPos.Y -= 12;
-                mapBlip.Position = tempPos;
-               
-                blipCool = 10;
-            }
-            
-            
-
-        }
-        private int blipCool = 0;
-        public void MoveMapBlipLeft()
-        {
-            if (blipCool == 0)
-            {
-                var tempPos = mapBlip.Position;
-                tempPos.X -= 18;
-                mapBlip.Position = tempPos;
-                blipCool = 10;
-            }
-
-
-        }
-
-        public void MoveMapBlipRight()
-        {
-            if (blipCool == 0)
-            {
-
-
-                var tempPos = mapBlip.Position;
-                tempPos.X += 18;
-                mapBlip.Position = tempPos;
-                blipCool = 10;
-            }
-        }
-
-        public void MoveMapBlipDown()
-        {
-            if (blipCool == 0)
-            {
-                var tempPos = mapBlip.Position;
-                tempPos.Y += 12;
-                mapBlip.Position = tempPos;
-                blipCool = 10;
-            }
-        }
-
         public void AddMapToHUD()
         {
             var levelMap = Factory.CreateLevelMap();
@@ -224,6 +176,30 @@ namespace Project3902
             }
         }
 
+        private IDictionary<string, Vector2> CreateBlipPositionDictionary()
+        {
+            var dictionary = new Dictionary<string, Vector2>();
+
+            dictionary.Add("DungeonRoom1", new Vector2(160, 82));
+            dictionary.Add("DungeonRoom2", new Vector2(142, 82));
+            dictionary.Add("DungeonRoom3", new Vector2(178, 82));
+            dictionary.Add("DungeonRoom4", new Vector2(160, 70));
+            dictionary.Add("DungeonRoom5", new Vector2(160, 58));
+            dictionary.Add("DungeonRoom6", new Vector2(142, 58));
+            dictionary.Add("DungeonRoom7", new Vector2(178, 58));
+            dictionary.Add("DungeonRoom8", new Vector2(142, 46));
+            dictionary.Add("DungeonRoom9", new Vector2(124, 46));
+            dictionary.Add("DungeonRoom10", new Vector2(160, 46));
+            dictionary.Add("DungeonRoom11", new Vector2(160, 34));
+            dictionary.Add("DungeonRoom12", new Vector2(160, 22));
+            dictionary.Add("DungeonRoom13", new Vector2(142, 22));
+            dictionary.Add("DungeonRoom14", new Vector2(178, 46));
+            dictionary.Add("DungeonRoom15", new Vector2(196, 46));
+            dictionary.Add("DungeonRoom16", new Vector2(196, 34));
+            dictionary.Add("DungeonRoom17", new Vector2(214, 34));
+
+            return dictionary;
+        }
 
     }
 }
