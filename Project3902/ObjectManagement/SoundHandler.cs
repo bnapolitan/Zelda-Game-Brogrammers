@@ -27,7 +27,7 @@ namespace Project3902.ObjectManagement
         private SoundEffect itemSound;
         private SoundEffect doorSound;
         private SoundEffect aquamentusSound;
-        private readonly List<SoundEffectInstance> instanceList=new List<SoundEffectInstance>();
+        private List<SoundEffectInstance> instanceList=new List<SoundEffectInstance>();
 
         private Boolean musicPause = false;
         public static SoundHandler Instance { get; } = new SoundHandler();
@@ -79,7 +79,7 @@ namespace Project3902.ObjectManagement
                 currentSong = dungeonMusic;
             }
             MediaPlayer.Play(currentSong);
-
+            
             MediaPlayer.MediaStateChanged += MediaPlayer_MediaStateChanged;
         }
 
@@ -191,9 +191,9 @@ namespace Project3902.ObjectManagement
 
                 }
             }
-
+            
         }
-
+        
 
     }
 }

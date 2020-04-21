@@ -308,13 +308,12 @@ namespace Project3902.ObjectManagement
             RegisterDoorForCollision(createdObject);
             return createdObject;
         }
-        public IGameObject CreateMoveableBlock(Vector2 position, Vector2 direction)
+        public IGameObject CreateMoveableBlock(Vector2 position)
         {
-            var createdObject = new MoveableBlock(position, direction);
+            var createdObject = new MoveableBlock(position);
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(1001, 11, 16, 16), environmentScale);
             createdObject.Sprite = sprite;
-            createdObject.Collider = new Collider(createdObject, new Rectangle(0, 0, 64, 64));
-            CollisionHandler.Instance.RegisterCollidable(createdObject, Layer.Wall);
+            RegisterEnvironmentForCollision(createdObject);
             return createdObject;
         }
 

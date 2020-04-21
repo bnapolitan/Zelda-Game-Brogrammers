@@ -62,39 +62,26 @@ namespace Project3902
                     {
                         Active = false;
                         SoundHandler.Instance.PlaySoundEffect("Enemy Die");
-                        if (this is Zol)
+                        Random rnum = new Random();
+                        int chance = rnum.Next(5);
+                        if (chance == 0)
                         {
-                            Gel gel1 = (EnemyFactory.Instance.CreateAquaGel(Position) as Gel);
-                            Gel gel2 = (EnemyFactory.Instance.CreateAquaGel(Position) as Gel);
-                            gel1.Direction = new Vector2(1, 0);
-                            gel2.Direction = new Vector2(-1, 0);
-                            LevelManager.Instance.AddObjectToCurrentLevel(gel1);
-                            LevelManager.Instance.AddObjectToCurrentLevel(gel2);
-                        }
-                        else
-                        {
-                            Random rnum = new Random();
-                            int chance = rnum.Next(5);
-                            if (chance == 0)
+                            SoundHandler.Instance.PlaySoundEffect("Rupee");
+                            int bonusChance = rnum.Next(3);
+                            if (bonusChance == 0)
                             {
-                                SoundHandler.Instance.PlaySoundEffect("Rupee");
-                                int bonusChance = rnum.Next(3);
-                                if (bonusChance == 0)
-                                {
-                                    LevelManager.Instance.AddObjectToCurrentLevel(ItemFactory.Instance.CreateRupee(Position));
-                                }
-                                else
-                                {
-                                    LevelManager.Instance.AddObjectToCurrentLevel(ItemFactory.Instance.Create1Rupee(Position));
-                                }
+                                LevelManager.Instance.AddObjectToCurrentLevel(ItemFactory.Instance.CreateRupee(Position));
                             }
-                            if (chance == 1)
+                            else
                             {
-                                SoundHandler.Instance.PlaySoundEffect("Heart");
-                                LevelManager.Instance.AddObjectToCurrentLevel(ItemFactory.Instance.CreateHeart(Position));
+                                LevelManager.Instance.AddObjectToCurrentLevel(ItemFactory.Instance.Create1Rupee(Position));
                             }
                         }
-                        
+                        if (chance == 1)
+                        {
+                            SoundHandler.Instance.PlaySoundEffect("Heart");
+                            LevelManager.Instance.AddObjectToCurrentLevel(ItemFactory.Instance.CreateHeart(Position));
+                        }
                         CollisionHandler.Instance.RemoveCollidable(this);
                         LevelManager.Instance.RemoveObjectFromCurrentLevel(this);
                     }

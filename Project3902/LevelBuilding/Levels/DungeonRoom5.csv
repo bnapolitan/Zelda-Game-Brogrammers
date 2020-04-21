@@ -7,8 +7,6 @@ WallTop, 448, 0
 OpenDoorLeft, 0, 288
 OpenDoorRight, 896, 288
 OpenDoorBottom, 448, 576
-Items
-Key, 512, 192
 Enemies
 Stalfos, 576, 128
 Stalfos, 576, 384

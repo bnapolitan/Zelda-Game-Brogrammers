@@ -29,13 +29,12 @@ namespace Project3902
 
         }
 
-        public IProjectile CreateBoomerangProjectile(ILink link)
+        public IProjectile CreateBoomerangProjectile()
         {
             var boomerang = new BoomerangWeapon();
             var collider = new Collider(boomerang, new Rectangle(0, 0, 8 * (int)boomerang.Sprite.Scale.X, 8 * (int)boomerang.Sprite.Scale.Y));
             boomerang.Collider = collider;
-            boomerang.Link = link;
-            CollisionHandler.Instance.RegisterCollidable(boomerang, Layer.Projectile, Layer.Enemy, Layer.Wall, Layer.Player);
+            CollisionHandler.Instance.RegisterCollidable(boomerang, Layer.Projectile, Layer.Enemy, Layer.Wall);
             return boomerang;
         }
 
@@ -105,7 +104,7 @@ namespace Project3902
 
         public IProjectile CreateFireballProjectile(Vector2 pos, Vector2 direction)
         {
-            var createdObject = new Fireball(pos, 5f, direction);
+            var createdObject = new Fireball(pos, 4f, direction);
             List<Rectangle> fireballSource = new List<Rectangle> { new Rectangle(364, 33, 8, 16) };
             var sprite = new AnimatedSprite(createdObject, bossSpriteAtlas, fireballSource, 0.5f, new Vector2(3.4f, 3.4f));
             createdObject.Sprite = sprite;

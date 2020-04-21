@@ -20,7 +20,6 @@ namespace Project3902
 
         private readonly FinalGame game;
 
-        public float MovementSpeed { get => decoratedLink.MovementSpeed; set => decoratedLink.MovementSpeed = value; }
         public float Health { get => decoratedLink.Health; set => decoratedLink.Health = value; }
         public Vector2 Position { get => decoratedLink.Position; set => decoratedLink.Position = value; }
         public ISprite Sprite { get => decoratedLink.Sprite; set => decoratedLink.Sprite = value; }

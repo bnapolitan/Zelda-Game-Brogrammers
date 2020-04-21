@@ -1,7 +1,11 @@
 ﻿
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Project3902
 {
@@ -11,38 +15,34 @@ namespace Project3902
         public List<IGameObject> HUDElements = new List<IGameObject>();
         public List<IGameObject> HeartsList = new List<IGameObject>();
         public List<IGameObject> counterList = new List<IGameObject>();
-        private readonly List<List<IGameObject>> numsLists = new List<List<IGameObject>>();
-        private readonly HUDFactory Factory = HUDFactory.Instance;
+        private List<List<IGameObject>> numsLists = new List<List<IGameObject>>();
+        private HUDFactory Factory = HUDFactory.Instance;
         private IGameObject mapBlip;
-        private IDictionary<string, Vector2> blipPosition;
         public static HUDManager Instance { get; } = new HUDManager();
         private int numHearts;
         private int maxHearts;
         public int numKeys = 0;
         public int numCoins = 0;
         public int numOrbs = 0;
-
+        
         private HUDManager()
         {
-            blipPosition = CreateBlipPositionDictionary();
         }
 
         public void Update()
         {
             numHearts = (int) game.Link.Health;
             maxHearts = (int) game.Link.MaxHealth;
-            UpdateHearts();
+            updateHearts();
             numKeys = game.Link.KeyCount;
             numOrbs = game.Link.PotionCount;
             numCoins = game.Link.CoinCount;
-            UpdateCounters();
-
-            Vector2 tempPosition;
-            var isValidKey = blipPosition.TryGetValue(game.CurrentRoom, out tempPosition);
-            if(isValidKey)
+            updateCounters();
+            if(blipCool != 0)
             {
-                this.mapBlip.Position = tempPosition;
+                blipCool--;
             }
+            
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -65,48 +65,43 @@ namespace Project3902
             mapBlip.Draw(spriteBatch);
         }
 
-        public void RegisterGame(FinalGame game)
+        public void registerGame(FinalGame game)
         {
             this.game = game;
-            AddBaseElements();
-            CreateNumsLists();
+            addBaseElements();
+            createNumsLists();
         }
 
-        private void AddBaseElements()
+        private void addBaseElements()
         {
-            mapBlip = Factory.CreateMapBlip();
-            HUDElements.Add(Factory.CreateLifeWord());
-            HUDElements.Add(Factory.CreateCoinCountIcon());
-            HUDElements.Add(Factory.CreateOrbCountIcon());
-            HUDElements.Add(Factory.CreateKeyCountIcon());
-            HUDElements.Add(Factory.CreateLevelWord());
-            HUDElements.Add(Factory.CreateABox());
-            HUDElements.Add(Factory.CreateBBox());
-            HUDElements.Add(Factory.CreateOneCharacter());
-            HUDElements.Add(Factory.CreateXCharacter());
-            HUDElements.Add(Factory.CreateXCharacter());
-            HUDElements.Add(Factory.CreateXCharacter());
-            var blackBoxA = Factory.CreateItemBlackBox();
-            blackBoxA.Sprite.Scale = Factory.HUDScale;
-            blackBoxA.Position = new Vector2(315, 24);
-            HUDElements.Add(blackBoxA);
-            var blackBoxB = Factory.CreateItemBlackBox();
-            blackBoxB.Sprite.Scale = Factory.HUDScale;
-            blackBoxB.Position = new Vector2(395, 24);
-            HUDElements.Add(blackBoxB);
+            mapBlip = Factory.createMapBlip();
+            HUDElements.Add(Factory.createLifeWord());
+            HUDElements.Add(Factory.createCoinCountIcon());
+            HUDElements.Add(Factory.createOrbCountIcon());
+            HUDElements.Add(Factory.createKeyCountIcon());
+            HUDElements.Add(Factory.createLevelWord());
+            HUDElements.Add(Factory.createABox());
+            HUDElements.Add(Factory.createBBox());
+            HUDElements.Add(Factory.createOneCharacter());
+            HUDElements.Add(Factory.createXCharacter());
+            HUDElements.Add(Factory.createXCharacter());
+            HUDElements.Add(Factory.createXCharacter());
 
-
-
+            var levelMap = Factory.createLevelMap();
+            foreach(IGameObject hudElement in levelMap)
+            {
+                HUDElements.Add(hudElement);
+            }
         }
 
-        private void UpdateHearts()
+        private void updateHearts()
         {
             var heartsCreated = 0;
 
             HeartsList.Clear();
             while (heartsCreated + 2 <= numHearts)
             {
-                var heart = Factory.CreateFullHeart();
+                var heart = Factory.createFullHeart();
                 var tempPos = heart.Position;
                 tempPos.X = heart.Position.X + (heartsCreated / 2) * 8 * heart.Sprite.Scale.X;
                 heart.Position = tempPos;
@@ -115,7 +110,7 @@ namespace Project3902
             }
             if(numHearts%2 == 1)
             {
-                var heart = Factory.CreateHalfHeart();
+                var heart = Factory.createHalfHeart();
                 var tempPos = heart.Position;
                 tempPos.X = heart.Position.X + (heartsCreated / 2) * 8 * heart.Sprite.Scale.X;
                 heart.Position = tempPos;
@@ -124,7 +119,7 @@ namespace Project3902
             }
             while(heartsCreated < maxHearts)
             {
-                var heart = Factory.CreateEmptyHeart();
+                var heart = Factory.createEmptyHeart();
                 var tempPos = heart.Position;
                 tempPos.X = heart.Position.X + (heartsCreated / 2) * 8 * heart.Sprite.Scale.X;
                 heart.Position = tempPos;
@@ -135,17 +130,17 @@ namespace Project3902
 
         }
 
-        private void CreateNumsLists()
+        private void createNumsLists()
         {
-            numsLists.Add(Factory.CreateNumberList());
-            numsLists.Add(Factory.CreateNumberList());
-            numsLists.Add(Factory.CreateNumberList());
-            numsLists.Add(Factory.CreateNumberList());
-            numsLists.Add(Factory.CreateNumberList());
-            numsLists.Add(Factory.CreateNumberList());
+            numsLists.Add(Factory.createNumberList());
+            numsLists.Add(Factory.createNumberList());
+            numsLists.Add(Factory.createNumberList());
+            numsLists.Add(Factory.createNumberList());
+            numsLists.Add(Factory.createNumberList());
+            numsLists.Add(Factory.createNumberList());
         }
 
-        private void UpdateCounters()
+        private void updateCounters()
         {
             var coinTen = numsLists[0][(numCoins % 100) / 10];
             var coinOne = numsLists[1][numCoins % 10];
@@ -167,39 +162,58 @@ namespace Project3902
             counterList.Add(orbOne);
         }
 
-        public void AddMapToHUD()
+        public void moveMapBlipUp()
         {
-            var levelMap = Factory.CreateLevelMap();
-            foreach (IGameObject hudElement in levelMap)
+            if (blipCool == 0)
+            { 
+                var tempPos = mapBlip.Position;
+                tempPos.Y -= 12;
+                mapBlip.Position = tempPos;
+               
+                blipCool = 10;
+            }
+            
+            
+
+        }
+        private int blipCool = 0;
+        public void moveMapBlipLeft()
+        {
+            if (blipCool == 0)
             {
-                HUDElements.Add(hudElement);
+                var tempPos = mapBlip.Position;
+                tempPos.X -= 18;
+                mapBlip.Position = tempPos;
+                blipCool = 10;
+            }
+
+
+        }
+
+        public void moveMapBlipRight()
+        {
+            if (blipCool == 0)
+            {
+
+
+                var tempPos = mapBlip.Position;
+                tempPos.X += 18;
+                mapBlip.Position = tempPos;
+                blipCool = 10;
             }
         }
 
-        private IDictionary<string, Vector2> CreateBlipPositionDictionary()
+        public void moveMapBlipDown()
         {
-            var dictionary = new Dictionary<string, Vector2>();
-
-            dictionary.Add("DungeonRoom1", new Vector2(160, 82));
-            dictionary.Add("DungeonRoom2", new Vector2(142, 82));
-            dictionary.Add("DungeonRoom3", new Vector2(178, 82));
-            dictionary.Add("DungeonRoom4", new Vector2(160, 70));
-            dictionary.Add("DungeonRoom5", new Vector2(160, 58));
-            dictionary.Add("DungeonRoom6", new Vector2(142, 58));
-            dictionary.Add("DungeonRoom7", new Vector2(178, 58));
-            dictionary.Add("DungeonRoom8", new Vector2(142, 46));
-            dictionary.Add("DungeonRoom9", new Vector2(124, 46));
-            dictionary.Add("DungeonRoom10", new Vector2(160, 46));
-            dictionary.Add("DungeonRoom11", new Vector2(160, 34));
-            dictionary.Add("DungeonRoom12", new Vector2(160, 22));
-            dictionary.Add("DungeonRoom13", new Vector2(142, 22));
-            dictionary.Add("DungeonRoom14", new Vector2(178, 46));
-            dictionary.Add("DungeonRoom15", new Vector2(196, 46));
-            dictionary.Add("DungeonRoom16", new Vector2(196, 34));
-            dictionary.Add("DungeonRoom17", new Vector2(214, 34));
-
-            return dictionary;
+            if (blipCool == 0)
+            {
+                var tempPos = mapBlip.Position;
+                tempPos.Y += 12;
+                mapBlip.Position = tempPos;
+                blipCool = 10;
+            }
         }
+
 
     }
 }

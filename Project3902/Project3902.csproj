@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.8\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props" Condition="Exists('..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.8\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" />
   <Import Project="..\packages\Microsoft.NetFramework.Analyzers.2.9.8\build\Microsoft.NetFramework.Analyzers.props" Condition="Exists('..\packages\Microsoft.NetFramework.Analyzers.2.9.8\build\Microsoft.NetFramework.Analyzers.props')" />
   <Import Project="..\packages\Microsoft.NetCore.Analyzers.2.9.8\build\Microsoft.NetCore.Analyzers.props" Condition="Exists('..\packages\Microsoft.NetCore.Analyzers.2.9.8\build\Microsoft.NetCore.Analyzers.props')" />
@@ -18,9 +18,10 @@
     <AssemblyName>Project3902</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>Windows</MonoGamePlatform>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -73,7 +74,6 @@
     <Compile Include="Configuration\TextConfiguration.cs" />
     <Compile Include="Configuration\LinkPositionConfiguration.cs" />
     <Compile Include="Commands\PauseGameCommand.cs" />
-    <Compile Include="Controllers\GamepadController.cs" />
     <Compile Include="GameObjects\EnemiesAndNPCs\BulletHellAquamentus.cs" />
     <Compile Include="GameObjects\Environment\BlankWallObject.cs" />
     <Compile Include="GameObjects\EnemiesAndNPCs\BaseEnemy.cs" />
@@ -81,8 +81,6 @@
     <Compile Include="GameObjects\Environment\Interfaces\IDoorway.cs" />
     <Compile Include="GameObjects\Environment\BlockingBrick.cs" />
     <Compile Include="GameObjects\HUD\PauseScreen.cs" />
-    <Compile Include="GameObjects\Item\Compass.cs" />
-    <Compile Include="GameObjects\Item\HeartContainer.cs" />
     <Compile Include="GameObjects\Item\Map.cs" />
     <Compile Include="GameObjects\HUD\HUDManager.cs" />
     <Compile Include="GameObjects\HUD\HUDObject.cs" />
@@ -179,8 +177,6 @@
     <Compile Include="Player\ILinkActions.cs" />
     <Compile Include="Player\Link.cs" />
     <Compile Include="Player\PlayerCommands\BaseLinkCommand.cs" />
-    <Compile Include="Player\PlayerCommands\LinkSlowDownCommand.cs" />
-    <Compile Include="Player\PlayerCommands\LinkSpeedUpCommand.cs" />
     <Compile Include="Player\PlayerCommands\LinkUseItemCommand.cs" />
     <Compile Include="Player\PlayerCommands\LinkAttackCommand.cs" />
     <Compile Include="Player\PlayerCommands\LinkMoveDownCommand.cs" />
@@ -241,8 +237,8 @@
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
+    <None Include="app.config" />
     <None Include="app.manifest" />
-    <None Include="LevelBuilding\Levels\SurvivalRoom.csv" />
     <None Include="LevelBuilding\Levels\DungeonRoom0.csv" />
     <None Include="LevelBuilding\Levels\DungeonRoom17.csv" />
     <None Include="LevelBuilding\Levels\DungeonRoom16.csv" />

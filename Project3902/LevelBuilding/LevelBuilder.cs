@@ -15,8 +15,8 @@ namespace Project3902
         private readonly string levelName;
         private readonly EnvironmentFactory envFactory = EnvironmentFactory.Instance;
         private readonly ObjectLookup objectLookup = new ObjectLookup();
-        private readonly int HUDHeight;
-        private readonly string levelPath;
+        private int HUDHeight;
+        private string levelPath;
 
         public LevelBuilder(string levelName)
         {

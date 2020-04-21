@@ -3,20 +3,21 @@ using Microsoft.Xna.Framework.Graphics;
 using Project3902.GameObjects.EnemyProjectiles;
 using Project3902.ObjectManagement;
 using System;
+using System.Collections.Generic;
 
 namespace Project3902.GameObjects.EnemiesAndNPCs
 {
     class BulletHellAquamentus : ProjectileLaunchingEnemy
     {
         public FinalGame Game { get; }
-
-
+        private readonly float distance = 100;
+        private Vector2 relPos = new Vector2(0, 0);
         private readonly int framesBeforeAttack = 230;
         private int currentFrame = 0;
         private Fireball fireball;
         private Fireball fireball2;
         private Fireball fireball3;
-        private readonly int fireballDistance = 800;
+        private int fireballDistance = 800;
         private bool isShooting = false;
 
         public BulletHellAquamentus(Vector2 pos, float moveSpeed, Vector2 initDirection, FinalGame game) : base(pos, moveSpeed, initDirection)

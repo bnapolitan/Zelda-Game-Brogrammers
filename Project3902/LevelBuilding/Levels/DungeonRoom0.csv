@@ -1,6 +1,6 @@
 Environment
 OpenDoorTop, 448, 0
-OpenDoorLeft, 0, 288
+WallLeft, 0, 288
 OpenDoorRight, 896, 288
 WallBottom, 448, 576
 Items
@@ -17,4 +17,3 @@ Fairy, 760, 400
 Levels
 Top, DungeonRoom1
 Right, BulletHellRoom
-Left, SurvivalRoom

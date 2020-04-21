@@ -15,6 +15,5 @@ namespace Project3902
         int CoinCount { get; set; }
         int KeyCount { get; set; }
         int PotionCount { get; set; }
-        float MovementSpeed { get; set; }
     }
 }

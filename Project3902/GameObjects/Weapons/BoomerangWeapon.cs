@@ -11,8 +11,6 @@ namespace Project3902
         private readonly float maxDistance = 300f;
         private bool turned = false;
 
-        public ILink Link;
-
         public BoomerangWeapon()
         {
             Sprite = WeaponFactory.Instance.CreateBoomerangSprite(this);
@@ -29,12 +27,6 @@ namespace Project3902
                     turned = true;
                     Position += (Direction * ((Speed / 30) + 3));
                 }
-            }
-
-            if (turned && other.GameObject is ILink)
-            {
-                Active = false;
-                SoundHandler.Instance.StopEffectInstance();
                 CollisionHandler.Instance.RemoveCollidable(this);
             }
 
@@ -58,19 +50,26 @@ namespace Project3902
             if ((Speed < maxSpeed * .5f))
                 Speed = maxSpeed * .5f;
 
-            if (!turned && (distTraveled > maxDistance))
+            if ((distTraveled > maxDistance))
             {
                 Position = startingPos + maxDistance * Direction;
                 Direction *= -1;
                 turned = true;
             }
 
-            if (turned)
+            if (turned && distTraveled <= 20f)
             {
-                Direction = Link.Position - Position;
-                Direction = Vector2.Normalize(Direction);
+                Active = false;
+                SoundHandler.Instance.StopEffectInstance();
+                CollisionHandler.Instance.RemoveCollidable(this);
             }
 
+            if (Position == startingPos && (distTraveled > 0))
+            {
+                Active = false;
+                SoundHandler.Instance.StopEffectInstance();
+                CollisionHandler.Instance.RemoveCollidable(this);
+            }
             Position += Direction * Speed * (float) gameTime.ElapsedGameTime.TotalSeconds;
             
         }

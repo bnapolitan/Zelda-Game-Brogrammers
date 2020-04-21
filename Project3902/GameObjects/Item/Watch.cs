@@ -10,7 +10,7 @@ namespace Project3902
         public ISprite Sprite { get; set; }
         public bool Active { get; set; }
         public Collider Collider { get; set; }
-        private readonly FinalGame game;
+        private FinalGame game;
 
         public Watch(Vector2 pos, FinalGame game)
         {

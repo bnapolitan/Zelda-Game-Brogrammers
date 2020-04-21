@@ -7,7 +7,12 @@
 
         public override void Execute()
         {
-            game.Link.CurrentWeapon = WeaponFactory.Instance.CreateBlueCandleProjectile();
+            if (game.IsPaused)
+            {
+                return;
+            }
+            if (!game.Link.CurrentWeapon.Active)
+                game.Link.CurrentWeapon = WeaponFactory.Instance.CreateBlueCandleProjectile();
             game.Link.UseItem();
         }
     }

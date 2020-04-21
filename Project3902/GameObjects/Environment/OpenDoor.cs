@@ -5,7 +5,7 @@ namespace Project3902.GameObjects.Environment
 {
     class OpenDoor : BaseEnvironment, IDoorway
     {
-        private readonly FinalGame game;
+        private FinalGame game;
 
         public OpenDoor(Vector2 position, FinalGame game)
             : base(position) { this.game = game; }

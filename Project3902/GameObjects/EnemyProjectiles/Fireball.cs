@@ -13,7 +13,7 @@ namespace Project3902.GameObjects.EnemyProjectiles
         public Collider Collider { get; set; }
 
         public float Damage { get; set; } = 1f;
-        public float distance = 470;
+        public float distance = 500;
         private Vector2 relPos = new Vector2(0, 0);
 
         public Fireball(Vector2 pos, float moveSpeed, Vector2 initDirection)

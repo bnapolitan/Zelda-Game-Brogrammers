@@ -13,7 +13,6 @@ namespace Project3902
 		private SpriteAtlas FairySprite;
 		private SpriteAtlas FixSprite;
 		private SpriteAtlas ItemSprite;
-		private SpriteAtlas ItemSprite2;
 		private FinalGame game;
 
         public static ItemFactory Instance { get; } = new ItemFactory();
@@ -34,7 +33,6 @@ namespace Project3902
 			FairySprite = new SpriteAtlas(content.Load<Texture2D>("item/Fairy"));
 			FixSprite = new SpriteAtlas(content.Load<Texture2D>("Items"));
 			ItemSprite=new SpriteAtlas(content.Load<Texture2D>("ZeldaItems"));
-			ItemSprite2 = new SpriteAtlas(content.Load<Texture2D>("ZeldaItems2"));
 		}
 
 		public static void RegisterItemForCollision(IItem ItemObject)
@@ -48,26 +46,6 @@ namespace Project3902
 			var createdObject = new Heart(position);
 			List<Rectangle> HeartSource = new List<Rectangle> { new Rectangle(0, 0, 15, 15), new Rectangle(15, 0, 15, 15) };
 			var sprite = new AnimatedSprite(createdObject, HeartSprite, HeartSource, .3f, new Vector2(3.5f, 3.5f));
-			createdObject.Sprite = sprite;
-			RegisterItemForCollision(createdObject);
-			return createdObject;
-		}
-
-		public IGameObject CreateHeartContainer(Vector2 position)
-		{
-			var createdObject = new HeartContainer(position);
-			List<Rectangle> HeartContainerSource = new List<Rectangle> { new Rectangle(24, 0, 14, 14)};
-			var sprite = new AnimatedSprite(createdObject, ItemSprite, HeartContainerSource, .3f, new Vector2(3.5f, 3.5f));
-			createdObject.Sprite = sprite;
-			RegisterItemForCollision(createdObject);
-			return createdObject;
-		}
-
-		public IGameObject CreateCompass(Vector2 position)
-		{
-			var createdObject = new Compass(position);
-			List<Rectangle> CompassSource = new List<Rectangle> { new Rectangle(81, 42, 12, 12) };
-			var sprite = new AnimatedSprite(createdObject, ItemSprite2, CompassSource, .3f, new Vector2(3.5f, 3.5f));
 			createdObject.Sprite = sprite;
 			RegisterItemForCollision(createdObject);
 			return createdObject;

@@ -30,6 +30,7 @@ OpenDoorLeft, 0, 288
 OpenDoorRight, 896, 288
 WallBottom, 448, 576
 Items
+Key, 448, 200
 Levels
 Top, DungeonRoom4
 Left, DungeonRoom2

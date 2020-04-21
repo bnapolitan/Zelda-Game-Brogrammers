@@ -18,8 +18,6 @@ namespace Project3902.LevelBuilding
         private Boolean Room6DoorReleased = false;
         private Boolean Room8DoorReleased = false;
         private Boolean Room16DoorReleased = false;
-        private int waves=0;
-        private Boolean SurvivalDoorReleased = false;
         private LevelManager()
         {
             
@@ -138,14 +136,11 @@ namespace Project3902.LevelBuilding
             levelDict.Add("DungeonRoom16", new Level("DungeonRoom16"));
             levelDict.Add("DungeonRoom17", new Level("DungeonRoom17"));
             levelDict.Add("BulletHellRoom", new Level("BulletHellRoom"));
-            levelDict.Add("SurvivalRoom", new Level("SurvivalRoom"));
             Room2KeyAdded = false;
             Room3KeyAdded = false;
             Room6DoorReleased = false;
             Room8DoorReleased = false;
             Room16DoorReleased = false;
-            SurvivalDoorReleased = false;
-            waves = 0;
         }
 
         public void CheckSpecials()
@@ -192,7 +187,7 @@ namespace Project3902.LevelBuilding
                             if (environment is MoveableBlock)
                             {
                                 Console.WriteLine(environment.Position);
-                                if (environment.Position.X >=509 && environment.Position.Y>= 317 + HUDFactory.Instance.HUDHeight)
+                                if (environment.Position == new Vector2(512, 320 + HUDFactory.Instance.HUDHeight))
                                 {
                                     
                                     CollisionHandler.Instance.RemoveCollidable(environment as ICollidable);
@@ -224,70 +219,7 @@ namespace Project3902.LevelBuilding
                         current.interactiveEnvironmentObjects.RemoveAll(i => i is ShutDoor);
                         SoundHandler.Instance.PlaySoundEffect("Door Unlock");
                         AddObjectToCurrentLevel(EnvironmentFactory.Instance.CreateOpenDoorRight(new Vector2(896, 288 + HUDFactory.Instance.HUDHeight)));
-                        AddObjectToCurrentLevel(ItemFactory.Instance.CreateHeartContainer(new Vector2(832, 320+ HUDFactory.Instance.HUDHeight)));
                         Room16DoorReleased = true;
-                    }
-                    break;
-                case "SurvivalRoom":
-                    if (!SurvivalDoorReleased && current.enemyObjects.Count == 0)
-                    {
-                        waves++;
-                        if (waves == 5)
-                        {
-                            foreach (var environment in current.interactiveEnvironmentObjects)
-                            {
-                                if (environment is ShutDoor)
-                                {
-                                    CollisionHandler.Instance.RemoveCollidable(environment as ICollidable);
-                                }
-                            }
-                            current.interactiveEnvironmentObjects.RemoveAll(i => i is ShutDoor);
-                            SoundHandler.Instance.PlaySoundEffect("Door Unlock");
-                            AddObjectToCurrentLevel(EnvironmentFactory.Instance.CreateOpenDoorRight(new Vector2(896, 288 + HUDFactory.Instance.HUDHeight)));
-                            AddObjectToCurrentLevel(ItemFactory.Instance.CreateHeartContainer(new Vector2(480, 320 + HUDFactory.Instance.HUDHeight)));
-                            SurvivalDoorReleased = true;
-                        }
-                        else
-                        {
-                            Random r = new Random();
-                            int num = r.Next(1, 5);
-                            for(int i = 0; i < num; i++)
-                            {
-                                int x = r.Next(128, 832);
-                                int y = r.Next(128, 512);
-                                Vector2 position = new Vector2(x, y+HUDFactory.Instance.HUDHeight);
-                                int enemyType = r.Next(0, 8);
-                                switch (enemyType)
-                                {
-                                    case 0:
-                                        AddObjectToCurrentLevel(EnemyFactory.Instance.CreateAquamentus(position));
-                                        break;
-                                    case 1:
-                                        AddObjectToCurrentLevel(EnemyFactory.Instance.CreateAquaGel(position));
-                                        break;
-                                    case 2:
-                                        AddObjectToCurrentLevel(EnemyFactory.Instance.CreateRedGoriya(position));
-                                        break;
-                                    case 3:
-                                        AddObjectToCurrentLevel(EnemyFactory.Instance.CreateBlueKeese(position));
-                                        break;
-                                    case 4:
-                                        AddObjectToCurrentLevel(EnemyFactory.Instance.CreateRope(position));
-                                        break;
-                                    case 5:
-                                        AddObjectToCurrentLevel(EnemyFactory.Instance.CreateStalfos(position));
-                                        break;
-                                    case 6:
-                                        AddObjectToCurrentLevel(EnemyFactory.Instance.CreateWallmaster(position));
-                                        break;
-                                    case 7:
-                                        AddObjectToCurrentLevel(EnemyFactory.Instance.CreateGrayZol(position));
-                                        break;
-                                }
-
-                            }
-                        }
-                        
                     }
                     break;
             }

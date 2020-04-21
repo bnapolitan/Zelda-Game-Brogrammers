@@ -179,23 +179,6 @@ namespace Project3902
                 {
                     SoundHandler.Instance.PlaySong("Triforce");
                 }
-                else if(other.GameObject is Map)
-                {
-                    SoundHandler.Instance.PlaySoundEffect("Item");
-                    PauseScreen.Instance.AddMapToPauseScreen();
-                    HUDManager.Instance.AddMapToHUD();
-                }
-                else if (other.GameObject is HeartContainer)
-                {
-                    link.MaxHealth += 2;
-                    link.Health += 2;
-                    SoundHandler.Instance.PlaySoundEffect("Heart");
-                }
-                else if (other.GameObject is Compass)
-                {
-                    HUDManager.Instance.HUDElements.Add(HUDFactory.Instance.CreateTriforceMapBlip());
-                    SoundHandler.Instance.PlaySoundEffect("Item");
-                }
                 else
                 {
                     SoundHandler.Instance.PlaySoundEffect("Item");
