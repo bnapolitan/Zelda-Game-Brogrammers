@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Project3902.GameObjects.EnemyProjectiles;
 using Project3902.ObjectManagement;
 using System;
 
@@ -16,6 +17,7 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
         private IProjectile fireball2;
         private IProjectile fireball3;
         private bool isShooting = false;
+        private bool hasShot = false;
 
         public Aquamentus(Vector2 pos, float moveSpeed, Vector2 initDirection, FinalGame game) : base(pos, moveSpeed, initDirection)
         {
@@ -26,6 +28,11 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
 
         public override void Attack()
         {
+            if(hasShot)
+            {
+                DespawnFireballs();
+            }
+
             if (Active)
             {
                 Vector2 fireball1Movement = Game.Link.Position - Position;
@@ -37,6 +44,7 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
                 fireball2 = WeaponFactory.Instance.CreateFireballProjectile(Position, new Vector2(fireball1Movement.X, (float)Math.Sin(angle + .524)));
                 fireball3 = WeaponFactory.Instance.CreateFireballProjectile(Position, new Vector2(fireball1Movement.X, (float)Math.Sin(angle - .524)));
             }
+            hasShot = true;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -89,6 +97,16 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
 
         public override void OnCollide(Collider other) {
             base.OnCollide(other);
+        }
+
+        private void DespawnFireballs()
+        {
+            (fireball as Fireball).Deactivate();
+            (fireball2 as Fireball).Deactivate();
+            (fireball3 as Fireball).Deactivate();
+            CollisionHandler.Instance.RemoveCollidable(fireball);
+            CollisionHandler.Instance.RemoveCollidable(fireball2);
+            CollisionHandler.Instance.RemoveCollidable(fireball3);
         }
 
         public override void TakeDamage() { }
