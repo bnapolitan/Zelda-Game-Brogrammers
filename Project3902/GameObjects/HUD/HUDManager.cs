@@ -36,10 +36,6 @@ namespace Project3902
             numOrbs = game.Link.PotionCount;
             numCoins = game.Link.CoinCount;
             UpdateCounters();
-            if(blipCool != 0)
-            {
-                blipCool--;
-            }
 
             Vector2 tempPosition;
             var isValidKey = blipPosition.TryGetValue(game.CurrentRoom, out tempPosition);
@@ -169,58 +165,6 @@ namespace Project3902
             counterList.Add(keyOne);
             counterList.Add(orbTen);
             counterList.Add(orbOne);
-        }
-
-        public void MoveMapBlipUp()
-        {
-            if (blipCool == 0)
-            {
-                var tempPos = mapBlip.Position;
-                tempPos.Y -= 12;
-                mapBlip.Position = tempPos;
-
-                blipCool = 10;
-            }
-
-
-
-        }
-        private int blipCool = 0;
-        public void MoveMapBlipLeft()
-        {
-            if (blipCool == 0)
-            {
-                var tempPos = mapBlip.Position;
-                tempPos.X -= 18;
-                mapBlip.Position = tempPos;
-                blipCool = 10;
-            }
-
-
-        }
-
-        public void MoveMapBlipRight()
-        {
-            if (blipCool == 0)
-            {
-
-
-                var tempPos = mapBlip.Position;
-                tempPos.X += 18;
-                mapBlip.Position = tempPos;
-                blipCool = 10;
-            }
-        }
-
-        public void MoveMapBlipDown()
-        {
-            if (blipCool == 0)
-            {
-                var tempPos = mapBlip.Position;
-                tempPos.Y += 12;
-                mapBlip.Position = tempPos;
-                blipCool = 10;
-            }
         }
 
         public void AddMapToHUD()
