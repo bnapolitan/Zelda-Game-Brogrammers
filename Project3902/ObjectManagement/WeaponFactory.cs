@@ -105,7 +105,7 @@ namespace Project3902
 
         public IProjectile CreateFireballProjectile(Vector2 pos, Vector2 direction)
         {
-            var createdObject = new Fireball(pos, 4f, direction);
+            var createdObject = new Fireball(pos, 5f, direction);
             List<Rectangle> fireballSource = new List<Rectangle> { new Rectangle(364, 33, 8, 16) };
             var sprite = new AnimatedSprite(createdObject, bossSpriteAtlas, fireballSource, 0.5f, new Vector2(3.4f, 3.4f));
             createdObject.Sprite = sprite;
