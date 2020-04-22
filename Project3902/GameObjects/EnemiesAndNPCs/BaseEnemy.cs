@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Project3902.GameObjects;
 using Project3902.GameObjects.EnemyProjectiles;
+using Project3902.GameObjects.Item;
 using Project3902.LevelBuilding;
 using Project3902.ObjectManagement;
 using System;
@@ -54,6 +55,11 @@ namespace Project3902
             {
                 if ((other.GameObject is IProjectile) && !(other.GameObject is Boomerang) && !(other.GameObject is Fireball))
                 {
+                    if(other.GameObject is Bomb && !(other.GameObject as Bomb).IsExploding)
+                    {
+                        return;
+                    }
+
                     attackedRecent = true;
                     Health--;
                     tint = Color.Red;
@@ -94,7 +100,7 @@ namespace Project3902
                                 LevelManager.Instance.AddObjectToCurrentLevel(ItemFactory.Instance.CreateHeart(Position));
                             }
                         }
-                        
+
                         CollisionHandler.Instance.RemoveCollidable(this);
                         LevelManager.Instance.RemoveObjectFromCurrentLevel(this);
                     }

@@ -183,6 +183,10 @@ namespace Project3902.LevelBuilding
             {
                 return itemFactory.CreateCompass(position);
             }
+            if (name == "Bomb")
+            {
+                return itemFactory.CreateBomb(position);
+            }
             throw new Exception($"The object {name} has not been mapped in ObjectLookup yet!");
         }
 

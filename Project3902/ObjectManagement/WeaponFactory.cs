@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Project3902.GameObjects.EnemyProjectiles;
+using Project3902.GameObjects.Item;
 using System.Collections.Generic;
 
 namespace Project3902
@@ -26,7 +27,6 @@ namespace Project3902
         {
             weaponAtlas = new SpriteAtlas(content.Load<Texture2D>("linkspritesheet"));
             bossSpriteAtlas = new SpriteAtlas(content.Load<Texture2D>("Dungeon_Enemies_2"));
-
         }
 
         public IProjectile CreateBoomerangProjectile(ILink link)

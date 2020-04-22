@@ -5,6 +5,7 @@ using Project3902.GameObjects;
 using Project3902.GameObjects.EnemyProjectiles;
 using Project3902.GameObjects.Environment;
 using Project3902.GameObjects.Environment.Interfaces;
+using Project3902.GameObjects.Item;
 using Project3902.LevelBuilding;
 using Project3902.ObjectManagement;
 
@@ -70,22 +71,22 @@ namespace Project3902
                 if (link.Position.X < RoomSwitchingThresholdConfiguration.LeftRoomThreshold)
                 {
                     door.ChangeLevel("Left");
-                    
+
                 }
                 else if (link.Position.X > RoomSwitchingThresholdConfiguration.RightRoomThreshold)
                 {
                     door.ChangeLevel("Right");
-                    
+
                 }
                 else if (link.Position.Y < RoomSwitchingThresholdConfiguration.TopRoomThreshold)
                 {
                     door.ChangeLevel("Top");
-                    
+
                 }
                 else if (link.Position.Y > RoomSwitchingThresholdConfiguration.BottomRoomThreshold)
                 {
                     door.ChangeLevel("Bottom");
-                    
+
                 }
             }
             else if (other.GameObject is LockDoor && link.KeyCount > 0)
@@ -124,8 +125,6 @@ namespace Project3902
                 {
                     MoveOutOfWall(other);
                 }
-                
-                
             }
             else if (other.GameObject is IEnemy)
             {
@@ -139,8 +138,12 @@ namespace Project3902
             {
                 TakeDamage((other.GameObject as Fireball).Damage);
             }
-            
-            else if(other.GameObject is IItem)
+            else if (other.GameObject is Bomb && (other.GameObject as Bomb).IsExploding)
+            {
+                TakeDamage((other.GameObject as Bomb).Damage);
+            }
+
+            else if(other.GameObject is IItem && !(other.GameObject is Bomb))
             {
                 LevelManager.Instance.RemoveObjectFromCurrentLevel(other.GameObject);
                 if (other.GameObject is Heart || other.GameObject is Key)
@@ -208,10 +211,10 @@ namespace Project3902
                 other.GameObject.Active = false;
             }
 
-       
 
 
-     
+
+
         }
 
         private void MoveOutOfWall(Collider other)
