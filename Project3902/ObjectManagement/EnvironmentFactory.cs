@@ -43,11 +43,13 @@ namespace Project3902.ObjectManagement
             CollisionHandler.Instance.RegisterCollidable(door, Layer.Wall);
         }
 
+
         public static void RegisterExplodableWallForCollision(IInteractiveEnvironmentObject door)
         {
             door.Collider = new Collider(door, new Rectangle(0, 0, 128, 128));
             CollisionHandler.Instance.RegisterCollidable(door, Layer.Wall, Layer.Projectile);
         }
+
 
 
         public IGameObject CreateStairs(Vector2 position)
@@ -403,7 +405,7 @@ namespace Project3902.ObjectManagement
         public IGameObject CreateBlackBackground(Vector2 position)
         {
             var createdObject = new FloorTile(position);
-            var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(1000, 900, 64, 64), new Vector2(12,7));
+            var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(1000, 900, 64, 64), new Vector2(12, 7));
             createdObject.Sprite = sprite;
             return createdObject;
         }
@@ -411,7 +413,7 @@ namespace Project3902.ObjectManagement
         public IGameObject CreateWater(Vector2 position)
         {
             var createdObject = new BrickTile(position);
-            var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(785,80, 16, 16), environmentScale);
+            var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(785, 80, 16, 16), environmentScale);
             createdObject.Sprite = sprite;
             RegisterEnvironmentForCollision(createdObject);
             return createdObject;

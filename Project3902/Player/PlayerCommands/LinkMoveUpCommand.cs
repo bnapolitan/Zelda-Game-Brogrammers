@@ -8,6 +8,10 @@
 
         public override void Execute()
         {
+            if (game.IsPaused)
+            {
+                return;
+            }
             game.Link.MoveUp();
         }
     }

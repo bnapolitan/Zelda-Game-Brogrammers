@@ -17,7 +17,9 @@ namespace Project3902
         private readonly HUDFactory Factory = HUDFactory.Instance;
         private IGameObject mapBlip;
         private readonly IDictionary<string, Vector2> blipPosition;
+
         private readonly Vector2 BButtonPosition = new Vector2(400, 30);
+
         public static HUDManager Instance { get; } = new HUDManager();
         private int numHearts;
         private int maxHearts;

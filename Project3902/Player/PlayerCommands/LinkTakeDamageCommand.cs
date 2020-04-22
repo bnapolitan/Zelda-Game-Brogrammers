@@ -16,15 +16,15 @@ namespace Project3902
             if (!(game.Link is DamagedLink))
             {
                 game.Link.Health -= .5f;
-                if(game.Link.Health <= 0)
+                if (game.Link.Health <= 0)
                 {
-                    game.ReloadOnDeath();
+                    game.linkDeath = true;
                 }
                 else
                 {
                     game.Link = new DamagedLink(game.Link, game);
                 }
-                
+
 
             }
         }

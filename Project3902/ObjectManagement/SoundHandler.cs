@@ -56,8 +56,10 @@ namespace Project3902.ObjectManagement
 
         private SoundEffectInstance runningInstance;
 
+
         private SoundEffect bombBlowSound;
         private SoundEffect bombDropSound;
+
         private readonly List<SoundEffectInstance> instanceList=new List<SoundEffectInstance>();
 
         private Boolean musicPause = false;
@@ -87,8 +89,10 @@ namespace Project3902.ObjectManagement
             defaultItemSound = content.Load<SoundEffect>("SoundEffects/LOZ_Get_Item");
             defaultDoorSound = content.Load<SoundEffect>("SoundEffects/LOZ_Door_Unlock");
             defaultAquamentusSound= content.Load<SoundEffect>("SoundEffects/LOZ_Boss_Scream1");
+
             bombDropSound = content.Load<SoundEffect>("SoundEffects/LOZ_Bomb_Drop");
             bombBlowSound = content.Load<SoundEffect>("SoundEffects/LOZ_Bomb_Blow");
+
 
             customSwordSlashSound = content.Load<SoundEffect>("CustomSoundEffects/SwordSlash");
             customSwordShootSound = content.Load<SoundEffect>("CustomSoundEffects/SwordThrow");
