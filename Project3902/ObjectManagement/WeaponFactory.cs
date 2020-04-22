@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Project3902.GameObjects.EnemyProjectiles;
+using Project3902.GameObjects.Item;
 using System.Collections.Generic;
 
 namespace Project3902
@@ -10,6 +11,7 @@ namespace Project3902
     {
         private SpriteAtlas weaponAtlas;
         private SpriteAtlas bossSpriteAtlas;
+        private SpriteAtlas itemAtlas;
         private readonly Vector2 weaponScale = new Vector2(4, 4);
 
         private readonly Vector2 up = new Vector2(0, -1);
@@ -26,7 +28,7 @@ namespace Project3902
         {
             weaponAtlas = new SpriteAtlas(content.Load<Texture2D>("linkspritesheet"));
             bossSpriteAtlas = new SpriteAtlas(content.Load<Texture2D>("Dungeon_Enemies_2"));
-
+            itemAtlas = new SpriteAtlas(content.Load<Texture2D>("Items"));
         }
 
         public IProjectile CreateBoomerangProjectile(ILink link)
@@ -101,6 +103,17 @@ namespace Project3902
         public IProjectile CreateSword()
         {
             return new SwordAttack();
+        }
+
+        public IProjectile CreateBomb(Vector2 position)
+        {
+            var createdObject = new Bomb(position);
+            List<Rectangle> bombSource = new List<Rectangle> { new Rectangle(528, 0, 38, 44) };
+            var sprite = new AnimatedSprite(createdObject, itemAtlas, bombSource, .4f, new Vector2(1, 1));
+            createdObject.Sprite = sprite;
+            createdObject.Collider = new Collider(createdObject, new Rectangle(0, 0, 80, 100));
+            CollisionHandler.Instance.RegisterCollidable(createdObject, Layer.Projectile, Layer.Enemy, Layer.Wall, Layer.Player);
+            return createdObject;
         }
 
         public IProjectile CreateFireballProjectile(Vector2 pos, Vector2 direction)

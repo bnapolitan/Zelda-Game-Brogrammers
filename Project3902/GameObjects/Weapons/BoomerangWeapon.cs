@@ -34,7 +34,7 @@ namespace Project3902
             if (turned && other.GameObject is ILink)
             {
                 Active = false;
-                SoundHandler.Instance.StopEffectInstance();
+                SoundHandler.Instance.StopEffectInstance(true);
                 CollisionHandler.Instance.RemoveCollidable(this);
             }
 

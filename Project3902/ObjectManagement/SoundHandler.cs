@@ -56,6 +56,10 @@ namespace Project3902.ObjectManagement
 
         private SoundEffectInstance runningInstance;
 
+
+        private SoundEffect bombBlowSound;
+        private SoundEffect bombDropSound;
+
         private readonly List<SoundEffectInstance> instanceList=new List<SoundEffectInstance>();
 
         private Boolean musicPause = false;
@@ -179,6 +183,14 @@ namespace Project3902.ObjectManagement
             else if (effectType.Equals("Sword Shoot"))
             {
                 effect = swordShootSound;
+            }
+            else if (effectType.Equals("Bomb Blow"))
+            {
+                effect = bombBlowSound;
+            }
+            else if (effectType.Equals("Bomb Drop"))
+            {
+                effect = bombDropSound;
             }
             else if (effectType.Equals("Boomerang"))
             {

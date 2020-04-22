@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Project3902.GameObjects;
+using Project3902.GameObjects.Item;
 using System.Collections.Generic;
 
 namespace Project3902
@@ -180,6 +181,16 @@ namespace Project3902
 			var createdObject = new Arrow(position);
 			List<Rectangle> ArrowSource = new List<Rectangle> { new Rectangle(848, 0, 22, 61) };
 			var sprite = new AnimatedSprite(createdObject, FixSprite, ArrowSource, .4f, new Vector2(1, 1));
+			createdObject.Sprite = sprite;
+			RegisterItemForCollision(createdObject);
+			return createdObject;
+		}
+
+		public IGameObject CreateBomb(Vector2 position)
+		{
+			var createdObject = new BombPickup(position);
+			List<Rectangle> bombSource = new List<Rectangle> { new Rectangle(528, 0, 38, 44) };
+			var sprite = new AnimatedSprite(createdObject, FixSprite, bombSource, .4f, new Vector2(1, 1));
 			createdObject.Sprite = sprite;
 			RegisterItemForCollision(createdObject);
 			return createdObject;

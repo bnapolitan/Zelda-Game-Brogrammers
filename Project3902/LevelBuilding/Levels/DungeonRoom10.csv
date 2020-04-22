@@ -12,7 +12,7 @@ Brick, 512, 320
 OpenDoorTop, 448, 0
 OpenDoorLeft, 0, 288
 LockDoorRight, 896, 288
-WallBottom, 448, 576
+ExplodableWallBottom, 448, 576
 Items
 Map, 768, 320
 Enemies

@@ -6,7 +6,7 @@ Brick, 704, 384
 WallTop, 448, 0
 OpenDoorLeft, 0, 288
 OpenDoorRight, 896, 288
-WallBottom, 448, 576
+ExplodableWallBottom, 448, 576
 Enemies
 RedGoriya, 320, 128
 RedGoriya, 320, 512

@@ -322,7 +322,7 @@ namespace Project3902.ObjectManagement
 			var collider = new Collider(createdObject, new Rectangle(0, 0, 15 * (int)enemyScale.X, 15 * (int)enemyScale.Y));
 			createdObject.Collider = collider;
 
-			RegisterEnemyForCollision(createdObject);
+			CollisionHandler.Instance.RegisterCollidable(createdObject, Layer.Enemy, Layer.Wall);
 
 			return createdObject;
 		}
