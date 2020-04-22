@@ -29,6 +29,10 @@ namespace Project3902
         private ILevel currentLevel;
         private ILevel nextLevel;
 
+        public bool IsPaused => isPaused;
+        private bool isGameOver = false;
+        public bool isRunning;
+
         public Vector2 roomSize = new Vector2(WindowWidth, WindowHeight);
         private float scrollTimer;
         private Vector2 lastScrollDirection;
@@ -38,14 +42,16 @@ namespace Project3902
 
         MouseController mouseController;
         KeyboardController keyboardController;
+        KeyboardController soundController;
         GamepadController gamepadController;
 
         public string CurrentRoom = "DungeonRoom0";
 
-        private SpriteFont font;
+        public SpriteFont font;
         Vector2 linkPositionAfterRoomSwitch;
-        Boolean linkDeath = false;
+        public Boolean linkDeath = false;
         int drawingCounter = 0;
+        private int drawingDone = 0;
 
         public FinalGame()
         {
@@ -58,8 +64,8 @@ namespace Project3902
         {
             IsMouseVisible = true;
 
-            graphics.PreferredBackBufferWidth = (int) roomSize.X;
-            graphics.PreferredBackBufferHeight = (int) roomSize.Y + HUDFactory.Instance.HUDHeight;
+            graphics.PreferredBackBufferWidth = (int)roomSize.X;
+            graphics.PreferredBackBufferHeight = (int)roomSize.Y + HUDFactory.Instance.HUDHeight;
             graphics.ApplyChanges();
 
             base.Initialize();
@@ -75,11 +81,14 @@ namespace Project3902
             HUDFactory.Instance.RegisterGame(this);
             HUDManager.Instance.RegisterGame(this);
             PauseScreen.Instance.RegisterGame(this);
+            StartMenuScreen.Instance.RegisterGame(this);
+            GameOverScreen.Instance.RegisterGame(this);
             HUDObjects = HUDManager.Instance.HUDElements;
 
 
 
             keyboardController = LinkFactory.Instance.CreateLinkController(this);
+            soundController = SoundHandler.Instance.RegisterSoundKeys();
             mouseController = LevelFactory.Instance.CreateLevelController(this);
             gamepadController = LinkFactory.Instance.CreateLinkGamepadController(this);
 
@@ -97,6 +106,7 @@ namespace Project3902
             EnemyFactory.Instance.LoadAllTextures(Content);
 
             SoundHandler.Instance.LoadAllSounds(Content);
+            SoundHandler.Instance.UseDefaultSounds();
             SoundHandler.Instance.PlaySong("Dungeon");
 
             LevelManager.Instance.ResetLevels();
@@ -116,27 +126,37 @@ namespace Project3902
         protected override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            if (isRunning == false || isGameOver)
+            {
+                mouseController.Update();
+                keyboardController.Update();
+                gamepadController.Update();
+                return;
+            }
+
             if (!isPaused)
             {
                 currentLevel.Update(gameTime);
                 if (nextLevel != null && nextLevel.Scrolling)
                     nextLevel.Update(gameTime);
             }
+            base.Update(gameTime);
 
             if (!currentLevel.Scrolling)
             {
-                    Link.Update(gameTime);
-                    mouseController.Update();
-                    keyboardController.Update();
-                    gamepadController.Update();
+                Link.Update(gameTime);
+                mouseController.Update();
+                keyboardController.Update();
+                soundController.Update();
+                gamepadController.Update();
             }
             else
             {
-                    scrollTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    if (scrollTimer <= 0)
-                    {
-                        EndRoomSwitch();
-                    }
+                scrollTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+                if (scrollTimer <= 0)
+                {
+                    EndRoomSwitch();
+                }
             }
             if (!isPaused)
             {
@@ -148,9 +168,15 @@ namespace Project3902
                 LevelManager.Instance.CheckSpecials();
                 if (linkDeath)
                 {
-                    ReloadOnDeath();
+                    GameOver();
                     linkDeath = false;
                 }
+            }
+            if (drawingDone == 1)
+            {
+                if (SoundHandler.Instance.SoundType == 1)
+                    SoundHandler.Instance.PlaySoundEffect("Old Man");
+                drawingDone = 2;
             }
         }
 
@@ -161,12 +187,29 @@ namespace Project3902
 
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
+            if (isGameOver)
+            {
+                GameOverScreen.Instance.Draw(spriteBatch);
+                spriteBatch.End();
+                return;
+            }
+
+            if (isRunning == false)
+            {
+                StartMenuScreen.Instance.Draw(spriteBatch);
+                spriteBatch.End();
+                return;
+            }
+
             currentLevel.Draw(spriteBatch);
             if (nextLevel != null && nextLevel.Scrolling)
                 nextLevel.Draw(spriteBatch);
 
             if (currentLevel.LevelName == "DungeonRoom9" && !currentLevel.Scrolling)
+            {
                 this.DrawText();
+            }
+
 
             if (!currentLevel.Scrolling)
                 Link.Draw(spriteBatch);
@@ -204,21 +247,7 @@ namespace Project3902
         }
 
 
-        public void ReloadOnDeath()
-        {
-            if (linkDeath)
-            {
-                SoundHandler.Instance.StopEffectInstance(true);
-                SoundHandler.Instance.PlaySoundEffect("Link Die", true);
-                LevelManager.Instance.ResetLevels();
-                CurrentRoom = "DungeonRoom0";
-                RestartLevel();
-                linkDeath = false;
-                Link.Health = Link.MaxHealth;
-                return;
-            }
-            linkDeath = true;
-        }
+       
 
         private void StartRoomSwitch(Vector2 direction)
         {
@@ -310,12 +339,16 @@ namespace Project3902
             else
             {
                 characterPosition = words.Length;
+                if (drawingDone == 0)
+                {
+                    drawingDone = 1;
+                }
             }
             drawingCounter++;
 
             for (int i = 0; i < characterPosition; i++)
             {
-                if(i < TextConfiguration.FirstLineLength)
+                if (i < TextConfiguration.FirstLineLength)
                 {
                     xPos = i;
                 }
@@ -326,6 +359,28 @@ namespace Project3902
                 }
                 spriteBatch.DrawString(font, words[i].ToString(), new Vector2(TextConfiguration.TextInitialXPosition + (xPos * TextConfiguration.XOffsetPerLetter), yPos), Color.White, 0f, new Vector2(0, 0), new Vector2(2, 2), SpriteEffects.None, 0f);
             }
+        }
+        public void GameOver()
+        {
+            isGameOver = true;
+            isRunning = false;
+            SoundHandler.Instance.StopEffectInstance(true);
+            SoundHandler.Instance.PlaySoundEffect("Link Die", true);
+            LevelManager.Instance.ResetLevels();
+            CurrentRoom = "DungeonRoom0";
+            RestartLevel();
+            linkDeath = false;
+        }
+
+
+        public void GameStart()
+        {
+            isGameOver = false;
+            isPaused = false;
+            isRunning = true;
+
+            linkDeath = false;
+            Link.Health = Link.MaxHealth;
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Project3902.ObjectManagement
         private SpriteAtlas linkSpriteAtlas;
         private Vector2 environmentScale = new Vector2(4, 4);
         private FinalGame game;
-        
+
         public static EnvironmentFactory Instance { get; } = new EnvironmentFactory();
 
         private EnvironmentFactory()
@@ -42,6 +42,14 @@ namespace Project3902.ObjectManagement
             CollisionHandler.Instance.RegisterCollidable(door, Layer.Wall);
         }
 
+        public IDrawable CreateCoverScreen()
+        {
+            var createdObject = new HUDObject(new Vector2(0, 0));
+
+            var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(521, 11, 256, 176), new Vector2(4, 4));
+            createdObject.Sprite = sprite;
+            return createdObject;
+        }
 
         public IGameObject CreateStairs(Vector2 position)
         {
@@ -357,7 +365,7 @@ namespace Project3902.ObjectManagement
         public IGameObject CreateBlackBackground(Vector2 position)
         {
             var createdObject = new FloorTile(position);
-            var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(1000, 900, 64, 64), new Vector2(12,7));
+            var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(1000, 900, 64, 64), new Vector2(12, 7));
             createdObject.Sprite = sprite;
             return createdObject;
         }
@@ -365,7 +373,7 @@ namespace Project3902.ObjectManagement
         public IGameObject CreateWater(Vector2 position)
         {
             var createdObject = new BrickTile(position);
-            var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(785,80, 16, 16), environmentScale);
+            var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(785, 80, 16, 16), environmentScale);
             createdObject.Sprite = sprite;
             RegisterEnvironmentForCollision(createdObject);
             return createdObject;

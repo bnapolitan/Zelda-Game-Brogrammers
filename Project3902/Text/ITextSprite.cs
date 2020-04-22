@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Project3902
 {
-    interface ITextSprite
+    interface ITextSprite:IDrawable
     {
         string Text { get; set; }
         Vector2 Position { get; set; }
