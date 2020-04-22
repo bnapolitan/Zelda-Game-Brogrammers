@@ -38,6 +38,7 @@ namespace Project3902
 
         MouseController mouseController;
         KeyboardController keyboardController;
+        KeyboardController soundController;
         GamepadController gamepadController;
 
         public string CurrentRoom = "DungeonRoom0";
@@ -46,6 +47,7 @@ namespace Project3902
         Vector2 linkPositionAfterRoomSwitch;
         Boolean linkDeath = false;
         int drawingCounter = 0;
+        private int drawingDone = 0;
 
         public FinalGame()
         {
@@ -80,6 +82,7 @@ namespace Project3902
 
 
             keyboardController = LinkFactory.Instance.CreateLinkController(this);
+            soundController = SoundHandler.Instance.RegisterSoundKeys();
             mouseController = LevelFactory.Instance.CreateLevelController(this);
             gamepadController = LinkFactory.Instance.CreateLinkGamepadController(this);
 
@@ -97,6 +100,7 @@ namespace Project3902
             EnemyFactory.Instance.LoadAllTextures(Content);
 
             SoundHandler.Instance.LoadAllSounds(Content);
+            SoundHandler.Instance.UseDefaultSounds();
             SoundHandler.Instance.PlaySong("Dungeon");
 
             LevelManager.Instance.ResetLevels();
@@ -128,6 +132,7 @@ namespace Project3902
                     Link.Update(gameTime);
                     mouseController.Update();
                     keyboardController.Update();
+                    soundController.Update();
                     gamepadController.Update();
             }
             else
@@ -152,6 +157,12 @@ namespace Project3902
                     linkDeath = false;
                 }
             }
+            if (drawingDone==1)
+            {
+                if(SoundHandler.Instance.SoundType==1)
+                    SoundHandler.Instance.PlaySoundEffect("Old Man");
+                drawingDone = 2;
+            }
         }
 
         protected override void Draw(GameTime gameTime)
@@ -166,7 +177,10 @@ namespace Project3902
                 nextLevel.Draw(spriteBatch);
 
             if (currentLevel.LevelName == "DungeonRoom9" && !currentLevel.Scrolling)
+            {
                 this.DrawText();
+            }
+                
 
             if (!currentLevel.Scrolling)
                 Link.Draw(spriteBatch);
@@ -211,6 +225,7 @@ namespace Project3902
                 SoundHandler.Instance.StopEffectInstance(true);
                 SoundHandler.Instance.PlaySoundEffect("Link Die", true);
                 LevelManager.Instance.ResetLevels();
+                drawingDone = 0;
                 CurrentRoom = "DungeonRoom0";
                 RestartLevel();
                 linkDeath = false;
@@ -310,6 +325,10 @@ namespace Project3902
             else
             {
                 characterPosition = words.Length;
+                if (drawingDone == 0)
+                {
+                    drawingDone = 1;
+                }
             }
             drawingCounter++;
 

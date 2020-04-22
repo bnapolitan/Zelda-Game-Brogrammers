@@ -20,6 +20,84 @@
 /processorParam:TextureFormat=Compressed
 /build:Credits.spritefont
 
+#begin CustomSoundEffects/BombExplosion.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:CustomSoundEffects/BombExplosion.wav
+
+#begin CustomSoundEffects/Boomerang.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:CustomSoundEffects/Boomerang.wav
+
+#begin CustomSoundEffects/BoomerangShort.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:CustomSoundEffects/BoomerangShort.wav
+
+#begin CustomSoundEffects/CoinPickUp.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:CustomSoundEffects/CoinPickUp.wav
+
+#begin CustomSoundEffects/Heart.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:CustomSoundEffects/Heart.wav
+
+#begin CustomSoundEffects/HitByEnemy.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:CustomSoundEffects/HitByEnemy.wav
+
+#begin CustomSoundEffects/ItemPickup.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:CustomSoundEffects/ItemPickup.wav
+
+#begin CustomSoundEffects/Oldman.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:CustomSoundEffects/Oldman.wav
+
+#begin CustomSoundEffects/RunIntoWall.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:CustomSoundEffects/RunIntoWall.wav
+
+#begin CustomSoundEffects/Running.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:CustomSoundEffects/Running.wav
+
+#begin CustomSoundEffects/RunningShort.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:CustomSoundEffects/RunningShort.wav
+
+#begin CustomSoundEffects/SwordSlash.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:CustomSoundEffects/SwordSlash.wav
+
+#begin CustomSoundEffects/SwordThrow.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:CustomSoundEffects/SwordThrow.wav
+
 #begin Dungeon_Enemies_2.png
 /importer:TextureImporter
 /processor:TextureProcessor
