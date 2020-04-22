@@ -34,7 +34,8 @@ namespace Project3902
         public IProjectile Sword { get => decoratedLink.Sword; set => decoratedLink.Sword = value; }
         public int CoinCount { get => decoratedLink.CoinCount; set => decoratedLink.CoinCount = value; }
         public int KeyCount { get => decoratedLink.KeyCount; set => decoratedLink.KeyCount = value; }
-        public int PotionCount { get => decoratedLink.PotionCount; set => decoratedLink.PotionCount = value; }
+        public int BombCount { get => decoratedLink.BombCount; set => decoratedLink.BombCount = value; }
+        public int BombExplodeTime { get => decoratedLink.BombExplodeTime; set => decoratedLink.BombExplodeTime = value; }
 
         private readonly Vector2 knockbackDirection;
         private readonly float knockbackSpeed = 700;

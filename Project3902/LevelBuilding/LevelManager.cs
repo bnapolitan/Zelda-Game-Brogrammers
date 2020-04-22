@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Project3902.GameObjects;
 using Project3902.GameObjects.Environment;
+using Project3902.GameObjects.Item;
 using Project3902.ObjectManagement;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ namespace Project3902.LevelBuilding
 {
     class LevelManager
     {
-        readonly Dictionary<String, Level> levelDict=new Dictionary<string, Level>();
+        public readonly Dictionary<String, Level> levelDict=new Dictionary<string, Level>();
         public static LevelManager Instance { get; } = new LevelManager();
         private Level current;
         private String currentString;
@@ -22,7 +23,7 @@ namespace Project3902.LevelBuilding
         private Boolean SurvivalDoorReleased = false;
         private LevelManager()
         {
-            
+
         }
 
         public Level GetLevel(String levelName)
@@ -44,11 +45,22 @@ namespace Project3902.LevelBuilding
             }
             foreach (IItem item in currentLevel.itemObjects)
             {
-                CollisionHandler.Instance.RegisterCollidable(item, Layer.Pickup);
+                if (item is Bomb)
+                {
+                    CollisionHandler.Instance.RegisterCollidable(item, Layer.Projectile, Layer.Enemy, Layer.Wall);
+                }
+                else
+                {
+                    CollisionHandler.Instance.RegisterCollidable(item, Layer.Pickup);
+                }
             }
             foreach (IGameObject environment in currentLevel.interactiveEnvironmentObjects)
             {
-                if(environment is ICollidable)
+                if(environment is ExplodableWall)
+                {
+                    CollisionHandler.Instance.RegisterCollidable((environment as ICollidable), Layer.Wall, Layer.Projectile);
+                }
+                else if(environment is ICollidable)
                 {
                     CollisionHandler.Instance.RegisterCollidable((environment as ICollidable), Layer.Wall);
                 }
@@ -208,11 +220,11 @@ namespace Project3902.LevelBuilding
                                 Console.WriteLine(environment.Position);
                                 if (environment.Position.X >=509 && environment.Position.Y>= 317 + HUDFactory.Instance.HUDHeight)
                                 {
-                                    
+
                                     CollisionHandler.Instance.RemoveCollidable(environment as ICollidable);
                                     moved = true;
                                 }
-                                
+
                             }
                         }
                         if (moved)
@@ -301,7 +313,7 @@ namespace Project3902.LevelBuilding
 
                             }
                         }
-                        
+
                     }
                     break;
             }

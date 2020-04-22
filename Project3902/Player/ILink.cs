@@ -14,7 +14,8 @@ namespace Project3902
 
         int CoinCount { get; set; }
         int KeyCount { get; set; }
-        int PotionCount { get; set; }
+        int BombCount { get; set; }
+        int BombExplodeTime { get; set; }
         float MovementSpeed { get; set; }
     }
 }

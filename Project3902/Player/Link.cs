@@ -9,17 +9,18 @@ namespace Project3902
         public float MaxHealth { get; set; }
         public int KeyCount { get; set; }
         public int CoinCount { get; set; }
-        public int PotionCount { get; set; }
+        public int BombCount { get; set; }
+        public int BombExplodeTime { get; set; }
         public bool Damaged { get; set; } = false;
 
         private Vector2 position;
         public Vector2 PreviousPosition { get; set; }
-        public Vector2 Position { 
-            get 
+        public Vector2 Position {
+            get
             {
                 return position;
             }
-            set 
+            set
             {
                 PreviousPosition = position;
                 position = value;
@@ -63,6 +64,7 @@ namespace Project3902
             SwordProjectile.Update(gameTime);
             Sword.Update(gameTime);
             machine.Update(gameTime);
+            BombExplodeTime--;
         }
 
         public void Draw(SpriteBatch spriteBatch)

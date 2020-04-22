@@ -81,7 +81,10 @@
     <Compile Include="GameObjects\Environment\BaseEnvironment.cs" />
     <Compile Include="GameObjects\Environment\Interfaces\IDoorway.cs" />
     <Compile Include="GameObjects\Environment\BlockingBrick.cs" />
+    <Compile Include="GameObjects\Environment\ExplodableWall.cs" />
     <Compile Include="GameObjects\HUD\PauseScreen.cs" />
+    <Compile Include="GameObjects\Item\BombPickup.cs" />
+    <Compile Include="GameObjects\Item\Bomb.cs" />
     <Compile Include="GameObjects\Item\Compass.cs" />
     <Compile Include="GameObjects\Item\HeartContainer.cs" />
     <Compile Include="GameObjects\Item\Map.cs" />
@@ -182,6 +185,7 @@
     <Compile Include="Player\PlayerCommands\BaseLinkCommand.cs" />
     <Compile Include="Player\PlayerCommands\LinkSlowDownCommand.cs" />
     <Compile Include="Player\PlayerCommands\LinkSpeedUpCommand.cs" />
+    <Compile Include="Player\PlayerCommands\LinkUseBombCommand.cs" />
     <Compile Include="Player\PlayerCommands\LinkUseItemCommand.cs" />
     <Compile Include="Player\PlayerCommands\LinkAttackCommand.cs" />
     <Compile Include="Player\PlayerCommands\LinkMoveDownCommand.cs" />
