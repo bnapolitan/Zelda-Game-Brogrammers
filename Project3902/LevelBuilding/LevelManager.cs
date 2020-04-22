@@ -10,7 +10,7 @@ namespace Project3902.LevelBuilding
 {
     class LevelManager
     {
-        readonly Dictionary<String, Level> levelDict=new Dictionary<string, Level>();
+        public readonly Dictionary<String, Level> levelDict=new Dictionary<string, Level>();
         public static LevelManager Instance { get; } = new LevelManager();
         private Level current;
         private String currentString;
@@ -49,7 +49,11 @@ namespace Project3902.LevelBuilding
             }
             foreach (IGameObject environment in currentLevel.interactiveEnvironmentObjects)
             {
-                if(environment is ICollidable)
+                if(environment is ExplodableWall)
+                {
+                    CollisionHandler.Instance.RegisterCollidable((environment as ICollidable), Layer.Wall, Layer.Projectile);
+                }
+                else if(environment is ICollidable)
                 {
                     CollisionHandler.Instance.RegisterCollidable((environment as ICollidable), Layer.Wall);
                 }

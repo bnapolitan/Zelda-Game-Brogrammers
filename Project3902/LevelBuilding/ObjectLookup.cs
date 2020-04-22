@@ -93,6 +93,22 @@ namespace Project3902.LevelBuilding
             {
                 return envFactory.CreateWallBottom(position);
             }
+            if (name == "ExplodableWallTop")
+            {
+                return envFactory.CreateExplodableWallTop(position);
+            }
+            if (name == "ExplodableWallLeft")
+            {
+                return envFactory.CreateExplodableWallLeft(position);
+            }
+            if (name == "ExplodableWallRight")
+            {
+                return envFactory.CreateExplodableWallRight(position);
+            }
+            if (name == "ExplodableWallBottom")
+            {
+                return envFactory.CreateExplodableWallBottom(position);
+            }
             if (name == "Brick")
             {
                 return envFactory.CreateBlockingBrick(position);

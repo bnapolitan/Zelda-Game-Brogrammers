@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Project3902.GameObjects;
 using Project3902.GameObjects.Environment;
+using System.Collections.Generic;
 
 namespace Project3902.ObjectManagement
 {
@@ -12,7 +13,7 @@ namespace Project3902.ObjectManagement
         private SpriteAtlas linkSpriteAtlas;
         private Vector2 environmentScale = new Vector2(4, 4);
         private FinalGame game;
-        
+
         public static EnvironmentFactory Instance { get; } = new EnvironmentFactory();
 
         private EnvironmentFactory()
@@ -40,6 +41,12 @@ namespace Project3902.ObjectManagement
         {
             door.Collider = new Collider(door, new Rectangle(0, 0, 128, 128));
             CollisionHandler.Instance.RegisterCollidable(door, Layer.Wall);
+        }
+
+        public static void RegisterExplodableWallForCollision(IInteractiveEnvironmentObject door)
+        {
+            door.Collider = new Collider(door, new Rectangle(0, 0, 128, 128));
+            CollisionHandler.Instance.RegisterCollidable(door, Layer.Wall, Layer.Projectile);
         }
 
 
@@ -90,43 +97,43 @@ namespace Project3902.ObjectManagement
 
         public IGameObject CreateBombedOpeningTop(Vector2 position)
         {
-            var createdObject = new BombedOpening(position);
-            var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(947, 11, 32, 32));
+            var createdObject = new BombedOpening(position, game);
+            var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(947, 11, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
-            RegisterEnvironmentForCollision(createdObject);
+            RegisterDoorForCollision(createdObject);
             return createdObject;
         }
 
         public IGameObject CreateBombedOpeningBottom(Vector2 position)
         {
-            var createdObject = new BombedOpening(position);
-            var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(947, 11, 32, 32))
+            var createdObject = new BombedOpening(position, game);
+            var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(947, 11, 32, 32), environmentScale)
             {
                 Flip = SpriteEffects.FlipVertically
             };
             createdObject.Sprite = sprite;
-            RegisterEnvironmentForCollision(createdObject);
+            RegisterDoorForCollision(createdObject);
             return createdObject;
         }
 
         public IGameObject CreateBombedOpeningLeft(Vector2 position)
         {
-            var createdObject = new BombedOpening(position);
-            var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(947, 44, 32, 32));
+            var createdObject = new BombedOpening(position, game);
+            var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(947, 44, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
-            RegisterEnvironmentForCollision(createdObject);
+            RegisterDoorForCollision(createdObject);
             return createdObject;
         }
 
         public IGameObject CreateBombedOpeningRight(Vector2 position)
         {
-            var createdObject = new BombedOpening(position);
-            var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(947, 44, 32, 32))
+            var createdObject = new BombedOpening(position, game);
+            var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(947, 44, 32, 32), environmentScale)
             {
                 Flip = SpriteEffects.FlipHorizontally
             };
             createdObject.Sprite = sprite;
-            RegisterEnvironmentForCollision(createdObject);
+            RegisterDoorForCollision(createdObject);
             return createdObject;
         }
 
@@ -184,7 +191,10 @@ namespace Project3902.ObjectManagement
         public IGameObject CreateEnemyCloudAppearance(Vector2 position)
         {
             var createdObject = new EnemyCloudAppearance(position);
-            var sprite = new FixedSprite(createdObject, linkSpriteAtlas, new Rectangle(138, 185, 16, 16));
+            var sprite = new AnimatedSprite(createdObject, linkSpriteAtlas,
+                new List<Rectangle> { new Rectangle(138, 185, 16, 16), new Rectangle(155, 185, 16, 16), new Rectangle(172, 185, 16, 16) },
+                (float)0.25, environmentScale);
+            //var sprite = new FixedSprite(createdObject, linkSpriteAtlas, new Rectangle(138, 185, 16, 16), environmentScale);
             createdObject.Sprite = sprite;
             return createdObject;
         }
@@ -351,6 +361,42 @@ namespace Project3902.ObjectManagement
             var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(815, 77, 32, 32), environmentScale);
             createdObject.Sprite = sprite;
             RegisterDoorForCollision(createdObject);
+            return createdObject;
+        }
+
+        public IGameObject CreateExplodableWallTop(Vector2 position)
+        {
+            var createdObject = new ExplodableWall(position, game);
+            var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(815, 11, 32, 32), environmentScale);
+            createdObject.Sprite = sprite;
+            RegisterExplodableWallForCollision(createdObject);
+            return createdObject;
+        }
+
+        public IGameObject CreateExplodableWallBottom(Vector2 position)
+        {
+            var createdObject = new ExplodableWall(position, game);
+            var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(815, 110, 32, 32), environmentScale);
+            createdObject.Sprite = sprite;
+            RegisterExplodableWallForCollision(createdObject);
+            return createdObject;
+        }
+
+        public IGameObject CreateExplodableWallLeft(Vector2 position)
+        {
+            var createdObject = new ExplodableWall(position, game);
+            var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(815, 44, 32, 32), environmentScale);
+            createdObject.Sprite = sprite;
+            RegisterExplodableWallForCollision(createdObject);
+            return createdObject;
+        }
+
+        public IGameObject CreateExplodableWallRight(Vector2 position)
+        {
+            var createdObject = new ExplodableWall(position, game);
+            var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(815, 77, 32, 32), environmentScale);
+            createdObject.Sprite = sprite;
+            RegisterExplodableWallForCollision(createdObject);
             return createdObject;
         }
 

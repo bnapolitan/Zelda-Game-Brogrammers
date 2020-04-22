@@ -111,7 +111,7 @@ namespace Project3902
             List<Rectangle> bombSource = new List<Rectangle> { new Rectangle(528, 0, 38, 44) };
             var sprite = new AnimatedSprite(createdObject, itemAtlas, bombSource, .4f, new Vector2(1, 1));
             createdObject.Sprite = sprite;
-            createdObject.Collider = new Collider(createdObject, new Rectangle(0, 0, 65, 65));
+            createdObject.Collider = new Collider(createdObject, new Rectangle(0, 0, 80, 100));
             CollisionHandler.Instance.RegisterCollidable(createdObject, Layer.Projectile, Layer.Enemy, Layer.Wall, Layer.Player);
             return createdObject;
         }

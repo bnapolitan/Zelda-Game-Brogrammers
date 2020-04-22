@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Project3902.Configuration;
+using Project3902.GameObjects.Environment;
 using Project3902.LevelBuilding;
 using Project3902.ObjectManagement;
 using System;
@@ -275,6 +276,50 @@ namespace Project3902
             CurrentRoom = currentLevel.Map.Bottom;
             StartRoomSwitch(new Vector2(0, -1));
             linkPositionAfterRoomSwitch = new Vector2(LinkPositionConfiguration.LinkXPositionAfterRoomSwitchTop, LinkPositionConfiguration.LinkYPositionAfterRoomSwitchBottom + HUDFactory.Instance.HUDHeight);
+        }
+
+        public void ExplodeWallTop(IGameObject explodableWall)
+        {
+            (currentLevel as Level).interactiveEnvironmentObjects.Remove(explodableWall);
+            (currentLevel as Level).interactiveEnvironmentObjects.Add(EnvironmentFactory.Instance.CreateBombedOpeningTop(explodableWall.Position));
+
+            var adjacentLevel = LevelManager.Instance.levelDict[(currentLevel as Level).Map.Top];
+            var adjacentExplodableWall = adjacentLevel.interactiveEnvironmentObjects.Find(wall => wall is ExplodableWall);
+            adjacentLevel.interactiveEnvironmentObjects.Remove(adjacentExplodableWall);
+            adjacentLevel.interactiveEnvironmentObjects.Add(EnvironmentFactory.Instance.CreateBombedOpeningBottom(adjacentExplodableWall.Position));
+        }
+
+        public void ExplodeWallLeft(IGameObject explodableWall)
+        {
+            (currentLevel as Level).interactiveEnvironmentObjects.Remove(explodableWall);
+            (currentLevel as Level).interactiveEnvironmentObjects.Add(EnvironmentFactory.Instance.CreateBombedOpeningLeft(explodableWall.Position));
+
+            var adjacentLevel = LevelManager.Instance.levelDict[(currentLevel as Level).Map.Left];
+            var adjacentExplodableWall = adjacentLevel.interactiveEnvironmentObjects.Find(wall => wall is ExplodableWall);
+            adjacentLevel.interactiveEnvironmentObjects.Remove(adjacentExplodableWall);
+            adjacentLevel.interactiveEnvironmentObjects.Add(EnvironmentFactory.Instance.CreateBombedOpeningRight(adjacentExplodableWall.Position));
+        }
+
+        public void ExplodeWallRight(IGameObject explodableWall)
+        {
+            (currentLevel as Level).interactiveEnvironmentObjects.Remove(explodableWall);
+            (currentLevel as Level).interactiveEnvironmentObjects.Add(EnvironmentFactory.Instance.CreateBombedOpeningRight(explodableWall.Position));
+
+            var adjacentLevel = LevelManager.Instance.levelDict[(currentLevel as Level).Map.Right];
+            var adjacentExplodableWall = adjacentLevel.interactiveEnvironmentObjects.Find(wall => wall is ExplodableWall);
+            adjacentLevel.interactiveEnvironmentObjects.Remove(adjacentExplodableWall);
+            adjacentLevel.interactiveEnvironmentObjects.Add(EnvironmentFactory.Instance.CreateBombedOpeningLeft(adjacentExplodableWall.Position));
+        }
+
+        public void ExplodeWallBottom(IGameObject explodableWall)
+        {
+            (currentLevel as Level).interactiveEnvironmentObjects.Remove(explodableWall);
+            (currentLevel as Level).interactiveEnvironmentObjects.Add(EnvironmentFactory.Instance.CreateBombedOpeningBottom(explodableWall.Position));
+
+            var adjacentLevel = LevelManager.Instance.levelDict[(currentLevel as Level).Map.Bottom];
+            var adjacentExplodableWall = adjacentLevel.interactiveEnvironmentObjects.Find(wall => wall is ExplodableWall);
+            adjacentLevel.interactiveEnvironmentObjects.Remove(adjacentExplodableWall);
+            adjacentLevel.interactiveEnvironmentObjects.Add(EnvironmentFactory.Instance.CreateBombedOpeningTop(adjacentExplodableWall.Position));
         }
 
         public void MouseSwitchRoom(string room)

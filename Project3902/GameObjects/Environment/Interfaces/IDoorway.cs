@@ -2,5 +2,6 @@
 {
     interface IDoorway
     {
+        void ChangeLevel(string doorLocation);
     }
 }

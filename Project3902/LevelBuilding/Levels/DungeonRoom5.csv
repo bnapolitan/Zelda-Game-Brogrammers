@@ -3,7 +3,7 @@ Brick, 256, 256
 Brick, 256, 384
 Brick, 704, 256
 Brick, 704, 384
-WallTop, 448, 0
+ExplodableWallTop, 448, 0
 OpenDoorLeft, 0, 288
 OpenDoorRight, 896, 288
 OpenDoorBottom, 448, 576
@@ -19,3 +19,4 @@ Levels
 Left, DungeonRoom6
 Right, DungeonRoom7
 Bottom, DungeonRoom4
+Top, DungeonRoom10

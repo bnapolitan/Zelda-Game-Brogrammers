@@ -66,7 +66,15 @@ namespace Project3902
         {
             if (other.GameObject is IDoorway)
             {
-                var door = other.GameObject as OpenDoor;
+                IDoorway door;
+                if(other.GameObject is OpenDoor)
+                {
+                    door = other.GameObject as OpenDoor;
+                }
+                else
+                {
+                    door = other.GameObject as BombedOpening;
+                }
 
                 if (link.Position.X < RoomSwitchingThresholdConfiguration.LeftRoomThreshold)
                 {

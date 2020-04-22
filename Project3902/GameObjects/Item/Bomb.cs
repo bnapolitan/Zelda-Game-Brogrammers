@@ -21,6 +21,7 @@ namespace Project3902.GameObjects.Item
         public float Speed { get; set; }
 
         private int timeUntilExplosion = 120;
+        private List<IGameObject> explosionClouds = new List<IGameObject>();
 
         public Bomb(Vector2 pos)
         {
@@ -43,7 +44,10 @@ namespace Project3902.GameObjects.Item
 
             if(timeUntilExplosion <= 0 && timeUntilExplosion > -30)
             {
-
+                foreach (IGameObject cloud in explosionClouds)
+                {
+                    cloud.Draw(spriteBatch);
+                }
             }
         }
 
@@ -56,11 +60,28 @@ namespace Project3902.GameObjects.Item
                 this.Active = false;
                 this.IsExploding = true;
                 SoundHandler.Instance.PlaySoundEffect("Bomb Blow");
+                CreateExplosionClouds();
             }
-            if(timeUntilExplosion == -2)
+            else if(timeUntilExplosion == -2)
             {
                 this.IsExploding = false;
+                CollisionHandler.Instance.RemoveCollidable(this);
             }
+            if(timeUntilExplosion < 0)
+            {
+                foreach (IGameObject cloud in explosionClouds)
+                {
+                    cloud.Update(gameTime);
+                }
+            }
+        }
+
+        private void CreateExplosionClouds()
+        {
+            explosionClouds.Add(EnvironmentFactory.Instance.CreateEnemyCloudAppearance(this.Position));
+            explosionClouds.Add(EnvironmentFactory.Instance.CreateEnemyCloudAppearance(this.Position + new Vector2(40, 0)));
+            explosionClouds.Add(EnvironmentFactory.Instance.CreateEnemyCloudAppearance(this.Position + new Vector2(20, 40)));
+            explosionClouds.Add(EnvironmentFactory.Instance.CreateEnemyCloudAppearance(this.Position + new Vector2(-20, -40)));
         }
 
         public void OnCollide(Collider other)
