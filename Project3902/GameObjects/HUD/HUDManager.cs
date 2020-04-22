@@ -212,23 +212,24 @@ namespace Project3902
                 { "DungeonRoom16", new Vector2(196, 34) },
                 { "DungeonRoom17", new Vector2(214, 34) }
             };
+
+
+            return dictionary;
+        }
         public void ChangeBItem(IGameObject HUDItem, IGameObject aquiredItem)
         {
             BButtonObject = HUDItem;
             BButtonObject.Position = BButtonPosition;
 
-            return dictionary;
-        }
-
             if (aquiredItem is Sword)
             {
-                game.LinkKeyboardController.RemoveCommand(Keys.Z);
-                game.LinkKeyboardController.RegisterCommand(Keys.Z, new LinkAttackCommand(game),InputState.Pressed);
+                game.LinkKeyboardController.RemoveCommand(Keys.X);
+                game.LinkKeyboardController.RegisterCommand(Keys.X, new LinkAttackCommand(game),InputState.Pressed);
             }
             if (aquiredItem is BoomerangItem)
             {
-                game.LinkKeyboardController.RemoveCommand(Keys.Z);
-                game.LinkKeyboardController.RegisterCommand(Keys.Z, new LinkUseBoomerangCommand(game),InputState.Pressed);
+                game.LinkKeyboardController.RemoveCommand(Keys.X);
+                game.LinkKeyboardController.RegisterCommand(Keys.X, new LinkUseBoomerangCommand(game),InputState.Pressed);
             }
             if (aquiredItem is Arrow)
             {
@@ -240,8 +241,14 @@ namespace Project3902
             }
             if (aquiredItem is Candle)
             {
-                game.LinkKeyboardController.RemoveCommand(Keys.Z);
-                game.LinkKeyboardController.RegisterCommand(Keys.Z, new LinkUseBlueCandleCommand(game),InputState.Pressed);
+                game.LinkKeyboardController.RemoveCommand(Keys.X);
+                game.LinkKeyboardController.RegisterCommand(Keys.X, new LinkUseBlueCandleCommand(game),InputState.Pressed);
+            }
+            if(aquiredItem is BombPickup)
+            {
+                game.LinkKeyboardController.RemoveCommand(Keys.X);
+                game.LinkKeyboardController.RegisterCommand(Keys.X, new LinkUseBombCommand(game), InputState.Pressed);
+
             }
         }
 

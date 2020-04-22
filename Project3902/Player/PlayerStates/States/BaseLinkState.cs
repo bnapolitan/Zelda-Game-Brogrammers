@@ -5,7 +5,6 @@ using Project3902.GameObjects;
 using Project3902.GameObjects.EnemyProjectiles;
 using Project3902.GameObjects.Environment;
 using Project3902.GameObjects.Environment.Interfaces;
-using Project3902.GameObjects.Item;
 using Project3902.LevelBuilding;
 using Project3902.ObjectManagement;
 

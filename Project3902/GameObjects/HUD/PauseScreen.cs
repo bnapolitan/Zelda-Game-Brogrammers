@@ -83,7 +83,7 @@ namespace Project3902
         public void addToAquiredItems(IGameObject item)
         {
             bool aquired = false;
-           
+
 
                 if (item is Bow)
                 {
@@ -163,9 +163,28 @@ namespace Project3902
 
                 }
             }
-            
-           
-            
+            if (item is BombPickup)
+            {
+                foreach (IGameObject collected in aquiredItems)
+                {
+                    if (collected is BombPickup)
+                    {
+                        aquired = true;
+                    }
+
+                }
+                if (aquired == false)
+                {
+                    PauseScreenElements.Add(Factory.CreateHUDBomb(CalculateNextInventoryPosition()));
+                    aquiredItems.Add(item);
+                    aquiredObjectKeys.Add("Bomb");
+                    numItemsAquired++;
+
+                }
+            }
+
+
+
         }
 
         public Vector2 CalculateNextInventoryPosition()
@@ -271,6 +290,11 @@ namespace Project3902
             {
                 SelectedItem = Factory.CreateHUDBow(SelectedItemPos);
                 HUDManager.Instance.ChangeBItem(Factory.CreateHUDBow(SelectedItemPos), selectedItem);
+            }
+            if(selectedItem is BombPickup)
+            {
+                SelectedItem = Factory.CreateHUDBomb(SelectedItemPos);
+                HUDManager.Instance.ChangeBItem(Factory.CreateHUDBomb(SelectedItemPos), selectedItem);
             }
         }
     }

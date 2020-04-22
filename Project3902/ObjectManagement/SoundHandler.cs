@@ -87,6 +87,8 @@ namespace Project3902.ObjectManagement
             defaultItemSound = content.Load<SoundEffect>("SoundEffects/LOZ_Get_Item");
             defaultDoorSound = content.Load<SoundEffect>("SoundEffects/LOZ_Door_Unlock");
             defaultAquamentusSound= content.Load<SoundEffect>("SoundEffects/LOZ_Boss_Scream1");
+            bombDropSound = content.Load<SoundEffect>("SoundEffects/LOZ_Bomb_Drop");
+            bombBlowSound = content.Load<SoundEffect>("SoundEffects/LOZ_Bomb_Blow");
 
             customSwordSlashSound = content.Load<SoundEffect>("CustomSoundEffects/SwordSlash");
             customSwordShootSound = content.Load<SoundEffect>("CustomSoundEffects/SwordThrow");
@@ -169,6 +171,7 @@ namespace Project3902.ObjectManagement
 
         public void PlaySoundEffect(String effectType, Boolean stopMusic=false)
         {
+            Console.WriteLine(effectType + "\n");
             if (stopMusic)
             {
                 musicPause = true;

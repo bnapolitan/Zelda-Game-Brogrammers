@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Project3902.GameObjects;
 using Project3902.GameObjects.Environment;
-using Project3902.GameObjects.Item;
 using Project3902.ObjectManagement;
 using System;
 using System.Collections.Generic;
