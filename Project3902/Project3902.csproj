@@ -80,7 +80,14 @@
     <Compile Include="GameObjects\Environment\BaseEnvironment.cs" />
     <Compile Include="GameObjects\Environment\Interfaces\IDoorway.cs" />
     <Compile Include="GameObjects\Environment\BlockingBrick.cs" />
+    <Compile Include="GameObjects\HUD\InventoryCommands\DownCommand.cs" />
+    <Compile Include="GameObjects\HUD\InventoryCommands\LeftCommand.cs" />
+    <Compile Include="GameObjects\HUD\InventoryCommands\RightCommand.cs" />
+    <Compile Include="GameObjects\HUD\InventoryCommands\SelectCommand.cs" />
+    <Compile Include="GameObjects\HUD\InventoryCommands\UpCommand.cs" />
     <Compile Include="GameObjects\HUD\PauseScreen.cs" />
+    <Compile Include="GameObjects\Item\BoomerangItem.cs" />
+    <Compile Include="GameObjects\Item\Candle.cs" />
     <Compile Include="GameObjects\Item\Compass.cs" />
     <Compile Include="GameObjects\Item\HeartContainer.cs" />
     <Compile Include="GameObjects\Item\Map.cs" />

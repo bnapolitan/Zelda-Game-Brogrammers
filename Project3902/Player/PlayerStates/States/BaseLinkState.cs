@@ -195,6 +195,7 @@ namespace Project3902
                 else if (other.GameObject is Compass)
                 {
                     HUDManager.Instance.HUDElements.Add(HUDFactory.Instance.CreateTriforceMapBlip());
+                    PauseScreen.Instance.AddCompassToPauseScreen();
                     SoundHandler.Instance.PlaySoundEffect("Item");
                 }
                 else

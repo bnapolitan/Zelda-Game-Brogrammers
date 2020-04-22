@@ -51,7 +51,7 @@ namespace Project3902
             PauseScreenElements.Add(blackBox);
             PauseScreenElements.Add(Factory.CreateHUDSword(CalculateNextInventoryPosition()));
             numItemsAquired++;
-            AddCompassToPauseScreen();
+            
         }
 
         public void AddMapToPauseScreen()
@@ -68,7 +68,7 @@ namespace Project3902
         {
             PauseScreenElements.Add(Factory.CreatePauseCompass(new Vector2(180, 620)));
         }
-        private int cool = 5;
+
 
         public void addToAquiredItems(IGameObject item)
         {
@@ -90,7 +90,7 @@ namespace Project3902
                     {
                         PauseScreenElements.Add(Factory.CreateHUDBow(CalculateNextInventoryPosition()));
                         numItemsAquired++;
-                        cool = 0;
+                        
                     }
                 }
                 if (item is Arrow)
@@ -108,14 +108,14 @@ namespace Project3902
                     {
                         PauseScreenElements.Add(Factory.CreateHUDArrow(CalculateNextInventoryPosition()));
                         numItemsAquired++;
-                        cool = 0;
+                        
                     }
                 }
-                if (item is BlueCandleWeapon)
+                if (item is Candle)
                 {
                     foreach (IGameObject collected in aquiredItems)
                     {
-                        if (collected is BlueCandleWeapon)
+                        if (collected is Candle)
                         {
                             aquired = true;
                         }
@@ -125,10 +125,27 @@ namespace Project3902
                     {
                         PauseScreenElements.Add(Factory.CreateHUDCandle(CalculateNextInventoryPosition()));
                         numItemsAquired++;
-                        cool = 0;
+                        
                     }
                 }
-                aquiredItems.Add(item);
+            if (item is BoomerangItem)
+            {
+                foreach (IGameObject collected in aquiredItems)
+                {
+                    if (collected is BoomerangItem)
+                    {
+                        aquired = true;
+                    }
+
+                }
+                if (aquired == false)
+                {
+                    PauseScreenElements.Add(Factory.CreateHUDBoomerang(CalculateNextInventoryPosition()));
+                    numItemsAquired++;
+
+                }
+            }
+            aquiredItems.Add(item);
            
             
         }

@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework.Input;
 
 namespace Project3902
 {
@@ -376,6 +377,38 @@ namespace Project3902
             var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(612, 158, 15, 14), PauseScale);
             gameObject.Sprite = sprite;
             return gameObject;
+        }
+
+        public KeyboardController CreatePauseController(FinalGame game)
+        {
+            var controller = new KeyboardController();
+
+
+            controller.RegisterCommand(Keys.Up, new LinkMoveUpCommand(game));
+            controller.RegisterCommand(Keys.Down, new LinkMoveDownCommand(game));
+            controller.RegisterCommand(Keys.Left, new LinkMoveLeftCommand(game));
+            controller.RegisterCommand(Keys.Right, new LinkMoveRightCommand(game));
+            controller.RegisterCommand(Keys.W, new LinkMoveUpCommand(game));
+            controller.RegisterCommand(Keys.S, new LinkMoveDownCommand(game));
+            controller.RegisterCommand(Keys.A, new LinkMoveLeftCommand(game));
+            controller.RegisterCommand(Keys.D, new LinkMoveRightCommand(game));
+            controller.RegisterCommand(Keys.G, new PauseGameCommand(game), InputState.Pressed);
+
+
+            return controller;
+        }
+
+        public GamepadController CreatePauseGamepadController(FinalGame game)
+        {
+            var controller = new GamepadController();
+
+            controller.RegisterCommand(Buttons.DPadUp, new UpCommand(),InputState.Pressed);
+            controller.RegisterCommand(Buttons.DPadDown, new LinkMoveDownCommand(game));
+            controller.RegisterCommand(Buttons.DPadLeft, new LinkMoveLeftCommand(game));
+            controller.RegisterCommand(Buttons.DPadRight, new LinkMoveRightCommand(game));
+            controller.RegisterCommand(Buttons.Start, new PauseGameCommand(game), InputState.Pressed);
+
+            return controller;
         }
     }
 }
