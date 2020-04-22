@@ -10,5 +10,6 @@ namespace Project3902.Configuration
     {
         public static int EnemyFreezeTime { get; } = 300;
         public static int ScreenScrollSpeed { get; } = 400;
+        public static int BombExplodeTime { get; } = 120;
     }
 }

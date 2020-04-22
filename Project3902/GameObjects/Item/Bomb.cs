@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Project3902.Configuration;
 using Project3902.ObjectManagement;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace Project3902.GameObjects.Item
         public Vector2 Direction { get; set; }
         public float Speed { get; set; }
 
-        private int timeUntilExplosion = 120;
+        private int timeUntilExplosion = GeneralGameConfiguration.BombExplodeTime;
         private List<IGameObject> explosionClouds = new List<IGameObject>();
 
         public Bomb(Vector2 pos)

@@ -82,6 +82,7 @@
     <Compile Include="GameObjects\Environment\BlockingBrick.cs" />
     <Compile Include="GameObjects\Environment\ExplodableWall.cs" />
     <Compile Include="GameObjects\HUD\PauseScreen.cs" />
+    <Compile Include="GameObjects\Item\BombPickup.cs" />
     <Compile Include="GameObjects\Item\Bomb.cs" />
     <Compile Include="GameObjects\Item\Compass.cs" />
     <Compile Include="GameObjects\Item\HeartContainer.cs" />

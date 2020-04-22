@@ -170,6 +170,11 @@ namespace Project3902
                         link.KeyCount++;
                     }
                 }
+                else if(other.GameObject is BombPickup)
+                {
+                    link.BombCount += 4;
+                    SoundHandler.Instance.PlaySoundEffect("Item");
+                }
                 else if(other.GameObject is Watch)
                 {
                     var watch = other.GameObject as Watch;
@@ -212,7 +217,7 @@ namespace Project3902
                     SoundHandler.Instance.PlaySoundEffect("Item");
                     if(other.GameObject is Potion)
                     {
-                        link.PotionCount++;
+                        link.BombCount++;
                     }
                 }
                 CollisionHandler.Instance.RemoveCollidable(other.GameObject as ICollidable);

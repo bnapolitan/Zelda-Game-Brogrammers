@@ -33,7 +33,7 @@ namespace Project3902
             maxHearts = (int) game.Link.MaxHealth;
             UpdateHearts();
             numKeys = game.Link.KeyCount;
-            numOrbs = game.Link.PotionCount;
+            numOrbs = game.Link.BombCount;
             numCoins = game.Link.CoinCount;
             UpdateCounters();
 

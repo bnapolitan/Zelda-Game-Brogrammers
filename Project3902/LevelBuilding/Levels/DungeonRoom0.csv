@@ -14,8 +14,7 @@ Key, 310, 400
 Sword, 460, 400
 Ring, 610, 400
 Fairy, 760, 400
-Enemies
-BlueKeese, 440, 300
+Bomb, 500, 300
 Levels
 Top, DungeonRoom1
 Right, BulletHellRoom

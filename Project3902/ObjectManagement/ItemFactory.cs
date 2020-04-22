@@ -186,12 +186,11 @@ namespace Project3902
 
 		public IGameObject CreateBomb(Vector2 position)
 		{
-			var createdObject = new Bomb(position);
+			var createdObject = new BombPickup(position);
 			List<Rectangle> bombSource = new List<Rectangle> { new Rectangle(528, 0, 38, 44) };
 			var sprite = new AnimatedSprite(createdObject, FixSprite, bombSource, .4f, new Vector2(1, 1));
 			createdObject.Sprite = sprite;
-			createdObject.Collider = new Collider(createdObject, new Rectangle(0, 0, 65, 65));
-			CollisionHandler.Instance.RegisterCollidable(createdObject, Layer.Projectile, Layer.Enemy, Layer.Wall, Layer.Player);
+			RegisterItemForCollision(createdObject);
 			return createdObject;
 		}
 

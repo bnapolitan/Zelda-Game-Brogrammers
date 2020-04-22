@@ -11,9 +11,14 @@ namespace Project3902
 
         public override void Execute()
         {
-            game.Link.CurrentWeapon = WeaponFactory.Instance.CreateBomb(game.Link.Position);
-            SoundHandler.Instance.PlaySoundEffect("Bomb Drop");
-            game.Link.UseItem();
+            if(game.Link.BombCount > 0 && game.Link.BombExplodeTime < 0)
+            {
+                game.Link.BombExplodeTime = GeneralGameConfiguration.BombExplodeTime;
+                game.Link.CurrentWeapon = WeaponFactory.Instance.CreateBomb(game.Link.Position);
+                SoundHandler.Instance.PlaySoundEffect("Bomb Drop");
+                game.Link.UseItem();
+                game.Link.BombCount--;
+            }
         }
     }
 }
