@@ -34,7 +34,7 @@ namespace Project3902
         {
             var controller = new KeyboardController();
 
-        
+
             controller.RegisterCommand(Keys.Up, new LinkMoveUpCommand(game));
             controller.RegisterCommand(Keys.Down, new LinkMoveDownCommand(game));
             controller.RegisterCommand(Keys.Left, new LinkMoveLeftCommand(game));
@@ -49,6 +49,7 @@ namespace Project3902
 
             controller.RegisterCommand(Keys.D1, new LinkUseBoomerangCommand(game), InputState.Pressed);
             controller.RegisterCommand(Keys.D2, new LinkUseBlueCandleCommand(game), InputState.Pressed);
+            controller.RegisterCommand(Keys.D3, new LinkUseBombCommand(game), InputState.Pressed);
 
             controller.RegisterCommand(Keys.E, takeDamageCommand, InputState.Pressed);
             controller.RegisterCommand(Keys.G, new PauseGameCommand(game), InputState.Pressed);
@@ -63,7 +64,7 @@ namespace Project3902
         public GamepadController CreateLinkGamepadController(FinalGame game)
         {
             var controller = new GamepadController();
-            
+
             controller.RegisterCommand(Buttons.DPadUp, new LinkMoveUpCommand(game));
             controller.RegisterCommand(Buttons.DPadDown, new LinkMoveDownCommand(game));
             controller.RegisterCommand(Buttons.DPadLeft, new LinkMoveLeftCommand(game));
@@ -85,7 +86,7 @@ namespace Project3902
 
             return controller;
         }
-      
+
         public ISprite CreateRightWalkSprite(IGameObject link)
         {
             List<Rectangle> sourceRects = new List<Rectangle> { new Rectangle(35, 11, 16, 16), new Rectangle(52, 11, 16, 16) };
@@ -115,10 +116,10 @@ namespace Project3902
             return new AnimatedSprite(link, linkAtlas, sourceRects, .2f, linkScale);
         }
 
-  
+
         public ISprite CreateRightAttackSprite(IGameObject link)
         {
-           
+
 
             List<Rectangle> sourceRects = new List<Rectangle> { new Rectangle(1, 77, 16, 16), new Rectangle(18, 77, 27, 16),
                                                                 new Rectangle(46, 77, 23, 16), new Rectangle(70, 77, 19, 16)};
@@ -127,7 +128,7 @@ namespace Project3902
 
         public ISprite CreateLeftAttackSprite(IGameObject link)
         {
-            List<Rectangle> sourceRects = new List<Rectangle> { new Rectangle(1, 77, 16, 16), new Rectangle(18, 77, 27, 16), 
+            List<Rectangle> sourceRects = new List<Rectangle> { new Rectangle(1, 77, 16, 16), new Rectangle(18, 77, 27, 16),
                                                                 new Rectangle(46, 77, 23, 16), new Rectangle(70, 77, 19, 16)};
             List<Vector2> origins = new List<Vector2> { new Vector2(0, 0), new Vector2(11, 0), new Vector2(7, 0), new Vector2(3, 0)};
             var sprite = new VariedOriginsSprite(link, linkAtlas, sourceRects, origins, attackFrameTime, linkScale)
@@ -148,14 +149,14 @@ namespace Project3902
 
         public ISprite CreateDownAttackSprite(IGameObject link)
         {
-            
 
-            List<Rectangle> sourceRects = new List<Rectangle> { new Rectangle(1, 47, 16, 16), new Rectangle(18, 47, 16, 27), 
+
+            List<Rectangle> sourceRects = new List<Rectangle> { new Rectangle(1, 47, 16, 16), new Rectangle(18, 47, 16, 27),
                                                                 new Rectangle(35, 47, 16, 23), new Rectangle(52, 47, 16, 19) };
             return new AnimatedSprite(link, linkAtlas, sourceRects, attackFrameTime, linkScale);
         }
 
- 
+
         public ISprite CreateRightItemSprite(IGameObject link)
         {
             return new FixedSprite(link, linkAtlas, new Rectangle(124, 11, 16, 16), linkScale);

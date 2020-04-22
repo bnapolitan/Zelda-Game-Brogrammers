@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Project3902.ObjectManagement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace Project3902.GameObjects.Item
         public Vector2 Direction { get; set; }
         public float Speed { get; set; }
 
-        private int timeUntilExplosion = 200;
+        private int timeUntilExplosion = 120;
 
         public Bomb(Vector2 pos)
         {
@@ -39,6 +40,11 @@ namespace Project3902.GameObjects.Item
         {
             if (Active)
                 Sprite.Draw(spriteBatch);
+
+            if(timeUntilExplosion <= 0 && timeUntilExplosion > -30)
+            {
+
+            }
         }
 
         public void Update(GameTime gameTime)
@@ -49,6 +55,7 @@ namespace Project3902.GameObjects.Item
                 this.Launch(Position, new Vector2(1, 0));
                 this.Active = false;
                 this.IsExploding = true;
+                SoundHandler.Instance.PlaySoundEffect("Bomb Blow");
             }
             if(timeUntilExplosion == -2)
             {
@@ -64,8 +71,6 @@ namespace Project3902.GameObjects.Item
         {
             Position = position;
             Direction = direction;
-
-            Active = true;
 
             Collider.AlignHitbox();
         }

@@ -27,6 +27,8 @@ namespace Project3902.ObjectManagement
         private SoundEffect itemSound;
         private SoundEffect doorSound;
         private SoundEffect aquamentusSound;
+        private SoundEffect bombBlowSound;
+        private SoundEffect bombDropSound;
         private readonly List<SoundEffectInstance> instanceList=new List<SoundEffectInstance>();
 
         private Boolean musicPause = false;
@@ -55,6 +57,8 @@ namespace Project3902.ObjectManagement
             itemSound = content.Load<SoundEffect>("SoundEffects/LOZ_Get_Item");
             doorSound = content.Load<SoundEffect>("SoundEffects/LOZ_Door_Unlock");
             aquamentusSound= content.Load<SoundEffect>("SoundEffects/LOZ_Boss_Scream1");
+            bombDropSound = content.Load<SoundEffect>("SoundEffects/LOZ_Bomb_Drop");
+            bombBlowSound = content.Load<SoundEffect>("SoundEffects/LOZ_Bomb_Blow");
         }
         public void PlaySong(String songType)
         {
@@ -105,6 +109,14 @@ namespace Project3902.ObjectManagement
             else if (effectType.Equals("Sword Shoot"))
             {
                 effect = swordShootSound;
+            }
+            else if (effectType.Equals("Bomb Blow"))
+            {
+                effect = bombBlowSound;
+            }
+            else if (effectType.Equals("Bomb Drop"))
+            {
+                effect = bombDropSound;
             }
             else if (effectType.Equals("Boomerang"))
             {
