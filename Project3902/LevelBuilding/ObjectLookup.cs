@@ -199,6 +199,14 @@ namespace Project3902.LevelBuilding
             {
                 return itemFactory.CreateCompass(position);
             }
+            if (name == "Boomerang")
+            {
+                return itemFactory.CreateBoomerang(position);
+            }
+            if(name == "Candle")
+            {
+                return itemFactory.CreateCandle(position);
+            }
             if (name == "Bomb")
             {
                 return itemFactory.CreateBomb(position);

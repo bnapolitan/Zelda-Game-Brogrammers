@@ -196,5 +196,25 @@ namespace Project3902
 			return createdObject;
 		}
 
+		public IGameObject CreateBoomerang(Vector2 position)
+		{
+			var createdObject = new BoomerangItem(position);
+			List<Rectangle> WatchSource = new List<Rectangle> { new Rectangle(128, 2, 6, 9) };
+			var sprite = new AnimatedSprite(createdObject, ItemSprite, WatchSource, .4f, new Vector2(3.5f, 3.5f));
+			createdObject.Sprite = sprite;
+			RegisterItemForCollision(createdObject);
+			return createdObject;
+		}
+
+		public IGameObject CreateCandle(Vector2 position)
+		{
+			var createdObject = new Candle(position);
+			List<Rectangle> WatchSource = new List<Rectangle> { new Rectangle(159, 0, 9, 15) };
+			var sprite = new AnimatedSprite(createdObject, ItemSprite, WatchSource, .4f, new Vector2(3.5f, 3.5f));
+			createdObject.Sprite = sprite;
+			RegisterItemForCollision(createdObject);
+			return createdObject;
+		}
+
 	}
 }
