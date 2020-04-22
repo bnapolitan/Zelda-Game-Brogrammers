@@ -10,7 +10,7 @@ namespace Project3902
     {
         public void Execute()
         {
-            throw new NotImplementedException();
+            PauseScreen.Instance.MoveSelectorRight();
         }
     }
 }

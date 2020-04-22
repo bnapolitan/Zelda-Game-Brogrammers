@@ -10,9 +10,11 @@ namespace Project3902
         private FinalGame game;
         private Vector2 PauseScale = new Vector2(4, 4);
         public List<IGameObject> PauseScreenElements = new List<IGameObject>();
+        private IGameObject ItemSelector;
         private readonly HUDFactory Factory = HUDFactory.Instance;
         private List<IGameObject> aquiredItems = new List<IGameObject>();
         private int numItemsAquired = 0;
+        private int SelectorPos = 0;
         private bool inPauseScreen;
         public static PauseScreen Instance { get; } = new PauseScreen();
         private PauseScreen()
@@ -30,6 +32,7 @@ namespace Project3902
             {
                 obj.Draw(spriteBatch);
             }
+            ItemSelector.Draw(spriteBatch);
         }
 
         public void RegisterGame(FinalGame game)
@@ -50,6 +53,7 @@ namespace Project3902
             blackBox.Position = new Vector2(270, 210);
             PauseScreenElements.Add(blackBox);
             PauseScreenElements.Add(Factory.CreateHUDSword(CalculateNextInventoryPosition()));
+            ItemSelector = Factory.CreateItemSelector(new Vector2(510, 220));
             numItemsAquired++;
             
         }
@@ -107,6 +111,7 @@ namespace Project3902
                     if (aquired == false)
                     {
                         PauseScreenElements.Add(Factory.CreateHUDArrow(CalculateNextInventoryPosition()));
+                        aquiredItems.Add(item);
                         numItemsAquired++;
                         
                     }
@@ -124,6 +129,7 @@ namespace Project3902
                     if (aquired == false)
                     {
                         PauseScreenElements.Add(Factory.CreateHUDCandle(CalculateNextInventoryPosition()));
+                        aquiredItems.Add(item);
                         numItemsAquired++;
                         
                     }
@@ -141,11 +147,12 @@ namespace Project3902
                 if (aquired == false)
                 {
                     PauseScreenElements.Add(Factory.CreateHUDBoomerang(CalculateNextInventoryPosition()));
+                    aquiredItems.Add(item);
                     numItemsAquired++;
 
                 }
             }
-            aquiredItems.Add(item);
+            
            
             
         }
@@ -159,6 +166,14 @@ namespace Project3902
             
         }
 
+        public Vector2 CalculateItemSelectorPosition()
+        {
+            Vector2 baseVector = new Vector2(510, 220);
+            baseVector.X += Math.Abs((SelectorPos % 4) * 100);
+            baseVector.Y += Math.Abs(((SelectorPos / 4) % 2) * 75);
+            return baseVector;
+        }
+
         public void EnterInventoryScreenControl()
         {
             inPauseScreen = true;
@@ -167,6 +182,54 @@ namespace Project3902
         public void ExitInventoryScreenControl()
         {
             inPauseScreen = false;
+        }
+
+        public void MoveSelectorUp()
+        {
+            var temp = SelectorPos;
+            temp -= 4;
+            if (temp >= 0 && temp < numItemsAquired)
+            {
+
+                SelectorPos -= 4;
+                ItemSelector.Position = CalculateItemSelectorPosition();
+            }
+        }
+
+        public void MoveSelectorDown()
+        {
+            var temp = SelectorPos;
+            temp += 4;
+            if (temp >= 0 && temp < numItemsAquired)
+            {
+
+                SelectorPos += 4;
+                ItemSelector.Position = CalculateItemSelectorPosition();
+            }
+        }
+
+        public void MoveSelectorLeft()
+        {
+            var temp = SelectorPos;
+            temp -= 1;
+            if (temp >= 0 && temp < numItemsAquired)
+            {
+
+                SelectorPos -= 1;
+                ItemSelector.Position = CalculateItemSelectorPosition();
+            }
+        }
+
+        public void MoveSelectorRight()
+        {
+            var temp = SelectorPos;
+            temp += 1;
+            if (temp >= 0 && temp < numItemsAquired)
+            {
+
+                SelectorPos += 1;
+                ItemSelector.Position = CalculateItemSelectorPosition();
+            }
         }
     }
 }

@@ -9,6 +9,7 @@ namespace Project3902
     class HUDFactory : ISpriteFactory
     {
         private SpriteAtlas HUDSprites;
+        private SpriteAtlas ItemSprite;
         public static HUDFactory Instance { get; } = new HUDFactory();
         private FinalGame game;
         public int HUDHeight = 96;
@@ -19,6 +20,7 @@ namespace Project3902
         public void LoadAllTextures(ContentManager content)
         {
             HUDSprites = new SpriteAtlas(content.Load<Texture2D>("ZeldaHUDSprites"));
+            ItemSprite = new SpriteAtlas(content.Load<Texture2D>("ZeldaItems"));
         }
 
         private HUDFactory()
@@ -379,19 +381,27 @@ namespace Project3902
             return gameObject;
         }
 
+        public IGameObject CreateItemSelector(Vector2 position)
+        {
+            var gameObject = new HUDObject(position);
+            var sprite = new FixedSprite(gameObject, ItemSprite, new Rectangle(64, 52, 13, 13), PauseScale);
+            gameObject.Sprite = sprite;
+            return gameObject;
+        }
+
         public KeyboardController CreatePauseController(FinalGame game)
         {
             var controller = new KeyboardController();
 
 
-            controller.RegisterCommand(Keys.Up, new LinkMoveUpCommand(game));
-            controller.RegisterCommand(Keys.Down, new LinkMoveDownCommand(game));
-            controller.RegisterCommand(Keys.Left, new LinkMoveLeftCommand(game));
-            controller.RegisterCommand(Keys.Right, new LinkMoveRightCommand(game));
-            controller.RegisterCommand(Keys.W, new LinkMoveUpCommand(game));
-            controller.RegisterCommand(Keys.S, new LinkMoveDownCommand(game));
-            controller.RegisterCommand(Keys.A, new LinkMoveLeftCommand(game));
-            controller.RegisterCommand(Keys.D, new LinkMoveRightCommand(game));
+            controller.RegisterCommand(Keys.Up, new UpCommand(), InputState.Pressed);
+            controller.RegisterCommand(Keys.Down, new DownCommand(), InputState.Pressed);
+            controller.RegisterCommand(Keys.Left, new LeftCommand(), InputState.Pressed);
+            controller.RegisterCommand(Keys.Right, new RightCommand(), InputState.Pressed);
+            controller.RegisterCommand(Keys.W, new UpCommand(), InputState.Pressed);
+            controller.RegisterCommand(Keys.S, new DownCommand(), InputState.Pressed);
+            controller.RegisterCommand(Keys.A, new LeftCommand(), InputState.Pressed);
+            controller.RegisterCommand(Keys.D, new RightCommand(), InputState.Pressed);
             controller.RegisterCommand(Keys.G, new PauseGameCommand(game), InputState.Pressed);
 
 
@@ -403,9 +413,9 @@ namespace Project3902
             var controller = new GamepadController();
 
             controller.RegisterCommand(Buttons.DPadUp, new UpCommand(),InputState.Pressed);
-            controller.RegisterCommand(Buttons.DPadDown, new LinkMoveDownCommand(game));
-            controller.RegisterCommand(Buttons.DPadLeft, new LinkMoveLeftCommand(game));
-            controller.RegisterCommand(Buttons.DPadRight, new LinkMoveRightCommand(game));
+            controller.RegisterCommand(Buttons.DPadDown, new DownCommand(), InputState.Pressed);
+            controller.RegisterCommand(Buttons.DPadLeft, new LeftCommand(), InputState.Pressed);
+            controller.RegisterCommand(Buttons.DPadRight, new RightCommand(), InputState.Pressed);
             controller.RegisterCommand(Buttons.Start, new PauseGameCommand(game), InputState.Pressed);
 
             return controller;

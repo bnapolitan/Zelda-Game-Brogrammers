@@ -10,7 +10,7 @@ namespace Project3902
     {
         public void Execute()
         {
-            Console.WriteLine("Here");
+            PauseScreen.Instance.MoveSelectorUp();
         }
     }
 }
