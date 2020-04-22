@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 
 namespace Project3902
@@ -12,6 +13,7 @@ namespace Project3902
         private readonly HUDFactory Factory = HUDFactory.Instance;
         private List<IGameObject> aquiredItems = new List<IGameObject>();
         private int numItemsAquired = 0;
+        private bool inPauseScreen;
         public static PauseScreen Instance { get; } = new PauseScreen();
         private PauseScreen()
         {
@@ -19,7 +21,7 @@ namespace Project3902
 
         public void Update()
         {
-
+            
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -66,56 +68,68 @@ namespace Project3902
         {
             PauseScreenElements.Add(Factory.CreatePauseCompass(new Vector2(180, 620)));
         }
+        private int cool = 5;
 
         public void addToAquiredItems(IGameObject item)
         {
             bool aquired = false;
-            if(item is Bow)
-            {
-                foreach(IGameObject collected in aquiredItems)
+           
+
+                if (item is Bow)
                 {
-                    if(collected is Bow)
+                    
+                    foreach (IGameObject collected in aquiredItems)
                     {
-                        aquired = true;
-                    }
-                    if(aquired == false)
-                    {
-                        PauseScreenElements.Add(Factory.CreateHUDBow(CalculateNextInventoryPosition()));
-                        numItemsAquired++;
-                    }
-                }
-            }
-            if (item is Arrow)
-            {
-                foreach (IGameObject collected in aquiredItems)
-                {
-                    if (collected is Arrow)
-                    {
-                        aquired = true;
+                        if (collected is Bow)
+                        {
+                            aquired = true;
+                        }
+                        
                     }
                     if (aquired == false)
                     {
                         PauseScreenElements.Add(Factory.CreateHUDBow(CalculateNextInventoryPosition()));
                         numItemsAquired++;
+                        cool = 0;
                     }
                 }
-            }
-            if (item is BlueCandleWeapon)
-            {
-                foreach (IGameObject collected in aquiredItems)
+                if (item is Arrow)
                 {
-                    if (collected is BlueCandleWeapon)
+                    
+                    foreach (IGameObject collected in aquiredItems)
                     {
-                        aquired = true;
+                        if (collected is Arrow)
+                        {
+                            aquired = true;
+                        }
+                        
+                    }
+                    if (aquired == false)
+                    {
+                        PauseScreenElements.Add(Factory.CreateHUDArrow(CalculateNextInventoryPosition()));
+                        numItemsAquired++;
+                        cool = 0;
+                    }
+                }
+                if (item is BlueCandleWeapon)
+                {
+                    foreach (IGameObject collected in aquiredItems)
+                    {
+                        if (collected is BlueCandleWeapon)
+                        {
+                            aquired = true;
+                        }
+                       
                     }
                     if (aquired == false)
                     {
                         PauseScreenElements.Add(Factory.CreateHUDCandle(CalculateNextInventoryPosition()));
                         numItemsAquired++;
+                        cool = 0;
                     }
                 }
-            }
-            aquiredItems.Add(item);
+                aquiredItems.Add(item);
+           
             
         }
 
@@ -126,6 +140,16 @@ namespace Project3902
             baseVector.Y += (numItemsAquired / 4) * 75;
             return baseVector;
             
+        }
+
+        public void EnterInventoryScreenControl()
+        {
+            inPauseScreen = true;
+        }
+
+        public void ExitInventoryScreenControl()
+        {
+            inPauseScreen = false;
         }
     }
 }

@@ -144,7 +144,7 @@ namespace Project3902
             if (!isPaused)
             {
                 HUDManager.Instance.Update();
-                PauseScreen.Instance.Update();
+                
 
                 CollisionHandler.Instance.CheckCollisions();
 
@@ -154,6 +154,11 @@ namespace Project3902
                     ReloadOnDeath();
                     linkDeath = false;
                 }
+            }
+
+            if (isPaused)
+            {
+                PauseScreen.Instance.Update();
             }
         }
 
