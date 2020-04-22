@@ -50,7 +50,6 @@ namespace Project3902
             controller.RegisterCommand(Keys.D1, new LinkUseBoomerangCommand(game), InputState.Pressed);
             controller.RegisterCommand(Keys.D2, new LinkUseBlueCandleCommand(game), InputState.Pressed);
 
-            controller.RegisterCommand(Keys.E, takeDamageCommand, InputState.Pressed);
             controller.RegisterCommand(Keys.G, new PauseGameCommand(game), InputState.Pressed);
             controller.RegisterCommand(Keys.LeftShift, new LinkSpeedUpCommand(game), InputState.Pressed);
             controller.RegisterCommand(Keys.LeftShift, new LinkSlowDownCommand(game), InputState.Released);
@@ -60,6 +59,31 @@ namespace Project3902
             return controller;
         }
 
+        public GamepadController CreateLinkGamepadController(FinalGame game)
+        {
+            var controller = new GamepadController();
+            
+            controller.RegisterCommand(Buttons.DPadUp, new LinkMoveUpCommand(game));
+            controller.RegisterCommand(Buttons.DPadDown, new LinkMoveDownCommand(game));
+            controller.RegisterCommand(Buttons.DPadLeft, new LinkMoveLeftCommand(game));
+            controller.RegisterCommand(Buttons.DPadRight, new LinkMoveRightCommand(game));
+
+
+            controller.RegisterCommand(Buttons.A, new LinkAttackCommand(game), InputState.Pressed);
+            controller.RegisterCommand(Buttons.B, new LinkAttackCommand(game), InputState.Pressed);
+
+            controller.RegisterCommand(Buttons.LeftTrigger, new LinkUseBoomerangCommand(game), InputState.Pressed);
+            controller.RegisterCommand(Buttons.RightTrigger, new LinkUseBlueCandleCommand(game), InputState.Pressed);
+
+
+            controller.RegisterCommand(Buttons.Start, new PauseGameCommand(game), InputState.Pressed);
+            controller.RegisterCommand(Buttons.LeftThumbstickDown, new LinkSpeedUpCommand(game), InputState.Pressed);
+            controller.RegisterCommand(Buttons.LeftThumbstickDown, new LinkSlowDownCommand(game), InputState.Released);
+            controller.RegisterCommand(Buttons.RightThumbstickDown, new LinkSpeedUpCommand(game), InputState.Pressed);
+            controller.RegisterCommand(Buttons.RightThumbstickDown, new LinkSlowDownCommand(game), InputState.Released);
+
+            return controller;
+        }
       
         public ISprite CreateRightWalkSprite(IGameObject link)
         {

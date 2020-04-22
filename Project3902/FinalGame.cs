@@ -38,6 +38,7 @@ namespace Project3902
 
         MouseController mouseController;
         KeyboardController keyboardController;
+        GamepadController gamepadController;
 
         public string CurrentRoom = "DungeonRoom0";
 
@@ -80,6 +81,7 @@ namespace Project3902
 
             keyboardController = LinkFactory.Instance.CreateLinkController(this);
             mouseController = LevelFactory.Instance.CreateLevelController(this);
+            gamepadController = LinkFactory.Instance.CreateLinkGamepadController(this);
 
             ShapeSpriteFactory.Instance.CreateShapeTextures(GraphicsDevice);
 
@@ -116,9 +118,6 @@ namespace Project3902
             base.Update(gameTime);
             if (!isPaused)
             {
-
-
-
                 currentLevel.Update(gameTime);
                 if (nextLevel != null && nextLevel.Scrolling)
                     nextLevel.Update(gameTime);
@@ -129,6 +128,7 @@ namespace Project3902
                     Link.Update(gameTime);
                     mouseController.Update();
                     keyboardController.Update();
+                    gamepadController.Update();
             }
             else
             {
@@ -255,7 +255,6 @@ namespace Project3902
             CurrentRoom = currentLevel.Map.Top;
             StartRoomSwitch(new Vector2(0, 1));
             linkPositionAfterRoomSwitch = new Vector2(LinkPositionConfiguration.LinkXPositionAfterRoomSwitchTop, LinkPositionConfiguration.LinkYPositionAfterRoomSwitchTop + HUDFactory.Instance.HUDHeight);
-            HUDManager.Instance.MoveMapBlipUp();
         }
 
         public void EnterRoomLeft()
@@ -263,14 +262,12 @@ namespace Project3902
             CurrentRoom = currentLevel.Map.Left;
             StartRoomSwitch(new Vector2(1, 0));
             linkPositionAfterRoomSwitch = new Vector2(LinkPositionConfiguration.LinkXPositionAfterRoomSwitchLeft, LinkPositionConfiguration.LinkYPositionAfterRoomSwitchLeft + HUDFactory.Instance.HUDHeight);
-            HUDManager.Instance.MoveMapBlipLeft();
         }
 
         public void EnterRoomRight()
         {
             CurrentRoom = currentLevel.Map.Right;
             StartRoomSwitch(new Vector2(-1, 0));
-            HUDManager.Instance.MoveMapBlipRight();
             linkPositionAfterRoomSwitch = new Vector2(LinkPositionConfiguration.LinkXPositionAfterRoomSwitchRight, LinkPositionConfiguration.LinkYPositionAfterRoomSwitchLeft + HUDFactory.Instance.HUDHeight);
         }
 
@@ -279,7 +276,6 @@ namespace Project3902
             CurrentRoom = currentLevel.Map.Bottom;
             StartRoomSwitch(new Vector2(0, -1));
             linkPositionAfterRoomSwitch = new Vector2(LinkPositionConfiguration.LinkXPositionAfterRoomSwitchTop, LinkPositionConfiguration.LinkYPositionAfterRoomSwitchBottom + HUDFactory.Instance.HUDHeight);
-            HUDManager.Instance.MoveMapBlipDown();
         }
 
         public void MouseSwitchRoom(string room)

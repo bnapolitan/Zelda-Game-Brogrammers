@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Project3902.GameObjects.EnemyProjectiles;
 using System;
 
 namespace Project3902.GameObjects.EnemiesAndNPCs
@@ -15,6 +16,7 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
         private int currentFrame = 0;
         private IProjectile boomerang;
         private bool isShooting = false;
+        private bool hasShot = false;
         private static readonly Random random = new Random();
 
         public Goriya(Vector2 pos, float moveSpeed, Vector2 initDirection) : base(pos, moveSpeed, initDirection) {
@@ -23,7 +25,12 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
 
         public override void Attack()
         {
+            if(hasShot)
+            {
+                (boomerang as Boomerang).Deactivate();
+            }
             boomerang = WeaponFactory.Instance.CreateBoomerangProjectile(Position, Direction);
+            hasShot = true;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -100,7 +107,7 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
                     steps--;
                     currentFrame++;
                 }
-                
+
             }
 
             if (isShooting)
@@ -114,7 +121,7 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
             }
         }
 
-        
+
 
         public override void TakeDamage()
         {

@@ -100,6 +100,12 @@ namespace Project3902.GameObjects.EnemyProjectiles
             Active = true;
         }
 
+        public void Deactivate()
+        {
+            this.Active = false;
+            CollisionHandler.Instance.RemoveCollidable(this);
+        }
+
         public void OnCollide(Collider other)
         {
             if (other.GameObject is Link || other.GameObject is IInteractiveEnvironmentObject || other.GameObject is IBackgroundEnvironmentObject)
