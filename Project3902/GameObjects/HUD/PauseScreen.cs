@@ -250,22 +250,27 @@ namespace Project3902
             if(selectedItem is Sword)
             {
                 SelectedItem = Factory.CreateHUDSword(SelectedItemPos);
+                HUDManager.Instance.ChangeBItem(Factory.CreateHUDSword(SelectedItemPos), selectedItem);
             }
             if(selectedItem is BoomerangItem)
             {
                 SelectedItem = Factory.CreateHUDBoomerang(SelectedItemPos);
+                HUDManager.Instance.ChangeBItem(Factory.CreateHUDBoomerang(SelectedItemPos), selectedItem);
             }
             if(selectedItem is Arrow)
             {
                 SelectedItem = Factory.CreateHUDArrow(SelectedItemPos);
+                HUDManager.Instance.ChangeBItem(Factory.CreateHUDArrow(SelectedItemPos), selectedItem);
             }
             if(selectedItem is Candle)
             {
                 SelectedItem = Factory.CreateHUDCandle(SelectedItemPos);
+                HUDManager.Instance.ChangeBItem(Factory.CreateHUDCandle(SelectedItemPos), selectedItem);
             }
             if(selectedItem is Bow)
             {
                 SelectedItem = Factory.CreateHUDBow(SelectedItemPos);
+                HUDManager.Instance.ChangeBItem(Factory.CreateHUDBow(SelectedItemPos), selectedItem);
             }
         }
     }

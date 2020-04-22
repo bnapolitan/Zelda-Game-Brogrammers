@@ -12,9 +12,11 @@ namespace Project3902
         public List<IGameObject> HUDElements = new List<IGameObject>();
         public List<IGameObject> HeartsList = new List<IGameObject>();
         public List<IGameObject> counterList = new List<IGameObject>();
+        public IGameObject BButtonObject;
         private readonly List<List<IGameObject>> numsLists = new List<List<IGameObject>>();
         private readonly HUDFactory Factory = HUDFactory.Instance;
         private IGameObject mapBlip;
+        private readonly Vector2 BButtonPosition = new Vector2(400, 30);
         public static HUDManager Instance { get; } = new HUDManager();
         private int numHearts;
         private int maxHearts;
@@ -59,6 +61,7 @@ namespace Project3902
             {
                 gameObject.Draw(spriteBatch);
             }
+            BButtonObject.Draw(spriteBatch);
             mapBlip.Draw(spriteBatch);
         }
 
@@ -83,6 +86,7 @@ namespace Project3902
             HUDElements.Add(Factory.CreateXCharacter());
             HUDElements.Add(Factory.CreateXCharacter());
             HUDElements.Add(Factory.CreateXCharacter());
+            BButtonObject = HUDFactory.Instance.CreateHUDSword(BButtonPosition);
             var blackBoxA = Factory.CreateItemBlackBox();
             blackBoxA.Sprite.Scale = Factory.HUDScale;
             blackBoxA.Position = new Vector2(315, 24);
@@ -222,6 +226,36 @@ namespace Project3902
             foreach (IGameObject hudElement in levelMap)
             {
                 HUDElements.Add(hudElement);
+            }
+        }
+
+        public void ChangeBItem(IGameObject HUDItem, IGameObject aquiredItem)
+        {
+            BButtonObject = HUDItem;
+            BButtonObject.Position = BButtonPosition;
+
+            if (aquiredItem is Sword)
+            {
+                game.LinkKeyboardController.RemoveCommand(Keys.Z);
+                game.LinkKeyboardController.RegisterCommand(Keys.Z, new LinkAttackCommand(game),InputState.Pressed);
+            }
+            if (aquiredItem is BoomerangItem)
+            {
+                game.LinkKeyboardController.RemoveCommand(Keys.Z);
+                game.LinkKeyboardController.RegisterCommand(Keys.Z, new LinkUseBoomerangCommand(game),InputState.Pressed);
+            }
+            if (aquiredItem is Arrow)
+            {
+
+            }
+            if (aquiredItem is Bow)
+            {
+
+            }
+            if (aquiredItem is Candle)
+            {
+                game.LinkKeyboardController.RemoveCommand(Keys.Z);
+                game.LinkKeyboardController.RegisterCommand(Keys.Z, new LinkUseBlueCandleCommand(game),InputState.Pressed);
             }
         }
 

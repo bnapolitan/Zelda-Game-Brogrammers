@@ -36,9 +36,11 @@ namespace Project3902
 
         public List<IGameObject> HUDObjects;
 
-        MouseController mouseController;
-        KeyboardController keyboardController;
-        GamepadController gamepadController;
+        public MouseController LinkMouseController;
+        public KeyboardController LinkKeyboardController;
+        public GamepadController LinkGamepadController;
+        public KeyboardController InventoryKeyboardController;
+        public GamepadController InventoryGamepadController;
 
         public string CurrentRoom = "DungeonRoom0";
 
@@ -79,9 +81,12 @@ namespace Project3902
 
 
 
-            keyboardController = LinkFactory.Instance.CreateLinkController(this);
-            mouseController = LevelFactory.Instance.CreateLevelController(this);
-            gamepadController = LinkFactory.Instance.CreateLinkGamepadController(this);
+            LinkKeyboardController = LinkFactory.Instance.CreateLinkController(this);
+            LinkMouseController = LevelFactory.Instance.CreateLevelController(this);
+            LinkGamepadController = LinkFactory.Instance.CreateLinkGamepadController(this);
+            InventoryGamepadController = HUDFactory.Instance.CreatePauseGamepadController(this);
+            InventoryKeyboardController = HUDFactory.Instance.CreatePauseController(this);
+
 
             ShapeSpriteFactory.Instance.CreateShapeTextures(GraphicsDevice);
 
@@ -128,10 +133,20 @@ namespace Project3902
 
             if (!currentLevel.Scrolling)
             {
-                    Link.Update(gameTime);
-                    mouseController.Update();
-                    keyboardController.Update();
-                    gamepadController.Update();
+                Link.Update(gameTime);
+                if (isPaused)
+                {
+                    InventoryKeyboardController.Update();
+                    InventoryGamepadController.Update();
+                    
+                }
+                else
+                {
+                    LinkMouseController.Update();
+                    LinkKeyboardController.Update();
+                    LinkGamepadController.Update();
+                }
+                    
             }
             else
             {
@@ -200,6 +215,7 @@ namespace Project3902
         {
             
             isPaused = !isPaused;
+            /*
             if (isPaused)
             {
                 keyboardController = HUDFactory.Instance.CreatePauseController(this);
@@ -210,7 +226,7 @@ namespace Project3902
                 keyboardController = LinkFactory.Instance.CreateLinkController(this);
                 gamepadController = LinkFactory.Instance.CreateLinkGamepadController(this);
             }
-
+            */
         }
 
         protected void RestartLevel()
