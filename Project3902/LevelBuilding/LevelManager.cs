@@ -34,7 +34,14 @@ namespace Project3902.LevelBuilding
             CollisionHandler.Instance.CheckCollisions();
             foreach (IEnemy enemy in currentLevel.enemyObjects)
             {
-                CollisionHandler.Instance.RegisterCollidable(enemy, Layer.Enemy, Layer.Wall, Layer.Projectile);
+                if (enemy is Flame)
+                {
+                    CollisionHandler.Instance.RegisterCollidable(enemy, Layer.Enemy, Layer.Wall);
+                }
+                else
+                {
+                    CollisionHandler.Instance.RegisterCollidable(enemy, Layer.Enemy, Layer.Wall, Layer.Projectile);
+                }
             }
             foreach (IItem item in currentLevel.itemObjects)
             {
@@ -71,7 +78,14 @@ namespace Project3902.LevelBuilding
             foreach (IEnemy enemy in currentLevel.enemyObjects)
             {
                 enemy.Position += offset;
-                CollisionHandler.Instance.RegisterCollidable(enemy, Layer.Enemy, Layer.Wall, Layer.Projectile);
+                if(enemy is Flame)
+                {
+                    CollisionHandler.Instance.RegisterCollidable(enemy, Layer.Enemy, Layer.Wall);
+                }
+                else
+                {
+                    CollisionHandler.Instance.RegisterCollidable(enemy, Layer.Enemy, Layer.Wall, Layer.Projectile);
+                }
             }
             foreach (IItem item in currentLevel.itemObjects)
             {

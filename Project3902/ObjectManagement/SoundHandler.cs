@@ -3,11 +3,14 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework.Input;
 
 namespace Project3902.ObjectManagement
 {
     class SoundHandler
     {
+        public int SoundType { get; set; }
+
         private Song currentSong;
         private Song dungeonMusic;
         private Song introMusic;
@@ -27,6 +30,32 @@ namespace Project3902.ObjectManagement
         private SoundEffect itemSound;
         private SoundEffect doorSound;
         private SoundEffect aquamentusSound;
+
+        private SoundEffect defaultSwordSlashSound;
+        private SoundEffect defaultSwordShootSound;
+        private SoundEffect defaultBoomerangSound;
+        private SoundEffect defaultEnemyHitSound;
+        private SoundEffect defaultEnemyDieSound;
+        private SoundEffect defaultLinkHurtSound;
+        private SoundEffect defaultLinkDieSound;
+        private SoundEffect defaultHeartSound;
+        private SoundEffect defaultRupeeSound;
+        private SoundEffect defaultItemSound;
+        private SoundEffect defaultDoorSound;
+        private SoundEffect defaultAquamentusSound;
+
+        private SoundEffect customSwordSlashSound;
+        private SoundEffect customSwordShootSound;
+        private SoundEffect customBoomerangSound;
+        private SoundEffect customLinkHurtSound;
+        private SoundEffect customHeartSound;
+        private SoundEffect customRupeeSound;
+        private SoundEffect customItemSound;
+        private SoundEffect customOldManSound;
+        private SoundEffect customRunningSound;
+
+        private SoundEffectInstance runningInstance;
+
         private SoundEffect bombBlowSound;
         private SoundEffect bombDropSound;
         private readonly List<SoundEffectInstance> instanceList=new List<SoundEffectInstance>();
@@ -45,20 +74,63 @@ namespace Project3902.ObjectManagement
             introMusic = content.Load<Song>("Songs/01 - Intro");
             gameOverMusic = content.Load<Song>("Songs/07 - Game Over");
             triforceMusic = content.Load<Song>("Songs/06 - Triforce");
-            swordSlashSound = content.Load<SoundEffect>("SoundEffects/LOZ_Sword_Slash");
-            swordShootSound = content.Load<SoundEffect>("SoundEffects/LOZ_Sword_Shoot");
-            boomerangSound= content.Load<SoundEffect>("SoundEffects/LOZ_Arrow_Boomerang");
-            enemyHitSound = content.Load<SoundEffect>("SoundEffects/LOZ_Enemy_Hit");
-            enemyDieSound = content.Load<SoundEffect>("SoundEffects/LOZ_Enemy_Die");
-            linkHurtSound = content.Load<SoundEffect>("SoundEffects/LOZ_Link_Hurt");
-            linkDieSound = content.Load<SoundEffect>("SoundEffects/LOZ_Link_Die");
-            heartSound = content.Load<SoundEffect>("SoundEffects/LOZ_Get_Heart");
-            rupeeSound = content.Load<SoundEffect>("SoundEffects/LOZ_Get_Rupee");
-            itemSound = content.Load<SoundEffect>("SoundEffects/LOZ_Get_Item");
-            doorSound = content.Load<SoundEffect>("SoundEffects/LOZ_Door_Unlock");
-            aquamentusSound= content.Load<SoundEffect>("SoundEffects/LOZ_Boss_Scream1");
-            bombDropSound = content.Load<SoundEffect>("SoundEffects/LOZ_Bomb_Drop");
-            bombBlowSound = content.Load<SoundEffect>("SoundEffects/LOZ_Bomb_Blow");
+
+            defaultSwordSlashSound = content.Load<SoundEffect>("SoundEffects/LOZ_Sword_Slash");
+            defaultSwordShootSound = content.Load<SoundEffect>("SoundEffects/LOZ_Sword_Shoot");
+            defaultBoomerangSound= content.Load<SoundEffect>("SoundEffects/LOZ_Arrow_Boomerang");
+            defaultEnemyHitSound = content.Load<SoundEffect>("SoundEffects/LOZ_Enemy_Hit");
+            defaultEnemyDieSound = content.Load<SoundEffect>("SoundEffects/LOZ_Enemy_Die");
+            defaultLinkHurtSound = content.Load<SoundEffect>("SoundEffects/LOZ_Link_Hurt");
+            defaultLinkDieSound = content.Load<SoundEffect>("SoundEffects/LOZ_Link_Die");
+            defaultHeartSound = content.Load<SoundEffect>("SoundEffects/LOZ_Get_Heart");
+            defaultRupeeSound = content.Load<SoundEffect>("SoundEffects/LOZ_Get_Rupee");
+            defaultItemSound = content.Load<SoundEffect>("SoundEffects/LOZ_Get_Item");
+            defaultDoorSound = content.Load<SoundEffect>("SoundEffects/LOZ_Door_Unlock");
+            defaultAquamentusSound= content.Load<SoundEffect>("SoundEffects/LOZ_Boss_Scream1");
+
+            customSwordSlashSound = content.Load<SoundEffect>("CustomSoundEffects/SwordSlash");
+            customSwordShootSound = content.Load<SoundEffect>("CustomSoundEffects/SwordThrow");
+            customBoomerangSound = content.Load<SoundEffect>("CustomSoundEffects/BoomerangShort");
+            customLinkHurtSound = content.Load<SoundEffect>("CustomSoundEffects/HitByEnemy");
+            customHeartSound = content.Load<SoundEffect>("CustomSoundEffects/Heart");
+            customRupeeSound = content.Load<SoundEffect>("CustomSoundEffects/CoinPickUp");
+            customItemSound = content.Load<SoundEffect>("CustomSoundEffects/ItemPickup");
+            customRunningSound = content.Load<SoundEffect>("CustomSoundEffects/RunningShort");
+            customOldManSound = content.Load<SoundEffect>("CustomSoundEffects/Oldman");
+        }
+
+        public void UseDefaultSounds()
+        {
+            SoundType = 0;
+            swordSlashSound = defaultSwordSlashSound;
+            swordShootSound = defaultSwordShootSound;
+            boomerangSound = defaultBoomerangSound;
+            enemyHitSound = defaultEnemyHitSound;
+            enemyDieSound = defaultEnemyDieSound;
+            linkHurtSound = defaultLinkHurtSound;
+            linkDieSound = defaultLinkDieSound;
+            heartSound = defaultHeartSound;
+            rupeeSound = defaultRupeeSound;
+            itemSound = defaultItemSound;
+            doorSound = defaultDoorSound;
+            aquamentusSound = defaultAquamentusSound;
+        }
+
+        public void UseCustomSounds()
+        {
+            SoundType = 1;
+            swordSlashSound = customSwordSlashSound;
+            swordShootSound = customSwordShootSound;
+            boomerangSound = customBoomerangSound;
+            enemyHitSound = defaultEnemyHitSound;
+            enemyDieSound = defaultEnemyDieSound;
+            linkHurtSound = customLinkHurtSound;
+            linkDieSound = defaultLinkDieSound;
+            heartSound = customHeartSound;
+            rupeeSound = customRupeeSound;
+            itemSound = customItemSound;
+            doorSound = defaultDoorSound;
+            aquamentusSound = defaultAquamentusSound;
         }
         public void PlaySong(String songType)
         {
@@ -162,6 +234,17 @@ namespace Project3902.ObjectManagement
             {
                 effect = aquamentusSound;
             }
+            else if (effectType.Equals("Running"))
+            {
+                effect = customRunningSound;
+                runningInstance = effect.CreateInstance();
+                runningInstance.IsLooped = true;
+                runningInstance.Play();
+            }
+            else if (effectType.Equals("Old Man"))
+            {
+                effect = customOldManSound;
+            }
             if (stopMusic)
             {
                 var tempInstance = effect.CreateInstance();
@@ -204,6 +287,21 @@ namespace Project3902.ObjectManagement
                 }
             }
 
+        }
+
+        public void StopRunningSound()
+        {
+            if (runningInstance != null)
+            {
+                runningInstance.Stop();
+            }
+        }
+
+        public KeyboardController RegisterSoundKeys()
+        {
+            var controller = new KeyboardController();
+            controller.RegisterCommand(Keys.D0, new ChangeSoundCommand(), InputState.Pressed);
+            return controller;
         }
 
 
