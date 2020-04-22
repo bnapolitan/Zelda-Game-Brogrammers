@@ -9,10 +9,13 @@ namespace Project3902
     {
         private FinalGame game;
         private Vector2 PauseScale = new Vector2(4, 4);
+        private IGameObject SelectedItem;
+        private readonly Vector2 SelectedItemPos = new Vector2(280, 220);
         public List<IGameObject> PauseScreenElements = new List<IGameObject>();
         private IGameObject ItemSelector;
         private readonly HUDFactory Factory = HUDFactory.Instance;
         private List<IGameObject> aquiredItems = new List<IGameObject>();
+        private List<String> aquiredObjectKeys = new List<String>();
         private int numItemsAquired = 0;
         private int SelectorPos = 0;
         private bool inPauseScreen;
@@ -33,6 +36,7 @@ namespace Project3902
                 obj.Draw(spriteBatch);
             }
             ItemSelector.Draw(spriteBatch);
+            SelectedItem.Draw(spriteBatch);
         }
 
         public void RegisterGame(FinalGame game)
@@ -53,7 +57,9 @@ namespace Project3902
             blackBox.Position = new Vector2(270, 210);
             PauseScreenElements.Add(blackBox);
             PauseScreenElements.Add(Factory.CreateHUDSword(CalculateNextInventoryPosition()));
+            aquiredItems.Add(new Sword(new Vector2(0,0)));
             ItemSelector = Factory.CreateItemSelector(new Vector2(510, 220));
+            SelectedItem = Factory.CreateHUDSword(SelectedItemPos);
             numItemsAquired++;
             
         }
@@ -93,6 +99,8 @@ namespace Project3902
                     if (aquired == false)
                     {
                         PauseScreenElements.Add(Factory.CreateHUDBow(CalculateNextInventoryPosition()));
+                        aquiredItems.Add(item);
+                        aquiredObjectKeys.Add("Bow");
                         numItemsAquired++;
                         
                     }
@@ -112,6 +120,7 @@ namespace Project3902
                     {
                         PauseScreenElements.Add(Factory.CreateHUDArrow(CalculateNextInventoryPosition()));
                         aquiredItems.Add(item);
+                        aquiredObjectKeys.Add("Arrow");
                         numItemsAquired++;
                         
                     }
@@ -130,6 +139,7 @@ namespace Project3902
                     {
                         PauseScreenElements.Add(Factory.CreateHUDCandle(CalculateNextInventoryPosition()));
                         aquiredItems.Add(item);
+                        aquiredObjectKeys.Add("Candle");
                         numItemsAquired++;
                         
                     }
@@ -148,6 +158,7 @@ namespace Project3902
                 {
                     PauseScreenElements.Add(Factory.CreateHUDBoomerang(CalculateNextInventoryPosition()));
                     aquiredItems.Add(item);
+                    aquiredObjectKeys.Add("Boomerang");
                     numItemsAquired++;
 
                 }
@@ -229,6 +240,32 @@ namespace Project3902
 
                 SelectorPos += 1;
                 ItemSelector.Position = CalculateItemSelectorPosition();
+            }
+        }
+
+        public void SelectItem()
+        {
+            
+            var selectedItem = aquiredItems[SelectorPos];
+            if(selectedItem is Sword)
+            {
+                SelectedItem = Factory.CreateHUDSword(SelectedItemPos);
+            }
+            if(selectedItem is BoomerangItem)
+            {
+                SelectedItem = Factory.CreateHUDBoomerang(SelectedItemPos);
+            }
+            if(selectedItem is Arrow)
+            {
+                SelectedItem = Factory.CreateHUDArrow(SelectedItemPos);
+            }
+            if(selectedItem is Candle)
+            {
+                SelectedItem = Factory.CreateHUDCandle(SelectedItemPos);
+            }
+            if(selectedItem is Bow)
+            {
+                SelectedItem = Factory.CreateHUDBow(SelectedItemPos);
             }
         }
     }

@@ -403,6 +403,7 @@ namespace Project3902
             controller.RegisterCommand(Keys.A, new LeftCommand(), InputState.Pressed);
             controller.RegisterCommand(Keys.D, new RightCommand(), InputState.Pressed);
             controller.RegisterCommand(Keys.G, new PauseGameCommand(game), InputState.Pressed);
+            controller.RegisterCommand(Keys.Z, new SelectCommand(), InputState.Pressed);
 
 
             return controller;
