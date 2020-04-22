@@ -86,15 +86,22 @@ namespace Project3902
             HUDElements.Add(Factory.CreateXCharacter());
             HUDElements.Add(Factory.CreateXCharacter());
             HUDElements.Add(Factory.CreateXCharacter());
-            BButtonObject = HUDFactory.Instance.CreateHUDSword(BButtonPosition);
+
+            BButtonObject = Factory.CreateItemBlackBox();
+            BButtonObject.Sprite.Scale = Factory.HUDScale;
+            BButtonObject.Position = new Vector2(395, 24);
+
             var blackBoxA = Factory.CreateItemBlackBox();
             blackBoxA.Sprite.Scale = Factory.HUDScale;
             blackBoxA.Position = new Vector2(315, 24);
             HUDElements.Add(blackBoxA);
+
             var blackBoxB = Factory.CreateItemBlackBox();
             blackBoxB.Sprite.Scale = Factory.HUDScale;
             blackBoxB.Position = new Vector2(395, 24);
             HUDElements.Add(blackBoxB);
+
+            HUDElements.Add(Factory.CreateHUDSword(new Vector2(320,30)));
 
 
             

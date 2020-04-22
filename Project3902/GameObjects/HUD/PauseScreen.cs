@@ -56,11 +56,11 @@ namespace Project3902
             var blackBox = Factory.CreateItemBlackBox();
             blackBox.Position = new Vector2(270, 210);
             PauseScreenElements.Add(blackBox);
-            PauseScreenElements.Add(Factory.CreateHUDSword(CalculateNextInventoryPosition()));
-            aquiredItems.Add(new Sword(new Vector2(0,0)));
+            
             ItemSelector = Factory.CreateItemSelector(new Vector2(510, 220));
-            SelectedItem = Factory.CreateHUDSword(SelectedItemPos);
-            numItemsAquired++;
+            SelectedItem = Factory.CreateItemBlackBox();
+            SelectedItem.Position = new Vector2(280, 210);
+
             
         }
 

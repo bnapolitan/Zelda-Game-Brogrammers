@@ -215,18 +215,7 @@ namespace Project3902
         {
             
             isPaused = !isPaused;
-            /*
-            if (isPaused)
-            {
-                keyboardController = HUDFactory.Instance.CreatePauseController(this);
-                gamepadController = HUDFactory.Instance.CreatePauseGamepadController(this);
-            }
-            else
-            {
-                keyboardController = LinkFactory.Instance.CreateLinkController(this);
-                gamepadController = LinkFactory.Instance.CreateLinkGamepadController(this);
-            }
-            */
+            
         }
 
         protected void RestartLevel()
