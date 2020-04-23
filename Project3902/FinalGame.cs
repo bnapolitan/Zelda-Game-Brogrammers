@@ -40,7 +40,7 @@ namespace Project3902
         private Boolean isPaused = false;
 
         public List<IGameObject> HUDObjects;
-
+        
         public MouseController LinkMouseController;
         public KeyboardController LinkKeyboardController;
         public GamepadController LinkGamepadController;
@@ -84,9 +84,12 @@ namespace Project3902
             HUDFactory.Instance.RegisterGame(this);
             HUDManager.Instance.RegisterGame(this);
             PauseScreen.Instance.RegisterGame(this);
+
             StartMenuState.Instance.RegisterGame(this);
             GameOverState.Instance.RegisterGame(this);
+
             HUDObjects = HUDManager.Instance.HUDElements;
+
 
 
 
@@ -96,6 +99,11 @@ namespace Project3902
             LinkGamepadController = LinkFactory.Instance.CreateLinkGamepadController(this);
             InventoryGamepadController = HUDFactory.Instance.CreatePauseGamepadController(this);
             InventoryKeyboardController = HUDFactory.Instance.CreatePauseController(this);
+
+
+           
+
+           
 
 
             ShapeSpriteFactory.Instance.CreateShapeTextures(GraphicsDevice);
@@ -167,6 +175,7 @@ namespace Project3902
                 }
                     
 
+
             }
             else
             {
@@ -201,6 +210,7 @@ namespace Project3902
             {
                 if(SoundHandler.Instance.SoundType==1)
 
+
                     SoundHandler.Instance.PlaySoundEffect("Old Man");
                 drawingDone = 2;
             }
@@ -215,14 +225,18 @@ namespace Project3902
 
             if (isGameOver)
             {
+
                 GameOverState.Instance.Draw(spriteBatch);
+
                 spriteBatch.End();
                 return;
             }
 
             if (isRunning == false)
             {
+
                 StartMenuState.Instance.Draw(spriteBatch);
+
                 spriteBatch.End();
                 return;
             }
@@ -276,7 +290,6 @@ namespace Project3902
 
 
 
-       
 
 
         private void StartRoomSwitch(Vector2 direction)

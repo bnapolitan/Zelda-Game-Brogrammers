@@ -43,6 +43,7 @@ namespace Project3902.ObjectManagement
             CollisionHandler.Instance.RegisterCollidable(door, Layer.Wall);
         }
 
+
         public IDrawable CreateCoverScreen()
         {
             var createdObject = new HUDObject(new Vector2(0, 0));
@@ -51,6 +52,7 @@ namespace Project3902.ObjectManagement
             createdObject.Sprite = sprite;
             return createdObject;
         }
+
 
         public static void RegisterExplodableWallForCollision(IInteractiveEnvironmentObject door)
         {

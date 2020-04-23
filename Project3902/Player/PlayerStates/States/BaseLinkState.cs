@@ -127,6 +127,11 @@ namespace Project3902
                     other.GameObject.Position += link.FacingDirection * 4;
                     (other.GameObject as ICollidable).Collider.AlignHitbox();
                     (other.GameObject as MoveableBlock).MaxFrames-= 4;
+                    if((other.GameObject as MoveableBlock).MaxFrames <= 0)
+                    {
+                        LevelManager.Instance.AddObjectToCurrentLevel(EnvironmentFactory.Instance.CreateBlockingBrick(other.GameObject.Position));
+                        LevelManager.Instance.RemoveObjectFromCurrentLevel(other.GameObject);
+                    }
                 }
                 else
                 {
