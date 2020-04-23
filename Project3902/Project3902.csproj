@@ -192,6 +192,7 @@
     <Compile Include="Player\PlayerCommands\BaseLinkCommand.cs" />
     <Compile Include="Player\PlayerCommands\LinkSlowDownCommand.cs" />
     <Compile Include="Player\PlayerCommands\LinkSpeedUpCommand.cs" />
+    <Compile Include="Player\PlayerCommands\LinkStartGameCommand.cs" />
     <Compile Include="Player\PlayerCommands\LinkUseBombCommand.cs" />
     <Compile Include="Player\PlayerCommands\LinkUseItemCommand.cs" />
     <Compile Include="Player\PlayerCommands\LinkAttackCommand.cs" />
