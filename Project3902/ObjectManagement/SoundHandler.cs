@@ -57,8 +57,11 @@ namespace Project3902.ObjectManagement
         private SoundEffectInstance runningInstance;
 
 
+        private SoundEffect defaultBombBlowSound;
+        private SoundEffect customBombBlowSound;
         private SoundEffect bombBlowSound;
         private SoundEffect bombDropSound;
+        private SoundEffect secretSound;
 
         private readonly List<SoundEffectInstance> instanceList=new List<SoundEffectInstance>();
 
@@ -91,13 +94,14 @@ namespace Project3902.ObjectManagement
             defaultAquamentusSound= content.Load<SoundEffect>("SoundEffects/LOZ_Boss_Scream1");
 
             bombDropSound = content.Load<SoundEffect>("SoundEffects/LOZ_Bomb_Drop");
-            bombBlowSound = content.Load<SoundEffect>("SoundEffects/LOZ_Bomb_Blow");
-
+            defaultBombBlowSound = content.Load<SoundEffect>("SoundEffects/LOZ_Bomb_Blow");
+            customBombBlowSound= content.Load<SoundEffect>("CustomSoundEffects/BombExplosion2");
+            secretSound= content.Load<SoundEffect>("SoundEffects/LOZ_Secret");
 
             customSwordSlashSound = content.Load<SoundEffect>("CustomSoundEffects/SwordSlash");
             customSwordShootSound = content.Load<SoundEffect>("CustomSoundEffects/SwordThrow");
             customBoomerangSound = content.Load<SoundEffect>("CustomSoundEffects/BoomerangShort");
-            customLinkHurtSound = content.Load<SoundEffect>("CustomSoundEffects/HitByEnemy");
+            customLinkHurtSound = content.Load<SoundEffect>("CustomSoundEffects/HitByEnemy2");
             customHeartSound = content.Load<SoundEffect>("CustomSoundEffects/Heart");
             customRupeeSound = content.Load<SoundEffect>("CustomSoundEffects/CoinPickUp");
             customItemSound = content.Load<SoundEffect>("CustomSoundEffects/ItemPickup");
@@ -120,6 +124,7 @@ namespace Project3902.ObjectManagement
             itemSound = defaultItemSound;
             doorSound = defaultDoorSound;
             aquamentusSound = defaultAquamentusSound;
+            bombBlowSound = defaultBombBlowSound;
         }
 
         public void UseCustomSounds()
@@ -137,6 +142,7 @@ namespace Project3902.ObjectManagement
             itemSound = customItemSound;
             doorSound = defaultDoorSound;
             aquamentusSound = defaultAquamentusSound;
+            bombBlowSound = customBombBlowSound;
         }
         public void PlaySong(String songType)
         {
@@ -201,6 +207,10 @@ namespace Project3902.ObjectManagement
             else if (effectType.Equals("Bomb Drop"))
             {
                 effect = bombDropSound;
+            }
+            else if (effectType.Equals("Secret"))
+            {
+                effect = secretSound;
             }
             else if (effectType.Equals("Arrow"))
             {
