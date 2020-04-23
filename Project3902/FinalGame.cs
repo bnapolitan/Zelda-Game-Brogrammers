@@ -185,7 +185,7 @@ namespace Project3902
             }
             else
             {
-                scrollTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+                scrollTimer -= 1;
                 if (scrollTimer <= 0)
                 {
                     EndRoomSwitch();

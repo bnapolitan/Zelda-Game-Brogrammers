@@ -14,6 +14,7 @@
         RightItem,
         UpItem,
         DownItem,
+        Triforce,
         Dead
     }
 }

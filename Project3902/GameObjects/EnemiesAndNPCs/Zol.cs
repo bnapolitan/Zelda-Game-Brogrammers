@@ -8,6 +8,7 @@ namespace Project3902
         private float steps = 100;
         private static readonly Random random = new Random();
         public Zol(Vector2 pos, float moveSpeed, Vector2 initDirection)
+            : base()
         {
             Position = pos;
             Active = true;
@@ -28,6 +29,8 @@ namespace Project3902
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            if (cloudTimer > 0)
+                return;
 
             if (!attackedRecent)
             {

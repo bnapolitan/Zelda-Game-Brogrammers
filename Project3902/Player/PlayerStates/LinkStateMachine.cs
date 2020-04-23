@@ -28,7 +28,8 @@ namespace Project3902
                 { LinkStates.UpItem, new LinkUpItemState(link, this) },
                 { LinkStates.DownItem, new LinkDownItemState(link, this) },
                 { LinkStates.RightItem, new LinkRightItemState(link, this) },
-                { LinkStates.LeftItem, new LinkLeftItemState(link, this) }
+                { LinkStates.LeftItem, new LinkLeftItemState(link, this) },
+                { LinkStates.Triforce, new LinkTriforceState(link, this) }
             };
 
             currentState = states[LinkStates.RightWalk];

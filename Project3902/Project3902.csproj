@@ -114,6 +114,7 @@
     <Compile Include="GameObjects\Weapons\BasePlayerProjectile.cs" />
     <Compile Include="GameObjects\Weapons\SwordAttack.cs" />
     <Compile Include="GameObjects\Weapons\ArrowProjectile.cs" />
+    <Compile Include="GameObjects\Weapons\SwordParticleProjectile.cs" />
     <Compile Include="GlobalSuppressions2.cs" />
     <Compile Include="LevelBuilding\Interface\ILevel.cs" />
     <Compile Include="LevelBuilding\Level.cs" />
@@ -221,6 +222,7 @@
     <Compile Include="Player\PlayerStates\States\ItemStates\LinkRightItemState.cs" />
     <Compile Include="Player\PlayerStates\States\ItemStates\LinkUpItemState.cs" />
     <Compile Include="GameObjects\GameScreens\StartMenuState.cs" />
+    <Compile Include="Player\PlayerStates\States\LinkTriforceState.cs" />
     <Compile Include="Player\PlayerStates\States\WalkStates\BaseLinkWalkState.cs" />
     <Compile Include="Player\PlayerStates\States\WalkStates\LinkDownWalkState.cs" />
     <Compile Include="Player\PlayerStates\States\WalkStates\LinkLeftWalkState.cs" />

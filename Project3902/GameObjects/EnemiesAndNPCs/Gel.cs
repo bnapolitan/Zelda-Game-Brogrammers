@@ -9,6 +9,7 @@ namespace Project3902
         private static readonly Random random = new Random();
 
         public Gel(Vector2 pos, float moveSpeed, Vector2 initDirection)
+            : base()
         {
             Position = pos;
             Active = true;
@@ -29,6 +30,8 @@ namespace Project3902
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            if (cloudTimer > 0)
+                return;
             if (!attackedRecent)
             {
                 if (steps == 0)

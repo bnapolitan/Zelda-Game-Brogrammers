@@ -198,7 +198,7 @@ namespace Project3902
                 }
                 else if (other.GameObject is Triforce)
                 {
-                    SoundHandler.Instance.PlaySong("Triforce");
+                    machine.SwitchState(LinkStates.Triforce);
                 }
                 else if(other.GameObject is Map)
                 {

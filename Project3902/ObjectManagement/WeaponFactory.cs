@@ -99,6 +99,31 @@ namespace Project3902
             return sword;
         }
 
+        public IProjectile CreateSwordParticle()
+        {
+            return new SwordParticleProjectile();
+        }
+
+        public ISprite CreateSwordParticleSprite(IGameObject particleObject, Vector2 direction)
+        {
+            SpriteEffects flip = SpriteEffects.None;
+            Rectangle sourceRect = new Rectangle(62, 157, 8, 10);
+
+            if (direction.X > 0)
+                flip = SpriteEffects.FlipHorizontally;
+
+            if (direction.Y > 0)
+                flip |= SpriteEffects.FlipVertically;
+
+
+            var sprite = new FixedSprite(particleObject, weaponAtlas, sourceRect, weaponScale)
+            {
+                Flip = flip
+            };
+
+            return sprite;
+        }
+
         public IProjectile CreateSword()
         {
             return new SwordAttack();

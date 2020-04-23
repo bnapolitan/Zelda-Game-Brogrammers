@@ -6,6 +6,7 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
     {
 
         public OldMan(Vector2 pos, float moveSpeed, Vector2 initDirection)
+            : base()
         {
             Position = pos;
             Active = true;

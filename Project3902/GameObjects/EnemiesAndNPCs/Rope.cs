@@ -10,6 +10,7 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
         public ISprite LeftFacingRope { get; set; }
         private static readonly Random random = new Random();
         public Rope(Vector2 pos, float moveSpeed, Vector2 initDirection)
+            : base()
         {
             Position = pos;
             Active = true;
@@ -33,6 +34,8 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            if (cloudTimer > 0)
+                return;
 
             if (!attackedRecent)
             {

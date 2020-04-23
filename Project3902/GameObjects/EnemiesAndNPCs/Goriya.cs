@@ -67,6 +67,8 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            if (cloudTimer > 0)
+                return;
 
             if (currentFrame >= framesBeforeAttack)
             {

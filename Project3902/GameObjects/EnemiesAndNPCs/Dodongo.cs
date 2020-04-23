@@ -8,6 +8,7 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
         private Vector2 relPos = new Vector2(0, 0);
 
         public Dodongo(Vector2 pos, float moveSpeed, Vector2 initDirection)
+            : base()
         {
             Position = pos;
             Active = true;
@@ -28,6 +29,8 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            if (cloudTimer > 0)
+                return;
             if (!attackedRecent)
             {
                 Position += Direction * MoveSpeed;

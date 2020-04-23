@@ -13,6 +13,7 @@ namespace Project3902.ObjectManagement
 		private SpriteAtlas dungeons2;
 		private SpriteAtlas NPCSpriteAtlas;
 		private SpriteAtlas BossSpriteAtlas;
+		private SpriteAtlas linkAtlas;
 		private FinalGame game;
 		private Vector2 enemyScale = new Vector2(3, 3);
 
@@ -34,6 +35,7 @@ namespace Project3902.ObjectManagement
 			dungeons2 = new SpriteAtlas(content.Load<Texture2D>("Dungeon_Enemies_2"));
 			NPCSpriteAtlas = new SpriteAtlas(content.Load<Texture2D>("ZeldaCharacter"));
 			BossSpriteAtlas = new SpriteAtlas(content.Load<Texture2D>("ZeldaBosses"));
+			linkAtlas = new SpriteAtlas(content.Load<Texture2D>("linkspritesheet"));
 		}
 
 		public static void RegisterEnemyForCollision(IEnemy enemy)
@@ -363,6 +365,14 @@ namespace Project3902.ObjectManagement
 		{
 			List<Rectangle> AquamentusSource = new List<Rectangle> { new Rectangle(4, 0, 24, 32), new Rectangle(49, 0, 24, 32), new Rectangle(94, 0, 24, 32), new Rectangle(139, 0, 24, 32) };
 			var sprite = new AnimatedSprite(gameObject, BossSpriteAtlas, AquamentusSource, 0.5f, enemyScale);
+			return sprite;
+		}
+
+		public ISprite CreateCloudAnimationSprite(IGameObject gameObject)
+		{
+			var sources = new List<Rectangle> { new Rectangle(138, 185, 16, 16), new Rectangle(155, 185, 16, 16), new Rectangle(172, 185, 16, 16) };
+			var sprite = new AnimatedSprite(gameObject, linkAtlas, sources, 0.2f, enemyScale);
+
 			return sprite;
 		}
 	}

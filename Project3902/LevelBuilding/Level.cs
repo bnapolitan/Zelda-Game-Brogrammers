@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Project3902.Configuration;
+using System;
 using System.Collections.Generic;
 
 namespace Project3902.LevelBuilding
@@ -74,7 +75,7 @@ namespace Project3902.LevelBuilding
         {
             if (Scrolling)
             {
-                ScrollGameObjects(gameTime);
+                ScrollGameObjects();
                 return;
             }
 
@@ -120,23 +121,21 @@ namespace Project3902.LevelBuilding
             }
         }
 
-        private void ScrollGameObjects(GameTime gameTime)
+        private void ScrollGameObjects()
         {
-            var elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
-
             foreach (IGameObject gameObject in interactiveEnvironmentObjects)
             {
-                gameObject.Position += ScrollDirection * ScrollSpeed * elapsed;
+                gameObject.Position += ScrollDirection * ScrollSpeed;
             }
 
             foreach (IGameObject gameObject in enemyObjects)
             {
-                gameObject.Position += ScrollDirection * ScrollSpeed * elapsed;
+                gameObject.Position += ScrollDirection * ScrollSpeed;
             }
 
             foreach (IGameObject gameObject in itemObjects)
             {
-                gameObject.Position += ScrollDirection * ScrollSpeed * elapsed;
+                gameObject.Position += ScrollDirection * ScrollSpeed;
             }
         }
 

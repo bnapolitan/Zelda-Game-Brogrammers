@@ -26,7 +26,7 @@ namespace Project3902
             timeSinceStart = 0;
             (Sprite as AnimatedSprite).ResetAnimation();
 
-            if (link.Health == link.MaxHealth)
+            if (link.Health == link.MaxHealth && (link.SwordProjectile as SwordProjectile).CanShoot())
             {
                 link.SwordProjectile.Launch(link.Position + link.Sprite.Scale * new Vector2(4, 4), direction);
                 SoundHandler.Instance.PlaySoundEffect("Sword Shoot");

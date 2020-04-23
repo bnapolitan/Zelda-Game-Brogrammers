@@ -52,6 +52,7 @@ namespace Project3902
             controller.RegisterCommand(Keys.D1, new LinkUseBoomerangCommand(game), InputState.Pressed);
             controller.RegisterCommand(Keys.D2, new LinkUseBlueCandleCommand(game), InputState.Pressed);
             controller.RegisterCommand(Keys.D3, new LinkUseBombCommand(game), InputState.Pressed);
+            controller.RegisterCommand(Keys.D4, new LinkUseBowCommand(game), InputState.Pressed);
 
             controller.RegisterCommand(Keys.G, new PauseGameCommand(game), InputState.Pressed);
             controller.RegisterCommand(Keys.LeftShift, new LinkSpeedUpCommand(game), InputState.Pressed);
@@ -181,6 +182,11 @@ namespace Project3902
         public ISprite CreateDownItemSprite(IGameObject link)
         {
             return new FixedSprite(link, linkAtlas, new Rectangle(107, 11, 16, 16), linkScale);
+        }
+
+        public ISprite CreateTriforceSprite(IGameObject link)
+        {
+            return new FixedSprite(link, linkAtlas, new Rectangle(230, 11, 16, 16), linkScale);
         }
 
         public void CreateDamagedLink()

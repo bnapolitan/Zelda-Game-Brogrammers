@@ -39,12 +39,27 @@ namespace Project3902
         protected bool attackedRecent = false;
         public abstract void Attack();
 
+        private ISprite cloud;
+        protected float cloudTimer = 0.4f;
+
+        public BaseEnemy()
+        {
+            cloud = EnemyFactory.Instance.CreateCloudAnimationSprite(this);
+        }
+
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            if (Active)
+            if (cloudTimer >= 0)
             {
-                Collider.Draw(spriteBatch);
-                (Sprite as AnimatedSprite).DrawTinted(spriteBatch, tint);
+                cloud.Draw(spriteBatch);
+            }
+            else
+            {
+                if (Active)
+                {
+                    Collider.Draw(spriteBatch);
+                    (Sprite as AnimatedSprite).DrawTinted(spriteBatch, tint);
+                }
             }
         }
 
@@ -107,7 +122,9 @@ namespace Project3902
                     {
                         SoundHandler.Instance.PlaySoundEffect("Enemy Hit");
                     }
-                    Vector2 move = (other.GameObject as IProjectile).Direction * 20;
+                    Vector2 move = Vector2.Zero;
+                    if (!(other.GameObject is SwordParticleProjectile))
+                        move = (other.GameObject as IProjectile).Direction * 20;
                     (other.GameObject as IProjectile).OnCollide(Collider);
                     Position = new Vector2(Position.X + move.X, Position.Y + move.Y);
                     Collider.AlignHitbox();
@@ -124,6 +141,12 @@ namespace Project3902
 
         public virtual void Update(GameTime gameTime)
         {
+            if (cloudTimer > 0)
+            {
+                cloud.Update(gameTime);
+                cloudTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }
+
             if (Active)
             {
                 Sprite.Update(gameTime);

@@ -148,11 +148,23 @@ namespace Project3902
 		public IGameObject CreateTriforce(Vector2 position)
 		{
 			var createdObject = new Triforce(position);
-			List<Rectangle> TriforceSource = new List<Rectangle> { new Rectangle(274, 2, 11, 11) };
-			var sprite = new AnimatedSprite(createdObject, ItemSprite, TriforceSource, .4f, new Vector2(4, 4));
-			createdObject.Sprite = sprite;
+			createdObject.Sprite = CreateTriforceSprite(createdObject);
 			RegisterItemForCollision(createdObject);
 			return createdObject;
+		}
+
+		public IGameObject CreateTriforceImage(Vector2 position)
+		{
+			var createdObject = new FixedGameObject(position);
+			createdObject.Sprite = CreateTriforceSprite(createdObject);
+			return createdObject;
+		}
+
+		public ISprite CreateTriforceSprite(IGameObject createdObject)
+		{
+			Rectangle TriforceSource = new Rectangle(343, 123, 10, 10);
+			var sprite = new FixedSprite(createdObject, ItemSprite2, TriforceSource, new Vector2(4, 4));
+			return sprite;
 		}
 
 		public IGameObject CreateSword(Vector2 position)

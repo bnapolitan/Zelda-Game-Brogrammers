@@ -10,6 +10,7 @@ namespace Project3902.GameObjects.EnemiesAndNPCs.Interfaces
         public ISprite LeftFacingWallmaster { get; set; }
         private static readonly Random random = new Random();
         public Wallmaster(Vector2 pos, float moveSpeed, Vector2 initDirection)
+            : base()
         {
             Position = pos;
             Active = true;
@@ -34,6 +35,8 @@ namespace Project3902.GameObjects.EnemiesAndNPCs.Interfaces
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            if (cloudTimer > 0)
+                return;
 
             if (!attackedRecent)
             {
