@@ -216,7 +216,6 @@ namespace Project3902.LevelBuilding
                         {
                             if (environment is MoveableBlock)
                             {
-                                Console.WriteLine(environment.Position);
                                 if (environment.Position.X >=509 && environment.Position.Y>= 317 + HUDFactory.Instance.HUDHeight)
                                 {
 
@@ -228,6 +227,13 @@ namespace Project3902.LevelBuilding
                         }
                         if (moved)
                         {
+                            foreach (var environment in current.interactiveEnvironmentObjects)
+                            {
+                                if (environment is ShutDoor)
+                                {
+                                    CollisionHandler.Instance.RemoveCollidable(environment as ICollidable);
+                                }
+                            }
                             current.interactiveEnvironmentObjects.RemoveAll(i => i is ShutDoor);
                             SoundHandler.Instance.PlaySoundEffect("Door Unlock");
                             AddObjectToCurrentLevel(EnvironmentFactory.Instance.CreateOpenDoorLeft(new Vector2(0, 288 + HUDFactory.Instance.HUDHeight)));
