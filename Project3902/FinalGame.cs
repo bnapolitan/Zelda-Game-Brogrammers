@@ -84,8 +84,8 @@ namespace Project3902
             HUDFactory.Instance.RegisterGame(this);
             HUDManager.Instance.RegisterGame(this);
             PauseScreen.Instance.RegisterGame(this);
-            StartMenuScreen.Instance.RegisterGame(this);
-            GameOverScreen.Instance.RegisterGame(this);
+            StartMenuState.Instance.RegisterGame(this);
+            GameOverState.Instance.RegisterGame(this);
             HUDObjects = HUDManager.Instance.HUDElements;
 
 
@@ -215,14 +215,14 @@ namespace Project3902
 
             if (isGameOver)
             {
-                GameOverScreen.Instance.Draw(spriteBatch);
+                GameOverState.Instance.Draw(spriteBatch);
                 spriteBatch.End();
                 return;
             }
 
             if (isRunning == false)
             {
-                StartMenuScreen.Instance.Draw(spriteBatch);
+                StartMenuState.Instance.Draw(spriteBatch);
                 spriteBatch.End();
                 return;
             }
