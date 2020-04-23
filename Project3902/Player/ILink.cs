@@ -17,5 +17,7 @@ namespace Project3902
         int BombCount { get; set; }
         int BombExplodeTime { get; set; }
         float MovementSpeed { get; set; }
+
+        void RoomChange();
     }
 }

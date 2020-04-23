@@ -336,6 +336,8 @@ namespace Project3902
             nextLevel.ScrollDirection = direction;
 
             scrollTimer = (roomSize * direction).Length() / currentLevel.ScrollSpeed;
+
+            Link.RoomChange();
         }
 
         private void EndRoomSwitch()
