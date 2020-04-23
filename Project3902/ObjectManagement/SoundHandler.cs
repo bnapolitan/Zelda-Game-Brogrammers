@@ -173,14 +173,18 @@ namespace Project3902.ObjectManagement
 
         private void MediaPlayer_MediaStateChanged(object sender, System.EventArgs e)
         {
-            if (!musicPause && currentSong !=triforceMusic)
+            if (currentSong != null)
             {
-                MediaPlayer.Play(currentSong);
-            }
-            else if (currentSong == triforceMusic)
-            {
-                currentSong = introMusic;
-                MediaPlayer.Play(currentSong);
+                if (!musicPause && currentSong != triforceMusic)
+                {
+                    Console.WriteLine("Here?");
+                    MediaPlayer.Play(currentSong);
+                }
+                else if (currentSong == triforceMusic)
+                {
+                    currentSong = introMusic;
+                    MediaPlayer.Play(currentSong);
+                }
             }
         }
 
@@ -287,6 +291,7 @@ namespace Project3902.ObjectManagement
 
         public void StopMusic()
         {
+            currentSong = null;
             MediaPlayer.Stop();
         }
 

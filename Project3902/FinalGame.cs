@@ -296,6 +296,15 @@ namespace Project3902
             if(pauseCooldown == 5)
             {
                 IsTotalPause = !IsTotalPause;
+                if (IsTotalPause)
+                {
+                    SoundHandler.Instance.StopMusic();
+                }
+                else
+                {
+                    SoundHandler.Instance.PlaySong("Dungeon");
+                    Console.WriteLine("in total pause");
+                }
                 pauseCooldown = 0;
             }
         }

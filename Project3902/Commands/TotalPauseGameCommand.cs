@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Project3902
+﻿namespace Project3902
 {
     class TotalPauseGameCommand : ICommand
     {
@@ -15,7 +9,11 @@ namespace Project3902
         }
         public void Execute()
         {
-            game.TotalPauseGame();
+            if (game.isRunning)
+            {
+
+                game.TotalPauseGame();
+            }
         }
     }
 }
