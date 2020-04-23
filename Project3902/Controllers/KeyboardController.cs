@@ -24,8 +24,15 @@ namespace Project3902
         public void RegisterCommand(Keys key, ICommand command)
         {
             heldKeys.Add(key, command);
+
         }
 
+        public void RemoveCommand(Keys key)
+        {
+            heldKeys.Remove(key);
+            pressedKeys.Remove(key);
+            releasedKeys.Remove(key);
+        }
         public void RegisterCommand(Keys key, ICommand command, InputState state)
         {
             switch (state)

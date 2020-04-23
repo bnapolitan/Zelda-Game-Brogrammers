@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Project3902.GameObjects;
-using Project3902.ObjectManagement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace Project3902
 {
-    class BombPickup : IItem
+    class BoomerangItem : IItem
     {
         public Vector2 Position { get; set; }
         public ISprite Sprite { get; set; }
         public bool Active { get; set; }
         public Collider Collider { get; set; }
 
-        public BombPickup(Vector2 pos)
+        public BoomerangItem(Vector2 pos)
         {
             Position = pos;
             Active = true;
@@ -39,7 +38,6 @@ namespace Project3902
 
         public void Update(GameTime gameTime)
         {
-
         }
 
         public void OnCollide(Collider other)

@@ -41,10 +41,12 @@ namespace Project3902
 
         public List<IGameObject> HUDObjects;
 
-        MouseController mouseController;
-        KeyboardController keyboardController;
+        public MouseController LinkMouseController;
+        public KeyboardController LinkKeyboardController;
+        public GamepadController LinkGamepadController;
+        public KeyboardController InventoryKeyboardController;
+        public GamepadController InventoryGamepadController;
         KeyboardController soundController;
-        GamepadController gamepadController;
 
         public string CurrentRoom = "DungeonRoom0";
 
@@ -88,10 +90,13 @@ namespace Project3902
 
 
 
-            keyboardController = LinkFactory.Instance.CreateLinkController(this);
             soundController = SoundHandler.Instance.RegisterSoundKeys();
-            mouseController = LevelFactory.Instance.CreateLevelController(this);
-            gamepadController = LinkFactory.Instance.CreateLinkGamepadController(this);
+            LinkKeyboardController = LinkFactory.Instance.CreateLinkController(this);
+            LinkMouseController = LevelFactory.Instance.CreateLevelController(this);
+            LinkGamepadController = LinkFactory.Instance.CreateLinkGamepadController(this);
+            InventoryGamepadController = HUDFactory.Instance.CreatePauseGamepadController(this);
+            InventoryKeyboardController = HUDFactory.Instance.CreatePauseController(this);
+
 
             ShapeSpriteFactory.Instance.CreateShapeTextures(GraphicsDevice);
 
@@ -129,9 +134,9 @@ namespace Project3902
             base.Update(gameTime);
             if (isRunning == false || isGameOver)
             {
-                mouseController.Update();
-                keyboardController.Update();
-                gamepadController.Update();
+                LinkMouseController.Update();
+                LinkKeyboardController.Update();
+                LinkGamepadController.Update();
                 return;
             }
 
@@ -145,11 +150,22 @@ namespace Project3902
 
             if (!currentLevel.Scrolling)
             {
+
+                    soundController.Update();
                 Link.Update(gameTime);
-                mouseController.Update();
-                keyboardController.Update();
-                soundController.Update();
-                gamepadController.Update();
+                if (isPaused)
+                {
+                    InventoryKeyboardController.Update();
+                    InventoryGamepadController.Update();
+                    
+                }
+                else
+                {
+                    LinkMouseController.Update();
+                    LinkKeyboardController.Update();
+                    LinkGamepadController.Update();
+                }
+                    
 
             }
             else
@@ -163,7 +179,7 @@ namespace Project3902
             if (!isPaused)
             {
                 HUDManager.Instance.Update();
-                PauseScreen.Instance.Update();
+                
 
                 CollisionHandler.Instance.CheckCollisions();
 
@@ -173,6 +189,12 @@ namespace Project3902
                     GameOver();
                     linkDeath = false;
                 }
+            }
+
+
+            if (isPaused)
+            {
+                PauseScreen.Instance.Update();
             }
 
             if (drawingDone==1)
@@ -237,7 +259,9 @@ namespace Project3902
 
         public void PauseGame()
         {
+            
             isPaused = !isPaused;
+            
         }
 
         protected void RestartLevel()

@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Project3902.GameObjects;
-using Project3902.GameObjects.Item;
 using System.Collections.Generic;
 
 namespace Project3902
@@ -191,6 +190,26 @@ namespace Project3902
 			var createdObject = new BombPickup(position);
 			List<Rectangle> bombSource = new List<Rectangle> { new Rectangle(528, 0, 38, 44) };
 			var sprite = new AnimatedSprite(createdObject, FixSprite, bombSource, .4f, new Vector2(1, 1));
+			createdObject.Sprite = sprite;
+			RegisterItemForCollision(createdObject);
+			return createdObject;
+		}
+
+		public IGameObject CreateBoomerang(Vector2 position)
+		{
+			var createdObject = new BoomerangItem(position);
+			List<Rectangle> WatchSource = new List<Rectangle> { new Rectangle(128, 2, 6, 9) };
+			var sprite = new AnimatedSprite(createdObject, ItemSprite, WatchSource, .4f, new Vector2(3.5f, 3.5f));
+			createdObject.Sprite = sprite;
+			RegisterItemForCollision(createdObject);
+			return createdObject;
+		}
+
+		public IGameObject CreateCandle(Vector2 position)
+		{
+			var createdObject = new Candle(position);
+			List<Rectangle> WatchSource = new List<Rectangle> { new Rectangle(159, 0, 9, 15) };
+			var sprite = new AnimatedSprite(createdObject, ItemSprite, WatchSource, .4f, new Vector2(3.5f, 3.5f));
 			createdObject.Sprite = sprite;
 			RegisterItemForCollision(createdObject);
 			return createdObject;

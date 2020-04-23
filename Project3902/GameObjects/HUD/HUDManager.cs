@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 
 namespace Project3902
@@ -11,10 +12,12 @@ namespace Project3902
         public List<IGameObject> HUDElements = new List<IGameObject>();
         public List<IGameObject> HeartsList = new List<IGameObject>();
         public List<IGameObject> counterList = new List<IGameObject>();
+        public IGameObject BButtonObject;
         private readonly List<List<IGameObject>> numsLists = new List<List<IGameObject>>();
         private readonly HUDFactory Factory = HUDFactory.Instance;
         private IGameObject mapBlip;
         private readonly IDictionary<string, Vector2> blipPosition;
+        private readonly Vector2 BButtonPosition = new Vector2(400, 30);
         public static HUDManager Instance { get; } = new HUDManager();
         private int numHearts;
         private int maxHearts;
@@ -61,6 +64,7 @@ namespace Project3902
             {
                 gameObject.Draw(spriteBatch);
             }
+            BButtonObject.Draw(spriteBatch);
             mapBlip.Draw(spriteBatch);
         }
 
@@ -85,17 +89,25 @@ namespace Project3902
             HUDElements.Add(Factory.CreateXCharacter());
             HUDElements.Add(Factory.CreateXCharacter());
             HUDElements.Add(Factory.CreateXCharacter());
+
+            BButtonObject = Factory.CreateItemBlackBox();
+            BButtonObject.Sprite.Scale = Factory.HUDScale;
+            BButtonObject.Position = new Vector2(395, 24);
+
             var blackBoxA = Factory.CreateItemBlackBox();
             blackBoxA.Sprite.Scale = Factory.HUDScale;
             blackBoxA.Position = new Vector2(315, 24);
             HUDElements.Add(blackBoxA);
+
             var blackBoxB = Factory.CreateItemBlackBox();
             blackBoxB.Sprite.Scale = Factory.HUDScale;
             blackBoxB.Position = new Vector2(395, 24);
             HUDElements.Add(blackBoxB);
 
+            HUDElements.Add(Factory.CreateHUDSword(new Vector2(320,30)));
 
 
+            
         }
 
         private void UpdateHearts()
@@ -201,8 +213,48 @@ namespace Project3902
                 { "DungeonRoom17", new Vector2(214, 34) }
             };
 
+
             return dictionary;
         }
+        public void ChangeBItem(IGameObject HUDItem, IGameObject aquiredItem)
+        {
+            BButtonObject = HUDItem;
+            BButtonObject.Position = BButtonPosition;
+
+            if (aquiredItem is Sword)
+            {
+                game.LinkKeyboardController.RemoveCommand(Keys.X);
+                game.LinkKeyboardController.RegisterCommand(Keys.X, new LinkAttackCommand(game),InputState.Pressed);
+            }
+            if (aquiredItem is BoomerangItem)
+            {
+                game.LinkKeyboardController.RemoveCommand(Keys.X);
+                game.LinkKeyboardController.RegisterCommand(Keys.X, new LinkUseBoomerangCommand(game),InputState.Pressed);
+            }
+            if (aquiredItem is Arrow)
+            {
+
+            }
+            if (aquiredItem is Bow)
+            {
+
+            }
+            if (aquiredItem is Candle)
+            {
+                game.LinkKeyboardController.RemoveCommand(Keys.X);
+                game.LinkKeyboardController.RegisterCommand(Keys.X, new LinkUseBlueCandleCommand(game),InputState.Pressed);
+            }
+            if(aquiredItem is BombPickup)
+            {
+                game.LinkKeyboardController.RemoveCommand(Keys.X);
+                game.LinkKeyboardController.RegisterCommand(Keys.X, new LinkUseBombCommand(game), InputState.Pressed);
+
+            }
+        }
+
+ 
+
+
 
     }
 }

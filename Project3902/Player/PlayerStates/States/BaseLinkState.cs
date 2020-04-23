@@ -5,7 +5,6 @@ using Project3902.GameObjects;
 using Project3902.GameObjects.EnemyProjectiles;
 using Project3902.GameObjects.Environment;
 using Project3902.GameObjects.Environment.Interfaces;
-using Project3902.GameObjects.Item;
 using Project3902.LevelBuilding;
 using Project3902.ObjectManagement;
 
@@ -154,6 +153,7 @@ namespace Project3902
             else if(other.GameObject is IItem && !(other.GameObject is Bomb))
             {
                 LevelManager.Instance.RemoveObjectFromCurrentLevel(other.GameObject);
+                PauseScreen.Instance.addToAquiredItems(other.GameObject);
                 if (other.GameObject is Heart || other.GameObject is Key)
                 {
                     SoundHandler.Instance.PlaySoundEffect("Heart");
@@ -210,6 +210,7 @@ namespace Project3902
                 else if (other.GameObject is Compass)
                 {
                     HUDManager.Instance.HUDElements.Add(HUDFactory.Instance.CreateTriforceMapBlip());
+                    PauseScreen.Instance.AddCompassToPauseScreen();
                     SoundHandler.Instance.PlaySoundEffect("Item");
                 }
                 else

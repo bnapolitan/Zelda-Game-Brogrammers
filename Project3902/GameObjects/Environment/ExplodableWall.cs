@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Project3902.Configuration;
-using Project3902.GameObjects.Item;
 
 namespace Project3902.GameObjects.Environment
 {
