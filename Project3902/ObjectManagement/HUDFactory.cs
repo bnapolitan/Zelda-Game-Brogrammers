@@ -315,6 +315,23 @@ namespace Project3902
             return gameObject;
         }
 
+        public IGameObject CreateLowerPauseBorder()
+        {
+            var gameObject = new HUDObject(new Vector2(0, 700));
+            var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(1, 11, 256, 19), PauseScale);
+            gameObject.Sprite = sprite;
+            return gameObject;
+        }
+
+        public IGameObject CreateSidePauseBorder()
+        {
+            var gameObject = new HUDObject(new Vector2(1000, HUDHeight));
+            var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(249, 11, 8, 80), new Vector2(5,20));
+            gameObject.Sprite = sprite;
+            return gameObject;
+        }
+        
+
         public IDrawable createTextSection(SpriteFont font, string text)
         {
             var sprite = new SimpleText(text, new Vector2(HUDWidth / 2, HUDHeight / 2), new Color(255, 255, 255), font, true);
@@ -395,6 +412,14 @@ namespace Project3902
             return gameObject;
         }
 
+        public IGameObject CreatePauseMap(Vector2 position)
+        {
+            var gameObject = new HUDObject(position);
+            var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(601, 156, 8, 16), PauseScale);
+            gameObject.Sprite = sprite;
+            return gameObject;
+        }
+
         public IGameObject CreateItemSelector(Vector2 position)
         {
             var gameObject = new HUDObject(position);
@@ -432,6 +457,7 @@ namespace Project3902
             controller.RegisterCommand(Buttons.DPadLeft, new LeftCommand(), InputState.Pressed);
             controller.RegisterCommand(Buttons.DPadRight, new RightCommand(), InputState.Pressed);
             controller.RegisterCommand(Buttons.Start, new PauseGameCommand(game), InputState.Pressed);
+            controller.RegisterCommand(Buttons.A, new SelectCommand(), InputState.Pressed);
 
             return controller;
         }

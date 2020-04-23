@@ -226,12 +226,16 @@ namespace Project3902
             if (aquiredItem is Sword)
             {
                 game.LinkKeyboardController.RemoveCommand(Keys.X);
+                game.LinkGamepadController.RemoveCommand(Buttons.B);
                 game.LinkKeyboardController.RegisterCommand(Keys.X, new LinkAttackCommand(game),InputState.Pressed);
+                game.LinkGamepadController.RegisterCommand(Buttons.B, new LinkAttackCommand(game), InputState.Pressed);
             }
             if (aquiredItem is BoomerangItem)
             {
+                game.LinkGamepadController.RemoveCommand(Buttons.B);
                 game.LinkKeyboardController.RemoveCommand(Keys.X);
                 game.LinkKeyboardController.RegisterCommand(Keys.X, new LinkUseBoomerangCommand(game),InputState.Pressed);
+                game.LinkGamepadController.RegisterCommand(Buttons.B, new LinkUseBoomerangCommand(game), InputState.Pressed);
             }
             if (aquiredItem is Arrow)
             {
@@ -243,13 +247,17 @@ namespace Project3902
             }
             if (aquiredItem is Candle)
             {
+                game.LinkGamepadController.RemoveCommand(Buttons.B);
                 game.LinkKeyboardController.RemoveCommand(Keys.X);
                 game.LinkKeyboardController.RegisterCommand(Keys.X, new LinkUseBlueCandleCommand(game),InputState.Pressed);
+                game.LinkGamepadController.RegisterCommand(Buttons.B, new LinkUseBlueCandleCommand(game), InputState.Pressed);
             }
             if(aquiredItem is BombPickup)
             {
+                game.LinkGamepadController.RemoveCommand(Buttons.B);
                 game.LinkKeyboardController.RemoveCommand(Keys.X);
                 game.LinkKeyboardController.RegisterCommand(Keys.X, new LinkUseBombCommand(game), InputState.Pressed);
+                game.LinkGamepadController.RegisterCommand(Buttons.B, new LinkUseBombCommand(game), InputState.Pressed);
 
             }
         }

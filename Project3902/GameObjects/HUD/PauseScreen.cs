@@ -35,7 +35,10 @@ namespace Project3902
             {
                 obj.Draw(spriteBatch);
             }
-            ItemSelector.Draw(spriteBatch);
+            if(ItemSelector != null)
+            {
+                ItemSelector.Draw(spriteBatch);
+            }
             SelectedItem.Draw(spriteBatch);
         }
 
@@ -53,11 +56,13 @@ namespace Project3902
             PauseScreenElements.Add(Factory.CreateTopInventoryBlackBar());
             PauseScreenElements.Add(Factory.CreateItemBlackBox());
             PauseScreenElements.Add(Factory.CreateCompassBlackBox());
+            PauseScreenElements.Add(Factory.CreateLowerPauseBorder());
+            PauseScreenElements.Add(Factory.CreateSidePauseBorder());
             var blackBox = Factory.CreateItemBlackBox();
             blackBox.Position = new Vector2(270, 210);
             PauseScreenElements.Add(blackBox);
             
-            ItemSelector = Factory.CreateItemSelector(new Vector2(510, 220));
+            
             SelectedItem = Factory.CreateItemBlackBox();
             SelectedItem.Position = new Vector2(280, 210);
 
@@ -68,11 +73,8 @@ namespace Project3902
 
         public void AddMapToPauseScreen()
         {
-            var createdObject = ItemFactory.Instance.CreateMap(new Vector2(180, 460));
-            createdObject.Sprite.Scale = PauseScale;
-            var createdPauseMap = new HUDObject(createdObject.Position);
-            createdPauseMap.Sprite = createdObject.Sprite;
-            PauseScreenElements.Add(createdPauseMap);
+ 
+            PauseScreenElements.Add(Factory.CreatePauseMap(new Vector2(180, 460)));
 
         }
 
@@ -183,6 +185,10 @@ namespace Project3902
                     numItemsAquired++;
 
                 }
+            }
+            if(numItemsAquired == 1)
+            {
+                ItemSelector = Factory.CreateItemSelector(new Vector2(510, 220));
             }
 
 
