@@ -29,7 +29,12 @@ namespace Project3902
         {
             heldKeys.Add(input, command);
         }
-
+        public void RemoveCommand(Buttons input)
+        {
+            heldKeys.Remove(input);
+            pressedKeys.Remove(input);
+            releasedKeys.Remove(input);
+        }
         public void RegisterCommand(Buttons input, ICommand command, InputState state)
         {
             switch (state)

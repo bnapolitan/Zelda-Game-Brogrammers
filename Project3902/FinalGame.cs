@@ -126,6 +126,10 @@ namespace Project3902
         protected override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            if(pauseCooldown != 5)
+            {
+                pauseCooldown++;
+            }
             if (!isPaused)
             {
                 currentLevel.Update(gameTime);
@@ -222,11 +226,15 @@ namespace Project3902
         {
             CollisionHandler.Instance.RegisterCollidable(Link, Layer.Player, Layer.Enemy, Layer.Wall, Layer.Pickup, Layer.Projectile);
         }
-
+        private int pauseCooldown = 5;
         public void PauseGame()
         {
+            if(pauseCooldown == 5)
+            {
+                isPaused = !isPaused;
+                pauseCooldown = 0;
+            }
             
-            isPaused = !isPaused;
             
         }
 
