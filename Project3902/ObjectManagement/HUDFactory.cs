@@ -442,6 +442,7 @@ namespace Project3902
             controller.RegisterCommand(Keys.A, new LeftCommand(), InputState.Pressed);
             controller.RegisterCommand(Keys.D, new RightCommand(), InputState.Pressed);
             controller.RegisterCommand(Keys.G, new PauseGameCommand(game), InputState.Pressed);
+            controller.RegisterCommand(Keys.H, new TotalPauseGameCommand(game), InputState.Pressed);
             controller.RegisterCommand(Keys.Z, new SelectCommand(), InputState.Pressed);
 
 
@@ -456,7 +457,12 @@ namespace Project3902
             controller.RegisterCommand(Buttons.DPadDown, new DownCommand(), InputState.Pressed);
             controller.RegisterCommand(Buttons.DPadLeft, new LeftCommand(), InputState.Pressed);
             controller.RegisterCommand(Buttons.DPadRight, new RightCommand(), InputState.Pressed);
+            controller.RegisterCommand(Buttons.LeftThumbstickUp, new UpCommand());
+            controller.RegisterCommand(Buttons.LeftThumbstickDown, new DownCommand());
+            controller.RegisterCommand(Buttons.LeftThumbstickLeft, new LeftCommand());
+            controller.RegisterCommand(Buttons.LeftThumbstickRight, new RightCommand());
             controller.RegisterCommand(Buttons.Start, new PauseGameCommand(game), InputState.Pressed);
+            controller.RegisterCommand(Buttons.Back, new TotalPauseGameCommand(game), InputState.Pressed);
             controller.RegisterCommand(Buttons.A, new SelectCommand(), InputState.Pressed);
 
             return controller;
