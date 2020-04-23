@@ -137,8 +137,8 @@ namespace Project3902
         public IProjectile CreateBoomerangProjectile(Vector2 pos, Vector2 direction)
         {
             var createdObject = new Boomerang(pos, 300f, direction);
-            List<Rectangle> ArrowSource = new List<Rectangle> { new Rectangle(848, 0, 22, 61) };
-            var sprite = new AnimatedSprite(createdObject, itemAtlas, ArrowSource, .4f, new Vector2(1, 1));
+            //List<Rectangle> ArrowSource = new List<Rectangle> { new Rectangle(848, 0, 22, 61) };
+            var sprite = CreateBoomerangSprite(createdObject);
             createdObject.Sprite = sprite;
             var collider = new Collider(createdObject, new Rectangle(0, 0, 8 * (int)sprite.Scale.X, 8 * (int)sprite.Scale.Y));
             createdObject.Collider = collider;
