@@ -113,6 +113,7 @@
     <Compile Include="GameObjects\Item\Interface\IItem.cs" />
     <Compile Include="GameObjects\Weapons\BasePlayerProjectile.cs" />
     <Compile Include="GameObjects\Weapons\SwordAttack.cs" />
+    <Compile Include="GameObjects\Weapons\ArrowProjectile.cs" />
     <Compile Include="GlobalSuppressions2.cs" />
     <Compile Include="LevelBuilding\Interface\ILevel.cs" />
     <Compile Include="LevelBuilding\Level.cs" />
@@ -194,6 +195,7 @@
     <Compile Include="Player\PlayerCommands\LinkSpeedUpCommand.cs" />
     <Compile Include="GameObjects\GameScreens\StartGameCommand.cs" />
     <Compile Include="Player\PlayerCommands\LinkUseBombCommand.cs" />
+    <Compile Include="Player\PlayerCommands\LinkUseBowCommand.cs" />
     <Compile Include="Player\PlayerCommands\LinkUseItemCommand.cs" />
     <Compile Include="Player\PlayerCommands\LinkAttackCommand.cs" />
     <Compile Include="Player\PlayerCommands\LinkMoveDownCommand.cs" />

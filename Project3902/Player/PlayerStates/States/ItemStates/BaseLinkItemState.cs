@@ -4,7 +4,7 @@ namespace Project3902
 {
     abstract class BaseLinkItemState : BaseLinkState
     {
-        private readonly float itemUseTime = .4f;
+        private float itemUseTime = .4f;
         private float timeSinceUse = 0;
 
         public BaseLinkItemState(Link link, LinkStateMachine machine)
@@ -22,6 +22,14 @@ namespace Project3902
         public override void Enter()
         {
             timeSinceUse = 0;
+            if(link.CurrentWeapon is ArrowProjectile)
+            {
+                itemUseTime = .2f;
+            }
+            else
+            {
+                itemUseTime = .4f;
+            }
             link.CurrentWeapon.Launch(link.Position, link.FacingDirection);
         }
 

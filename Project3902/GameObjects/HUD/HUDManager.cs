@@ -235,11 +235,13 @@ namespace Project3902
             }
             if (aquiredItem is Arrow)
             {
-
+                game.LinkKeyboardController.RemoveCommand(Keys.X);
+                game.LinkKeyboardController.RegisterCommand(Keys.X, new LinkUseBowCommand(game), InputState.Pressed);
             }
             if (aquiredItem is Bow)
             {
-
+                game.LinkKeyboardController.RemoveCommand(Keys.X);
+                game.LinkKeyboardController.RegisterCommand(Keys.X, new LinkUseBowCommand(game), InputState.Pressed);
             }
             if (aquiredItem is Candle)
             {

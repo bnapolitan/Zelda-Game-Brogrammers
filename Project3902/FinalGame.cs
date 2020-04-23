@@ -121,7 +121,7 @@ namespace Project3902
 
             SoundHandler.Instance.LoadAllSounds(Content);
             SoundHandler.Instance.UseDefaultSounds();
-            SoundHandler.Instance.PlaySong("Dungeon");
+            SoundHandler.Instance.PlaySong("Intro");
 
             LevelManager.Instance.ResetLevels();
             currentLevel = LevelManager.Instance.GetLevel(CurrentRoom);
@@ -470,6 +470,7 @@ namespace Project3902
 
             linkDeath = false;
             Link.Health = Link.MaxHealth;
+            SoundHandler.Instance.PlaySong("Dungeon");
         }
     }
 }

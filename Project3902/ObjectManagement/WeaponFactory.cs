@@ -137,15 +137,40 @@ namespace Project3902
         public IProjectile CreateBoomerangProjectile(Vector2 pos, Vector2 direction)
         {
             var createdObject = new Boomerang(pos, 300f, direction);
-            List<Rectangle> boomerangSource = new List<Rectangle> {
-                new Rectangle(128, 204, 8, 8), new Rectangle(128, 204, 8, 8), new Rectangle(137, 204, 8, 8), new Rectangle(146, 204, 8, 8),
-                new Rectangle(128, 204, 8, 8), new Rectangle(155, 204, 8, 8), new Rectangle(164, 204, 8, 8), new Rectangle(173, 204, 8, 8) };
-            var sprite = new AnimatedSprite(createdObject, weaponAtlas, boomerangSource, 0.1f, new Vector2(4, 4));
+            List<Rectangle> ArrowSource = new List<Rectangle> { new Rectangle(848, 0, 22, 61) };
+            var sprite = new AnimatedSprite(createdObject, itemAtlas, ArrowSource, .4f, new Vector2(1, 1));
             createdObject.Sprite = sprite;
             var collider = new Collider(createdObject, new Rectangle(0, 0, 8 * (int)sprite.Scale.X, 8 * (int)sprite.Scale.Y));
             createdObject.Collider = collider;
             CollisionHandler.Instance.RegisterCollidable(createdObject, Layer.Projectile, Layer.Wall, Layer.Player);
             return createdObject;
+        }
+
+        public IProjectile CreateArrowProjectile(Vector2 pos, Vector2 direction)
+        {
+            var arrow = new ArrowProjectile();
+
+            SpriteEffects flip = SpriteEffects.None;
+            Rectangle sourceRect = new Rectangle(10, 189, 15, 7);
+            Rectangle verticleRect = new Rectangle(2, 185, 7, 15);
+
+            if (direction == left)
+                flip = SpriteEffects.FlipHorizontally;
+            else if (direction == up)
+                sourceRect = verticleRect;
+            else if (direction == down)
+            {
+                sourceRect = verticleRect;
+                flip = SpriteEffects.FlipVertically;
+            }
+
+
+            var sprite = new FixedSprite(arrow, weaponAtlas, sourceRect, weaponScale)
+            {
+                Flip = flip
+            };
+            arrow.Sprite = sprite;
+            return arrow;
         }
     }
 }

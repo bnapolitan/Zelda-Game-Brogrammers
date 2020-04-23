@@ -197,6 +197,10 @@ namespace Project3902.ObjectManagement
             {
                 effect = bombDropSound;
             }
+            else if (effectType.Equals("Arrow"))
+            {
+                effect = boomerangSound;
+            }
             else if (effectType.Equals("Boomerang"))
             {
                 effect = boomerangSound;
