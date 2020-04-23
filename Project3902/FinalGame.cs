@@ -145,8 +145,10 @@ namespace Project3902
                 LinkMouseController.Update();
                 LinkKeyboardController.Update();
                 LinkGamepadController.Update();
+                StartMenuState.Instance.Update(gameTime);
                 return;
             }
+
 
             if (!isPaused)
             {

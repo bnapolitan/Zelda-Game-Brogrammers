@@ -1,22 +1,25 @@
 ﻿namespace Project3902
 {
-    class LinkStartGameCommand : BaseLinkCommand
+    class StartGameCommand: ICommand
     {
-        public LinkStartGameCommand(FinalGame game)
-            : base(game) { }
+        FinalGame game;
+        public StartGameCommand(FinalGame game)
+        {
+            this.game = game;
+        }
 
-        public override void Execute()
+        public void Execute()
         {
             if (game.isRunning == false)
             {
                 game.GameStart();
+                StartMenuState.Instance.Active = false;
                 return;
             }
             if (game.IsPaused)
             {
                 return;
             }
-            game.Link.Attack();
         }
     }
 }

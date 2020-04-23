@@ -47,7 +47,7 @@ namespace Project3902
             controller.RegisterCommand(Keys.Z, new LinkAttackCommand(game), InputState.Pressed);
             controller.RegisterCommand(Keys.X, new LinkAttackCommand(game), InputState.Pressed);
 
-            controller.RegisterCommand(Keys.Enter, new LinkStartGameCommand(game), InputState.Pressed);
+            controller.RegisterCommand(Keys.Enter, new StartGameCommand(game), InputState.Pressed);
 
             controller.RegisterCommand(Keys.D1, new LinkUseBoomerangCommand(game), InputState.Pressed);
             controller.RegisterCommand(Keys.D2, new LinkUseBlueCandleCommand(game), InputState.Pressed);
