@@ -31,6 +31,7 @@ namespace Project3902
         private ILevel nextLevel;
 
         public bool IsPaused => isPaused;
+        public bool IsTotalPause;
         private bool isGameOver = false;
         public bool isRunning;
 
@@ -154,7 +155,7 @@ namespace Project3902
             {
                 pauseCooldown++;
             }
-            if (!isPaused)
+            if (!isPaused && !IsTotalPause)
             {
                 currentLevel.Update(gameTime);
                 if (nextLevel != null && nextLevel.Scrolling)
@@ -165,15 +166,19 @@ namespace Project3902
             if (!currentLevel.Scrolling)
             {
 
-                    soundController.Update();
-                Link.Update(gameTime);
-                if (isPaused)
+                soundController.Update();
+                if (!IsTotalPause)
+                {
+                    Link.Update(gameTime);
+                }
+                
+                if (isPaused || (!isPaused && IsTotalPause))
                 {
                     InventoryKeyboardController.Update();
                     InventoryGamepadController.Update();
                     
                 }
-                else
+                else 
                 {
                     LinkMouseController.Update();
                     LinkKeyboardController.Update();
@@ -191,7 +196,7 @@ namespace Project3902
                     EndRoomSwitch();
                 }
             }
-            if (!isPaused)
+            if (!isPaused && !IsTotalPause)
             {
                 HUDManager.Instance.Update();
                 
@@ -207,7 +212,7 @@ namespace Project3902
             }
 
 
-            if (isPaused)
+            if (isPaused && !IsTotalPause)
             {
                 PauseScreen.Instance.Update();
             }
@@ -262,7 +267,7 @@ namespace Project3902
 
             HUDManager.Instance.Draw(spriteBatch);
 
-            if (isPaused)
+            if (isPaused && !IsTotalPause)
             {
                 PauseScreen.Instance.Draw(spriteBatch);
             }
@@ -283,11 +288,26 @@ namespace Project3902
             {
                 isPaused = !isPaused;
                 pauseCooldown = 0;
-            }
-            
-            
+            }  
         }
 
+        public void TotalPauseGame()
+        {
+            if(pauseCooldown == 5)
+            {
+                IsTotalPause = !IsTotalPause;
+                if (IsTotalPause)
+                {
+                    SoundHandler.Instance.StopMusic();
+                }
+                else
+                {
+                    SoundHandler.Instance.PlaySong("Dungeon");
+                    Console.WriteLine("in total pause");
+                }
+                pauseCooldown = 0;
+            }
+        }
         protected void RestartLevel()
         {
             CollisionHandler.Instance.Flush();

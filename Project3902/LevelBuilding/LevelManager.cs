@@ -216,10 +216,11 @@ namespace Project3902.LevelBuilding
                         {
                             if (environment is MoveableBlock)
                             {
-                                if (environment.Position.X >=509 && environment.Position.Y>= 317 + HUDFactory.Instance.HUDHeight)
+                                if (environment.Position.X <=385 && environment.Position.Y>= 317 + HUDFactory.Instance.HUDHeight)
                                 {
 
                                     CollisionHandler.Instance.RemoveCollidable(environment as ICollidable);
+                                    SoundHandler.Instance.PlaySoundEffect("Secret");
                                     moved = true;
                                 }
 

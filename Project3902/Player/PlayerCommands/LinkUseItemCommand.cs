@@ -7,7 +7,7 @@
 
         public override void Execute()
         {
-            if (game.IsPaused)
+            if (game.IsPaused||!game.isRunning)
             {
                 return;
             }

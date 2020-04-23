@@ -35,16 +35,20 @@ namespace Project3902
 
         public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
-            Collider.AlignHitbox();
+            if (Active)
+            {
+                base.Update(gameTime);
+                Collider.AlignHitbox();
+
+                float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+                flightTime += elapsed;
+                if (flightTime > maxFlightTime)
+                    Deactivate();
+
+                Position += Speed * Direction * elapsed;
+            }
             
-            float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-            flightTime += elapsed;
-            if (flightTime > maxFlightTime)
-                Deactivate();
-
-            Position += Speed * Direction * elapsed;
         }
 
         private void Deactivate()
