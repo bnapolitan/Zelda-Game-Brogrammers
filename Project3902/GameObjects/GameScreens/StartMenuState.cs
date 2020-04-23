@@ -49,14 +49,6 @@ namespace Project3902
             var sprite = new AnimatedSprite(this, titleAtlas, titleSource, 0.2f, new Vector2(4,3.2f));
             this.Sprite = sprite;
 
-            createElements();
-        }
-
-        private void createElements()
-        {
-            //ScreenElements.Add(EnvironmentFactory.Instance.CreateCoverScreen());
-            //ScreenElements.Add(Factory.createTextSection(game.font, "Press Enter to start "));
-
         }
     }
 }
