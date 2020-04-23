@@ -164,7 +164,7 @@ namespace Project3902
                     SoundHandler.Instance.PlaySoundEffect("Heart");
                     if(other.GameObject is Heart)
                     {
-                        link.Health++;
+                        link.Health+=2;
                         if (link.Health > link.MaxHealth)
                         {
                             link.Health = link.MaxHealth;
@@ -173,6 +173,15 @@ namespace Project3902
                     else
                     {
                         link.KeyCount++;
+                    }
+                }
+                else if(other.GameObject is Fairy)
+                {
+                    SoundHandler.Instance.PlaySoundEffect("Item");
+                    link.Health += 6;
+                    if (link.Health > link.MaxHealth)
+                    {
+                        link.Health = link.MaxHealth;
                     }
                 }
                 else if(other.GameObject is BombPickup)
