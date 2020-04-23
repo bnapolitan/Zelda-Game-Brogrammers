@@ -36,7 +36,7 @@ namespace Project3902
 
         private void createElements()
         {
-            //ScreenElements.Add(EnvironmentFactory.Instance.CreateCoverScreen());
+            ScreenElements.Add(Factory.CreateScreen());
             ScreenElements.Add(Factory.createTextSection(game.font, "Press Enter to start "));
 
         }

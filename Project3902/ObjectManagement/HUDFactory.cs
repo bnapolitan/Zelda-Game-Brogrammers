@@ -10,6 +10,7 @@ namespace Project3902
     {
         private SpriteAtlas HUDSprites;
         private SpriteAtlas ItemSprite;
+        private SpriteAtlas IntroScreen;
         public static HUDFactory Instance { get; } = new HUDFactory();
         private FinalGame game;
         public int HUDHeight = 96;
@@ -19,6 +20,7 @@ namespace Project3902
         public Vector2 HUDScale = new Vector2(3, 3);
         public void LoadAllTextures(ContentManager content)
         {
+            IntroScreen = new SpriteAtlas(content.Load<Texture2D>("IntroScreen"));
             HUDSprites = new SpriteAtlas(content.Load<Texture2D>("ZeldaHUDSprites"));
             ItemSprite = new SpriteAtlas(content.Load<Texture2D>("ZeldaItems"));
         }
@@ -33,6 +35,13 @@ namespace Project3902
             this.game = game;
             HUDWidth = game.graphics.PreferredBackBufferWidth;
 
+        }
+
+        public IGameObject CreateScreen() {
+            var gameObject = new HUDObject(new Vector2(30, 0));
+            var sprite = new FixedSprite(gameObject, IntroScreen, new Rectangle(0, 0, 320, 280), HUDScale);
+            gameObject.Sprite = sprite;
+            return gameObject;
         }
 
         public IGameObject CreateLifeWord()
