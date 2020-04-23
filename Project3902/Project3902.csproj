@@ -192,6 +192,7 @@
     <Compile Include="Player\PlayerCommands\BaseLinkCommand.cs" />
     <Compile Include="Player\PlayerCommands\LinkSlowDownCommand.cs" />
     <Compile Include="Player\PlayerCommands\LinkSpeedUpCommand.cs" />
+    <Compile Include="Player\PlayerCommands\LinkStartGameCommand.cs" />
     <Compile Include="Player\PlayerCommands\LinkUseBombCommand.cs" />
     <Compile Include="Player\PlayerCommands\LinkUseItemCommand.cs" />
     <Compile Include="Player\PlayerCommands\LinkAttackCommand.cs" />
@@ -211,11 +212,13 @@
     <Compile Include="Player\PlayerStates\States\AttackStates\LinkRightAttackState.cs" />
     <Compile Include="Player\PlayerStates\States\AttackStates\LinkLeftAttackState.cs" />
     <Compile Include="Player\PlayerStates\States\BaseLinkState.cs" />
+    <Compile Include="Player\PlayerStates\States\GameOverState.cs" />
     <Compile Include="Player\PlayerStates\States\ItemStates\BaseLinkItemState.cs" />
     <Compile Include="Player\PlayerStates\States\ItemStates\LinkDownItemState.cs" />
     <Compile Include="Player\PlayerStates\States\ItemStates\LinkLeftItemState.cs" />
     <Compile Include="Player\PlayerStates\States\ItemStates\LinkRightItemState.cs" />
     <Compile Include="Player\PlayerStates\States\ItemStates\LinkUpItemState.cs" />
+    <Compile Include="Player\PlayerStates\States\StartMenuState.cs" />
     <Compile Include="Player\PlayerStates\States\WalkStates\BaseLinkWalkState.cs" />
     <Compile Include="Player\PlayerStates\States\WalkStates\LinkDownWalkState.cs" />
     <Compile Include="Player\PlayerStates\States\WalkStates\LinkLeftWalkState.cs" />
