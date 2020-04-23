@@ -167,8 +167,13 @@ namespace Project3902.ObjectManagement
 
         private void MediaPlayer_MediaStateChanged(object sender, System.EventArgs e)
         {
-            if (!musicPause)
+            if (!musicPause && currentSong !=triforceMusic)
             {
+                MediaPlayer.Play(currentSong);
+            }
+            else if (currentSong == triforceMusic)
+            {
+                currentSong = introMusic;
                 MediaPlayer.Play(currentSong);
             }
         }

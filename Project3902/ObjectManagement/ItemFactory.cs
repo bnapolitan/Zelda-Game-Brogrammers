@@ -56,8 +56,8 @@ namespace Project3902
 		public IGameObject CreateHeartContainer(Vector2 position)
 		{
 			var createdObject = new HeartContainer(position);
-			List<Rectangle> HeartContainerSource = new List<Rectangle> { new Rectangle(24, 0, 14, 14)};
-			var sprite = new AnimatedSprite(createdObject, ItemSprite, HeartContainerSource, .3f, new Vector2(3.5f, 3.5f));
+			List<Rectangle> HeartContainerSource = new List<Rectangle> { new Rectangle(240, 40, 14, 14)};
+			var sprite = new AnimatedSprite(createdObject, ItemSprite2, HeartContainerSource, .3f, new Vector2(3.5f, 3.5f));
 			createdObject.Sprite = sprite;
 			RegisterItemForCollision(createdObject);
 			return createdObject;
@@ -138,8 +138,8 @@ namespace Project3902
 		public IGameObject CreateMap(Vector2 position)
 		{
 			var createdObject = new Map(position);
-			List<Rectangle> MapSource = new List<Rectangle> { new Rectangle(88, 0, 8, 16) };
-			var sprite = new AnimatedSprite(createdObject, ItemSprite, MapSource, .4f, new Vector2(4, 4));
+			List<Rectangle> MapSource = new List<Rectangle> { new Rectangle(243, 79, 9, 17) };
+			var sprite = new AnimatedSprite(createdObject, ItemSprite2, MapSource, .4f, new Vector2(4, 4));
 			createdObject.Sprite = sprite;
 			RegisterItemForCollision(createdObject);
 			return createdObject;
@@ -148,8 +148,8 @@ namespace Project3902
 		public IGameObject CreateTriforce(Vector2 position)
 		{
 			var createdObject = new Triforce(position);
-			List<Rectangle> TriforceSource = new List<Rectangle> { new Rectangle(274, 2, 11, 11) };
-			var sprite = new AnimatedSprite(createdObject, ItemSprite, TriforceSource, .4f, new Vector2(4, 4));
+			List<Rectangle> TriforceSource = new List<Rectangle> { new Rectangle(342, 122, 11, 11) };
+			var sprite = new AnimatedSprite(createdObject, ItemSprite2, TriforceSource, .4f, new Vector2(4, 4));
 			createdObject.Sprite = sprite;
 			RegisterItemForCollision(createdObject);
 			return createdObject;
