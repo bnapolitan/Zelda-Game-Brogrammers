@@ -2,6 +2,11 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Project3902.ObjectManagement;
 
 namespace Project3902
 {
@@ -31,7 +36,7 @@ namespace Project3902
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            foreach(IGameObject obj in PauseScreenElements)
+            foreach (IGameObject obj in PauseScreenElements)
             {
                 obj.Draw(spriteBatch);
             }
@@ -64,9 +69,11 @@ namespace Project3902
             
         }
 
+
+
         public void AddMapToPauseScreen()
         {
-            var createdObject = ItemFactory.Instance.CreateMap(new Vector2(180,460));
+            var createdObject = ItemFactory.Instance.CreateMap(new Vector2(180, 460));
             createdObject.Sprite.Scale = PauseScale;
             var createdPauseMap = new HUDObject(createdObject.Position);
             createdPauseMap.Sprite = createdObject.Sprite;
@@ -297,5 +304,9 @@ namespace Project3902
                 HUDManager.Instance.ChangeBItem(Factory.CreateHUDBomb(SelectedItemPos), selectedItem);
             }
         }
+
+
     }
+    
+    
 }

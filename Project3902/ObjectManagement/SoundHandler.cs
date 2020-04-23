@@ -56,8 +56,10 @@ namespace Project3902.ObjectManagement
 
         private SoundEffectInstance runningInstance;
 
+
         private SoundEffect bombBlowSound;
         private SoundEffect bombDropSound;
+
         private readonly List<SoundEffectInstance> instanceList=new List<SoundEffectInstance>();
 
         private Boolean musicPause = false;
