@@ -44,6 +44,16 @@ namespace Project3902.ObjectManagement
         }
 
 
+        public IDrawable CreateCoverScreen()
+        {
+            var createdObject = new HUDObject(new Vector2(0, 0));
+
+            var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(521, 11, 256, 176), new Vector2(4, 4));
+            createdObject.Sprite = sprite;
+            return createdObject;
+        }
+
+
         public static void RegisterExplodableWallForCollision(IInteractiveEnvironmentObject door)
         {
             door.Collider = new Collider(door, new Rectangle(0, 0, 128, 128));

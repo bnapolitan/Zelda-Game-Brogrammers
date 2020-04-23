@@ -84,8 +84,10 @@ namespace Project3902
             HUDFactory.Instance.RegisterGame(this);
             HUDManager.Instance.RegisterGame(this);
             PauseScreen.Instance.RegisterGame(this);
-            StartMenuScreen.Instance.RegisterGame(this);
-            GameOverScreen.Instance.RegisterGame(this);
+
+            StartMenuState.Instance.RegisterGame(this);
+            GameOverState.Instance.RegisterGame(this);
+
             HUDObjects = HUDManager.Instance.HUDElements;
 
 
@@ -173,7 +175,7 @@ namespace Project3902
                 }
                     
 
-               
+
             }
             else
             {
@@ -198,15 +200,17 @@ namespace Project3902
                 }
             }
 
+
             if (isPaused)
             {
                 PauseScreen.Instance.Update();
             }
+
             if (drawingDone==1)
             {
                 if(SoundHandler.Instance.SoundType==1)
 
-            
+
                     SoundHandler.Instance.PlaySoundEffect("Old Man");
                 drawingDone = 2;
             }
@@ -221,14 +225,18 @@ namespace Project3902
 
             if (isGameOver)
             {
-                GameOverScreen.Instance.Draw(spriteBatch);
+
+                GameOverState.Instance.Draw(spriteBatch);
+
                 spriteBatch.End();
                 return;
             }
 
             if (isRunning == false)
             {
-                StartMenuScreen.Instance.Draw(spriteBatch);
+
+                StartMenuState.Instance.Draw(spriteBatch);
+
                 spriteBatch.End();
                 return;
             }
@@ -241,7 +249,6 @@ namespace Project3902
             {
                 this.DrawText();
             }
-
 
 
             if (!currentLevel.Scrolling)
@@ -280,6 +287,7 @@ namespace Project3902
 
             RegisterLinkCollision();
         }
+
 
 
 

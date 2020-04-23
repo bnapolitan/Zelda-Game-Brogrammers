@@ -306,71 +306,8 @@ namespace Project3902
         }
 
 
+
     }
-    class StartMenuScreen
-    {
-        private FinalGame game;
-        public List<IDrawable> ScreenElements = new List<IDrawable>();
-        private HUDFactory Factory = HUDFactory.Instance;
-        public static StartMenuScreen Instance { get; } = new StartMenuScreen();
-        private StartMenuScreen()
-        {
-        }
-
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            foreach (IDrawable obj in ScreenElements)
-            {
-                obj.Draw(spriteBatch);
-            }
-        }
-
-        public void RegisterGame(FinalGame game)
-        {
-            this.game = game;
-            createElements();
-        }
-
-        private void createElements()
-        {
-            //ScreenElements.Add(EnvironmentFactory.Instance.CreateCoverScreen());
-            ScreenElements.Add(Factory.createTextSection(game.font, "Press N to start "));
-
-        }
-    }
-    class GameOverScreen
-    {
-        private FinalGame game;
-        public List<IDrawable> ScreenElements = new List<IDrawable>();
-        private HUDFactory Factory = HUDFactory.Instance;
-        public static GameOverScreen Instance { get; } = new GameOverScreen();
-        private GameOverScreen()
-        {
-        }
-
-        public void Update()
-        {
-
-        }
-
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            foreach (IDrawable obj in ScreenElements)
-            {
-                obj.Draw(spriteBatch);
-            }
-        }
-
-        public void RegisterGame(FinalGame game)
-        {
-            this.game = game;
-            createElements();
-        }
-
-        private void createElements()
-        {
-
-            ScreenElements.Add(Factory.createTextSection(game.font, "Game Over!\nPress N to restart\n"));
-        }
-    }
+    
+    
 }
