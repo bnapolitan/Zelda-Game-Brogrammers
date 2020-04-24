@@ -352,7 +352,7 @@ namespace Project3902
                 { "DungeonRoom7",  2},
                 { "DungeonRoom8",  7},
                 { "DungeonRoom9",  1},
-                { "DungeonRoom10", 11 },
+                { "DungeonRoom10", 11},
                 { "DungeonRoom11",  12},
                 { "DungeonRoom12",  6},
                 { "DungeonRoom13",  1},

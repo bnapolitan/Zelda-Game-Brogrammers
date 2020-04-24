@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Project3902.ObjectManagement;
+using System;
 
 namespace Project3902
 {
@@ -10,6 +11,7 @@ namespace Project3902
         private Vector2 startingPos;
         private readonly float maxDistance = 300f;
         private bool turned = false;
+        private bool returned = false;
 
         public ILink Link;
 
@@ -34,6 +36,7 @@ namespace Project3902
             if (turned && other.GameObject is ILink)
             {
                 Active = false;
+                returned = true;
                 SoundHandler.Instance.StopEffectInstance(true);
                 CollisionHandler.Instance.RemoveCollidable(this);
             }
@@ -47,6 +50,12 @@ namespace Project3902
            
             if (!Active)
             {
+                if (!returned)
+                {
+                    SoundHandler.Instance.StopEffectInstance(true);
+                    CollisionHandler.Instance.RemoveCollidable(this);
+                    returned = true;
+                }
                 return;
             }
 
