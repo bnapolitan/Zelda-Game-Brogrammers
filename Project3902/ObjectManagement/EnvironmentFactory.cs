@@ -420,6 +420,14 @@ namespace Project3902.ObjectManagement
             return createdObject;
         }
 
+        public IGameObject CreateBlackBars(Vector2 position)
+        {
+            var createdObject = new BlackBackground(position);
+            var sprite = new FixedSprite(createdObject, dungeonSpriteAtlas, new Rectangle(1000, 900, 64, 64), new Vector2(12, 15));
+            createdObject.Sprite = sprite;
+            return createdObject;
+        }
+
         public IGameObject CreateWater(Vector2 position)
         {
             var createdObject = new BrickTile(position);

@@ -1,14 +1,17 @@
 ﻿
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Project3902.GameObjects.Environment;
 using Project3902.ObjectManagement;
 
 namespace Project3902
 {
     class LinkTriforceState : BaseLinkState
     {
-        private float stateTimer = 9.8f;
+        private float stateTimer = Configuration.GeneralGameConfiguration.TriforceStateTimer;
         private IGameObject triforce;
+        private IGameObject blackBars = EnvironmentFactory.Instance.CreateBlackBars(Configuration.GeneralGameConfiguration.BlackBarsLeftPosition);
+        private IGameObject blackBarsRight = EnvironmentFactory.Instance.CreateBlackBars(Configuration.GeneralGameConfiguration.BlackBarsRightPosition);
 
         public LinkTriforceState(Link link, LinkStateMachine machine)
             : base(link, machine)
@@ -62,6 +65,13 @@ namespace Project3902
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            blackBars.Draw(spriteBatch);
+            blackBarsRight.Draw(spriteBatch);
+            if (blackBars.Position.X < -100)
+            {
+                (blackBars as BlackBackground).MoveRight();
+                (blackBarsRight as BlackBackground).MoveLeft();
+            }
             base.Draw(spriteBatch);
             triforce.Draw(spriteBatch);
         }

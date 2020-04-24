@@ -16,7 +16,6 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
         private int currentFrame = 0;
         private IProjectile boomerang;
         private bool isShooting = false;
-        private bool hasShot = false;
         private static readonly Random random = new Random();
 
         public Goriya(Vector2 pos, float moveSpeed, Vector2 initDirection) : base(pos, moveSpeed, initDirection) {
@@ -123,7 +122,13 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
             }
         }
 
-
+        public override void DespawnProjectile()
+        {
+            if(hasShot)
+            {
+                (boomerang as Boomerang).Deactivate();
+            }
+        }
 
         public override void TakeDamage()
         {
