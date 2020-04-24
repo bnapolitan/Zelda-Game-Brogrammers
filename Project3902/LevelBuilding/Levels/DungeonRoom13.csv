@@ -7,11 +7,12 @@ Brick, 512, 448
 Brick, 576, 256
 Brick, 576, 384
 Brick, 640, 320
-Stairs, 512, 320
 WallTop, 448, 0
 WallLeft, 0, 288
 OpenDoorRight, 896, 288
 WallBottom, 448, 576
+Items
+Bow, 512, 320
 Enemies
 Rope, 128, 128
 GrayZol, 832, 128
