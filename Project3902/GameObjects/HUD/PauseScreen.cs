@@ -235,6 +235,7 @@ namespace Project3902
             if(numItemsAquired == 1)
             {
                 ItemSelector = Factory.CreateItemSelector(new Vector2(510, 220));
+                SelectItem();
             }
 
 
@@ -306,6 +307,8 @@ namespace Project3902
                 ItemSelector.Position = CalculateItemSelectorPosition();
             }
         }
+
+ 
         private IDictionary<string, Vector2> CreateMapRoomMatrixDictionary()
         {
             var dictionary = new Dictionary<string, Vector2>

@@ -47,14 +47,14 @@ namespace Project3902
             controller.RegisterCommand(Keys.Z, new LinkAttackCommand(game), InputState.Pressed);
             controller.RegisterCommand(Keys.X, new LinkAttackCommand(game), InputState.Pressed);
 
-            controller.RegisterCommand(Keys.Enter, new StartGameCommand(game), InputState.Pressed);
+            controller.RegisterCommand(Keys.G, new PauseGameCommand(game), InputState.Pressed);
 
             controller.RegisterCommand(Keys.D1, new LinkUseBoomerangCommand(game), InputState.Pressed);
             controller.RegisterCommand(Keys.D2, new LinkUseBlueCandleCommand(game), InputState.Pressed);
             controller.RegisterCommand(Keys.D3, new LinkUseBombCommand(game), InputState.Pressed);
             controller.RegisterCommand(Keys.D4, new LinkUseBowCommand(game), InputState.Pressed);
 
-            controller.RegisterCommand(Keys.G, new PauseGameCommand(game), InputState.Pressed);
+            
             controller.RegisterCommand(Keys.H, new TotalPauseGameCommand(game), InputState.Pressed);
 
             controller.RegisterCommand(Keys.LeftShift, new LinkSpeedUpCommand(game), InputState.Pressed);
@@ -91,6 +91,26 @@ namespace Project3902
             controller.RegisterCommand(Buttons.LeftStick, new LinkSlowDownCommand(game), InputState.Released);
             controller.RegisterCommand(Buttons.RightStick, new LinkSpeedUpCommand(game), InputState.Pressed);
             controller.RegisterCommand(Buttons.RightStick, new LinkSlowDownCommand(game), InputState.Released);
+
+            return controller;
+        }
+
+        public GamepadController CreateStartGamepadController(FinalGame game)
+        {
+            var controller = new GamepadController();
+
+
+            controller.RegisterCommand(Buttons.Start, new StartGameCommand(game), InputState.Pressed);
+
+
+            return controller;
+        }
+
+        public KeyboardController CreateStartLinkController(FinalGame game)
+        {
+            var controller = new KeyboardController();
+            controller.RegisterCommand(Keys.G, new StartGameCommand(game), InputState.Pressed);
+
 
             return controller;
         }
