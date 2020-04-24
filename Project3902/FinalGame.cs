@@ -35,6 +35,7 @@ namespace Project3902
         public bool IsTotalPause;
         private bool isGameOver = false;
         public bool isRunning;
+        public bool reDrawText=false;
 
         public Vector2 roomSize = new Vector2(WindowWidth, WindowHeight);
         private float scrollTimer;
@@ -226,6 +227,9 @@ namespace Project3902
                 {
                     GameOver();
                     linkDeath = false;
+                    reDrawText = true;
+                    drawingCounter = 0;
+                    drawingDone = 0;
                 }
             }
 
@@ -490,7 +494,7 @@ namespace Project3902
                 }
             }
             drawingCounter++;
-
+            
             for (int i = 0; i < characterPosition; i++)
             {
                 if (i < TextConfiguration.FirstLineLength)
@@ -503,7 +507,9 @@ namespace Project3902
                     yPos = TextConfiguration.SecondLineYPosition;
                 }
                 spriteBatch.DrawString(font, words[i].ToString(), new Vector2(TextConfiguration.TextInitialXPosition + (xPos * TextConfiguration.XOffsetPerLetter), yPos), Color.White, 0f, new Vector2(0, 0), new Vector2(2, 2), SpriteEffects.None, 0f);
+
             }
+            
         }
         public void GameOver()
         {
