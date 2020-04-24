@@ -81,6 +81,16 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
             }
         }
 
+        public override void DespawnProjectile()
+        {
+            if (hasShot)
+            {
+                (fireball as Fireball).Deactivate();
+                (fireball2 as Fireball).Deactivate();
+                (fireball3 as Fireball).Deactivate();
+            }
+        }
+
         public override void OnCollide(Collider other) {
             base.OnCollide(other);
         }

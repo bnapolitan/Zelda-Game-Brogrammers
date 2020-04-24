@@ -242,6 +242,20 @@ namespace Project3902.LevelBuilding
                         }
                     }
                     break;
+                case "DungeonRoom13":
+                    foreach (var environment in current.interactiveEnvironmentObjects)
+                    {
+                        if (environment is MoveableBlock)
+                        {
+                            if ((environment as MoveableBlock).MaxFrames <= 0 && environment.Position.Y >= 330 + HUDFactory.Instance.HUDHeight && !(environment as MoveableBlock).HasMoved)
+                            {
+                                SoundHandler.Instance.PlaySoundEffect("Secret");
+                                (environment as MoveableBlock).HasMoved = true;
+                            }
+
+                        }
+                    }
+                    break;
                 case "DungeonRoom16":
                     if (!Room16DoorReleased && current.enemyObjects.Count == 0)
                     {

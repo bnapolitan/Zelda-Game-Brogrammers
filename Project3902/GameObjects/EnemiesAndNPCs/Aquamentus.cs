@@ -17,7 +17,6 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
         private IProjectile fireball2;
         private IProjectile fireball3;
         private bool isShooting = false;
-        private bool hasShot = false;
 
         public Aquamentus(Vector2 pos, float moveSpeed, Vector2 initDirection, FinalGame game) : base(pos, moveSpeed, initDirection)
         {
@@ -30,7 +29,7 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
         {
             if(hasShot)
             {
-                DespawnFireballs();
+                DespawnProjectile();
             }
 
             if (Active)
@@ -63,35 +62,46 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
         {
             base.Update(gameTime);
 
-            if (currentFrame >= framesBeforeAttack)
+            if (Active)
             {
-                SoundHandler.Instance.PlaySoundEffect("Aquamentus");
-                this.Attack();
-                isShooting = true;
-                currentFrame = 0;
-            }
-            if (!attackedRecent)
-            {
-                Position += Direction * MoveSpeed;
-                relPos += Direction * MoveSpeed;
-                if (relPos.X > distance)
+                if (currentFrame >= framesBeforeAttack)
                 {
-                    Direction *= -1;
-                    relPos = new Vector2(0, 0);
+                    SoundHandler.Instance.PlaySoundEffect("Aquamentus");
+                    this.Attack();
+                    isShooting = true;
+                    currentFrame = 0;
                 }
-                else if (relPos.X < -distance)
+                if (!attackedRecent)
                 {
-                    Direction *= -1;
-                    relPos = new Vector2(0, 0);
+                    Position += Direction * MoveSpeed;
+                    relPos += Direction * MoveSpeed;
+                    if (relPos.X > distance)
+                    {
+                        Direction *= -1;
+                        relPos = new Vector2(0, 0);
+                    }
+                    else if (relPos.X < -distance)
+                    {
+                        Direction *= -1;
+                        relPos = new Vector2(0, 0);
+                    }
                 }
-            }
-            currentFrame++;
+                currentFrame++;
 
-            if (isShooting)
+                if (isShooting)
+                {
+                    fireball.Update(gameTime);
+                    fireball2.Update(gameTime);
+                    fireball3.Update(gameTime);
+                }
+            }
+            else
             {
-                fireball.Update(gameTime);
-                fireball2.Update(gameTime);
-                fireball3.Update(gameTime);
+                if (hasShot)
+                {
+                    DespawnProjectile();
+                    hasShot = false;
+                }
             }
         }
 
@@ -99,14 +109,14 @@ namespace Project3902.GameObjects.EnemiesAndNPCs
             base.OnCollide(other);
         }
 
-        private void DespawnFireballs()
+        public override void DespawnProjectile()
         {
-            (fireball as Fireball).Deactivate();
-            (fireball2 as Fireball).Deactivate();
-            (fireball3 as Fireball).Deactivate();
-            CollisionHandler.Instance.RemoveCollidable(fireball);
-            CollisionHandler.Instance.RemoveCollidable(fireball2);
-            CollisionHandler.Instance.RemoveCollidable(fireball3);
+            if (hasShot)
+            {
+                (fireball as Fireball).Deactivate();
+                (fireball2 as Fireball).Deactivate();
+                (fireball3 as Fireball).Deactivate();
+            }
         }
 
         public override void TakeDamage() { }

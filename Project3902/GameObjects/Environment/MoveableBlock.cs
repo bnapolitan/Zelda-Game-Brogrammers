@@ -6,6 +6,7 @@ namespace Project3902.GameObjects.Environment
     {
         public Vector2 Direction { get; set; }
         public int MaxFrames { get; set; }
+        public bool HasMoved { get; set; } = false;
         public MoveableBlock(Vector2 position, Vector2 direction)
             : base(position) {
             Direction = direction;
