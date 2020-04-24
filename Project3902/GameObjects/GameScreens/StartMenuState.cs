@@ -11,12 +11,11 @@ namespace Project3902
         public ISprite Sprite { set; get; }
         public bool Active { get; set; } = true;
         public List<IDrawable> ScreenElements = new List<IDrawable>();
-        private HUDFactory Factory = HUDFactory.Instance;
         private SpriteAtlas titleAtlas;
         public static StartMenuState Instance { get;  } = new StartMenuState();
         private StartMenuState()
         {
-            
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -36,7 +35,7 @@ namespace Project3902
             {
                 Sprite.Update(gameTime);
             }
-            
+
         }
 
         public void RegisterGame(FinalGame game)

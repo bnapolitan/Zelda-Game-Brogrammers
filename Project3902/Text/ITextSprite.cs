@@ -10,7 +10,5 @@ namespace Project3902
         Color TextColor { get; set; }
         SpriteFont Font { get; set; }
         bool AlignCenter { get; set; }
-
-        void Draw(SpriteBatch spriteBatch);
     }
 }

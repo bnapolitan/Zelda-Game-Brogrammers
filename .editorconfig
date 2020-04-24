@@ -8,3 +8,9 @@ dotnet_diagnostic.CA1812.severity = none
 
 # CA1717: Only FlagsAttribute enums should have plural names
 dotnet_diagnostic.CA1717.severity = none
+
+# CA1307: Specify StringComparison
+dotnet_diagnostic.CA1307.severity = silent
+
+# CA1822: Member CreateStartLinkController does not access instance data and can be marked as static (Shared in VisualBasic)
+dotnet_diagnostic.CA1822.severity = silent

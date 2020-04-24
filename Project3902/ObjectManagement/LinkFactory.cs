@@ -46,6 +46,7 @@ namespace Project3902
 
             controller.RegisterCommand(Keys.Z, new LinkAttackCommand(game), InputState.Pressed);
             controller.RegisterCommand(Keys.X, new LinkAttackCommand(game), InputState.Pressed);
+            controller.RegisterCommand(Keys.N, new LinkAttackCommand(game), InputState.Pressed);
 
             controller.RegisterCommand(Keys.G, new PauseGameCommand(game), InputState.Pressed);
 
@@ -54,7 +55,7 @@ namespace Project3902
             controller.RegisterCommand(Keys.D3, new LinkUseBombCommand(game), InputState.Pressed);
             controller.RegisterCommand(Keys.D4, new LinkUseBowCommand(game), InputState.Pressed);
 
-            
+
             controller.RegisterCommand(Keys.H, new TotalPauseGameCommand(game), InputState.Pressed);
 
             controller.RegisterCommand(Keys.LeftShift, new LinkSpeedUpCommand(game), InputState.Pressed);
@@ -78,7 +79,7 @@ namespace Project3902
             controller.RegisterCommand(Buttons.LeftThumbstickDown, new LinkMoveDownCommand(game));
             controller.RegisterCommand(Buttons.LeftThumbstickLeft, new LinkMoveLeftCommand(game));
             controller.RegisterCommand(Buttons.LeftThumbstickRight, new LinkMoveRightCommand(game));
-            
+
 
 
             controller.RegisterCommand(Buttons.A, new LinkAttackCommand(game), InputState.Pressed);

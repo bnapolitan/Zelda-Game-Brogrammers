@@ -16,5 +16,6 @@ namespace Project3902.Configuration
         public static int FirstLineLength { get; } = 19;
         public static int SecondLineYPosition { get; } = 300;
         public static int SecondLineXOffset { get; } = 17;
+        public static string GameOverMenuText { get; } = " Press C to continue\n Press G to restart\n Press ESC to exit game\n";
     }
 }
