@@ -211,11 +211,8 @@ namespace Project3902
                 }
             }
 
+            PauseScreen.Instance.Update();
 
-            if (isPaused && !IsTotalPause)
-            {
-                PauseScreen.Instance.Update();
-            }
 
             if (drawingDone==1)
             {

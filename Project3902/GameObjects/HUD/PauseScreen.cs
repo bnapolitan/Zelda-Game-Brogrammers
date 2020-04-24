@@ -308,7 +308,7 @@ namespace Project3902
                 { "DungeonRoom4",  new Vector2(3,5)},
                 { "DungeonRoom5",  new Vector2(3,4)},
                 { "DungeonRoom6",  new Vector2(2,4)},
-                { "DungeonRoom7",  new Vector2(5,4)},
+                { "DungeonRoom7",  new Vector2(4,4)},
                 { "DungeonRoom8",  new Vector2(2,3)},
                 { "DungeonRoom9",  new Vector2(1,3)},
                 { "DungeonRoom10", new Vector2(3,3) },
@@ -345,7 +345,7 @@ namespace Project3902
                 { "DungeonRoom11",  12},
                 { "DungeonRoom12",  6},
                 { "DungeonRoom13",  1},
-                { "DungeonRoom14",  2},
+                { "DungeonRoom14",  3},
                 { "DungeonRoom15", 10},
                 { "DungeonRoom16",  5},
                 { "DungeonRoom17",  2}
