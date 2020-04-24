@@ -1,0 +1,18 @@
+﻿Author: Xueyang Li
+Date: 2020/4/24
+Sprint number: sprint 5
+Name of the file being reviewed: Bomb
+Author of the file being reviewed: Ben Napolitan
+Number of minutes taken to complete: 10 mins
+Comment:
+	This file implements "bomb".
+
+	All the variables and methods, such as timeUntilExplosion and explosionClouds, are well defined with straightforward name, which makes them easy to understand.
+
+	Whitespace makes codes easy to read, and most methods are short and easy to debug.
+
+	The structure of methods is clear and easy to follow, except for that there are two empty methods, TakeDamage() and Attack(). Draw() and Update() are wrapped inside those two methods and some other methods, which probably will confuse others.
+
+	In the method Update(), there are some if-conditions to determine next states of bombs. Since the names of variables are very clear, so this part is not hard to understand even if there's no comment.
+
+	In general, this file is of good readability. 

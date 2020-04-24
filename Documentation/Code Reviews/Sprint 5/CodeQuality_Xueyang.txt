@@ -1,0 +1,23 @@
+Author: Xueyang Li
+Date: 2020/4/24
+Sprint number: sprint 5
+Name of the file being reviewed: Bomb
+Author of the file being reviewed: Ben Napolitan
+Number of minutes taken to complete: 10 mins
+Comments: 
+
+	This file implements "bomb". It implements both IItem and Iprojectile since bomb both belongs to item and projectile. It draws bombs to screen, calculating their next state by Update(), and realize their functionality. 
+
+	It sets some variables, such as Position, Active, and damage, to public, which allows other file to access those variables. This is necessary since those variables are indispensable to some other files.
+
+	Those codes are brief enough. There's not too many lines of code in this file, but it implements bomb's functionality perfectly. Most methods are shorter than 10 lines, except for the method "Update()", which cannot be avoided.
+
+	Inside the Update() method, the author uses two if-condition to determine next states, which is  brief and convenient.
+
+	It also adds animations to bomb by CreateExplosionClouds() and determine bomb's launch direction by Launch().
+	
+	There are two things I think could be modified to get a better code quality. One thing is there are two useless methods, TakeDamage() and Attack(). Those methods are of empty content and are not referenced by other methods, so I think we can delete them. Another thing needs to be modified is the magic numbers inside the CreateExplosionClouds() method.
+
+	
+
+	
