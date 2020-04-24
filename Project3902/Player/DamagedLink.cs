@@ -67,6 +67,7 @@ namespace Project3902
             CurrentWeapon.Draw(spriteBatch);
             SwordProjectile.Draw(spriteBatch);
             Sword.Draw(spriteBatch);
+            
         }
 
         public void Update(GameTime gameTime)

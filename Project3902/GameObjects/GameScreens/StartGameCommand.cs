@@ -13,9 +13,11 @@
             /*if (game.isRunning == false)
             {
             */
-                game.GameStart();
-                StartMenuState.Instance.Active = false;
-                return;
+            game.GameStart();
+            PauseScreen.Instance.Reset();
+            HUDManager.Instance.Reset();
+            StartMenuState.Instance.Active = false;
+            return;
             //}
             /*
             if (game.IsPaused)

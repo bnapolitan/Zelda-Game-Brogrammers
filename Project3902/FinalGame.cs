@@ -36,6 +36,7 @@ namespace Project3902
         private bool isGameOver = false;
         public bool isRunning;
         public bool reDrawText=false;
+        public bool Continue=false;
 
         public Vector2 roomSize = new Vector2(WindowWidth, WindowHeight);
         private float scrollTimer;
@@ -519,13 +520,14 @@ namespace Project3902
             SoundHandler.Instance.StopEffectInstance(true);
             SoundHandler.Instance.PlaySoundEffect("Link Die", true);
             LevelManager.Instance.ResetLevels();
-            PauseScreen.Instance.Reset();
-            HUDManager.Instance.Reset();
+            LinkKeyboardController = LinkFactory.Instance.CreateStartLinkController(this);
+            LinkGamepadController = LinkFactory.Instance.CreateStartGamepadController(this);
+            
+            
             CurrentRoom = "DungeonRoom0";
             RestartLevel(true);
             linkDeath = false;
-            LinkKeyboardController = LinkFactory.Instance.CreateStartLinkController(this);
-            LinkGamepadController = LinkFactory.Instance.CreateStartGamepadController(this);
+            
         }
 
 
