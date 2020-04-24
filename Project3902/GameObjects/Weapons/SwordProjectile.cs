@@ -95,5 +95,13 @@ namespace Project3902
             Active = false;
             CollisionHandler.Instance.RemoveCollidable(this);
         }
+
+        public void DeactivateParticles()
+        {
+            upLeftParticle.Active = false;
+            upRightParticle.Active = false;
+            downLeftParticle.Active = false;
+            downRightParticle.Active = false;
+        }
     }
 }

@@ -140,5 +140,10 @@ namespace Project3902
         {
             decoratedLink.OnCollide(other);
         }
+
+        public void RoomChange()
+        {
+            decoratedLink.RoomChange();
+        }
     }
 }
