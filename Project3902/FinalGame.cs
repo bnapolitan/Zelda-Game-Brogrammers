@@ -522,8 +522,6 @@ namespace Project3902
             LevelManager.Instance.ResetLevels();
             LinkKeyboardController = LinkFactory.Instance.CreateStartLinkController(this);
             LinkGamepadController = LinkFactory.Instance.CreateStartGamepadController(this);
-            
-            
             CurrentRoom = "DungeonRoom0";
             RestartLevel(true);
             linkDeath = false;
