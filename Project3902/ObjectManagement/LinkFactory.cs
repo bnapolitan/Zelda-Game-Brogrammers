@@ -101,6 +101,8 @@ namespace Project3902
 
 
             controller.RegisterCommand(Buttons.Start, new StartGameCommand(game), InputState.Pressed);
+            controller.RegisterCommand(Buttons.Back, new ContinueGameCommand(game), InputState.Pressed);
+            controller.RegisterCommand(Buttons.B, new ExitGameCommand(game), InputState.Pressed);
 
 
             return controller;
