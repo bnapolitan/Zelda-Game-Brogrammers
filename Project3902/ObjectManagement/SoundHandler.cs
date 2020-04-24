@@ -10,6 +10,7 @@ namespace Project3902.ObjectManagement
     class SoundHandler
     {
         public int SoundType { get; set; }
+        public bool TriforceFound { set; get; } = false;
 
         private Song currentSong;
         private Song dungeonMusic;
@@ -77,7 +78,7 @@ namespace Project3902.ObjectManagement
         {
             dungeonMusic = content.Load<Song>("Songs/04 - Dungeon");
             introMusic = content.Load<Song>("Songs/01 - Intro");
-            gameOverMusic = content.Load<Song>("Songs/07 - Game Over");
+            gameOverMusic = content.Load<Song>("Songs/07 - Game Over Cropped");
             triforceMusic = content.Load<Song>("Songs/06 - Triforce");
 
             defaultSwordSlashSound = content.Load<SoundEffect>("SoundEffects/LOZ_Sword_Slash");
@@ -181,6 +182,7 @@ namespace Project3902.ObjectManagement
                 }
                 else if (currentSong == triforceMusic)
                 {
+                    TriforceFound = true;
                     currentSong = introMusic;
                     MediaPlayer.Play(currentSong);
                 }
@@ -241,6 +243,7 @@ namespace Project3902.ObjectManagement
             else if (effectType.Equals("Link Die"))
             {
                 effect = linkDieSound;
+                currentSong = gameOverMusic;
             }
             else if (effectType.Equals("Heart") || effectType.Equals("Key"))
             {

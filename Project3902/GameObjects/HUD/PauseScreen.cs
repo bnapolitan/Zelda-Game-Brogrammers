@@ -130,7 +130,7 @@ namespace Project3902
         }
 
 
-        public void addToAquiredItems(IGameObject item)
+        public void AddToAquiredItems(IGameObject item)
         {
             bool aquired = false;
 
@@ -403,7 +403,16 @@ namespace Project3902
             }
         }
 
-
+        public void Reset()
+        {
+            aquiredItems.Clear();
+            PauseScreenElements.Clear();
+            CreatePauseElements();
+            InventoryMapMatrix.Clear();
+            FillMapBlocks();
+            numItemsAquired = 0;
+            ItemSelector = null;
+        }
 
     }
     

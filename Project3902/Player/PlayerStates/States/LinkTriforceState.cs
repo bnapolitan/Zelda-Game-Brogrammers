@@ -7,7 +7,7 @@ namespace Project3902
 {
     class LinkTriforceState : BaseLinkState
     {
-        private float stateTimer = 7.8f;
+        private float stateTimer = 9.8f;
         private IGameObject triforce;
 
         public LinkTriforceState(Link link, LinkStateMachine machine)
@@ -27,7 +27,7 @@ namespace Project3902
         public override void Exit()
         {
             base.Exit();
-            SoundHandler.Instance.PlaySong("Dungeon");
+
         }
 
         public override void Attack()

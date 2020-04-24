@@ -158,7 +158,7 @@ namespace Project3902
             else if(other.GameObject is IItem && !(other.GameObject is Bomb))
             {
                 LevelManager.Instance.RemoveObjectFromCurrentLevel(other.GameObject);
-                PauseScreen.Instance.addToAquiredItems(other.GameObject);
+                PauseScreen.Instance.AddToAquiredItems(other.GameObject);
                 if (other.GameObject is Heart || other.GameObject is Key)
                 {
                     SoundHandler.Instance.PlaySoundEffect("Heart");

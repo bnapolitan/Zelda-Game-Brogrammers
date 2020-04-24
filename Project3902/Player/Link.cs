@@ -39,7 +39,7 @@ namespace Project3902
 
 
         public Collider Collider { get; set; }
-        public Vector2 FacingDirection { get; set; } = new Vector2(1, 0);
+        public Vector2 FacingDirection { get; set; } = new Vector2(0, -1);
 
         private readonly LinkStateMachine machine;
 

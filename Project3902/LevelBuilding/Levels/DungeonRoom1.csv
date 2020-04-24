@@ -28,7 +28,7 @@ RightStatue, 768, 448
 LockDoorTop, 448, 0
 OpenDoorLeft, 0, 288
 OpenDoorRight, 896, 288
-WallBottom, 448, 576
+OpenDoorBottom, 448, 576
 Items
 Levels
 Top, DungeonRoom4

@@ -4,16 +4,8 @@ OpenDoorLeft, 0, 288
 OpenDoorRight, 896, 288
 WallBottom, 448, 576
 Items
-Rupee, 150, 150
-5Rupee, 300, 150
-Heart, 450, 150
-Bow, 600, 150
-Boomerang, 750, 150
-Arrow, 160, 400
-Candle, 310, 400
-Sword, 460, 400
-Ring, 610, 400
-Fairy, 760, 400
+Boomerang, 700, 300
+Candle, 300, 300
 Bomb, 500, 300
 Levels
 Top, DungeonRoom1

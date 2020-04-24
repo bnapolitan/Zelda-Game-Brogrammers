@@ -150,6 +150,18 @@ namespace Project3902
                 return;
             }
 
+            if (SoundHandler.Instance.TriforceFound)
+            {
+                isRunning = false;
+                StartMenuState.Instance.Active = true;
+                LevelManager.Instance.ResetLevels();
+                PauseScreen.Instance.Reset();
+                CurrentRoom = "DungeonRoom0";
+                RestartLevel(true);
+                linkDeath = false;
+                SoundHandler.Instance.TriforceFound = false;
+                return;
+            }
 
             if(pauseCooldown != 5)
             {
@@ -304,13 +316,16 @@ namespace Project3902
                 pauseCooldown = 0;
             }
         }
-        protected void RestartLevel()
+        protected void RestartLevel(Boolean newGame = false)
         {
             CollisionHandler.Instance.Flush();
             SoundHandler.Instance.StopEffectInstance(true);
 
             currentLevel = LevelManager.Instance.GetLevel(CurrentRoom);
-
+            if (newGame)
+            {
+                this.Link = new Link(new Vector2(480, 576));
+            }
             RegisterLinkCollision();
         }
 
@@ -425,7 +440,15 @@ namespace Project3902
         public void MouseSwitchRoom(string room)
         {
             CurrentRoom = room;
-            Link.Position = new Vector2(LinkPositionConfiguration.LinkXPositionAfterRoomSwitchTop, LinkPositionConfiguration.LinkYPositionAfterRoomSwitchTop + HUDFactory.Instance.HUDHeight);
+            if (room.Equals("DungeonRoom15"))
+            {
+                Link.Position = new Vector2(LinkPositionConfiguration.LinkXPositionAfterMouseClick2, LinkPositionConfiguration.LinkYPositionAfterMouseClick2 + HUDFactory.Instance.HUDHeight);
+            }
+            else
+            {
+                Link.Position = new Vector2(LinkPositionConfiguration.LinkXPositionAfterMouseClick, LinkPositionConfiguration.LinkYPositionAfterMouseClick + HUDFactory.Instance.HUDHeight);
+            }
+            
 
             RestartLevel();
         }
@@ -482,8 +505,9 @@ namespace Project3902
             SoundHandler.Instance.StopEffectInstance(true);
             SoundHandler.Instance.PlaySoundEffect("Link Die", true);
             LevelManager.Instance.ResetLevels();
+            PauseScreen.Instance.Reset();
             CurrentRoom = "DungeonRoom0";
-            RestartLevel();
+            RestartLevel(true);
             linkDeath = false;
         }
 
@@ -498,5 +522,6 @@ namespace Project3902
             Link.Health = Link.MaxHealth;
             SoundHandler.Instance.PlaySong("Dungeon");
         }
+
     }
 }

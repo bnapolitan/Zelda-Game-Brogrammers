@@ -14,5 +14,9 @@ namespace Project3902.Configuration
         public static int LinkYPositionAfterRoomSwitchLeft { get; } = 320;
         public static int LinkXPositionAfterRoomSwitchRight { get; } = 128;
         public static int LinkYPositionAfterRoomSwitchBottom { get; } = 128;
+        public static int LinkXPositionAfterMouseClick { get; } = 448;
+        public static int LinkYPositionAfterMouseClick { get; } = 448;
+        public static int LinkXPositionAfterMouseClick2 { get; } = 448;
+        public static int LinkYPositionAfterMouseClick2 { get; } = 512;
     }
 }
