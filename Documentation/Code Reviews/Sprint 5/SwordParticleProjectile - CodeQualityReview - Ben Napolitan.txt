@@ -1,0 +1,20 @@
+﻿Author: Ben Napolitan.7
+Date: 4/24/2020
+Sprint #: 5
+File being reviewed: SwordParticleProjectile.cs
+Author of file under review: Austin Rogers
+
+
+Comments on code maintainability/quality:
+This file is well set-up, extending BasePlayerProjectile and implementing only the functionality needed with out duplicating code.
+
+Update, OnCollide, and Deactivate all perform only actions relevent to their title. Launch is good for the most part, however, setting Speed
+should likely be done in the constructor instead. Also, creating a second variable named speed (with a lowercase 's') can be confusing. It would 
+make more sense to set 'Speed' once in the constructor from a configuration file value.
+
+Besides that I have no quality recommendations.
+
+
+Hypothetical change:
+Remove 'speed' local variable
+Set 'Speed = Configuration.{filename}.SwordProjectileSpeed' in the constructor
