@@ -101,6 +101,8 @@ namespace Project3902
 
 
             controller.RegisterCommand(Buttons.Start, new StartGameCommand(game), InputState.Pressed);
+            controller.RegisterCommand(Buttons.Back, new ContinueGameCommand(game), InputState.Pressed);
+            controller.RegisterCommand(Buttons.B, new ExitGameCommand(game), InputState.Pressed);
 
 
             return controller;
@@ -111,7 +113,7 @@ namespace Project3902
             var controller = new KeyboardController();
             controller.RegisterCommand(Keys.G, new StartGameCommand(game), InputState.Pressed);
             controller.RegisterCommand(Keys.Escape, new ExitCommand(), InputState.Pressed);
-            controller.RegisterCommand(Keys.C, new ContinueCommand(game), InputState.Pressed);
+            controller.RegisterCommand(Keys.C, new ContinueGameCommand(game), InputState.Pressed);
 
             return controller;
         }

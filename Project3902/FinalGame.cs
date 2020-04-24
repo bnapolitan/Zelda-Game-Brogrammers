@@ -36,7 +36,6 @@ namespace Project3902
         private bool isGameOver = false;
         public bool isRunning;
         public bool reDrawText=false;
-        public bool Continue=false;
 
         public Vector2 roomSize = new Vector2(WindowWidth, WindowHeight);
         private float scrollTimer;
@@ -44,7 +43,8 @@ namespace Project3902
         private Boolean isPaused = false;
 
         public List<IGameObject> HUDObjects;
-        
+        private KeyboardController oldKeyboardController;
+        private GamepadController oldGamepadController;
         public MouseController LinkMouseController;
         public KeyboardController LinkKeyboardController;
         public GamepadController LinkGamepadController;
@@ -99,6 +99,7 @@ namespace Project3902
 
 
             soundController = SoundHandler.Instance.RegisterSoundKeys();
+
             LinkKeyboardController = LinkFactory.Instance.CreateStartLinkController(this);
             LinkMouseController = LevelFactory.Instance.CreateLevelController(this);
             LinkGamepadController = LinkFactory.Instance.CreateStartGamepadController(this);
@@ -337,8 +338,12 @@ namespace Project3902
             if (newGame)
             {
                 this.Link = new Link(new Vector2(480, 576));
+                oldKeyboardController = LinkFactory.Instance.CreateLinkController(this);
+                oldGamepadController = LinkFactory.Instance.CreateLinkGamepadController(this);
             }
             RegisterLinkCollision();
+            LinkGamepadController = oldGamepadController;
+            LinkKeyboardController = oldKeyboardController;
         }
 
 
@@ -514,28 +519,38 @@ namespace Project3902
         }
         public void GameOver()
         {
-
+            oldKeyboardController = LinkKeyboardController;
+            oldGamepadController = LinkGamepadController;
             isGameOver = true;
             isRunning = false;
             SoundHandler.Instance.StopEffectInstance(true);
             SoundHandler.Instance.PlaySoundEffect("Link Die", true);
-            LevelManager.Instance.ResetLevels();
-            LinkKeyboardController = LinkFactory.Instance.CreateStartLinkController(this);
-            LinkGamepadController = LinkFactory.Instance.CreateStartGamepadController(this);
-            CurrentRoom = "DungeonRoom0";
-            RestartLevel(true);
             linkDeath = false;
             
         }
 
 
-        public void GameStart()
+        public void GameStart(Boolean fromStart = true)
         {
             isGameOver = false;
             isPaused = false;
             isRunning = true;
+ 
             LinkKeyboardController = LinkFactory.Instance.CreateLinkController(this);
             LinkGamepadController = LinkFactory.Instance.CreateLinkGamepadController(this);
+            if (fromStart)
+            {
+
+                LevelManager.Instance.ResetLevels();
+                PauseScreen.Instance.Reset();
+                HUDManager.Instance.Reset();
+                CurrentRoom = "DungeonRoom0";
+                RestartLevel(true);
+            }
+            else
+            {
+                RestartLevel();
+            }
             linkDeath = false;
             Link.Health = Link.MaxHealth;
             SoundHandler.Instance.PlaySong("Dungeon");

@@ -83,7 +83,7 @@
     <Compile Include="GameObjects\Environment\Interfaces\IDoorway.cs" />
     <Compile Include="GameObjects\Environment\BlockingBrick.cs" />
     <Compile Include="GameObjects\Environment\ExplodableWall.cs" />
-    <Compile Include="GameObjects\GameScreens\ContinueCommand.cs" />
+    <Compile Include="GameObjects\GameScreens\ContinueGameCommand.cs" />
     <Compile Include="GameObjects\HUD\InventoryCommands\ExitCommand.cs" />
     <Compile Include="GameObjects\HUD\InventoryCommands\DownCommand.cs" />
     <Compile Include="GameObjects\HUD\InventoryCommands\LeftCommand.cs" />
