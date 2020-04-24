@@ -13,6 +13,7 @@ namespace Project3902
         private readonly Vector2 SelectedItemPos = new Vector2(280, 220);
         public List<IGameObject> PauseScreenElements = new List<IGameObject>();
         private List<List<IGameObject>> InventoryMapMatrix = new List<List<IGameObject>>();
+        private IGameObject mapBlip;
         private readonly IDictionary<string, Vector2> roomMapMatrix;
         private readonly IDictionary<string, int> mapRoomValues;
         private string lastRoom = "none";
@@ -56,6 +57,8 @@ namespace Project3902
                     gameObject.Draw(spriteBatch);
                 }
             }
+            mapBlip.Draw(spriteBatch);
+
         }
 
         public void RegisterGame(FinalGame game)
@@ -105,6 +108,14 @@ namespace Project3902
             var roomMapValue = mapRoomValues[game.CurrentRoom];
             var roomMatrixPos = roomMapMatrix[game.CurrentRoom];
             InventoryMapMatrix[(int)roomMatrixPos.X][(int)roomMatrixPos.Y] = Factory.CreateMapRoomBlock(new Vector2((512 + ((int)roomMatrixPos.X) * 32), (404 + ((int)roomMatrixPos.Y) * 32)), roomMapValue);
+            mapBlip = Factory.CreateMapBlip();
+            mapBlip.Sprite.Scale = PauseScale;
+            var temp = InventoryMapMatrix[(int)roomMatrixPos.X][(int)roomMatrixPos.Y].Position;
+            temp.X += 9;
+            temp.Y += 9;
+            mapBlip.Position = temp;
+            
+
         }
         public void AddMapToPauseScreen()
         {
