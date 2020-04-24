@@ -16,7 +16,8 @@ Comments:
 
 	It also adds animations to bomb by CreateExplosionClouds() and determine bomb's launch direction by Launch().
 	
-	There are two things I think could be modified to get a better code quality. One thing is there are two useless methods, TakeDamage() and Attack(). Those methods are of empty content and are not referenced by other methods, so I think we can delete them. Another thing needs to be modified is the magic numbers inside the CreateExplosionClouds() method.
+	There are two things I think could be modified to get a better code quality. One thing is there are two useless methods, TakeDamage() and Attack(). Those methods are of empty content and are not referenced by other methods, so I think we can delete them. 
+	Another thing needs to be modified is the magic numbers inside the CreateExplosionClouds() method.
 
 	
 
