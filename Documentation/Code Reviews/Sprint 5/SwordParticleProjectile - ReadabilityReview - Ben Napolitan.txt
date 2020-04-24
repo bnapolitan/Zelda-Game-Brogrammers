@@ -1,0 +1,14 @@
+﻿Author: Ben Napolitan.7
+Date: 4/24/2020
+Sprint #: 5
+File being reviewed: SwordParticleProjectile.cs
+Author of file under review: Austin Rogers
+
+Time to complete review: 10 minutes
+
+Comments:
+Variables are well-named and functions take care of functionality contained under their name which makes this file easily readable.
+
+The Launch() method has many statements in a row with no spacing. Since some of them are independent, maybe some spaces should be added to group
+statements that are related to each other (like the temporary 'rect' and 'collider' variables).
+

@@ -171,7 +171,7 @@ namespace Project3902
             return createdObject;
         }
 
-        public IProjectile CreateArrowProjectile(Vector2 pos, Vector2 direction)
+        public IProjectile CreateArrowProjectile(Vector2 direction)
         {
             var arrow = new ArrowProjectile();
 

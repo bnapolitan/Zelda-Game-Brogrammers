@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 
 namespace Project3902
@@ -79,5 +74,5 @@ namespace Project3902
             }
         }
     }
-    
+
 }

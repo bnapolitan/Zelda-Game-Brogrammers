@@ -47,24 +47,24 @@ Going up from this room will result in Link entering the classic first room of t
 ## Explanation of MouseActions and InputState
 We use MouseActions to map a specific mouse button to a command. Monogame does not have a representation of mouse buttons that can be used in such a way, there is only LeftButton (and similar) properties of a MouseState instance, but as that is an instance variable of type ButtonState, it can't be used as a key in a dictionary. That said, MouseState.LeftButton is in fact used inside the MouseController to determine if the command associated with MouseActions.Left should be executed. Similarly, InputState is used instead of ButtonState for the simple reason that ButtonState does not include a "Held" option. InputState allows us to take a certain key or button with a certain command, and specify what type of input should cause the command to be executed (key just pressed, key held, or key just released).
 
-FxCop Sprint 4
-
-Work-in-progress:
+FxCop Sprint 5
 
 Fixed:
-    - The field 'FinalGame.freezeEnemiesTime' is assigned but its value is never used	FinalGame.cs	48
-    - Parameter gameTime of method DrawText is never used. Remove the parameter or use it in the method body.	Project3902	E:\Git\Zelda-Game-Brogrammers\Project3902\FinalGame.cs	299	Active
+	- Unused field 'Factory'.	Project3902	E:\Git\Zelda-Game-Brogrammers\Project3902\GameObjects\GameScreens\StartMenuState.cs	14	Active
+	- The using directive for 'System.Collections.Generic' appeared previously in this namespace	Project3902	E:\Git\Zelda-Game-Brogrammers\Project3902\Controllers\GamepadController.cs	7	Active
+	- Parameter pos of method CreateArrowProjectile is never used. Remove the parameter or use it in the method body.	Project3902	E:\Git\Zelda-Game-Brogrammers\Project3902\ObjectManagement\WeaponFactory.cs	174	Active
+	- Method 'void GameOverState.createElements()' passes a literal string as parameter 'text' of a call to 'IDrawable HUDFactory.createTextSection(SpriteFont font, string text)'. Retrieve the following string(s) from a resource table instead: " Press C to continue\n Press G to restart\n Press ESC to exit game\n".	Project3902	E:\Git\Zelda-Game-Brogrammers\Project3902\GameObjects\GameScreens\GameOverState.cs	38	Active
+		Moved into configuration
+	- 'ITextSprite.Draw(SpriteBatch)' hides inherited member 'IDrawable.Draw(SpriteBatch)'. Use the new keyword if hiding was intended.	Project3902	E:\Git\Zelda-Game-Brogrammers\Project3902\Text\ITextSprite.cs	14	Active
 
 
 Supressed:
-    - The behavior of 'float.Parse(string)' could vary based on the current user's locale settings. Replace this call in 'LevelBuilder.CreateInteractiveEnvironmentObjects()' with a call to 'float.Parse(string, IFormatProvider)'.	Project3902	E:\Git\Zelda-Game-Brogrammers\Project3902\LevelBuilding\LevelBuilder.cs	63	Active
-        Appeared many times, parsing is consistent enough for our uses
-    - The behavior of 'string.Equals(string)' could vary based on the current user's locale settings. Replace this call in 'Project3902.ObjectManagement.SoundHandler.PlaySong(string)' with a call to 'string.Equals(string, System.StringComparison)'.	Project3902	E:\Git\Zelda-Game-Brogrammers\Project3902\ObjectManagement\SoundHandler.cs	61	Active
-        Same reasons as above, string equals is accurate enough for our use
-    - The behavior of 'float.Parse(string)' could vary based on the current user's locale settings. Replace this call in 'LevelBuilder.CreateItemObjects()' with a call to 'float.Parse(string, IFormatProvider)'.	Project3902	E:\Git\Zelda-Game-Brogrammers\Project3902\LevelBuilding\LevelBuilder.cs	98	Active
-        Accurate enough for us (still using same settings)
-    - The behavior of 'char.ToString()' could vary based on the current user's locale settings. Replace this call in 'FinalGame.DrawText()' with a call to 'char.ToString(IFormatProvider)'.	Project3902	E:\Git\Zelda-Game-Brogrammers\Project3902\FinalGame.cs	331	Active
-        Still not worried about parsing methods
+	- The behavior of 'string.Equals(string)' could vary based on the current user's locale settings. Replace this call in 'Project3902.FinalGame.MouseSwitchRoom(string)' with a call to 'string.Equals(string, System.StringComparison)'.	Project3902	E:\Git\Zelda-Game-Brogrammers\Project3902\FinalGame.cs	459	Active
+        String equals is accurate enough for our use
+	- Method 'void GameOverState.createElements()' passes a literal string as parameter 'text' of a call to 'IDrawable HUDFactory.createTextSection(SpriteFont font, string text)'. Retrieve the following string(s) from a resource table instead: "Game Over! ".	Project3902	E:\Git\Zelda-Game-Brogrammers\Project3902\GameObjects\GameScreens\GameOverState.cs	39	Active
+		More helpful to programmer here; able to visually see the "Game Over" text
+	- Member CreateStartLinkController does not access instance data and can be marked as static (Shared in VisualBasic)	Project3902	E:\Git\Zelda-Game-Brogrammers\Project3902\ObjectManagement\LinkFactory.cs	112	Active
+		Easier to keep everything under the "LinkFactory.Instance" to avoid confusion. This change would prevent us from accessing the methods in instances.
 
 
 
