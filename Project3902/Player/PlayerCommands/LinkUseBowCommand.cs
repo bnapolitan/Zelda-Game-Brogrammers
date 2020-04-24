@@ -14,6 +14,13 @@ namespace Project3902
             {
                 return;
             }
+            if (game.Link.CurrentWeapon is BoomerangWeapon)
+            {
+                if (game.Link.CurrentWeapon.Active)
+                {
+                    return;
+                }
+            }
             game.Link.CurrentWeapon = WeaponFactory.Instance.CreateArrowProjectile(game.Link.Position, game.Link.FacingDirection);
             game.Link.UseItem();
             SoundHandler.Instance.PlaySoundEffect("Arrow");

@@ -11,6 +11,13 @@
             {
                 return;
             }
+            if (game.Link.CurrentWeapon is BoomerangWeapon)
+            {
+                if (game.Link.CurrentWeapon.Active)
+                {
+                    return;
+                }
+            }
             game.Link.CurrentWeapon = WeaponFactory.Instance.CreateBlueCandleProjectile();
             game.Link.UseItem();
         }

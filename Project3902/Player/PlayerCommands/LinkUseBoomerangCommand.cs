@@ -12,6 +12,13 @@ namespace Project3902
             {
                 return;
             }
+            if (game.Link.CurrentWeapon is BoomerangWeapon)
+            {
+                if (game.Link.CurrentWeapon.Active)
+                {
+                    return;
+                }
+            }
             game.Link.CurrentWeapon = WeaponFactory.Instance.CreateBoomerangProjectile(game.Link);
             game.Link.UseItem();
         }

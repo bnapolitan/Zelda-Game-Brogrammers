@@ -77,7 +77,6 @@ namespace Project3902
                     attackedRecent = true;
                     Health--;
                     tint = Color.Red;
-                    Console.WriteLine(Health);
                     if (Health == 0)
                     {
                         Active = false;
