@@ -1,0 +1,28 @@
+Readability Review 
+
+ 
+
+Author of Code Review: Suraj Suresh 
+
+Date of Code Review: 04/23/20 
+
+Sprint Number: 5
+
+File Being Reviewed: PauseScreen.cs 
+
+Author of File: Dan Bellini
+
+Minutes Taken for Review: 10 
+
+Comments on Readability:
+
+	- Variables are clearly named but might take some understanding of what the HUD/Pause Screen entails.
+
+	- Methods are given good names related to their purpose.
+
+	- Sometimes a lot of logic is crammed into one line (like in UpdateInventoryMap()). This makes it hard to read and understand at first but becomes clear after looking at the surrounding logic for a while.
+
+	- Use of different lists to store specific items is clear and easy to understand.
+
+	- Some of the numbers might be tough to read
+		-One improvement could be to add constants in the Configuration files which clearly define these numbers.

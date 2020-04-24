@@ -1,0 +1,33 @@
+Code Quality Review 
+
+ 
+
+Author of Code Review: Suraj Suresh 
+
+Date of Code Review: 04/23/20 
+
+Sprint Number: 5
+
+File Being Reviewed: PauseScreen.cs 
+
+Author of File: Dan Bellini
+
+Code Quality Comments: 
+
+	- Number of magic numbers in math could be reduced with constants in configuration files
+
+	- Clear if tests in AddToAcquireItems following a similar pattern, makes it easy to follow
+
+	- Really like how you did the UpdateInventoryMap() method and set up the matrices
+
+	- Good use of lists to store elements of interest for different purposes
+
+	- Access to instance of FinalGame directly creates some coupling
+		-could be reduced with a utility class that keeps track of current room information
+		-could also just use instance of LavelManager to get this information instead of the game
+
+	- Most methods are clear and have a single purpose, resulting in generally good cohesion
+
+	- Register game seems to call methods which perform other tasks, resulting in slightly lowered cohesion in this one method
+
+	- Class looks good and could be even better with improvements above
