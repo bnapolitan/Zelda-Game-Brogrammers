@@ -81,6 +81,7 @@ namespace Project3902
             var blackBox = Factory.CreateItemBlackBox();
             blackBox.Position = new Vector2(270, 210);
             PauseScreenElements.Add(blackBox);
+
             
             
             SelectedItem = Factory.CreateItemBlackBox();
@@ -404,6 +405,11 @@ namespace Project3902
                     HUDManager.Instance.ChangeBItem(Factory.CreateHUDBomb(SelectedItemPos), selectedItem);
                 }
             }
+        }
+
+        public void ExitGame()
+        {
+            game.Exit();
         }
 
         public void Reset()

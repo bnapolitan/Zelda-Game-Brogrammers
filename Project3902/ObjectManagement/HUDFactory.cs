@@ -341,6 +341,14 @@ namespace Project3902
             var sprite = new SimpleText(text, new Vector2(HUDWidth / 2, HUDHeight / 2), new Color(255, 255, 255), font, true);
             return sprite;
         }
+
+        public IDrawable createExitText(SpriteFont font, string text)
+        {
+            var sprite = new SimpleText(text, new Vector2(HUDWidth / 2, HUDHeight / 2+100), new Color(255, 255, 255), font, true);
+            return sprite;
+        }
+
+
         public List<IGameObject> CreateNumberList()
         {
             var list = new List<IGameObject>
@@ -463,7 +471,7 @@ namespace Project3902
             controller.RegisterCommand(Keys.G, new PauseGameCommand(game), InputState.Pressed);
             controller.RegisterCommand(Keys.H, new TotalPauseGameCommand(game), InputState.Pressed);
             controller.RegisterCommand(Keys.Z, new SelectCommand(), InputState.Pressed);
-
+            controller.RegisterCommand(Keys.Escape, new ExitCommand(), InputState.Pressed);
 
             return controller;
         }

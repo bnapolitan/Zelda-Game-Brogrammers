@@ -35,7 +35,8 @@ namespace Project3902
         private void createElements()
         {
 
-            ScreenElements.Add(Factory.createTextSection(game.font, "Game Over!\nPress Enter to restart\n"));
+            ScreenElements.Add(Factory.createTextSection(game.font, "Game Over!\n"));
+            ScreenElements.Add(Factory.createExitText(game.font, " Press C to continue\n Press S to save\n Press Enter to restart\n Press ESC to exit game\n"));
         }
     }
 }
