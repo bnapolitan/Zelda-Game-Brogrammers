@@ -14,10 +14,11 @@ namespace Project3902
         public List<IGameObject> counterList = new List<IGameObject>();
         public IGameObject BButtonObject;
         private readonly List<List<IGameObject>> numsLists = new List<List<IGameObject>>();
+
         private readonly HUDFactory Factory = HUDFactory.Instance;
         private IGameObject mapBlip;
         private readonly IDictionary<string, Vector2> blipPosition;
-
+        
         private readonly Vector2 BButtonPosition = new Vector2(400, 30);
 
         public static HUDManager Instance { get; } = new HUDManager();
@@ -30,6 +31,7 @@ namespace Project3902
         private HUDManager()
         {
             blipPosition = CreateBlipPositionDictionary();
+
         }
 
         public void Update()
@@ -47,6 +49,7 @@ namespace Project3902
             {
                 this.mapBlip.Position = tempPosition;
             }
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -76,6 +79,7 @@ namespace Project3902
             AddBaseElements();
             CreateNumsLists();
         }
+
 
         private void AddBaseElements()
         {
@@ -218,6 +222,12 @@ namespace Project3902
 
             return dictionary;
         }
+
+
+
+
+
+
         public void ChangeBItem(IGameObject HUDItem, IGameObject aquiredItem)
         {
             BButtonObject = HUDItem;
@@ -239,13 +249,17 @@ namespace Project3902
             }
             if (aquiredItem is Arrow)
             {
+                game.LinkGamepadController.RemoveCommand(Buttons.B);
                 game.LinkKeyboardController.RemoveCommand(Keys.X);
                 game.LinkKeyboardController.RegisterCommand(Keys.X, new LinkUseBowCommand(game), InputState.Pressed);
+                game.LinkGamepadController.RegisterCommand(Buttons.B, new LinkUseBowCommand(game), InputState.Pressed);
             }
             if (aquiredItem is Bow)
             {
+                game.LinkGamepadController.RemoveCommand(Buttons.B);
                 game.LinkKeyboardController.RemoveCommand(Keys.X);
                 game.LinkKeyboardController.RegisterCommand(Keys.X, new LinkUseBowCommand(game), InputState.Pressed);
+                game.LinkGamepadController.RegisterCommand(Buttons.B, new LinkUseBowCommand(game), InputState.Pressed);
             }
             if (aquiredItem is Candle)
             {

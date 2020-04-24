@@ -428,6 +428,21 @@ namespace Project3902
             return gameObject;
         }
 
+        public IGameObject CreateSolidMapBlock(Vector2 position)
+        {
+            var gameObject = new HUDObject(position);
+            var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle(360, 122, 8, 8), PauseScale);
+            gameObject.Sprite = sprite;
+            return gameObject;
+        }
+
+        public IGameObject CreateMapRoomBlock(Vector2 position, int roomNum)
+        {
+            var gameObject = new HUDObject(position);
+            var sprite = new FixedSprite(gameObject, HUDSprites, new Rectangle((519 + (9*roomNum)), 108, 8, 8), PauseScale);
+            gameObject.Sprite = sprite;
+            return gameObject;
+        }
         public KeyboardController CreatePauseController(FinalGame game)
         {
             var controller = new KeyboardController();

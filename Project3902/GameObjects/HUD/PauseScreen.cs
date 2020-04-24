@@ -12,21 +12,30 @@ namespace Project3902
         private IGameObject SelectedItem;
         private readonly Vector2 SelectedItemPos = new Vector2(280, 220);
         public List<IGameObject> PauseScreenElements = new List<IGameObject>();
+        private List<List<IGameObject>> InventoryMapMatrix = new List<List<IGameObject>>();
+        private readonly IDictionary<string, Vector2> roomMapMatrix;
+        private readonly IDictionary<string, int> mapRoomValues;
+        private string lastRoom = "none";
         private IGameObject ItemSelector;
         private readonly HUDFactory Factory = HUDFactory.Instance;
         private List<IGameObject> aquiredItems = new List<IGameObject>();
         private List<String> aquiredObjectKeys = new List<String>();
         private int numItemsAquired = 0;
         private int SelectorPos = 0;
-        private bool inPauseScreen;
+
         public static PauseScreen Instance { get; } = new PauseScreen();
         private PauseScreen()
         {
+            roomMapMatrix = CreateMapRoomMatrixDictionary();
+            mapRoomValues = CreateMapRoomTypeDictionary();
         }
 
         public void Update()
         {
-            
+            if (!Equals(lastRoom, game.CurrentRoom))
+            {
+                UpdateInventoryMap();
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -40,6 +49,13 @@ namespace Project3902
                 ItemSelector.Draw(spriteBatch);
             }
             SelectedItem.Draw(spriteBatch);
+            foreach(List<IGameObject> list in InventoryMapMatrix)
+            {
+                foreach(IGameObject gameObject in list)
+                {
+                    gameObject.Draw(spriteBatch);
+                }
+            }
         }
 
         public void RegisterGame(FinalGame game)
@@ -58,6 +74,7 @@ namespace Project3902
             PauseScreenElements.Add(Factory.CreateCompassBlackBox());
             PauseScreenElements.Add(Factory.CreateLowerPauseBorder());
             PauseScreenElements.Add(Factory.CreateSidePauseBorder());
+            FillMapBlocks();
             var blackBox = Factory.CreateItemBlackBox();
             blackBox.Position = new Vector2(270, 210);
             PauseScreenElements.Add(blackBox);
@@ -69,8 +86,26 @@ namespace Project3902
             
         }
 
+        private void FillMapBlocks()
+        {
+            var baseVector = new Vector2(512, 404);
+            for(int i = 0; i < 8; i++)
+            {
+                InventoryMapMatrix.Add(new List<IGameObject>());
+                for(int j = 0; j < 8; j++)
+                {
 
+                    InventoryMapMatrix[i].Add(Factory.CreateSolidMapBlock(new Vector2(baseVector.X + (i*32), baseVector.Y + (j*32))));
+                }
+            }
+        }
 
+        private void UpdateInventoryMap()
+        {
+            var roomMapValue = mapRoomValues[game.CurrentRoom];
+            var roomMatrixPos = roomMapMatrix[game.CurrentRoom];
+            InventoryMapMatrix[(int)roomMatrixPos.X][(int)roomMatrixPos.Y] = Factory.CreateMapRoomBlock(new Vector2((512 + ((int)roomMatrixPos.X) * 32), (404 + ((int)roomMatrixPos.Y) * 32)), roomMapValue);
+        }
         public void AddMapToPauseScreen()
         {
  
@@ -212,15 +247,6 @@ namespace Project3902
             return baseVector;
         }
 
-        public void EnterInventoryScreenControl()
-        {
-            inPauseScreen = true;
-        }
-
-        public void ExitInventoryScreenControl()
-        {
-            inPauseScreen = false;
-        }
 
         public void MoveSelectorUp()
         {
@@ -269,7 +295,65 @@ namespace Project3902
                 ItemSelector.Position = CalculateItemSelectorPosition();
             }
         }
+        private IDictionary<string, Vector2> CreateMapRoomMatrixDictionary()
+        {
+            var dictionary = new Dictionary<string, Vector2>
+            {
+                { "SurvivalRoom", new Vector2(2,7) },
+                { "BulletHellRoom", new Vector2(4,7) },
+                { "DungeonRoom0",  new Vector2(3,7)},
+                { "DungeonRoom1",  new Vector2(3,6)},
+                { "DungeonRoom2",  new Vector2(2,6)},
+                { "DungeonRoom3",  new Vector2(4,6)},
+                { "DungeonRoom4",  new Vector2(3,5)},
+                { "DungeonRoom5",  new Vector2(3,4)},
+                { "DungeonRoom6",  new Vector2(2,4)},
+                { "DungeonRoom7",  new Vector2(5,4)},
+                { "DungeonRoom8",  new Vector2(2,3)},
+                { "DungeonRoom9",  new Vector2(1,3)},
+                { "DungeonRoom10", new Vector2(3,3) },
+                { "DungeonRoom11",  new Vector2(3,2)},
+                { "DungeonRoom12",  new Vector2(3,1)},
+                { "DungeonRoom13",  new Vector2(2,1)},
+                { "DungeonRoom14",  new Vector2(4,3)},
+                { "DungeonRoom15", new Vector2(5,3)},
+                { "DungeonRoom16",  new Vector2(5,2)},
+                { "DungeonRoom17",  new Vector2(6,2)}
+            };
 
+
+            return dictionary;
+        }
+
+        private IDictionary<string, int> CreateMapRoomTypeDictionary()
+        {
+            var dictionary = new Dictionary<string, int>
+            {
+                { "SurvivalRoom", 1 },
+                { "BulletHellRoom", 2 },
+                { "DungeonRoom0",  11},
+                { "DungeonRoom1",  11},
+                { "DungeonRoom2",  1},
+                { "DungeonRoom3",  2},
+                { "DungeonRoom4",  12},
+                { "DungeonRoom5",  7},
+                { "DungeonRoom6",  9},
+                { "DungeonRoom7",  2},
+                { "DungeonRoom8",  7},
+                { "DungeonRoom9",  1},
+                { "DungeonRoom10", 11 },
+                { "DungeonRoom11",  12},
+                { "DungeonRoom12",  6},
+                { "DungeonRoom13",  1},
+                { "DungeonRoom14",  2},
+                { "DungeonRoom15", 10},
+                { "DungeonRoom16",  5},
+                { "DungeonRoom17",  2}
+            };
+
+
+            return dictionary;
+        }
         public void SelectItem()
         {
             if (aquiredItems.Count>0)
