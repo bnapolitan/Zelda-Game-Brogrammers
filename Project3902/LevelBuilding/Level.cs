@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Project3902.Configuration;
-using System;
 using System.Collections.Generic;
 
 namespace Project3902.LevelBuilding

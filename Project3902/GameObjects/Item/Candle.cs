@@ -1,12 +1,6 @@
-﻿using System;
-using Project3902.GameObjects;
-
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Project3902.GameObjects;
 
 namespace Project3902
 {
