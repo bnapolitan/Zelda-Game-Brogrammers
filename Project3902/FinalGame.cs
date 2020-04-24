@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using Project3902.Configuration;
 using Project3902.GameObjects.Environment;
 using Project3902.LevelBuilding;
@@ -35,7 +34,7 @@ namespace Project3902
         public bool IsTotalPause;
         private bool isGameOver = false;
         public bool isRunning;
-        public bool reDrawText=false;
+        public bool reDrawText = false;
 
         public Vector2 roomSize = new Vector2(WindowWidth, WindowHeight);
         private float scrollTimer;
@@ -107,9 +106,9 @@ namespace Project3902
             InventoryKeyboardController = HUDFactory.Instance.CreatePauseController(this);
 
 
-           
 
-           
+
+
 
 
             ShapeSpriteFactory.Instance.CreateShapeTextures(GraphicsDevice);
@@ -148,7 +147,7 @@ namespace Project3902
             base.Update(gameTime);
 
             if (isRunning == false || isGameOver)
-            {   
+            {
                 LinkMouseController.Update();
                 LinkKeyboardController.Update();
                 LinkGamepadController.Update();
@@ -172,7 +171,7 @@ namespace Project3902
                 return;
             }
 
-            if(pauseCooldown != 5)
+            if (pauseCooldown != 5)
             {
                 pauseCooldown++;
             }
@@ -192,20 +191,20 @@ namespace Project3902
                 {
                     Link.Update(gameTime);
                 }
-                
+
                 if (isPaused || (!isPaused && IsTotalPause))
                 {
                     InventoryKeyboardController.Update();
                     InventoryGamepadController.Update();
-                    
+
                 }
-                else 
+                else
                 {
                     LinkMouseController.Update();
                     LinkKeyboardController.Update();
                     LinkGamepadController.Update();
                 }
-                    
+
 
 
             }
@@ -220,7 +219,7 @@ namespace Project3902
             if (!isPaused && !IsTotalPause)
             {
                 HUDManager.Instance.Update();
-                
+
 
                 CollisionHandler.Instance.CheckCollisions();
 
@@ -238,9 +237,9 @@ namespace Project3902
             PauseScreen.Instance.Update();
 
 
-            if (drawingDone==1)
+            if (drawingDone == 1)
             {
-                if(SoundHandler.Instance.SoundType==1)
+                if (SoundHandler.Instance.SoundType == 1)
 
 
                     SoundHandler.Instance.PlaySoundEffect("Old Man");
@@ -305,16 +304,16 @@ namespace Project3902
         private int pauseCooldown = 5;
         public void PauseGame()
         {
-            if(pauseCooldown == 5)
+            if (pauseCooldown == 5)
             {
                 isPaused = !isPaused;
                 pauseCooldown = 0;
-            }  
+            }
         }
 
         public void TotalPauseGame()
         {
-            if(pauseCooldown == 5)
+            if (pauseCooldown == 5)
             {
                 IsTotalPause = !IsTotalPause;
                 if (IsTotalPause)
@@ -465,7 +464,7 @@ namespace Project3902
             {
                 Link.Position = new Vector2(LinkPositionConfiguration.LinkXPositionAfterMouseClick, LinkPositionConfiguration.LinkYPositionAfterMouseClick + HUDFactory.Instance.HUDHeight);
             }
-            
+
 
             RestartLevel();
         }
@@ -500,7 +499,7 @@ namespace Project3902
                 }
             }
             drawingCounter++;
-            
+
             for (int i = 0; i < characterPosition; i++)
             {
                 if (i < TextConfiguration.FirstLineLength)
@@ -515,7 +514,7 @@ namespace Project3902
                 spriteBatch.DrawString(font, words[i].ToString(), new Vector2(TextConfiguration.TextInitialXPosition + (xPos * TextConfiguration.XOffsetPerLetter), yPos), Color.White, 0f, new Vector2(0, 0), new Vector2(2, 2), SpriteEffects.None, 0f);
 
             }
-            
+
         }
         public void GameOver()
         {
@@ -526,7 +525,8 @@ namespace Project3902
             SoundHandler.Instance.StopEffectInstance(true);
             SoundHandler.Instance.PlaySoundEffect("Link Die", true);
             linkDeath = false;
-            
+            LinkKeyboardController = LinkFactory.Instance.CreateStartLinkController(this);
+            LinkGamepadController = LinkFactory.Instance.CreateStartGamepadController(this);
         }
 
 
@@ -535,7 +535,7 @@ namespace Project3902
             isGameOver = false;
             isPaused = false;
             isRunning = true;
- 
+
             LinkKeyboardController = LinkFactory.Instance.CreateLinkController(this);
             LinkGamepadController = LinkFactory.Instance.CreateLinkGamepadController(this);
             if (fromStart)
