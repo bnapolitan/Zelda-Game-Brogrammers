@@ -177,7 +177,6 @@ namespace Project3902.ObjectManagement
             {
                 if (!musicPause && currentSong != triforceMusic)
                 {
-                    Console.WriteLine("Here?");
                     MediaPlayer.Play(currentSong);
                 }
                 else if (currentSong == triforceMusic)
@@ -190,7 +189,6 @@ namespace Project3902.ObjectManagement
 
         public void PlaySoundEffect(String effectType, Boolean stopMusic=false)
         {
-            Console.WriteLine(effectType + "\n");
             if (stopMusic)
             {
                 musicPause = true;

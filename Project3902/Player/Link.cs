@@ -78,6 +78,13 @@ namespace Project3902
             Sword.Draw(spriteBatch);
         }
 
+        public void RoomChange()
+        {
+            CurrentWeapon.Active = false;
+            SwordProjectile.Active = false;
+            (SwordProjectile as SwordProjectile).DeactivateParticles();
+        }
+
         public void TakeDamage(float damage)
         {
             machine.TakeDamage(damage);
