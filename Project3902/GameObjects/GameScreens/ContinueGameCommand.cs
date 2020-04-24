@@ -1,16 +1,16 @@
 ﻿namespace Project3902
 {
-    class StartGameCommand: ICommand
+    class ContinueGameCommand: ICommand
     {
         FinalGame game;
-        public StartGameCommand(FinalGame game)
+        public ContinueGameCommand(FinalGame game)
         {
             this.game = game;
         }
 
         public void Execute()
         {
-                game.GameStart();
+                game.GameStart(false);
                 StartMenuState.Instance.Active = false;
                 return;
         }

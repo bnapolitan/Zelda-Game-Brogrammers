@@ -111,6 +111,7 @@ namespace Project3902
             var controller = new KeyboardController();
             controller.RegisterCommand(Keys.G, new StartGameCommand(game), InputState.Pressed);
             controller.RegisterCommand(Keys.Escape, new ExitCommand(), InputState.Pressed);
+            controller.RegisterCommand(Keys.C, new ContinueGameCommand(game), InputState.Pressed);
 
             return controller;
         }
