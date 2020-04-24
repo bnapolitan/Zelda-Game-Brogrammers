@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Project3902.Configuration;
 using Project3902.GameObjects;
+using Project3902.GameObjects.EnemiesAndNPCs;
 using Project3902.GameObjects.EnemyProjectiles;
 using Project3902.GameObjects.Environment;
 using Project3902.GameObjects.Environment.Interfaces;
@@ -120,7 +121,7 @@ namespace Project3902
                 other.GameObject = null;
                 SoundHandler.Instance.PlaySoundEffect("Door Unlock");
             }
-            else if (other.GameObject is IInteractiveEnvironmentObject)
+            else if (other.GameObject is IInteractiveEnvironmentObject || other.GameObject is OldMan)
             {
                 if(other.GameObject is MoveableBlock&&(other.GameObject as MoveableBlock).MaxFrames>0&& link.FacingDirection == (other.GameObject as MoveableBlock).Direction)
                 {
