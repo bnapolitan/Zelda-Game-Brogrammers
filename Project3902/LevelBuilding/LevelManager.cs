@@ -216,7 +216,7 @@ namespace Project3902.LevelBuilding
                         {
                             if (environment is MoveableBlock)
                             {
-                                if (environment.Position.X <=385 && environment.Position.Y>= 317 + HUDFactory.Instance.HUDHeight)
+                                if ((environment as MoveableBlock).MaxFrames<=0 && environment.Position.X <=385 && environment.Position.Y>= 317 + HUDFactory.Instance.HUDHeight)
                                 {
 
                                     CollisionHandler.Instance.RemoveCollidable(environment as ICollidable);
