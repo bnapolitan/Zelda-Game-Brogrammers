@@ -11,12 +11,10 @@ namespace Project3902
 
         public override void Execute()
         {
-            if (game.Link.CurrentWeapon is BoomerangWeapon)
+            
+            if (game.Link.CurrentWeapon.Active)
             {
-                if (game.Link.CurrentWeapon.Active)
-                {
-                    return;
-                }
+                return;
             }
             if (game.Link.BombCount > 0 && game.Link.BombExplodeTime < 0)
             {
