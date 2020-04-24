@@ -37,6 +37,10 @@ namespace Project3902
 
         }
 
+        public void resetNumx()
+        {
+            numX = 0;
+        }
         public IGameObject CreateScreen() {
             var gameObject = new HUDObject(new Vector2(30, 0));
             var sprite = new FixedSprite(gameObject, IntroScreen, new Rectangle(0, 0, 320, 280), HUDScale);
@@ -479,6 +483,7 @@ namespace Project3902
             controller.RegisterCommand(Buttons.Start, new PauseGameCommand(game), InputState.Pressed);
             controller.RegisterCommand(Buttons.Back, new TotalPauseGameCommand(game), InputState.Pressed);
             controller.RegisterCommand(Buttons.A, new SelectCommand(), InputState.Pressed);
+            controller.RegisterCommand(Buttons.B, new PauseGameCommand(game), InputState.Pressed);
 
             return controller;
         }

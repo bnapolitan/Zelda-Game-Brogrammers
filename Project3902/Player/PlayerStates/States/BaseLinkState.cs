@@ -164,7 +164,7 @@ namespace Project3902
                     SoundHandler.Instance.PlaySoundEffect("Heart");
                     if(other.GameObject is Heart)
                     {
-                        link.Health+=2;
+                        link.Health+=4;
                         if (link.Health > link.MaxHealth)
                         {
                             link.Health = link.MaxHealth;
@@ -217,8 +217,8 @@ namespace Project3902
                 }
                 else if (other.GameObject is HeartContainer)
                 {
-                    link.MaxHealth += 2;
-                    link.Health += 2;
+                    link.MaxHealth += 4;
+                    link.Health += 4;
                     SoundHandler.Instance.PlaySoundEffect("Heart");
                 }
                 else if (other.GameObject is Compass)

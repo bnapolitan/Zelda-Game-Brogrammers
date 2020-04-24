@@ -15,7 +15,7 @@ namespace Project3902
         {
             if (!(game.Link is DamagedLink))
             {
-                game.Link.Health -= .5f;
+                game.Link.Health -= 1;
                 if (game.Link.Health <= 0)
                 {
                     game.linkDeath = true;

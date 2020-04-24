@@ -121,7 +121,7 @@ namespace Project3902
             var heartsCreated = 0;
 
             HeartsList.Clear();
-            while (heartsCreated + 2 <= numHearts)
+            while (heartsCreated + 2 <= numHearts/2)
             {
                 var heart = Factory.CreateFullHeart();
                 var tempPos = heart.Position;
@@ -130,7 +130,7 @@ namespace Project3902
                 HeartsList.Add(heart);
                 heartsCreated += 2;
             }
-            if(numHearts%2 == 1)
+            if((numHearts/2)%2 == 1)
             {
                 var heart = Factory.CreateHalfHeart();
                 var tempPos = heart.Position;
@@ -139,7 +139,7 @@ namespace Project3902
                 HeartsList.Add(heart);
                 heartsCreated += 2;
             }
-            while(heartsCreated < maxHearts)
+            while(heartsCreated < (maxHearts/2))
             {
                 var heart = Factory.CreateEmptyHeart();
                 var tempPos = heart.Position;
@@ -225,7 +225,12 @@ namespace Project3902
 
 
 
-
+        public void Reset()
+        {
+            HUDFactory.Instance.resetNumx();
+            HUDElements.Clear();
+            AddBaseElements();
+        }
 
 
         public void ChangeBItem(IGameObject HUDItem, IGameObject aquiredItem)

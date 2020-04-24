@@ -10,16 +10,19 @@
 
         public void Execute()
         {
-            if (game.isRunning == false)
+            /*if (game.isRunning == false)
             {
+            */
                 game.GameStart();
                 StartMenuState.Instance.Active = false;
                 return;
-            }
+            //}
+            /*
             if (game.IsPaused)
             {
                 return;
             }
+            */
         }
     }
 }

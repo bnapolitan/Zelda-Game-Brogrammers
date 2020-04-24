@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using Project3902.Configuration;
 using Project3902.GameObjects.Environment;
 using Project3902.LevelBuilding;
@@ -57,6 +58,7 @@ namespace Project3902
         int drawingCounter = 0;
         private int drawingDone = 0;
 
+
         public FinalGame()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -95,9 +97,9 @@ namespace Project3902
 
 
             soundController = SoundHandler.Instance.RegisterSoundKeys();
-            LinkKeyboardController = LinkFactory.Instance.CreateLinkController(this);
+            LinkKeyboardController = LinkFactory.Instance.CreateStartLinkController(this);
             LinkMouseController = LevelFactory.Instance.CreateLevelController(this);
-            LinkGamepadController = LinkFactory.Instance.CreateLinkGamepadController(this);
+            LinkGamepadController = LinkFactory.Instance.CreateStartGamepadController(this);
             InventoryGamepadController = HUDFactory.Instance.CreatePauseGamepadController(this);
             InventoryKeyboardController = HUDFactory.Instance.CreatePauseController(this);
 
@@ -141,8 +143,9 @@ namespace Project3902
         protected override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
             if (isRunning == false || isGameOver)
-            {
+            {   
                 LinkMouseController.Update();
                 LinkKeyboardController.Update();
                 LinkGamepadController.Update();
@@ -156,10 +159,13 @@ namespace Project3902
                 StartMenuState.Instance.Active = true;
                 LevelManager.Instance.ResetLevels();
                 PauseScreen.Instance.Reset();
+                HUDManager.Instance.Reset();
                 CurrentRoom = "DungeonRoom0";
                 RestartLevel(true);
                 linkDeath = false;
                 SoundHandler.Instance.TriforceFound = false;
+                LinkKeyboardController = LinkFactory.Instance.CreateStartLinkController(this);
+                LinkGamepadController = LinkFactory.Instance.CreateStartGamepadController(this);
                 return;
             }
 
@@ -318,6 +324,7 @@ namespace Project3902
         }
         protected void RestartLevel(Boolean newGame = false)
         {
+
             CollisionHandler.Instance.Flush();
             SoundHandler.Instance.StopEffectInstance(true);
 
@@ -500,15 +507,19 @@ namespace Project3902
         }
         public void GameOver()
         {
+
             isGameOver = true;
             isRunning = false;
             SoundHandler.Instance.StopEffectInstance(true);
             SoundHandler.Instance.PlaySoundEffect("Link Die", true);
             LevelManager.Instance.ResetLevels();
             PauseScreen.Instance.Reset();
+            HUDManager.Instance.Reset();
             CurrentRoom = "DungeonRoom0";
             RestartLevel(true);
             linkDeath = false;
+            LinkKeyboardController = LinkFactory.Instance.CreateStartLinkController(this);
+            LinkGamepadController = LinkFactory.Instance.CreateStartGamepadController(this);
         }
 
 
@@ -517,7 +528,8 @@ namespace Project3902
             isGameOver = false;
             isPaused = false;
             isRunning = true;
-
+            LinkKeyboardController = LinkFactory.Instance.CreateLinkController(this);
+            LinkGamepadController = LinkFactory.Instance.CreateLinkGamepadController(this);
             linkDeath = false;
             Link.Health = Link.MaxHealth;
             SoundHandler.Instance.PlaySong("Dungeon");

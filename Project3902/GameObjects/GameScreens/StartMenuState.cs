@@ -13,7 +13,7 @@ namespace Project3902
         public List<IDrawable> ScreenElements = new List<IDrawable>();
         private HUDFactory Factory = HUDFactory.Instance;
         private SpriteAtlas titleAtlas;
-        public static StartMenuState Instance { get; } = new StartMenuState();
+        public static StartMenuState Instance { get;  } = new StartMenuState();
         private StartMenuState()
         {
             
