@@ -82,12 +82,12 @@ namespace Project3902
             blackBox.Position = new Vector2(270, 210);
             PauseScreenElements.Add(blackBox);
 
-            
-            
+
+
             SelectedItem = Factory.CreateItemBlackBox();
             SelectedItem.Position = new Vector2(280, 210);
 
-            
+
         }
 
         private void FillMapBlocks()
@@ -115,12 +115,12 @@ namespace Project3902
             temp.X += 9;
             temp.Y += 9;
             mapBlip.Position = temp;
-            
+
 
         }
         public void AddMapToPauseScreen()
         {
- 
+
             PauseScreenElements.Add(Factory.CreatePauseMap(new Vector2(180, 460)));
 
         }
@@ -138,14 +138,14 @@ namespace Project3902
 
                 if (item is Bow)
                 {
-                    
+
                     foreach (IGameObject collected in aquiredItems)
                     {
                         if (collected is Bow)
                         {
                             aquired = true;
                         }
-                        
+
                     }
                     if (aquired == false)
                     {
@@ -153,19 +153,19 @@ namespace Project3902
                         aquiredItems.Add(item);
                         aquiredObjectKeys.Add("Bow");
                         numItemsAquired++;
-                        
+
                     }
                 }
                 if (item is Arrow)
                 {
-                    
+
                     foreach (IGameObject collected in aquiredItems)
                     {
                         if (collected is Arrow)
                         {
                             aquired = true;
                         }
-                        
+
                     }
                     if (aquired == false)
                     {
@@ -173,7 +173,7 @@ namespace Project3902
                         aquiredItems.Add(item);
                         aquiredObjectKeys.Add("Arrow");
                         numItemsAquired++;
-                        
+
                     }
                 }
                 if (item is Candle)
@@ -184,7 +184,7 @@ namespace Project3902
                         {
                             aquired = true;
                         }
-                       
+
                     }
                     if (aquired == false)
                     {
@@ -192,7 +192,7 @@ namespace Project3902
                         aquiredItems.Add(item);
                         aquiredObjectKeys.Add("Candle");
                         numItemsAquired++;
-                        
+
                     }
                 }
             if (item is BoomerangItem)
@@ -249,7 +249,7 @@ namespace Project3902
             baseVector.X += (numItemsAquired % 4) * 100;
             baseVector.Y += (numItemsAquired / 4) * 75;
             return baseVector;
-            
+
         }
 
         public Vector2 CalculateItemSelectorPosition()
@@ -309,7 +309,7 @@ namespace Project3902
             }
         }
 
- 
+
         private IDictionary<string, Vector2> CreateMapRoomMatrixDictionary()
         {
             var dictionary = new Dictionary<string, Vector2>
@@ -421,9 +421,10 @@ namespace Project3902
             FillMapBlocks();
             numItemsAquired = 0;
             ItemSelector = null;
+            SelectorPos = 0;
         }
 
     }
-    
-    
+
+
 }
