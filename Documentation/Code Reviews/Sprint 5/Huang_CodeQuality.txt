@@ -1,0 +1,20 @@
+Author of the code review: Huang Huang
+
+Date of the code review: 2020/4/24
+
+Sprint number: 5
+
+Name of the .cs file being reviewed: GamepadController.cs
+
+Author of the .cs file being reviewed: Dan Bellini
+
+Number of minutes taken to complete the review :10min
+
+Specific comments on code quality:
+
+This file mainly focused on the pad controllers. The purpose of each function is clear. As for
+the function update(), it is good to use foreach to improve the quality of this code. It makes
+the code simple. And for the function RegisterCommand, it is good to use switch logic to
+separate three different states. However, there are two RegisterCommand functions in this
+file, although they have different variables. To sum up, the whole code has no big problem in
+quality.  
