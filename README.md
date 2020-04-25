@@ -1,41 +1,41 @@
-# 3902 Project - Sprint 4, Brogrammers
+# 3902 Project - Sprint 5, Brogrammers
 
 ## Program controls
 
 Player Controls:
-	Keyboard:
- 		- WASD or arrow keys to move around
- 		- 1 to throw a boomerang 
- 		- 2 to use the blue candle
-		- 3 to use bombs (when count>0)
-		- 4 to use bow/arrow 
-		- Z to use weapon in slot A (sword)
-		- X to use weapon in slot B (sword is default, first weapon to get picked up other than sword gets automatically assigned, switch in inventory menu)
-		- Shift to sprint
-		- Note: keys 1-4 are for ease of testing for TA, Z and X keys replicate actual game functioning
-		- Note: we are assuming Link has already picked up or bought arrows before he enters the dungeon and picks up the bow
- 	Gamepad:
-		- DPad or Left Stick to move around
-		- A to use weapon in slot A (sword)
-		- B to use weapon in slot B
-		- Click Left Stick to sprint
+ Keyboard:
+  - WASD or arrow keys to move around
+  - 1 to throw a boomerang 
+  - 2 to use the blue candle
+  - 3 to use bombs (when count>0)
+  - 4 to use bow/arrow 
+  - Z to use weapon in slot A (sword)
+  - X to use weapon in slot B (sword is default, first weapon to get picked up other than sword gets automatically assigned, switch in inventory menu)
+  - Shift to sprint
+  - Note: keys 1-4 are for ease of testing for TA, Z and X keys replicate actual game functioning
+  - Note: we are assuming Link has already picked up or bought arrows before he enters the dungeon and picks up the bow
+ Gamepad:
+  - DPad or Left Stick to move around
+  - A to use weapon in slot A (sword)
+  - B to use weapon in slot B
+  - Click Left Stick to sprint
 
 General Game/Menu Controls:	
-	Keyboard:	
-		- G to start game, toggle inventory pause state, or restart after death
-		- H to toggle general pause state (with frozen screen)
-		- C to continue after death
-		- ESC to exit game
-		- 0 to toggle traditional or custom sounds
-		- WASD or arrow keys to move selector in inventory screen
-		- Z to select item in inventory screen
-		- Clicking rooms with mouse on the HUD map will instantly switch to those levels
-	Gamepad:
-		- Start Button to start game, toggle inventory pause state, or restart after death
-		- Back Button to toggle general pause state (with frozen screen) or continue after death
-		- B button to exit game when game isn't in run state (in a menu not including inventory)
-		- DPad or Left Stick to move selector in inventory screen
-		- A to select item in inventory screen
+ Keyboard:	
+  - G to start game, toggle inventory pause state, or restart after death
+  - H to toggle general pause state (with frozen screen)
+  - C to continue after death
+  - ESC to exit game
+  - 0 to toggle traditional or custom sounds
+  - WASD or arrow keys to move selector in inventory screen
+  - Z to select item in inventory screen
+  - Clicking rooms with mouse on the HUD map will instantly switch to those levels
+ Gamepad:
+  - Start Button to start game, toggle inventory pause state, or restart after death
+  - Back Button to toggle general pause state (with frozen screen) or continue after death
+  - B button to exit game when game isn't in run state (in a menu not including inventory)
+  - DPad or Left Stick to move selector in inventory screen
+  - A to select item in inventory screen
 
 Note About Levels:
 
