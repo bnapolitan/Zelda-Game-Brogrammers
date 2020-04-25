@@ -2,7 +2,7 @@
 
 ## Program controls
 
-Player Controls:
+**Player Controls**
 
 Keyboard:
 
@@ -24,7 +24,7 @@ Keyboard:
   - B to use weapon in slot B
   - Click Left Stick to sprint
 
-General Game/Menu Controls:	
+**General Game/Menu Controls**
 
  Keyboard:
  
