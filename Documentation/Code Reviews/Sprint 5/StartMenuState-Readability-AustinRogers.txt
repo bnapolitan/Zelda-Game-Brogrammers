@@ -1,0 +1,14 @@
+Code Review Author: Austin Rogers
+Date: 4/24/20
+Sprint 5
+Name of File: StartMenuState.cs
+Author of File: Huang Huang
+
+Minutes taken: 10 mins
+
+Comments on readability:
+Variable names are descriptive for the most part and explain what they are without requiring comments.
+
+There are a lot of unnecessary/inconsistent uses of the this keyword which makes reading the code a bit harder to follow and figure out where variables are coming from.
+
+It also doesn't make sense for the title screne sprite to be created in the RegisterGame function. Speaking of which, there's no need for this class to need a FinalGame field as it's never used, which adds to confusion.

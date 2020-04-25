@@ -1,0 +1,15 @@
+Author of review: Austin Rogers
+Date: 4/24/20
+Sprint 5
+Name of file: StartMenuState.cs
+Author of file: Huang Huang
+
+Comments on code quality:
+
+The first quality issue that stands out is that this file is written as a singleton. It seems unnecessary to have the start menu always loaded in the game as there are no features of it which need to be persistent; it would make much more sense for the main game class to create an instance of the start menu when it needs to appear. 
+
+There is also some unnecessary coupling with SpriteAtlas, AnimatedSprite, and FinalGame. The title sprites texture and sprite creation should occur in a factory as the rest of object creation in our game does. There's no reason that this class should have a FinalGame field as it does not use it except to access the Content once (which again, should occur in a factory, not here).
+
+
+Hypothetical change:
+Perhaps we would want to add more features than simply jumping straight into game, like a settings menu or credits. This start menu has no functionality of its own, it just draws a sprite of the title screen, so making these changes would require a complete overhaul.
