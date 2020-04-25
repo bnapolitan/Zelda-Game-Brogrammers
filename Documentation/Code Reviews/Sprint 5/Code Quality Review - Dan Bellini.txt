@@ -1,0 +1,19 @@
+Author: Dan Bellini
+Date: 4/23/20
+Sprint 5
+LevelManager.cs
+File Author: Suraj Suresh
+Time Taken: 15 min
+
+For this code quality review I will be taking another look at level manager because
+it got a large update and many of our new features this sprint did not require a new
+class. Importantly many of these updates were able to take advantage of many of the 
+good code quality practices I mentioned in the inital review of this class. For
+example, when adding bombed doors and explodable wall functionality it was very straight
+forward to change the collision handlr layers because of how the class was written
+initially. Also when adding the survival room, and its special features, the switch
+case in the CheckSpecials method made it very easy to add a new room with specials
+as I also mentioned in the earlier review of this class. The important thing to take
+away from this review is that making code easily maintainable is an important part
+of the development process so you can go back and change it later. That importance 
+really showed in this class in particular.

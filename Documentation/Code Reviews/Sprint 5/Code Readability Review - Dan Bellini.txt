@@ -1,0 +1,24 @@
+Author: Dan Bellini
+Date: 4/23/20
+Sprint 5
+LevelManager.cs
+File Author: Suraj Suresh
+Time Taken: 15 min
+
+Many of our new features this sprint came in changes to old files rather than creating
+completely new files. Due to this I will be rereviewing LevelManager with the update
+that adds functionality for the survival room. I will focus mostly on the new code, but
+may make comments on old code. With the survival room update, there were only two new
+fields needed to add this functionality. One tracks the number of waves and one tracks 
+if the room door is released. These are both very readable considering I could figure 
+out their function from reading the names. The majority of the class remains unchanged
+for most of the methods. I would still reccomend deleting the GetLevel method and just
+using GetLevelWithOffset and have an offset of zero. This would greatly simplify the
+class and make it more readable. The major change comes in the CheckSpecials method.
+The switch statement that is used in this method makes it very easy to find where the 
+code for this survival room logic is. The first if statement is easy to read because of
+the well named variables. You can then easily tell it checks for the number of waves and
+if the door should be opened. Otherwise the game adds new randomized enemies to the level.
+All of this code is very easy to understand from even a glance because of the well named
+variables, and code structure that allows for me to follow control flow and logic very 
+easily. I think that this is still a very readable class after its updates.
